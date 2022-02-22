@@ -24,14 +24,14 @@ public class MobileSuitDatabaseController {
 	public String getMessage() {
 		String result = jdbcTemplate.queryForObject("select 1",String.class);
 		System.out.println(result);
-		return "/MobileSuitDatabase/ms";
+		return "/MSDB/ms";
 	}
 	
-	@GetMapping("/MobileSuitDatabase/MobileSuitList")
+	@GetMapping("/MSDB/MobileSuitList")
 	public String getMoblieSuits(Model model) {
 		List<MobileSuitsResult> MobileSuits = mobilesuitService.getMobileSuits();
 		model.addAttribute("mobilesuits", MobileSuits);
-		return "/MobileSuitDatabase/Lists/MobileSuitList";
+		return "/MSDB/Lists/MobileSuitList";
 	}
 
 }
