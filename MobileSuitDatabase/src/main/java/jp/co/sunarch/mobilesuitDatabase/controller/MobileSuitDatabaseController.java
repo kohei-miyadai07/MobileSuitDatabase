@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import jp.co.sunarch.mobilesuitDatabase.model.result.MobileSuitDetailResult;
 import jp.co.sunarch.mobilesuitDatabase.model.result.MobileSuitsResult;
 import jp.co.sunarch.mobilesuitDatabase.service.MobileSuitService;
 
@@ -32,6 +33,13 @@ public class MobileSuitDatabaseController {
 		List<MobileSuitsResult> MobileSuits = mobilesuitService.getMobileSuits();
 		model.addAttribute("mobilesuits", MobileSuits);
 		return "/MSDB/Lists/MobileSuitList";
+	}
+	
+	@GetMapping("/MSDB/MobileSuitDetail")
+	public String getMobileSuitDetail(Model model) {
+		MobileSuitDetailResult mobilesuitDetail = mobilesuitService.getMobileSuitDetail();
+		model.addAttribute("mobilesuitDetail", mobilesuitDetail);
+		return "/MSDB/Details/MobileSuitDetail";
 	}
 
 }

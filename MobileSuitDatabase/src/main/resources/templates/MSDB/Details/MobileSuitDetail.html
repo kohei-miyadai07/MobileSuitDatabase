@@ -1,101 +1,67 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
+    <meta charset="UTF-8" />
     <title>モビルスーツ詳細</title>
 </head>
 
 <body>
-    <h1>ジェガンD型</h1>
-    <img src="../../image/RGM-89D.PNG" alt="ジェガンD型" width="280" height="417" style="float:left;">
+    <h1 th:text="${mobilesuitDetail.msName}"></h1>
+    <img th:src="@{${mobilesuitDetail.msUrl}}" alt="モビルスーツ画像" width="280" height="417" style="float:left;">
     <div id="spec">
         <h2>スペック</h2>
         <table border="1">
             <tr>
                 <td><b>型式番号</b></td>
-                <td>RGM-89D</td>
+                <td th:text="${mobilesuitDetail.modelNumber}"></td>
             </tr>
             <tr>
                 <td><b>頭頂高</b></td>
-                <td>19.0m</td>
+                <td th:text="${mobilesuitDetail.headHeight}"></td>
             </tr>
             <tr>
                 <td><b>本体重量</b></td>
-                <td>21.3t</td>
+                <td th:text="${mobilesuitDetail.weight}"></td>
             </tr>
             <tr>
                 <td><b>全備重量</b></td>
-                <td>47.3t</td>
+                <td th:text="${mobilesuitDetail.totalWeight}"></td>
             </tr>
             <tr>
                 <td><b>動力源</b></td>
-                <td>ミノフスキー・イヨネスコ型熱核反応炉</td>
+                <td th:text="${mobilesuitDetail.powerSource}"></td>
             </tr>
             <tr>
                 <td><b>装甲材質</b></td>
-                <td>チタン合金セラミック複合材</td>
+                <td th:text="${mobilesuitDetail.material}"></td>
             </tr>
             <tr>
                 <td><b>ジェネレーター出力</b></td>
-                <td>1,870kW</td>
+                <td th:text="${mobilesuitDetail.generatorOutput}"></td>
             </tr>
             <tr>
                 <td><b>スラスター総推力</b></td>
-                <td>62,000kg</td>
+                <td th:text="${mobilesuitDetail.totalThrustersOutput}"></td>
             </tr>
             <tr>
                 <td><b>武装</b></td>
-                <td>
-                    ビーム・ライフル×1
-                    <br>ビーム・サーベル×1
-                    <br>バルカン・ポッド・システム×1
-                    <br>ハンド・グレネード×3
-                    <br>シールド（2連装ミサイルランチャー×2）×1
+                <td th:each="equipment : ${mobilesuitDetail.msEquipmentList}">
+                    <p th:text="|${equipment.armedName} × ${equipment.numberEquipment}|"></p>
                 </td>
             </tr>
         </table>
     </div>
     <div class="text" style="clear:both">
         <h2>機体概要</h2>
-        <p>
-            UC.0096年頃に、地球連邦軍の最前線部隊へと配備された「ジェガン」のマイナー・アップデート機。
-            UC.0089年にロールアウトした初期量産モデルから、ジェネレーター出力及びスラスター推力の向上が施されただけでなく、
-            「スターク・ジェガン」などへの換装を前提として、オプション用のマウントラッチが機体各部に施されている。
-            A2型同様、初期設計から10年も経過していない時点でのマイナー・アップデート機であるため、大幅な性能の向上はないが、
-            肩の形状など細かい箇所にまで仕様変更が行われている。
-        </p>
+        <p th:text="${mobilesuitDetail.msOverview}"></p>
         <h2>武装解説</h2>
-        <dl>
-            <dt>ビーム・ライフル</dt>
-            <dd>
-                本機の主兵装。短銃身型のために射程は短めだが取り回しがよく、速射性も高い。
-                混戦時には搭載されているセンサーを併用する事で確実に敵機に命中させられるようになっている。
-            </dd>
-            <dt>ビーム・サーベル</dt>
-            <dd>
-                右腰に1基マウントしている。
-                2種類のビーム刃を形成可能で、ラックにはエネルギーの急速充填が可能なキャバシターシステムを搭載している。
-            </dd>
-            <dt>バルカン・ポッド・システム</dt>
-            <dd>
-                頭部左側に1基装備。
-                ガンダムMk-IIの物を小型化しており、着脱は不可。マガジンの交換は頭部右側から行う。
-            </dd>
-            <dt>ハンド・グレネード</dt>
-            <dd>
-                左腰に3基装備している接近戦用の武装。信管は使用する際に時限式とセンサー式を選択できる。
-            </dd>
-            <dt>シールド（2連装ミサイルランチャー×2）</dt>
-            <dd>
-                防御用の実体盾。耐ビームコーティングを施されており、高い防御力を誇る。
-                2連装ミサイルランチャーを2基装備する。
-            </dd>
+        <dl th:each="armed : ${mobilesuitDetail.msEquipmentList}">
+            <dt th:text="${armed.armedName}"></dt>
+            <dd th:text="${armed.armedExplanation}"></dd>
         </dl>
         <h2>活躍</h2>
-        <p>
-            ロンド・ベルのネェル・アーガマ隊など地球連邦軍の最前線部隊に配備され、
-            U.C0096年の『ラプラス紛争』では、ネオ・ジオン残党『袖付き』と激戦を繰り広げた。
-        </p>
+        <p th:text="${mobilesuitDetail.action}"></p>
     </div>
 </body>
 

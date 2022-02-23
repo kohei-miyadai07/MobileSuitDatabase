@@ -1,5 +1,5 @@
 -- Project Name : MSDB_ER
--- Date/Time    : 2022/02/06 0:42:31
+-- Date/Time    : 2022/02/23 9:59:31
 -- Author       : 宮臺滉平
 -- RDBMS Type   : Microsoft SQL Server 2005
 -- Application  : A5:SQL Mk-2
@@ -15,11 +15,9 @@
 -- 装備
 --* RestoreFromTempTable
 create table Equipment (
-  equipment_id VARCHAR not null
-  , ms_id VARCHAR not null
-  , ms_name VARCHAR not null
-  , armed_id VARCHAR not null
-  , armed_name VARCHAR not null
+  equipment_id VARCHAR(7) not null
+  , ms_id VARCHAR(7) not null
+  , armed_id VARCHAR(7) not null
   , number_equipment INTEGER
   , constraint Equipment_PKC primary key (equipment_id)
 ) ;
@@ -27,39 +25,43 @@ create table Equipment (
 -- 武装
 --* RestoreFromTempTable
 create table Armed (
-  armed_id VARCHAR not null
-  , armed_name VARCHAR not null
-  , armed_explanation VARCHAR
+  armed_id VARCHAR(7) not null
+  , armed_name VARCHAR(90) not null
+  , armed_explanation VARCHAR(2000)
   , constraint Armed_PKC primary key (armed_id)
 ) ;
 
 -- モビルスーツ
 --* RestoreFromTempTable
 create table MobileSuit (
-  ms_id VARCHAR not null
-  , model_number VARCHAR not null
-  , ms_name VARCHAR not null
-  , ms_url VARCHAR not null
-  , head_height DECIMAL
-  , weight DECIMAL
-  , total_weight DECIMAL
-  , power_source VARCHAR
-  , material VARCHAR
-  , generator_output INTEGER
-  , total_thrusters_output INTEGER
-  , ms_overview VARCHAR
-  , action VARCHAR
-  , insert_date DATETIME not null
-  , update_date DATETIME not null
+  ms_id VARCHAR(7) not null
+  , model_number VARCHAR(50) not null
+  , ms_name VARCHAR(90) not null
+  , ms_url VARCHAR(100) not null
+  , head_height DECIMAL(5,2)
+  , weight DECIMAL(5,2)
+  , total_weight DECIMAL(5,2)
+  , power_source VARCHAR(90)
+  , material VARCHAR(90)
+  , generator_output BIGINT
+  , total_thrusters_output BIGINT
+  , ms_overview VARCHAR(2000)
+  , action VARCHAR(2000)
+  , insert_date TIMESTAMP not null
+  , update_date TIMESTAMP not null
   , constraint MobileSuit_PKC primary key (ms_id)
 ) ;
+
+alter table Equipment
+  add constraint Equipment_FK1 foreign key (armed_id) references Armed(armed_id);
+
+alter table Equipment
+  add constraint Equipment_FK2 foreign key (ms_id) references MobileSuit(ms_id);
 
 execute sp_addextendedproperty N'MS_Description', N'装備', N'SCHEMA', N'dbo', N'TABLE', N'Equipment', null, null;
 execute sp_addextendedproperty N'MS_Description', N'装備ID', N'SCHEMA', N'dbo', N'TABLE', N'Equipment', N'COLUMN', N'equipment_id';
 execute sp_addextendedproperty N'MS_Description', N'機体ID', N'SCHEMA', N'dbo', N'TABLE', N'Equipment', N'COLUMN', N'ms_id';
-execute sp_addextendedproperty N'MS_Description', N'機体名', N'SCHEMA', N'dbo', N'TABLE', N'Equipment', N'COLUMN', N'ms_name';
 execute sp_addextendedproperty N'MS_Description', N'武装ID', N'SCHEMA', N'dbo', N'TABLE', N'Equipment', N'COLUMN', N'armed_id';
-execute sp_addextendedproperty N'MS_Description', N'武装名', N'SCHEMA', N'dbo', N'TABLE', N'Equipment', N'COLUMN', N'armed_name';
 execute sp_addextendedproperty N'MS_Description', N'装備数', N'SCHEMA', N'dbo', N'TABLE', N'Equipment', N'COLUMN', N'number_equipment';
 
 execute sp_addextendedproperty N'MS_Description', N'武装', N'SCHEMA', N'dbo', N'TABLE', N'Armed', null, null;
