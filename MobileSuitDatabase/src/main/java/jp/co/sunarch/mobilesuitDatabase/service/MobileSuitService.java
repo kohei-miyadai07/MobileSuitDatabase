@@ -46,9 +46,9 @@ public class MobileSuitService {
 		return mobilesuitsResultList;
 	}
 	
-	public MobileSuitDetailResult getMobileSuitDetail() {
+	public MobileSuitDetailResult getMobileSuitDetail(String msName) {
 
-		MobileSuitDetailEntity mdEntity = mobilesuitDao.searchMobileSuitDetail("as00178");
+		MobileSuitDetailEntity mdEntity = mobilesuitDao.searchMobileSuitDetail(msName);
 		
 		List<MobileSuitEquipmentEntity> meEntityList = 
 				mobilesuitDao.searchMobileSuitEquipmentList("as00178");

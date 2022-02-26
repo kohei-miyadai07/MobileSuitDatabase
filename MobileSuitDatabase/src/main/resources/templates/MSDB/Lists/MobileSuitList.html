@@ -16,7 +16,7 @@
             <tr th:each="mobilesuit : ${mobilesuits}">
                 <td th:text="${mobilesuit.msId}"></td>
                 <td th:text="${mobilesuit.modelNumber}"></td>
-                <td th:text="${mobilesuit.msName}"></td>
+                <td><a th:href="@{'/MSDB/MobileSuitDetail/' + ${mobilesuit.msId}}"><span th:text="${mobilesuit.msName}"></span></a></td>
                 <td th:text="${mobilesuit.insertDate}"></td>
                 <td th:text="${mobilesuit.updateDate}"></td>
             </tr>
