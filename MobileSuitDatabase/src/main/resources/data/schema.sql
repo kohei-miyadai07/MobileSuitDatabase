@@ -1,6 +1,6 @@
 --モビルスーツ
 create table MobileSuit (
-  ms_id VARCHAR(7) not null
+  ms_id VARCHAR(8) not null
   , model_number VARCHAR(50) not null
   , ms_name VARCHAR(90) not null
   , ms_url VARCHAR(100) not null
@@ -21,7 +21,7 @@ create table MobileSuit (
 
 --武装
 create table Armed (
-  armed_id VARCHAR(7) not null
+  armed_id VARCHAR(8) not null
   , armed_name VARCHAR(90) not null
   , armed_explanation VARCHAR(2000)
   , constraint Armed_PKC primary key (armed_id)
@@ -30,9 +30,9 @@ create table Armed (
 
 --装備
 create table Equipment (
-  equipment_id VARCHAR(7) not null
-  , ms_id VARCHAR(7) not null
-  , armed_id VARCHAR(7) not null
+  equipment_id VARCHAR(8) not null
+  , ms_id VARCHAR(8) not null
+  , armed_id VARCHAR(8) not null
   , number_equipment INTEGER
   , constraint Equipment_PKC primary key (equipment_id)
 ) ;

@@ -51,7 +51,7 @@ public class MobileSuitService {
 		MobileSuitDetailEntity mdEntity = mobilesuitDao.searchMobileSuitDetail(msName);
 		
 		List<MobileSuitEquipmentEntity> meEntityList = 
-				mobilesuitDao.searchMobileSuitEquipmentList("as00178");
+				mobilesuitDao.searchMobileSuitEquipmentList(msName);
 		
 		List<MobileSuitEquipment> msEquipList = new ArrayList<>();
 		for(MobileSuitEquipmentEntity entity :meEntityList) {

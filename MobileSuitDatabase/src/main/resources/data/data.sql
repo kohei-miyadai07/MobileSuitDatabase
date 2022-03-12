@@ -2,7 +2,7 @@
 insert 
 into MobileSuit 
 values ( 
-  'as00178'
+  'as000178'
   , 'RX-78-02'
   , 'ガンダム'
   , '/images/RX-78-02.PNG'
@@ -19,17 +19,44 @@ values (
   , '2022-02-13 11:41:23'
 );
 
+
 --武装
 insert 
 into Armed 
-values ('0000001', 'テスト用ビームライフル', 'テスト用です。');
+values ('00000001', 'テスト用ビームライフル', 'テスト用です。');
+
+insert 
+into Armed 
+values ('00000002', 'テスト用ビームサーベル', 'テストサーベル用です。');
+
+insert 
+into Armed 
+values ('00000003', 'テスト用シールド', 'テスト用シールドです。');
 
 --装備
 insert 
 into Equipment 
 values ( 
-  'o920uy7'
-  , 'as00178'
-  , '0000001'
+  'o9200uy7'
+  , 'as000178'
+  , '00000001'
+  , 1
+);
+
+insert 
+into Equipment 
+values ( 
+  'AS200uy7'
+  , 'as000178'
+  , '00000002'
+  , 2
+);
+
+insert 
+into Equipment 
+values ( 
+  'o920WEy7'
+  , 'as000178'
+  , '00000003'
   , 1
 );

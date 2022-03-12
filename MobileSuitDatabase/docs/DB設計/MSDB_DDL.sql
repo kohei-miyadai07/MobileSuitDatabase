@@ -1,5 +1,5 @@
 -- Project Name : MSDB_ER
--- Date/Time    : 2022/02/23 9:59:31
+-- Date/Time    : 2022/03/12 18:09:00
 -- Author       : 宮臺滉平
 -- RDBMS Type   : Microsoft SQL Server 2005
 -- Application  : A5:SQL Mk-2
@@ -15,9 +15,9 @@
 -- 装備
 --* RestoreFromTempTable
 create table Equipment (
-  equipment_id VARCHAR(7) not null
-  , ms_id VARCHAR(7) not null
-  , armed_id VARCHAR(7) not null
+  equipment_id VARCHAR(8) not null
+  , ms_id VARCHAR(8) not null
+  , armed_id VARCHAR(8) not null
   , number_equipment INTEGER
   , constraint Equipment_PKC primary key (equipment_id)
 ) ;
@@ -25,7 +25,7 @@ create table Equipment (
 -- 武装
 --* RestoreFromTempTable
 create table Armed (
-  armed_id VARCHAR(7) not null
+  armed_id VARCHAR(8) not null
   , armed_name VARCHAR(90) not null
   , armed_explanation VARCHAR(2000)
   , constraint Armed_PKC primary key (armed_id)
@@ -34,7 +34,7 @@ create table Armed (
 -- モビルスーツ
 --* RestoreFromTempTable
 create table MobileSuit (
-  ms_id VARCHAR(7) not null
+  ms_id VARCHAR(8) not null
   , model_number VARCHAR(50) not null
   , ms_name VARCHAR(90) not null
   , ms_url VARCHAR(100) not null

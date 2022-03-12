@@ -46,8 +46,10 @@
             </tr>
             <tr>
                 <td><b>武装</b></td>
-                <td th:each="equipment : ${mobilesuitDetail.msEquipmentList}">
-                    <p th:text="|${equipment.armedName} × ${equipment.numberEquipment}|"></p>
+                <td>
+                    <div th:each="equipment : ${mobilesuitDetail.msEquipmentList}">
+                        <p th:text="|${equipment.armedName} × ${equipment.numberEquipment}|"></p>
+                    </div>
                 </td>
             </tr>
         </table>
