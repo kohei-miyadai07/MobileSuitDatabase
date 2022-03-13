@@ -1,28 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>
-        モビルスーツ武装登録
-    </title>
+    <title>モビルスーツ武装登録</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 
 <body>
     <h1>モビルスーツ武装登録</h1>
     <div id="msArmedRegister">
-        <form action="#" method="post">
+        <form action="#" th:action="@{/MSDB/MobileSuitArmedRegister}" th:object="${msArmedRegistForm}" method="post">
             <label class="label" for="armedName">武装名</label>
-            <input id="armedName" type="text" name="armedName">
+            <input type="text" th:field="*{armedName}" />
             <label class="label" for="armedExplanation">武装解説</label>
-            <textarea rows="5" id="armedExplanation" placeholder="武装解説" name="armedExplanation"></textarea>
-            <button type="submit">登録</button>
+            <textarea rows="5" placeholder="武装解説" th:field="*{armedExplanation}"></textarea>
+            <p><button type="submit">登録</button><button type="reset">リセット</button></p>
         </form>
     </div>
     <style>
         #msArmedRegister label,
         input,
         textarea,
-        button {
+        p {
           display: block;
         }
       </style>

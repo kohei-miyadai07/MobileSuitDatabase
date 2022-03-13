@@ -1,32 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <title>モビルスーツ装備登録</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 
 <body>
     <h1>モビルスーツ装備登録</h1>
     <div id="msEquipmentRegister">
-        <form action="#" method="post">
+        <form action="#" th:action="@{/MSDB/MobileSuitEquipmentRegister}" th:object="${msEquipmentRegistForm}"
+            method="post">
             <label class="label" for="msName">機体名</label>
-            <select name="msName">
-                <option value="MobileSuit.ms_id">{{MobileSuit.ms_name}}</option>
+            <select id="msId" name="msId">
+                <option th:each="msEquipment : $*{msEquipmentInfoList}" th:value="${msEquipment.msId}"
+                    th:text="${msEquipment.msName}" th:select="${msEquipment.msId} == *{msId}"></option>
             </select>
             <label class="label" for="armedName">武装名</label>
-            <select name="armedName">
-                <option value="Armed.armed_id">{{Armed.armed_name}}</option>
+            <select id="armedId" name="armedId">
+                <option th:each="msEquipment : $*{msEquipmentInfoList}" th:value="${msEquipment.armedId}"
+                    th:text="${msEquipment.armedName}" th:select="${msEquipment.armedId} == *{armedId}"></option>
             </select>
             <label class="label" for="numberEquipment">装備数</label>
-            <input id="numberEquipment" type="text" name="numberEquipment">
-            <button type="submit">登録</button>
+            <input type="text" th:field="*{numberEquipment}" />
+            <p><button type="submit">登録</button><button type="reset">リセット</button></p>
         </form>
     </div>
     <style>
         #msEquipmentRegister label,
         select,
         input,
-        button {
+        p {
             display: block;
         }
     </style>
