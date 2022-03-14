@@ -2,10 +2,12 @@ package jp.co.sunarch.mobilesuitDatabase.entity;
 
 import java.math.BigDecimal;
 
+import lombok.Builder;
 import lombok.Data;
 
 @Data
-public class MobileSuitDetailEntity {
+@Builder
+public class MobileSuitEntity {
 	private String msId;
 	private String modelNumber;
 	private String msName;

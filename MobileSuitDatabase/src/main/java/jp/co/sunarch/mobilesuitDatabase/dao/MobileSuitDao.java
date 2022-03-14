@@ -9,7 +9,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
-import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitDetailEntity;
+import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitEntity;
 import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitEquipmentEntity;
 import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitsEntity;
 import lombok.AllArgsConstructor;
@@ -58,6 +58,27 @@ public class MobileSuitDao {
              where
               e.ms_id = :msId
 			""";
+	final String INSERT_MOBILESUIT_QUERY = """
+			insert 
+            into MobileSuit 
+            values ( 
+               :msId
+              ,:modelNumber
+              ,:msName
+              ,:msUrl
+              ,:headHeight
+              ,:weight
+              ,:totalWeight
+              ,:powerSource
+              ,:material
+              ,:generatorOutput
+              ,:totalThrustersOutput
+              ,:msOverview
+              ,:action
+              ,CURRENT_TIMESTAMP
+              ,CURRENT_TIMESTAMP
+            );
+			""";
 	
 	public List<MobileSuitsEntity> searchMobileSuits() {
 
@@ -68,11 +89,11 @@ public class MobileSuitDao {
 		return namedParameterJdbcTemplate.query(SEARCH_MOBILESUITS_QUERY, params, mapper);
 	}
 	
-	public MobileSuitDetailEntity searchMobileSuitDetail(String id) {
+	public MobileSuitEntity searchMobileSuitDetail(String id) {
 
 		SqlParameterSource params = new MapSqlParameterSource().addValue("msId", id);
-		RowMapper<MobileSuitDetailEntity> mapper = 
-				new BeanPropertyRowMapper<MobileSuitDetailEntity>(MobileSuitDetailEntity.class);
+		RowMapper<MobileSuitEntity> mapper = 
+				new BeanPropertyRowMapper<MobileSuitEntity>(MobileSuitEntity.class);
 		
 		return namedParameterJdbcTemplate.queryForObject(
 				SEARCH_MOBILESUIT_DETAIL_QUERY, params, mapper);
@@ -85,6 +106,27 @@ public class MobileSuitDao {
 				new BeanPropertyRowMapper<MobileSuitEquipmentEntity>(MobileSuitEquipmentEntity.class);
 		
 		return namedParameterJdbcTemplate.query(SEARCH_MOBILESUIT_EQUIPMENT_QUERY, params, mapper);
+	}
+
+	public int insertOneMobileSuit(MobileSuitEntity mobileSuitEntity) {
+		
+		SqlParameterSource params = new MapSqlParameterSource()
+				.addValue("msId", mobileSuitEntity.getMsId())
+				.addValue("modelNumber", mobileSuitEntity.getModelNumber())
+				.addValue("msName", mobileSuitEntity.getMsName())
+				.addValue("msUrl", mobileSuitEntity.getMsUrl())
+				.addValue("headHeight", mobileSuitEntity.getHeadHeight())
+				.addValue("weight", mobileSuitEntity.getWeight())
+				.addValue("totalWeight", mobileSuitEntity.getTotalWeight())
+				.addValue("powerSource", mobileSuitEntity.getPowerSource())
+				.addValue("material", mobileSuitEntity.getMaterial())
+				.addValue("generatorOutput", mobileSuitEntity.getGeneratorOutput())
+				.addValue("totalThrustersOutput", mobileSuitEntity.getTotalThrustersOutput())
+				.addValue("msOverview", mobileSuitEntity.getMsOverview())
+				.addValue("action", mobileSuitEntity.getAction());
+		
+		return namedParameterJdbcTemplate.update(INSERT_MOBILESUIT_QUERY, params);
+				
 	}
 
 }

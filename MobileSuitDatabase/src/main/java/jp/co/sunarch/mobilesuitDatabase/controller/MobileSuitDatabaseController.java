@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitRegistForm;
 import jp.co.sunarch.mobilesuitDatabase.model.result.MobileSuitDetailResult;
 import jp.co.sunarch.mobilesuitDatabase.model.result.MobileSuitsResult;
 import jp.co.sunarch.mobilesuitDatabase.service.MobileSuitService;
@@ -41,6 +42,12 @@ public class MobileSuitDatabaseController {
 		MobileSuitDetailResult mobilesuitDetail = mobilesuitService.getMobileSuitDetail(msName);
 		model.addAttribute("mobilesuitDetail", mobilesuitDetail);
 		return "/MSDB/Details/MobileSuitDetail";
+	}
+	
+	@GetMapping("/MSDB/MobileSuitRegister")
+	public String MobileSuitRegister(Model model) {
+		model.addAttribute("msRegistForm", new MobileSuitRegistForm());
+		return "/MSDB/Register/MobileSuitRegister";
 	}
 
 }

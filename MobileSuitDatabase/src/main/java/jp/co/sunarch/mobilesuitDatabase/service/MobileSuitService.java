@@ -1,16 +1,19 @@
 package jp.co.sunarch.mobilesuitDatabase.service;
 
+import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.stereotype.Service;
 
 import jp.co.sunarch.mobilesuitDatabase.dao.MobileSuitDao;
-import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitDetailEntity;
+import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitEntity;
 import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitEquipmentEntity;
 import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitsEntity;
+import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitRegistForm;
 import jp.co.sunarch.mobilesuitDatabase.model.result.MobileSuitDetailResult;
 import jp.co.sunarch.mobilesuitDatabase.model.result.MobileSuitsResult;
 import jp.co.sunarch.mobilesuitDatabase.vo.MobileSuitEquipment;
@@ -48,7 +51,7 @@ public class MobileSuitService {
 	
 	public MobileSuitDetailResult getMobileSuitDetail(String msName) {
 
-		MobileSuitDetailEntity mdEntity = mobilesuitDao.searchMobileSuitDetail(msName);
+		MobileSuitEntity mdEntity = mobilesuitDao.searchMobileSuitDetail(msName);
 		
 		List<MobileSuitEquipmentEntity> meEntityList = 
 				mobilesuitDao.searchMobileSuitEquipmentList(msName);
@@ -87,6 +90,35 @@ public class MobileSuitService {
 		
 		return mobileSuitDetailResult;
 				
+	}
+	
+	public String insertMobileSuit(MobileSuitRegistForm msRegistForm) {
+		String message = null;
+		
+		MobileSuitEntity mobileSuitEntity = MobileSuitEntity.builder()
+				.msId(RandomStringUtils.randomAlphanumeric(8))
+				.modelNumber(msRegistForm.getModelNumber())
+				.msName(msRegistForm.getMsName())
+				.msUrl(msRegistForm.getMsUrl())
+				.headHeight(new BigDecimal(msRegistForm.getHeadHeight()))
+				.weight(new BigDecimal(msRegistForm.getWeight()))
+				.totalWeight(new BigDecimal(msRegistForm.getTotalWeight()))
+				.powerSource(msRegistForm.getPowerSource())
+				.material(msRegistForm.getMaterial())
+				.generatorOutput(Long.parseLong(msRegistForm.getGeneratorOutput()))
+				.totalThrustersOutput(Long.parseLong(msRegistForm.getTotalThrustersOutput()))
+				.msOverview(msRegistForm.getMsOverview())
+				.action(msRegistForm.getAction())
+				.build();
+		
+		int result = mobilesuitDao.insertOneMobileSuit(mobileSuitEntity);
+		if (result != 1) {
+			message = "登録処理に失敗しました。";
+		} else {
+			message = "登録処理に成功しました。";
+		}
+		
+		return message;
 	}
 
 }
