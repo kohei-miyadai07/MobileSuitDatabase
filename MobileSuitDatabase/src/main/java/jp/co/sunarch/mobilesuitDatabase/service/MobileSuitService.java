@@ -10,6 +10,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.stereotype.Service;
 
 import jp.co.sunarch.mobilesuitDatabase.dao.MobileSuitDao;
+import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitDetailEntity;
 import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitEntity;
 import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitEquipmentEntity;
 import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitsEntity;
@@ -51,7 +52,7 @@ public class MobileSuitService {
 	
 	public MobileSuitDetailResult getMobileSuitDetail(String msName) {
 
-		MobileSuitEntity mdEntity = mobilesuitDao.searchMobileSuitDetail(msName);
+		MobileSuitDetailEntity mdEntity = mobilesuitDao.searchMobileSuitDetail(msName);
 		
 		List<MobileSuitEquipmentEntity> meEntityList = 
 				mobilesuitDao.searchMobileSuitEquipmentList(msName);

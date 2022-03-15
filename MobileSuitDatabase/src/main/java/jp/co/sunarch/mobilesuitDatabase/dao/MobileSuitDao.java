@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
+import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitDetailEntity;
 import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitEntity;
 import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitEquipmentEntity;
 import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitsEntity;
@@ -89,11 +90,11 @@ public class MobileSuitDao {
 		return namedParameterJdbcTemplate.query(SEARCH_MOBILESUITS_QUERY, params, mapper);
 	}
 	
-	public MobileSuitEntity searchMobileSuitDetail(String id) {
+	public MobileSuitDetailEntity searchMobileSuitDetail(String id) {
 
 		SqlParameterSource params = new MapSqlParameterSource().addValue("msId", id);
-		RowMapper<MobileSuitEntity> mapper = 
-				new BeanPropertyRowMapper<MobileSuitEntity>(MobileSuitEntity.class);
+		RowMapper<MobileSuitDetailEntity> mapper = 
+				new BeanPropertyRowMapper<MobileSuitDetailEntity>(MobileSuitDetailEntity.class);
 		
 		return namedParameterJdbcTemplate.queryForObject(
 				SEARCH_MOBILESUIT_DETAIL_QUERY, params, mapper);

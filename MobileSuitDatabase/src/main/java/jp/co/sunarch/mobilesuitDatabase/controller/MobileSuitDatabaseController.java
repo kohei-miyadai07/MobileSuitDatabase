@@ -7,7 +7,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitRegistForm;
 import jp.co.sunarch.mobilesuitDatabase.model.result.MobileSuitDetailResult;
@@ -47,7 +49,15 @@ public class MobileSuitDatabaseController {
 	@GetMapping("/MSDB/MobileSuitRegister")
 	public String MobileSuitRegister(Model model) {
 		model.addAttribute("msRegistForm", new MobileSuitRegistForm());
-		return "/MSDB/Register/MobileSuitRegister";
+		return "/MSDB/Registers/MobileSuitRegister";
+	}
+	
+	@PostMapping("/MSDB/MobileSuitRegister")
+	public String MobileSuitRegister(@ModelAttribute MobileSuitRegistForm msRegistForm, 
+			Model model) {
+		String message = mobilesuitService.insertMobileSuit(msRegistForm);
+		model.addAttribute("message", message);
+		return "/MSDB/Registers/RegisterResult";
 	}
 
 }
