@@ -9,9 +9,12 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
+import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitArmedEntity;
+import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitArmedInfoEntity;
 import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitDetailEntity;
 import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitEntity;
 import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitEquipmentEntity;
+import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitInfoEntity;
 import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitsEntity;
 import lombok.AllArgsConstructor;
 
@@ -59,6 +62,7 @@ public class MobileSuitDao {
              where
               e.ms_id = :msId
 			""";
+	
 	final String INSERT_MOBILESUIT_QUERY = """
 			insert 
             into MobileSuit 
@@ -79,6 +83,34 @@ public class MobileSuitDao {
               ,CURRENT_TIMESTAMP
               ,CURRENT_TIMESTAMP
             );
+			""";
+	
+	final String INSERT_MOBILESUIT_ARMED_QUERY = """
+			insert 
+            into Armed 
+            values (:armedId, :armedName, :armedExplanation);
+			""";
+	
+	final String SEARCH_MOBILESUIT_INFO_QUERY = """
+			select
+			   ms_id
+			  ,ms_name
+			 from
+			  MobileSuit
+			 order by
+			   ms_name
+			  ,ms_id
+			""";
+	
+	final String SEARCH_MOBILESUIT_ARMED_INFO_QUERY = """
+			select
+			   armed_id
+			  ,armed_name
+			 from
+			  Armed
+			 order by
+			   armed_name
+			  ,armed_id
 			""";
 	
 	public List<MobileSuitsEntity> searchMobileSuits() {
@@ -109,25 +141,51 @@ public class MobileSuitDao {
 		return namedParameterJdbcTemplate.query(SEARCH_MOBILESUIT_EQUIPMENT_QUERY, params, mapper);
 	}
 
-	public int insertOneMobileSuit(MobileSuitEntity mobileSuitEntity) {
+	public int insertOneMobileSuit(MobileSuitEntity msEntity) {
 		
 		SqlParameterSource params = new MapSqlParameterSource()
-				.addValue("msId", mobileSuitEntity.getMsId())
-				.addValue("modelNumber", mobileSuitEntity.getModelNumber())
-				.addValue("msName", mobileSuitEntity.getMsName())
-				.addValue("msUrl", mobileSuitEntity.getMsUrl())
-				.addValue("headHeight", mobileSuitEntity.getHeadHeight())
-				.addValue("weight", mobileSuitEntity.getWeight())
-				.addValue("totalWeight", mobileSuitEntity.getTotalWeight())
-				.addValue("powerSource", mobileSuitEntity.getPowerSource())
-				.addValue("material", mobileSuitEntity.getMaterial())
-				.addValue("generatorOutput", mobileSuitEntity.getGeneratorOutput())
-				.addValue("totalThrustersOutput", mobileSuitEntity.getTotalThrustersOutput())
-				.addValue("msOverview", mobileSuitEntity.getMsOverview())
-				.addValue("action", mobileSuitEntity.getAction());
+				.addValue("msId", msEntity.getMsId())
+				.addValue("modelNumber", msEntity.getModelNumber())
+				.addValue("msName", msEntity.getMsName())
+				.addValue("msUrl", msEntity.getMsUrl())
+				.addValue("headHeight", msEntity.getHeadHeight())
+				.addValue("weight", msEntity.getWeight())
+				.addValue("totalWeight", msEntity.getTotalWeight())
+				.addValue("powerSource", msEntity.getPowerSource())
+				.addValue("material", msEntity.getMaterial())
+				.addValue("generatorOutput", msEntity.getGeneratorOutput())
+				.addValue("totalThrustersOutput", msEntity.getTotalThrustersOutput())
+				.addValue("msOverview", msEntity.getMsOverview())
+				.addValue("action", msEntity.getAction());
 		
 		return namedParameterJdbcTemplate.update(INSERT_MOBILESUIT_QUERY, params);
 				
+	}
+	
+	public int insertOneMobileSuitArmed(MobileSuitArmedEntity msArmedEntity) {
+		
+		SqlParameterSource params = new MapSqlParameterSource()
+				.addValue("armedId", msArmedEntity.getArmedId())
+				.addValue("armedName", msArmedEntity.getArmedName())
+				.addValue("armedExplanation", msArmedEntity.getArmedExplanation());
+		
+		return namedParameterJdbcTemplate.update(INSERT_MOBILESUIT_ARMED_QUERY, params);
+	}
+	
+	public List<MobileSuitInfoEntity> searchMobileSuitInfoList() {
+		SqlParameterSource params = new MapSqlParameterSource();
+		RowMapper<MobileSuitInfoEntity> mapper = 
+				new BeanPropertyRowMapper<MobileSuitInfoEntity>(MobileSuitInfoEntity.class);
+		
+		return namedParameterJdbcTemplate.query(SEARCH_MOBILESUIT_INFO_QUERY, params, mapper);
+	}
+	
+	public List<MobileSuitArmedInfoEntity> searchMobileSuitArmedInfoList() {
+		SqlParameterSource params = new MapSqlParameterSource();
+		RowMapper<MobileSuitArmedInfoEntity> mapper =
+				new BeanPropertyRowMapper<MobileSuitArmedInfoEntity>(MobileSuitArmedInfoEntity.class);
+		
+		return namedParameterJdbcTemplate.query(SEARCH_MOBILESUIT_ARMED_INFO_QUERY, params, mapper);
 	}
 
 }

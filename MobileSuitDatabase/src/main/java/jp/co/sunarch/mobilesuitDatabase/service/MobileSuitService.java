@@ -10,10 +10,14 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.stereotype.Service;
 
 import jp.co.sunarch.mobilesuitDatabase.dao.MobileSuitDao;
+import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitArmedEntity;
+import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitArmedInfoEntity;
 import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitDetailEntity;
 import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitEntity;
 import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitEquipmentEntity;
+import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitInfoEntity;
 import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitsEntity;
+import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitArmedRegistForm;
 import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitRegistForm;
 import jp.co.sunarch.mobilesuitDatabase.model.result.MobileSuitDetailResult;
 import jp.co.sunarch.mobilesuitDatabase.model.result.MobileSuitsResult;
@@ -96,7 +100,7 @@ public class MobileSuitService {
 	public String insertMobileSuit(MobileSuitRegistForm msRegistForm) {
 		String message = null;
 		
-		MobileSuitEntity mobileSuitEntity = MobileSuitEntity.builder()
+		MobileSuitEntity msEntity = MobileSuitEntity.builder()
 				.msId(RandomStringUtils.randomAlphanumeric(8))
 				.modelNumber(msRegistForm.getModelNumber())
 				.msName(msRegistForm.getMsName())
@@ -112,7 +116,7 @@ public class MobileSuitService {
 				.action(msRegistForm.getAction())
 				.build();
 		
-		int result = mobilesuitDao.insertOneMobileSuit(mobileSuitEntity);
+		int result = mobilesuitDao.insertOneMobileSuit(msEntity);
 		if (result != 1) {
 			message = "登録処理に失敗しました。";
 		} else {
@@ -120,6 +124,33 @@ public class MobileSuitService {
 		}
 		
 		return message;
+	}
+	
+	public String insertMobileSuitArmed(MobileSuitArmedRegistForm msArmedRegistForm) {
+		String message = null;
+		
+		MobileSuitArmedEntity msArmedEntity = MobileSuitArmedEntity.builder()
+				.armedId(RandomStringUtils.randomAlphanumeric(8))
+				.armedName(msArmedRegistForm.getArmedName())
+				.armedExplanation(msArmedRegistForm.getArmedExplanation())
+				.build();
+		
+		int result = mobilesuitDao.insertOneMobileSuitArmed(msArmedEntity);
+		if (result != 1) {
+			message = "登録処理に失敗しました。";
+		} else {
+			message = "登録処理に成功しました。";
+		}
+		
+		return message;
+	}
+	
+	public String getMSEquipmentRegistForm() {
+		
+		List<MobileSuitInfoEntity> msInfoList = mobilesuitDao.searchMobileSuitInfoList();
+		List<MobileSuitArmedInfoEntity> msArmedInfoList = mobilesuitDao.searchMobileSuitArmedInfoList();
+		
+		return "";
 	}
 
 }
