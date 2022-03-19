@@ -13,12 +13,12 @@
             method="post">
             <label class="label" for="msName">機体名</label>
             <select id="msId" name="msId">
-                <option th:each="msInfo : $*{msInfoList}" th:value="${msInfo.msId}"
+                <option th:each="msInfo : *{msInfoList}" th:value="${msInfo.msId}"
                     th:text="${msInfo.msName}" th:select="${msInfo.msId} == *{msId}"></option>
             </select>
             <label class="label" for="armedName">武装名</label>
             <select id="armedId" name="armedId">
-                <option th:each="msArmedInfo : $*{msArmedInfoList}" th:value="${msArmedInfo.armedId}"
+                <option th:each="msArmedInfo : *{msArmedInfoList}" th:value="${msArmedInfo.armedId}"
                     th:text="${msArmedInfo.armedName}" th:select="${msArmedInfo.armedId} == *{armedId}"></option>
             </select>
             <label class="label" for="numberEquipment">装備数</label>

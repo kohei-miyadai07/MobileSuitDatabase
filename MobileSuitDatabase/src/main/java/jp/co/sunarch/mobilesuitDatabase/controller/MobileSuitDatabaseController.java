@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitArmedRegistForm;
+import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitEquipmentRegistForm;
 import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitRegistForm;
 import jp.co.sunarch.mobilesuitDatabase.model.result.MobileSuitDetailResult;
 import jp.co.sunarch.mobilesuitDatabase.model.result.MobileSuitsResult;
@@ -74,6 +75,24 @@ public class MobileSuitDatabaseController {
 		String message = mobilesuitService.insertMobileSuitArmed(msArmedRegistForm);
 		model.addAttribute("message", message);
 		model.addAttribute("url", "/MSDB/MobileSuitArmedRegister");
+		return "/MSDB/Registers/RegisterResult";
+	}
+	
+	@GetMapping("/MSDB/MobileSuitEquipmentRegister")
+	public String MobileSuitEquipmentRegister(Model model) {
+		MobileSuitEquipmentRegistForm msEquipmentRegistForm = 
+				mobilesuitService.getMSEquipmentInfoList(new MobileSuitEquipmentRegistForm());
+		model.addAttribute("msEquipmentRegistForm", msEquipmentRegistForm);
+		return "/MSDB/Registers/MobileSuitEquipmentRegister";
+		
+	}
+	
+	@PostMapping("/MSDB/MobileSuitEquipmentRegister")
+	public String MobileSuitEquipmentRegister(@ModelAttribute MobileSuitEquipmentRegistForm msEquipmentRegistForm,
+			Model model) {
+		String message = mobilesuitService.insertMobileSuitEquipment(msEquipmentRegistForm);
+		model.addAttribute("message", message);
+		model.addAttribute("url", "/MSDB/MobileSuitEquipmentRegister");
 		return "/MSDB/Registers/RegisterResult";
 	}
 

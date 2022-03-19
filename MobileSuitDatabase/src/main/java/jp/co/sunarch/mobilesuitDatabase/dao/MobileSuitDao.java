@@ -13,6 +13,7 @@ import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitArmedEntity;
 import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitArmedInfoEntity;
 import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitDetailEntity;
 import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitEntity;
+import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitEquipmentDetailEntity;
 import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitEquipmentEntity;
 import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitInfoEntity;
 import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitsEntity;
@@ -113,6 +114,12 @@ public class MobileSuitDao {
 			  ,armed_id
 			""";
 	
+	final String INSERT_MOBILESUIT_EQUIPMENT_QUERY = """
+			insert
+			into Equipment
+			values (:equipmentId, :msId, :armedId, :numberEquipment);
+			""";
+	
 	public List<MobileSuitsEntity> searchMobileSuits() {
 
 		SqlParameterSource params = new MapSqlParameterSource();
@@ -132,11 +139,11 @@ public class MobileSuitDao {
 				SEARCH_MOBILESUIT_DETAIL_QUERY, params, mapper);
 	}
 	
-	public List<MobileSuitEquipmentEntity> searchMobileSuitEquipmentList(String id) {
+	public List<MobileSuitEquipmentDetailEntity> searchMobileSuitEquipmentList(String id) {
 
 		SqlParameterSource params = new MapSqlParameterSource().addValue("msId", id);
-		RowMapper<MobileSuitEquipmentEntity> mapper = 
-				new BeanPropertyRowMapper<MobileSuitEquipmentEntity>(MobileSuitEquipmentEntity.class);
+		RowMapper<MobileSuitEquipmentDetailEntity> mapper = 
+				new BeanPropertyRowMapper<MobileSuitEquipmentDetailEntity>(MobileSuitEquipmentDetailEntity.class);
 		
 		return namedParameterJdbcTemplate.query(SEARCH_MOBILESUIT_EQUIPMENT_QUERY, params, mapper);
 	}
@@ -186,6 +193,17 @@ public class MobileSuitDao {
 				new BeanPropertyRowMapper<MobileSuitArmedInfoEntity>(MobileSuitArmedInfoEntity.class);
 		
 		return namedParameterJdbcTemplate.query(SEARCH_MOBILESUIT_ARMED_INFO_QUERY, params, mapper);
+	}
+	
+	public int insertOneMobileSuitEquipment(MobileSuitEquipmentEntity msEquipmentEntity) {
+		
+		SqlParameterSource params = new MapSqlParameterSource()
+				.addValue("equipmentId", msEquipmentEntity.getEquipmentId())
+				.addValue("msId", msEquipmentEntity.getMsId())
+				.addValue("armedId", msEquipmentEntity.getArmedId())
+				.addValue("numberEquipment", msEquipmentEntity.getNumberEquipment());
+		
+		return namedParameterJdbcTemplate.update(INSERT_MOBILESUIT_EQUIPMENT_QUERY, params);
 	}
 
 }

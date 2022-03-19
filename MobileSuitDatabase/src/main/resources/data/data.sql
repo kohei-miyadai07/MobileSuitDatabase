@@ -33,6 +33,10 @@ insert
 into Armed 
 values ('00000003', 'テスト用シールド', 'テスト用シールドです。');
 
+insert 
+into Armed 
+values ('00000004', 'テスト用バズーカ', 'テスト用バズーカです。');
+
 --装備
 insert 
 into Equipment 

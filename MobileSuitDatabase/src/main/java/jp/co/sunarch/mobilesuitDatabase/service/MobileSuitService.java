@@ -5,6 +5,7 @@ import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.stereotype.Service;
@@ -14,32 +15,36 @@ import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitArmedEntity;
 import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitArmedInfoEntity;
 import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitDetailEntity;
 import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitEntity;
+import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitEquipmentDetailEntity;
 import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitEquipmentEntity;
 import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitInfoEntity;
 import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitsEntity;
 import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitArmedRegistForm;
+import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitEquipmentRegistForm;
 import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitRegistForm;
 import jp.co.sunarch.mobilesuitDatabase.model.result.MobileSuitDetailResult;
 import jp.co.sunarch.mobilesuitDatabase.model.result.MobileSuitsResult;
+import jp.co.sunarch.mobilesuitDatabase.vo.MobileSuitArmedInfo;
 import jp.co.sunarch.mobilesuitDatabase.vo.MobileSuitEquipment;
+import jp.co.sunarch.mobilesuitDatabase.vo.MobileSuitInfo;
 
 @Service
 public class MobileSuitService {
-	
+
 	private MobileSuitDao mobilesuitDao;
-	
+
 	private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-	
+
 	private NumberFormat comFormat = NumberFormat.getNumberInstance();
-	
+
 	public MobileSuitService(MobileSuitDao mobilesuitDao) {
 		this.mobilesuitDao = mobilesuitDao;
 	}
-	
+
 	public List<MobileSuitsResult> getMobileSuits() {
-		
+
 		List<MobileSuitsEntity> entityList = mobilesuitDao.searchMobileSuits();
-		
+
 		List <MobileSuitsResult> mobilesuitsResultList = new ArrayList<>();
 		for (MobileSuitsEntity entity : entityList) {
 			MobileSuitsResult mobilesuitsResult = MobileSuitsResult.builder()
@@ -53,16 +58,16 @@ public class MobileSuitService {
 		}
 		return mobilesuitsResultList;
 	}
-	
+
 	public MobileSuitDetailResult getMobileSuitDetail(String msName) {
 
 		MobileSuitDetailEntity mdEntity = mobilesuitDao.searchMobileSuitDetail(msName);
-		
-		List<MobileSuitEquipmentEntity> meEntityList = 
+
+		List<MobileSuitEquipmentDetailEntity> meEntityList = 
 				mobilesuitDao.searchMobileSuitEquipmentList(msName);
-		
+
 		List<MobileSuitEquipment> msEquipList = new ArrayList<>();
-		for(MobileSuitEquipmentEntity entity :meEntityList) {
+		for(MobileSuitEquipmentDetailEntity entity :meEntityList) {
 			MobileSuitEquipment msEquipment = MobileSuitEquipment.builder()
 					.equipmentId(entity.getEquipmentId())
 					.msId(entity.getMsId())
@@ -73,7 +78,7 @@ public class MobileSuitService {
 					.build();
 			msEquipList.add(msEquipment);
 		}
-		
+
 		MobileSuitDetailResult mobileSuitDetailResult = MobileSuitDetailResult.builder()
 				.msId(mdEntity.getMsId())
 				.modelNumber(mdEntity.getModelNumber())
@@ -92,14 +97,14 @@ public class MobileSuitService {
 				.action(mdEntity.getAction())
 				.msEquipmentList(msEquipList)
 				.build();
-		
+
 		return mobileSuitDetailResult;
-				
+
 	}
-	
+
 	public String insertMobileSuit(MobileSuitRegistForm msRegistForm) {
 		String message = null;
-		
+
 		MobileSuitEntity msEntity = MobileSuitEntity.builder()
 				.msId(RandomStringUtils.randomAlphanumeric(8))
 				.modelNumber(msRegistForm.getModelNumber())
@@ -115,27 +120,65 @@ public class MobileSuitService {
 				.msOverview(msRegistForm.getMsOverview())
 				.action(msRegistForm.getAction())
 				.build();
-		
+
 		int result = mobilesuitDao.insertOneMobileSuit(msEntity);
 		if (result != 1) {
 			message = "登録処理に失敗しました。";
 		} else {
 			message = "登録処理に成功しました。";
 		}
-		
+
 		return message;
 	}
-	
+
 	public String insertMobileSuitArmed(MobileSuitArmedRegistForm msArmedRegistForm) {
 		String message = null;
-		
+
 		MobileSuitArmedEntity msArmedEntity = MobileSuitArmedEntity.builder()
 				.armedId(RandomStringUtils.randomAlphanumeric(8))
 				.armedName(msArmedRegistForm.getArmedName())
 				.armedExplanation(msArmedRegistForm.getArmedExplanation())
 				.build();
-		
+
 		int result = mobilesuitDao.insertOneMobileSuitArmed(msArmedEntity);
+		if (result != 1) {
+			message = "登録処理に失敗しました。";
+		} else {
+			message = "登録処理に成功しました。";
+		}
+
+		return message;
+	}
+
+	public MobileSuitEquipmentRegistForm getMSEquipmentInfoList(MobileSuitEquipmentRegistForm msEquipmentRegistForm) {
+		List<MobileSuitInfoEntity> msInfoEntityList = mobilesuitDao.searchMobileSuitInfoList();
+		List<MobileSuitArmedInfoEntity> msArmedInfoEntityList = mobilesuitDao.searchMobileSuitArmedInfoList();
+
+		List<MobileSuitInfo> msInfoList = msInfoEntityList.stream()
+				.map(m -> MobileSuitInfo.builder().msId(m.getMsId()).msName(m.getMsName()).build())
+				.collect(Collectors.toList());
+		
+		List<MobileSuitArmedInfo> msArmedInfoList = msArmedInfoEntityList.stream()
+				.map(m -> MobileSuitArmedInfo.builder().armedId(m.getArmedId()).armedName(m.getArmedName()).build())
+				.collect(Collectors.toList());
+		
+		msEquipmentRegistForm.setMsInfoList(msInfoList);
+		msEquipmentRegistForm.setMsArmedInfoList(msArmedInfoList);
+
+		return msEquipmentRegistForm;
+	}
+	
+	public String insertMobileSuitEquipment(MobileSuitEquipmentRegistForm msEquipmentRegistForm) {
+		String message = null;
+		
+		MobileSuitEquipmentEntity msEquipmentEntity = MobileSuitEquipmentEntity.builder()
+				.equipmentId(RandomStringUtils.randomAlphanumeric(8))
+				.msId(msEquipmentRegistForm.getMsId())
+				.armedId(msEquipmentRegistForm.getArmedId())
+				.numberEquipment(Integer.parseInt(msEquipmentRegistForm.getNumberEquipment()))
+				.build();
+		
+		int result = mobilesuitDao.insertOneMobileSuitEquipment(msEquipmentEntity);
 		if (result != 1) {
 			message = "登録処理に失敗しました。";
 		} else {
@@ -143,14 +186,7 @@ public class MobileSuitService {
 		}
 		
 		return message;
-	}
-	
-	public String getMSEquipmentRegistForm() {
-		
-		List<MobileSuitInfoEntity> msInfoList = mobilesuitDao.searchMobileSuitInfoList();
-		List<MobileSuitArmedInfoEntity> msArmedInfoList = mobilesuitDao.searchMobileSuitArmedInfoList();
-		
-		return "";
+				
 	}
 
 }
