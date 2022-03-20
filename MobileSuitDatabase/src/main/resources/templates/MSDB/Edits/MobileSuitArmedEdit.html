@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>モビルスーツ武装編集</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <h1>モビルスーツ武装編集</h1>
+    <div id="msArmedEdit">
+        <form action="#" th:action="@{/MSDB/MobileSuitArmedEdit/{armedId}(armedId=*{armedId})}" th:object="${msArmedEditForm}" method="put">
+            <label class="label" for="armedName">武装名</label>
+            <input type="text" th:field="*{armedName}" />
+            <label class="label" for="armedExplanation">武装解説</label>
+            <textarea rows="5" placeholder="武装解説" th:field="*{armedExplanation}"></textarea>
+            <p><button type="submit">更新</button><button type="reset">リセット</button></p>
+        </form>
+    </div>
+    <style>
+        #msArmedEdit label,
+        input,
+        textarea,
+        p {
+          display: block;
+        }
+      </style>
+</body>
+
+</html>
