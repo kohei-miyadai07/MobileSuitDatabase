@@ -303,5 +303,19 @@ public class MobileSuitService {
 		
 		return message;
 	}
+	
+	public String deleteMobileSuit(String msId) {
+		String message = null;
+		
+		int resultEquipment = mobilesuitDao.daleteOneEquipmentForMobileSuit(msId);
+		int resultMobileSuit = mobilesuitDao.deleteOneMobileSuit(msId);
+		if (resultEquipment == 0 || resultMobileSuit == 0) {
+			message = "削除処理に失敗しました。";
+		} else {
+			message = "削除処理に成功しました。";
+		}
+		
+		return message;
+	}
 
 }

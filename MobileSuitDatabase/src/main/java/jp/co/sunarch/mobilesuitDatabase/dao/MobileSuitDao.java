@@ -193,6 +193,14 @@ public class MobileSuitDao {
              equipment_id = :equipmentId
 			""";
 	
+	final String DELETE_EQUIPMENT_FORMOBILESUIT_QUERY = """
+			delete from Equipment where ms_id = :msId
+			""";
+	
+	final String DELETE_MOBILESUIT_QUERY = """
+			delete from MobileSuit where ms_id = :msId
+			""";
+	
 	public List<MobileSuitsEntity> searchMobileSuits() {
 
 		SqlParameterSource params = new MapSqlParameterSource();
@@ -342,6 +350,20 @@ public class MobileSuitDao {
 				.addValue("numberEquipment", msEquipmentEntity.getNumberEquipment());
 		
 		return namedParameterJdbcTemplate.update(UPDATE_MOBILESUIT_EQUIPMENT_QUERY, params);
+	}
+	
+	public int daleteOneEquipmentForMobileSuit(String msId) {
+		
+		SqlParameterSource params = new MapSqlParameterSource().addValue("msId", msId);
+		
+		return namedParameterJdbcTemplate.update(DELETE_EQUIPMENT_FORMOBILESUIT_QUERY, params);
+	}
+	
+	public int deleteOneMobileSuit(String msId) {
+		
+		SqlParameterSource params = new MapSqlParameterSource().addValue("msId", msId);
+		
+		return namedParameterJdbcTemplate.update(DELETE_MOBILESUIT_QUERY, params);
 	}
 
 }

@@ -35,6 +35,7 @@
       <label class="label" for="action">活躍</label>
       <textarea rows="5" placeholder="活躍" th:field="*{action}"></textarea>
       <p><button type="submit">更新</button><button type="reset">リセット</button></p>
+      <p><button type="submit" th:formaction="@{/MSDB/MobileSuitDelete/{msId}(msId=*{msId})}">削除</button></p>
     </form>
   </div>
   <style>

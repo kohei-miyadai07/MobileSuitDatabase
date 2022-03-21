@@ -146,5 +146,12 @@ public class MobileSuitDatabaseController {
 		model.addAttribute("message", message);
 		return "/MSDB/Edits/EditResult";
 	}
+	
+	@PostMapping("/MSDB/MobileSuitDelete/{msId}")
+	public String MobileSuitDelete(@PathVariable String msId, Model model) {
+		String message = mobilesuitService.deleteMobileSuit(msId);
+		model.addAttribute("message", message);
+		return "/MSDB/Deletes/DeleteResult";
+	}
 
 }
