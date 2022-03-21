@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitArmedEditForm;
 import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitArmedRegistForm;
+import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitEditForm;
+import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitEquipmentEditForm;
 import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitEquipmentRegistForm;
 import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitRegistForm;
 import jp.co.sunarch.mobilesuitDatabase.model.result.MobileSuitDetailResult;
@@ -94,6 +97,54 @@ public class MobileSuitDatabaseController {
 		model.addAttribute("message", message);
 		model.addAttribute("url", "/MSDB/MobileSuitEquipmentRegister");
 		return "/MSDB/Registers/RegisterResult";
+	}
+	
+	@GetMapping("/MSDB/MobileSuitEdit/{msId}")
+	public String MobileSuitEdit(@PathVariable String msId, Model model) {
+		MobileSuitEditForm msEditForm = mobilesuitService.getMobileSuit(msId);
+		model.addAttribute("msEditForm", msEditForm);
+		return "/MSDB/Edits/MobileSuitEdit";
+	}
+	
+	@PostMapping("/MSDB/MobileSuitEdit/{msId}")
+	public String MobileSuitEdit(@PathVariable String msId, @ModelAttribute MobileSuitEditForm msEditForm,
+			Model model) {
+		msEditForm.setMsId(msId);
+		String message = mobilesuitService.updateMobileSuit(msEditForm);
+		model.addAttribute("message", message);
+		return "/MSDB/Edits/EditResult";
+	}
+	
+	@GetMapping("/MSDB/MobileSuitArmedEdit/{armedId}")
+	public String MobileSuitArmedEdit(@PathVariable String armedId, Model model) {
+		MobileSuitArmedEditForm msArmedEditForm = mobilesuitService.getMobileSuitArmed(armedId);
+		model.addAttribute("msArmedEditForm", msArmedEditForm);
+		return "/MSDB/Edits/MobileSuitArmedEdit";
+	}
+	
+	@PostMapping("/MSDB/MobileSuitArmedEdit/{armedId}")
+	public String MobileSuitArmedEdit(@PathVariable String armedId, @ModelAttribute MobileSuitArmedEditForm msArmedEditForm,
+			Model model) {
+		msArmedEditForm.setArmedId(armedId);
+		String message = mobilesuitService.updateMobileSuitArmed(msArmedEditForm);
+		model.addAttribute("message", message);
+		return "/MSDB/Edits/EditResult";
+	}
+	
+	@GetMapping("/MSDB/MobileSuitEquipmentEdit/{equipmentId}")
+	public String MobileSuitEquipmentEdit(@PathVariable String equipmentId, Model model) {
+		MobileSuitEquipmentEditForm msEquipmentEditForm = mobilesuitService.getMobileSuitEquipment(equipmentId);
+		model.addAttribute("msEquipmentEditForm", msEquipmentEditForm);
+		return "/MSDB/Edits/MobileSuitEquipmentEdit";
+	}
+	
+	@PostMapping("/MSDB/MobileSuitEquipmentEdit/{equipmentId}")
+	public String MobileSuitEquipmentEdit(@PathVariable String equipmentId, @ModelAttribute MobileSuitEquipmentEditForm msEquipmentEditForm,
+			Model model) {
+		msEquipmentEditForm.setEquipmentId(equipmentId);
+		String message = mobilesuitService.updateMobileSuitEquipment(msEquipmentEditForm);
+		model.addAttribute("message", message);
+		return "/MSDB/Edits/EditResult";
 	}
 
 }

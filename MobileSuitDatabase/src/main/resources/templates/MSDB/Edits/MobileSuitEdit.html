@@ -9,7 +9,7 @@
 <body>
   <h1>モビルスーツ編集</h1>
   <div id="msEdit">
-    <form action="#" th:action="@{/MSDB/MobileSuitEdit/{msId}(msId=*{msId})}" th:object="${msEditForm}" method="put">
+    <form action="#" th:action="@{/MSDB/MobileSuitEdit/{msId}(msId=*{msId})}" th:object="${msEditForm}" method="post">
       <label class="label" for="msName">機体名</label>
       <input type="text" th:field="*{msName}" />
       <label class="label" for="modelNumber">型式番号</label>

@@ -48,7 +48,7 @@ public class MobileSuitDao {
               m.ms_id = :msId
 			""";
 	
-	final String SEARCH_MOBILESUIT_EQUIPMENT_QUERY = """
+	final String SEARCH_MOBILESUIT_DETEIL_EQUIPMENT_QUERY = """
 			select
 			   e.equipment_id
 			  ,e.ms_id
@@ -120,6 +120,79 @@ public class MobileSuitDao {
 			values (:equipmentId, :msId, :armedId, :numberEquipment);
 			""";
 	
+	final String SEARCH_MOBILESUIT_QUERY = """
+			select
+               * 
+             from
+              MobileSuit m 
+             where
+              m.ms_id = :msId
+			""";
+	
+	final String UPDATE_MOBILESUIT_QUERY = """
+			update MobileSuit 
+            set
+             model_number = :modelNumber
+             , ms_name = :msName
+             , ms_url = :msUrl
+             , head_height = :headHeight
+             , weight = :weight
+             , total_weight = :totalWeight
+             , power_source = :powerSource
+             , material = :material
+             , generator_output = :generatorOutput
+             , total_thrusters_output = :totalThrustersOutput
+             , ms_overview = :msOverview
+             , action = :action
+             , update_date = CURRENT_TIMESTAMP 
+            where
+              ms_id = :msId
+			""";
+	
+	final String SEARCH_MOBILESUIT_ARMED_QUERY = """
+			select
+			   *
+			 from
+			  Armed a
+			 where
+			  a.armed_id = :armedId
+			""";
+	
+	final String UPDATE_MOBILESUIT_ARMED_QUERY = """
+			update Armed
+			set
+			 armed_name = :armedName
+			 , armed_explanation = :armedExplanation
+			where
+			  armed_id = :armedId
+			""";
+	
+	final String SEARCH_MOBILESUIT_EQUIPMENT_QUERY = """
+			select
+               e.equipment_id
+             , e.ms_id
+             , m.ms_name
+             , e.armed_id
+             , a.armed_name
+             , e.number_equipment 
+             from
+              Equipment e 
+              inner join MobileSuit m 
+                on e.ms_id = m.ms_id 
+              inner join Armed a 
+                on e.armed_id = a.armed_id 
+             where
+                e.equipment_id = :equipmentId
+			""";
+	
+	final String UPDATE_MOBILESUIT_EQUIPMENT_QUERY = """
+			update Equipment 
+            set
+             number_equipment = :numberEquipment
+            where
+             equipment_id = :equipmentId
+			""";
+	
 	public List<MobileSuitsEntity> searchMobileSuits() {
 
 		SqlParameterSource params = new MapSqlParameterSource();
@@ -145,7 +218,7 @@ public class MobileSuitDao {
 		RowMapper<MobileSuitEquipmentDetailEntity> mapper = 
 				new BeanPropertyRowMapper<MobileSuitEquipmentDetailEntity>(MobileSuitEquipmentDetailEntity.class);
 		
-		return namedParameterJdbcTemplate.query(SEARCH_MOBILESUIT_EQUIPMENT_QUERY, params, mapper);
+		return namedParameterJdbcTemplate.query(SEARCH_MOBILESUIT_DETEIL_EQUIPMENT_QUERY, params, mapper);
 	}
 
 	public int insertOneMobileSuit(MobileSuitEntity msEntity) {
@@ -204,6 +277,71 @@ public class MobileSuitDao {
 				.addValue("numberEquipment", msEquipmentEntity.getNumberEquipment());
 		
 		return namedParameterJdbcTemplate.update(INSERT_MOBILESUIT_EQUIPMENT_QUERY, params);
+	}
+	
+	public MobileSuitEntity selectOneMobileSuit(String msId) {
+		
+		SqlParameterSource params = new MapSqlParameterSource().addValue("msId", msId);
+		RowMapper<MobileSuitEntity> mapper = 
+				new BeanPropertyRowMapper<MobileSuitEntity>(MobileSuitEntity.class);
+		
+		return namedParameterJdbcTemplate.queryForObject(SEARCH_MOBILESUIT_QUERY, params, mapper);
+	}
+	
+	public int updateOneMobileSuit(MobileSuitEntity msEntity) {
+		
+		SqlParameterSource params = new MapSqlParameterSource()
+				.addValue("msId", msEntity.getMsId())
+				.addValue("modelNumber", msEntity.getModelNumber())
+				.addValue("msName", msEntity.getMsName())
+				.addValue("msUrl", msEntity.getMsUrl())
+				.addValue("headHeight", msEntity.getHeadHeight())
+				.addValue("weight", msEntity.getWeight())
+				.addValue("totalWeight", msEntity.getTotalWeight())
+				.addValue("powerSource", msEntity.getPowerSource())
+				.addValue("material", msEntity.getMaterial())
+				.addValue("generatorOutput", msEntity.getGeneratorOutput())
+				.addValue("totalThrustersOutput", msEntity.getTotalThrustersOutput())
+				.addValue("msOverview", msEntity.getMsOverview())
+				.addValue("action", msEntity.getAction());
+		
+		return namedParameterJdbcTemplate.update(UPDATE_MOBILESUIT_QUERY, params);
+	}
+	
+	public MobileSuitArmedEntity selectOneArmed(String armedId) {
+		
+		SqlParameterSource params = new MapSqlParameterSource().addValue("armedId", armedId);
+		RowMapper<MobileSuitArmedEntity> mapper =
+				new BeanPropertyRowMapper<MobileSuitArmedEntity>(MobileSuitArmedEntity.class);
+		
+		return namedParameterJdbcTemplate.queryForObject(SEARCH_MOBILESUIT_ARMED_QUERY, params, mapper);
+	}
+	
+	public int updateOneMobileSuitArmed(MobileSuitArmedEntity msArmedEntity) {
+		
+		SqlParameterSource params = new MapSqlParameterSource()
+				.addValue("armedId", msArmedEntity.getArmedId())
+				.addValue("armedName", msArmedEntity.getArmedName())
+				.addValue("armedExplanation", msArmedEntity.getArmedExplanation());
+		
+		return namedParameterJdbcTemplate.update(UPDATE_MOBILESUIT_ARMED_QUERY, params);
+	}
+	
+	public MobileSuitEquipmentEntity selectOneEquipment(String equipmentId) {
+		SqlParameterSource params = new MapSqlParameterSource().addValue("equipmentId", equipmentId);
+		RowMapper<MobileSuitEquipmentEntity> mapper =
+				new BeanPropertyRowMapper<MobileSuitEquipmentEntity>(MobileSuitEquipmentEntity.class);
+		
+		return namedParameterJdbcTemplate.queryForObject(SEARCH_MOBILESUIT_EQUIPMENT_QUERY, params, mapper);
+	}
+	
+	public int updateOneMobileSuitEquipment(MobileSuitEquipmentEntity msEquipmentEntity) {
+		
+		SqlParameterSource params = new MapSqlParameterSource()
+				.addValue("equipmentId", msEquipmentEntity.getEquipmentId())
+				.addValue("numberEquipment", msEquipmentEntity.getNumberEquipment());
+		
+		return namedParameterJdbcTemplate.update(UPDATE_MOBILESUIT_EQUIPMENT_QUERY, params);
 	}
 
 }

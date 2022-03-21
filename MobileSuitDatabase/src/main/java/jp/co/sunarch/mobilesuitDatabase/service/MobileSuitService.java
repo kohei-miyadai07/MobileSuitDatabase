@@ -19,7 +19,10 @@ import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitEquipmentDetailEntity;
 import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitEquipmentEntity;
 import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitInfoEntity;
 import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitsEntity;
+import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitArmedEditForm;
 import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitArmedRegistForm;
+import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitEditForm;
+import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitEquipmentEditForm;
 import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitEquipmentRegistForm;
 import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitRegistForm;
 import jp.co.sunarch.mobilesuitDatabase.model.result.MobileSuitDetailResult;
@@ -105,21 +108,20 @@ public class MobileSuitService {
 	public String insertMobileSuit(MobileSuitRegistForm msRegistForm) {
 		String message = null;
 
-		MobileSuitEntity msEntity = MobileSuitEntity.builder()
-				.msId(RandomStringUtils.randomAlphanumeric(8))
-				.modelNumber(msRegistForm.getModelNumber())
-				.msName(msRegistForm.getMsName())
-				.msUrl(msRegistForm.getMsUrl())
-				.headHeight(new BigDecimal(msRegistForm.getHeadHeight()))
-				.weight(new BigDecimal(msRegistForm.getWeight()))
-				.totalWeight(new BigDecimal(msRegistForm.getTotalWeight()))
-				.powerSource(msRegistForm.getPowerSource())
-				.material(msRegistForm.getMaterial())
-				.generatorOutput(Long.parseLong(msRegistForm.getGeneratorOutput()))
-				.totalThrustersOutput(Long.parseLong(msRegistForm.getTotalThrustersOutput()))
-				.msOverview(msRegistForm.getMsOverview())
-				.action(msRegistForm.getAction())
-				.build();
+		MobileSuitEntity msEntity = new MobileSuitEntity(
+				RandomStringUtils.randomAlphanumeric(8)
+				,msRegistForm.getModelNumber()
+				,msRegistForm.getMsName()
+				,msRegistForm.getMsUrl()
+				,new BigDecimal(msRegistForm.getHeadHeight())
+				,new BigDecimal(msRegistForm.getWeight())
+				,new BigDecimal(msRegistForm.getTotalWeight())
+				,msRegistForm.getPowerSource()
+				,msRegistForm.getMaterial()
+				,Long.parseLong(msRegistForm.getGeneratorOutput())
+				,Long.parseLong(msRegistForm.getTotalThrustersOutput())
+				,msRegistForm.getMsOverview()
+				,msRegistForm.getAction());
 
 		int result = mobilesuitDao.insertOneMobileSuit(msEntity);
 		if (result != 1) {
@@ -134,11 +136,10 @@ public class MobileSuitService {
 	public String insertMobileSuitArmed(MobileSuitArmedRegistForm msArmedRegistForm) {
 		String message = null;
 
-		MobileSuitArmedEntity msArmedEntity = MobileSuitArmedEntity.builder()
-				.armedId(RandomStringUtils.randomAlphanumeric(8))
-				.armedName(msArmedRegistForm.getArmedName())
-				.armedExplanation(msArmedRegistForm.getArmedExplanation())
-				.build();
+		MobileSuitArmedEntity msArmedEntity = new MobileSuitArmedEntity(
+				RandomStringUtils.randomAlphanumeric(8)
+				,msArmedRegistForm.getArmedName()
+				,msArmedRegistForm.getArmedExplanation());
 
 		int result = mobilesuitDao.insertOneMobileSuitArmed(msArmedEntity);
 		if (result != 1) {
@@ -171,12 +172,11 @@ public class MobileSuitService {
 	public String insertMobileSuitEquipment(MobileSuitEquipmentRegistForm msEquipmentRegistForm) {
 		String message = null;
 		
-		MobileSuitEquipmentEntity msEquipmentEntity = MobileSuitEquipmentEntity.builder()
-				.equipmentId(RandomStringUtils.randomAlphanumeric(8))
-				.msId(msEquipmentRegistForm.getMsId())
-				.armedId(msEquipmentRegistForm.getArmedId())
-				.numberEquipment(Integer.parseInt(msEquipmentRegistForm.getNumberEquipment()))
-				.build();
+		MobileSuitEquipmentEntity msEquipmentEntity = new MobileSuitEquipmentEntity();
+		msEquipmentEntity.setEquipmentId(RandomStringUtils.randomAlphanumeric(8));
+		msEquipmentEntity.setMsId(msEquipmentRegistForm.getMsId());
+		msEquipmentEntity.setArmedId(msEquipmentRegistForm.getArmedId());
+		msEquipmentEntity.setNumberEquipment(Integer.parseInt(msEquipmentRegistForm.getNumberEquipment()));
 		
 		int result = mobilesuitDao.insertOneMobileSuitEquipment(msEquipmentEntity);
 		if (result != 1) {
@@ -187,6 +187,121 @@ public class MobileSuitService {
 		
 		return message;
 				
+	}
+	
+	public MobileSuitEditForm getMobileSuit(String msId) {
+		
+		MobileSuitEntity msEntity = mobilesuitDao.selectOneMobileSuit(msId);
+		
+		MobileSuitEditForm msEditForm = MobileSuitEditForm.builder()
+				.msId(msEntity.getMsId())
+				.modelNumber(msEntity.getModelNumber())
+				.msName(msEntity.getMsName())
+				.msUrl(msEntity.getMsUrl())
+				.headHeight(msEntity.getHeadHeight().toString())
+				.weight(msEntity.getWeight().toString())
+				.totalWeight(msEntity.getTotalWeight().toString())
+				.powerSource(msEntity.getPowerSource())
+				.material(msEntity.getMaterial())
+				.generatorOutput(String.valueOf(msEntity.getGeneratorOutput()))
+				.totalThrustersOutput(String.valueOf(msEntity.getTotalThrustersOutput()))
+				.msOverview(msEntity.getMsOverview())
+				.action(msEntity.getAction())
+				.build();
+		
+		return msEditForm;
+	}
+	
+	public String updateMobileSuit(MobileSuitEditForm msEditForm) {
+		String message = null;
+		
+		MobileSuitEntity msEntity = new MobileSuitEntity(
+				msEditForm.getMsId()
+				,msEditForm.getModelNumber()
+				,msEditForm.getMsName()
+				,msEditForm.getMsUrl()
+				,new BigDecimal(msEditForm.getHeadHeight())
+				,new BigDecimal(msEditForm.getWeight())
+				,new BigDecimal(msEditForm.getTotalWeight())
+				,msEditForm.getPowerSource()
+				,msEditForm.getMaterial()
+				,Long.parseLong(msEditForm.getGeneratorOutput())
+				,Long.parseLong(msEditForm.getTotalThrustersOutput())
+				,msEditForm.getMsOverview()
+				,msEditForm.getAction());
+		
+		int result = mobilesuitDao.updateOneMobileSuit(msEntity);
+		if (result != 1) {
+			message = "更新処理に失敗しました。";
+		} else {
+			message = "更新処理に成功しました。";
+		}
+		
+		return message;
+	}
+	
+	public MobileSuitArmedEditForm getMobileSuitArmed(String armedId) {
+		
+		MobileSuitArmedEntity msArmedEntity = mobilesuitDao.selectOneArmed(armedId);
+		
+		MobileSuitArmedEditForm msArmedEditForm = MobileSuitArmedEditForm.builder()
+				.armedId(msArmedEntity.getArmedId())
+				.armedName(msArmedEntity.getArmedName())
+				.armedExplanation(msArmedEntity.getArmedExplanation())
+				.build();
+		
+		return msArmedEditForm;
+	}
+	
+	public String updateMobileSuitArmed(MobileSuitArmedEditForm msArmedEditForm) {
+		String message = null;
+		
+		MobileSuitArmedEntity msArmedEntity = new MobileSuitArmedEntity(
+				msArmedEditForm.getArmedId()
+				,msArmedEditForm.getArmedName()
+				,msArmedEditForm.getArmedExplanation());
+		
+		int result = mobilesuitDao.updateOneMobileSuitArmed(msArmedEntity);
+		if (result != 1) {
+			message = "更新処理に失敗しました。";
+		} else {
+			message = "更新処理に成功しました。";
+		}
+		
+		return message;
+	}
+	
+	public MobileSuitEquipmentEditForm getMobileSuitEquipment(String equipmentId) {
+		
+		MobileSuitEquipmentEntity msEquipmentEntity = mobilesuitDao.selectOneEquipment(equipmentId);
+		
+		MobileSuitEquipmentEditForm msEquipmentEditForm = MobileSuitEquipmentEditForm.builder()
+				.equipmentId(msEquipmentEntity.getEquipmentId())
+				.msId(msEquipmentEntity.getMsId())
+				.msName(msEquipmentEntity.getMsName())
+				.armedId(msEquipmentEntity.getArmedId())
+				.armedName(msEquipmentEntity.getArmedName())
+				.numberEquipment(String.valueOf(msEquipmentEntity.getNumberEquipment()))
+				.build();
+		
+		return msEquipmentEditForm;
+	}
+	
+	public String updateMobileSuitEquipment(MobileSuitEquipmentEditForm msEquipmentEditForm) {
+		String message = null;
+		
+		MobileSuitEquipmentEntity msEquipmentEntity = new MobileSuitEquipmentEntity();
+		msEquipmentEntity.setEquipmentId(msEquipmentEditForm.getEquipmentId());
+		msEquipmentEntity.setNumberEquipment(Integer.parseInt(msEquipmentEditForm.getNumberEquipment()));
+		
+		int result = mobilesuitDao.updateOneMobileSuitEquipment(msEquipmentEntity);
+		if (result != 1) {
+			message = "更新処理に失敗しました。";
+		} else {
+			message = "更新処理に成功しました。";
+		}
+		
+		return message;
 	}
 
 }

@@ -9,7 +9,7 @@
 <body>
     <h1>モビルスーツ武装編集</h1>
     <div id="msArmedEdit">
-        <form action="#" th:action="@{/MSDB/MobileSuitArmedEdit/{armedId}(armedId=*{armedId})}" th:object="${msArmedEditForm}" method="put">
+        <form action="#" th:action="@{/MSDB/MobileSuitArmedEdit/{armedId}(armedId=*{armedId})}" th:object="${msArmedEditForm}" method="post">
             <label class="label" for="armedName">武装名</label>
             <input type="text" th:field="*{armedName}" />
             <label class="label" for="armedExplanation">武装解説</label>

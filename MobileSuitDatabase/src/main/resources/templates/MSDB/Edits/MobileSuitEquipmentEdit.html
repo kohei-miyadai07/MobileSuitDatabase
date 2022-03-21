@@ -10,14 +10,14 @@
     <h1>モビルスーツ装備編集</h1>
     <div id="msEquipmentEdit">
         <form action="#" th:action="@{/MSDB/MobileSuitEquipmentEdit/{equipmentId}(equipmentId=*{equipmentId})}" th:object="${msEquipmentEditForm}"
-            method="put">
+            method="post">
             <label class="label" for="msName">機体名</label>
             <p th:text="*{msName}"></p>
             <label class="label" for="armedName">武装名</label>
             <p th:text="*{armedName}"></p>
             <label class="label" for="numberEquipment">装備数</label>
             <input type="text" th:field="*{numberEquipment}" />
-            <p><button type="submit">登録</button><button type="reset">リセット</button></p>
+            <p><button type="submit">更新</button><button type="reset">リセット</button></p>
         </form>
     </div>
     <style>
