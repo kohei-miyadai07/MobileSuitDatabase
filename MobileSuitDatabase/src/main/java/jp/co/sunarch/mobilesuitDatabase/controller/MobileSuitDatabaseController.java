@@ -153,5 +153,19 @@ public class MobileSuitDatabaseController {
 		model.addAttribute("message", message);
 		return "/MSDB/Deletes/DeleteResult";
 	}
+	
+	@PostMapping("/MSDB/MobileSuitArmedDelete/{armedId}")
+	public String MobileSuitArmedDelete(@PathVariable String armedId, Model model) {
+		String message = mobilesuitService.deleteArmed(armedId);
+		model.addAttribute("message", message);
+		return "/MSDB/Deletes/DeleteResult";
+	}
+	
+	@PostMapping("/MSDB/MobileSuitEquipmentDelete/{equipmentId}")
+	public String MobileSuitEquipmentDelete(@PathVariable String equipmentId, Model model) {
+		String message = mobilesuitService.deleteEquipment(equipmentId);
+		model.addAttribute("message", message);
+		return "/MSDB/Deletes/DeleteResult";
+	}
 
 }

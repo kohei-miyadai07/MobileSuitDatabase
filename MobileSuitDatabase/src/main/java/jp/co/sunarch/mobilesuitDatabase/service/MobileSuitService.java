@@ -317,5 +317,32 @@ public class MobileSuitService {
 		
 		return message;
 	}
+	
+	public String deleteArmed(String armedId) {
+		String message = null;
+		
+		mobilesuitDao.deleteOneEquipmentForArmed(armedId);
+		int resultArmed = mobilesuitDao.deleteOneArmed(armedId);
+		if (resultArmed == 0) {
+			message = "削除処理に失敗しました。";
+		} else {
+			message = "削除処理に成功しました。";
+		}
+		
+		return message;
+	}
+	
+	public String deleteEquipment(String equipmentId) {
+		String message = null;
+		
+		int resultEquipment = mobilesuitDao.deleteOneEquipment(equipmentId);
+		if (resultEquipment == 0) {
+			message = "削除処理に失敗しました。";
+		} else {
+			message = "削除処理に成功しました。";
+		}
+		
+		return message;
+	}
 
 }

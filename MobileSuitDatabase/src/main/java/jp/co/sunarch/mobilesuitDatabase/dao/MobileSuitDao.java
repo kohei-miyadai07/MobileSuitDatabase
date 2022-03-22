@@ -201,6 +201,18 @@ public class MobileSuitDao {
 			delete from MobileSuit where ms_id = :msId
 			""";
 	
+	final String DELETE_EQUIPMENT_FORARMED_QUERY = """
+			delete from Equipment where armed_id = :armedId
+			""";
+	
+	final String DELETE_ARMED_QUERY = """
+			delete from Armed where armed_id = :armedId
+			""";
+	
+	final String DELETE_EQUIPMENT_QUERY = """
+			delete from equipment where equipment_id = :equipmentId
+			""";
+	
 	public List<MobileSuitsEntity> searchMobileSuits() {
 
 		SqlParameterSource params = new MapSqlParameterSource();
@@ -364,6 +376,27 @@ public class MobileSuitDao {
 		SqlParameterSource params = new MapSqlParameterSource().addValue("msId", msId);
 		
 		return namedParameterJdbcTemplate.update(DELETE_MOBILESUIT_QUERY, params);
+	}
+	
+	public int deleteOneEquipmentForArmed(String armedId) {
+		
+		SqlParameterSource params = new MapSqlParameterSource().addValue("armedId", armedId);
+		
+		return namedParameterJdbcTemplate.update(DELETE_EQUIPMENT_FORARMED_QUERY, params);
+	}
+	
+	public int deleteOneArmed(String armedId) {
+		
+		SqlParameterSource params = new MapSqlParameterSource().addValue("armedId", armedId);
+		
+		return namedParameterJdbcTemplate.update(DELETE_ARMED_QUERY, params);
+	}
+	
+	public int deleteOneEquipment(String equipmentId) {
+		
+		SqlParameterSource params = new MapSqlParameterSource().addValue("equipmentId", equipmentId);
+		
+		return namedParameterJdbcTemplate.update(DELETE_EQUIPMENT_QUERY, params);
 	}
 
 }
