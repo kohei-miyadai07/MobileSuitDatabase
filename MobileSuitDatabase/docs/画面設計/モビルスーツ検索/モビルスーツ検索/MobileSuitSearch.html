@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>モビルスーツ検索</title>
+</head>
+
+<body>
+  <h1>モビルスーツ検索</h1>
+  <div class="msSearch">
+    <form action="#" method="post">
+      <label class="label" for="msId">モビルスーツID</label>
+      <input id="msId" type="text" name="msId">
+      <label class="label" for="msName">機体名</label>
+      <input id="msName" type="text" name="msName">
+      <label class="label" for="modelNumber">型式番号</label>
+      <input id="modelNumber" type="text" name="modelNumber">
+      <div class="msNumeric">
+        <label class="label" for="headHeight">頭高頂</label>
+        <input id="headHeightFrom" type="text" name="headHeightFrom"> ～ <input id="headHeightTo" type="text"
+          name="headHeightTo">
+        <label class="label" for="weight">本体重量</label>
+        <input id="weightFrom" type="text" name="weightFrom"> ～ <input id="weightTo" type="text" name="weightTo"></p>
+        <label class="label" for="totalWeight">全備重量</label>
+        <input id="totalWeightFrom" type="text" name="totalWeightFrom"> ～ <input id="totalWeightTo" type="text"
+          name="totalWeightTo">
+      </div>
+      <label class="label" for="powerSource">動力源</label>
+      <input id="powerSource" type="text" name="powerSource">
+      <label class="label" for="material">装甲材質</label>
+      <input id="material" type="text" name="material">
+      <div class="msNumeric">
+        <label class="label" for="generatorOutput">ジェネレーター出力</label>
+        <input id="generatorOutputFrom" type="text" name="generatorOutputFrom"> ～ <input id="generatorOutputTo"
+          type="text" name="generatorOutputTo">
+        <label class="label" for="totalThrustersOutput">スラスター総推力</label>
+        <input id="totalThrustersOutputFrom" type="text" name="totalThrustersOutputFrom"> ～ <input
+          id="totalThrustersOutputTo" type="text" name="totalThrustersOutputTo">
+      </div>
+      <p><button type="submit">検索</button><button type="reset">リセット</button></p>
+    </form>
+  </div>
+  <style>
+    .msSearch label,
+    input,
+    textarea,
+    p {
+      display: block;
+    }
+
+    .msNumeric input {
+      display: inline-block;
+    }
+  </style>
+</body>
+
+</html>
