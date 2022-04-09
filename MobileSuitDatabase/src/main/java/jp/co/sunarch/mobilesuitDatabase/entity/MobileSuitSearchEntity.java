@@ -18,8 +18,8 @@ public class MobileSuitSearchEntity {
 	private BigDecimal totalWeightTo;
 	private String powerSource;
 	private String material;
-	private long generatorOutputFrom;
-	private long generatorOutputTo;
-	private long totalThrustersOutputFrom;
-	private long totalThrustersOutputTo;
+	private Long generatorOutputFrom;
+	private Long generatorOutputTo;
+	private Long totalThrustersOutputFrom;
+	private Long totalThrustersOutputTo;
 }

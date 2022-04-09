@@ -17,6 +17,7 @@ import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitEditForm;
 import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitEquipmentEditForm;
 import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitEquipmentRegistForm;
 import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitRegistForm;
+import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitSearchForm;
 import jp.co.sunarch.mobilesuitDatabase.model.result.MobileSuitDetailResult;
 import jp.co.sunarch.mobilesuitDatabase.model.result.MobileSuitsResult;
 import jp.co.sunarch.mobilesuitDatabase.service.MobileSuitService;
@@ -166,6 +167,19 @@ public class MobileSuitDatabaseController {
 		String message = mobilesuitService.deleteEquipment(equipmentId);
 		model.addAttribute("message", message);
 		return "/MSDB/Deletes/DeleteResult";
+	}
+	
+	@GetMapping("/MSDB/MobileSuitSearch")
+	public String MobileSuitSearch(Model model) {
+		model.addAttribute("msSearchForm", new MobileSuitSearchForm());
+		return "/MSDB/searches/MobileSuitSearch";
+	}
+	
+	@PostMapping("/MSDB/MobileSuitSearch")
+	public String MobileSuitSearch(@ModelAttribute MobileSuitSearchForm msSearchForm, Model model) {
+		List<MobileSuitsResult> MobileSuits = mobilesuitService.searchMobileSuit(msSearchForm);
+		model.addAttribute("mobilesuits", MobileSuits);
+		return "/MSDB/Lists/MobileSuitList";
 	}
 
 }

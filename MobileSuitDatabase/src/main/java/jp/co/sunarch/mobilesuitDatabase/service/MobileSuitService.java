@@ -18,6 +18,7 @@ import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitEntity;
 import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitEquipmentDetailEntity;
 import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitEquipmentEntity;
 import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitInfoEntity;
+import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitSearchEntity;
 import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitsEntity;
 import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitArmedEditForm;
 import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitArmedRegistForm;
@@ -25,6 +26,7 @@ import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitEditForm;
 import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitEquipmentEditForm;
 import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitEquipmentRegistForm;
 import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitRegistForm;
+import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitSearchForm;
 import jp.co.sunarch.mobilesuitDatabase.model.result.MobileSuitDetailResult;
 import jp.co.sunarch.mobilesuitDatabase.model.result.MobileSuitsResult;
 import jp.co.sunarch.mobilesuitDatabase.vo.MobileSuitArmedInfo;
@@ -343,6 +345,42 @@ public class MobileSuitService {
 		}
 		
 		return message;
+	}
+	
+	public List<MobileSuitsResult> searchMobileSuit(MobileSuitSearchForm msSearchForm) {
+		
+		MobileSuitSearchEntity msSearchEntity = MobileSuitSearchEntity.builder()
+				.msName(msSearchForm.getMsName())
+				.modelNumber(msSearchForm.getModelNumber())
+				.headHeightFrom(new BigDecimal(msSearchForm.getHeadHeightFrom()))
+				.headHeightTo(new BigDecimal(msSearchForm.getHeadHeightTo()))
+				.weightFrom(new BigDecimal(msSearchForm.getWeightFrom()))
+				.weightTo(new BigDecimal(msSearchForm.getWeightTo()))
+				.totalWeightFrom(new BigDecimal(msSearchForm.getTotalWeightFrom()))
+				.totalWeightTo(new BigDecimal(msSearchForm.getTotalWeightTo()))
+				.powerSource(msSearchForm.getPowerSource())
+				.material(msSearchForm.getMaterial())
+				.generatorOutputFrom(Long.parseLong(msSearchForm.getGeneratorOutputFrom()))
+				.generatorOutputTo(Long.parseLong(msSearchForm.getGeneratorOutputTo()))
+				.totalThrustersOutputFrom(Long.parseLong(msSearchForm.getTotalThrustersOutputFrom()))
+				.totalThrustersOutputTo(Long.parseLong(msSearchForm.getTotalThrustersOutputTo()))
+				.build();
+		
+		List<MobileSuitsEntity> msEntityList = mobilesuitDao.searchesMobileSuit(msSearchEntity);
+		
+		List <MobileSuitsResult> mobilesuitsResultList = new ArrayList<>();
+		for (MobileSuitsEntity entity : msEntityList) {
+			MobileSuitsResult mobilesuitsResult = MobileSuitsResult.builder()
+					.msId(entity.getMsId())
+					.modelNumber(entity.getModelNumber())
+					.msName(entity.getMsName())
+					.insertDate(sdf.format(entity.getInsertDate()))
+					.updateDate(sdf.format(entity.getUpdateDate()))
+					.build();
+			mobilesuitsResultList.add(mobilesuitsResult);
+		}
+		
+		return mobilesuitsResultList;
 	}
 
 }
