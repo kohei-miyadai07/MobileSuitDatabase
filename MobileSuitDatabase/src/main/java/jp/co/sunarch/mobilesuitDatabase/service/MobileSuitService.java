@@ -347,6 +347,23 @@ public class MobileSuitService {
 		return message;
 	}
 	
+	public MobileSuitSearchForm getSearchMobileSuit() {
+		
+		MobileSuitSearchForm msSearchForm = new MobileSuitSearchForm();
+		
+		msSearchForm.setHeadHeightFrom("0");
+		msSearchForm.setHeadHeightTo("0");
+		msSearchForm.setWeightFrom("0");
+		msSearchForm.setWeightTo("0");
+		msSearchForm.setTotalWeightFrom("0");
+		msSearchForm.setTotalWeightTo("0");
+		msSearchForm.setGeneratorOutputFrom("0");
+		msSearchForm.setGeneratorOutputTo("0");
+		msSearchForm.setTotalThrustersOutputFrom("0");
+		msSearchForm.setTotalThrustersOutputTo("0");
+		
+		return msSearchForm;
+	}
 	public List<MobileSuitsResult> searchMobileSuit(MobileSuitSearchForm msSearchForm) {
 		
 		MobileSuitSearchEntity msSearchEntity = MobileSuitSearchEntity.builder()

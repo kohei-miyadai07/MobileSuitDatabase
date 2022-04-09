@@ -1,5 +1,6 @@
 package jp.co.sunarch.mobilesuitDatabase.dao;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -434,42 +435,42 @@ public class MobileSuitDao {
 			andFlg = true;
 		}
 		
-		if(msSearchEntity.getHeadHeightFrom() != null) {
+		if(!msSearchEntity.getHeadHeightFrom().equals(new BigDecimal(0))) {
 			if(andFlg) sqlBuilder.append(" AND ");
 			sqlBuilder.append("head_height >= :headHeightFrom");
 			params.addValue("headHeightFrom", msSearchEntity.getHeadHeightFrom());
 			andFlg = true;
 		}
 		
-		if(msSearchEntity.getHeadHeightTo() != null) {
+		if(!msSearchEntity.getHeadHeightTo().equals(new BigDecimal(0))) {
 			if(andFlg) sqlBuilder.append(" AND ");
 			sqlBuilder.append("head_height <= :headHeightTo");
 			params.addValue("headHeightTo", msSearchEntity.getHeadHeightTo());
 			andFlg = true;
 		}
 		
-		if(msSearchEntity.getWeightFrom() != null) {
+		if(!msSearchEntity.getWeightFrom().equals(new BigDecimal(0))) {
 			if(andFlg) sqlBuilder.append(" AND ");
 			sqlBuilder.append("weight >= :weightFrom");
 			params.addValue("weightFrom", msSearchEntity.getWeightFrom());
 			andFlg = true;
 		}
 		
-		if(msSearchEntity.getWeightTo() != null) {
+		if(!msSearchEntity.getWeightTo().equals(new BigDecimal(0))) {
 			if(andFlg) sqlBuilder.append(" AND ");
 			sqlBuilder.append("weight <= :weightTo");
 			params.addValue("weightTo", msSearchEntity.getWeightTo());
 			andFlg = true;
 		}
 		
-		if(msSearchEntity.getTotalWeightFrom() != null) {
+		if(!msSearchEntity.getTotalWeightFrom().equals(new BigDecimal(0))) {
 			if(andFlg) sqlBuilder.append(" AND ");
 			sqlBuilder.append("total_weight >= :totalWeightFrom");
 			params.addValue("totalWeightFrom", msSearchEntity.getTotalWeightFrom());
 			andFlg = true;
 		}
 		
-		if(msSearchEntity.getTotalWeightTo() != null) {
+		if(!msSearchEntity.getTotalWeightTo().equals(new BigDecimal(0))) {
 			if(andFlg) sqlBuilder.append(" AND ");
 			sqlBuilder.append("total_weight <= :totalWeightTo");
 			params.addValue("totalWeightTo", msSearchEntity.getTotalWeightTo());
@@ -490,28 +491,28 @@ public class MobileSuitDao {
 			andFlg = true;
 		}
 		
-		if(msSearchEntity.getGeneratorOutputFrom() != null) {
+		if(msSearchEntity.getGeneratorOutputFrom() > 0) {
 			if(andFlg) sqlBuilder.append(" AND ");
 			sqlBuilder.append("generator_output >= :generatorOutputFrom");
 			params.addValue("generatorOutputFrom", msSearchEntity.getGeneratorOutputFrom());
 			andFlg = true;
 		}
 		
-		if(msSearchEntity.getGeneratorOutputTo() != null) {
+		if(msSearchEntity.getGeneratorOutputTo() > 0) {
 			if(andFlg) sqlBuilder.append(" AND ");
 			sqlBuilder.append("generator_output <= :generatorOutputTo");
 			params.addValue("generatorOutputTo", msSearchEntity.getGeneratorOutputTo());
 			andFlg = true;
 		}
 		
-		if(msSearchEntity.getTotalThrustersOutputFrom() != null) {
+		if(msSearchEntity.getTotalThrustersOutputFrom() > 0) {
 			if(andFlg) sqlBuilder.append(" AND ");
 			sqlBuilder.append("total_thrusters_output <= :totalThrustersOutputFrom");
 			params.addValue("totalThrustersOutputFrom", msSearchEntity.getTotalThrustersOutputFrom());
 			andFlg = true;
 		}
 		
-		if(msSearchEntity.getTotalThrustersOutputTo() != null) {
+		if(msSearchEntity.getTotalThrustersOutputTo() > 0) {
 			if(andFlg) sqlBuilder.append(" AND ");
 			sqlBuilder.append("total_thrusters_output >= :totalThrustersOutputTo");
 			params.addValue("totalThrustersOutputTo", msSearchEntity.getTotalThrustersOutputTo());
