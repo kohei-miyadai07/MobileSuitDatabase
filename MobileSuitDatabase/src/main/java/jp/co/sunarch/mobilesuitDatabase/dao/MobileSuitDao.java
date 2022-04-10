@@ -435,42 +435,42 @@ public class MobileSuitDao {
 			andFlg = true;
 		}
 		
-		if(!msSearchEntity.getHeadHeightFrom().equals(new BigDecimal(0))) {
+		if(!msSearchEntity.getHeadHeightFrom().equals(new BigDecimal("0"))) {
 			if(andFlg) sqlBuilder.append(" AND ");
 			sqlBuilder.append("head_height >= :headHeightFrom");
 			params.addValue("headHeightFrom", msSearchEntity.getHeadHeightFrom());
 			andFlg = true;
 		}
 		
-		if(!msSearchEntity.getHeadHeightTo().equals(new BigDecimal(0))) {
+		if(!msSearchEntity.getHeadHeightTo().equals(new BigDecimal("0"))) {
 			if(andFlg) sqlBuilder.append(" AND ");
 			sqlBuilder.append("head_height <= :headHeightTo");
 			params.addValue("headHeightTo", msSearchEntity.getHeadHeightTo());
 			andFlg = true;
 		}
 		
-		if(!msSearchEntity.getWeightFrom().equals(new BigDecimal(0))) {
+		if(!msSearchEntity.getWeightFrom().equals(new BigDecimal("0"))) {
 			if(andFlg) sqlBuilder.append(" AND ");
 			sqlBuilder.append("weight >= :weightFrom");
 			params.addValue("weightFrom", msSearchEntity.getWeightFrom());
 			andFlg = true;
 		}
 		
-		if(!msSearchEntity.getWeightTo().equals(new BigDecimal(0))) {
+		if(!msSearchEntity.getWeightTo().equals(new BigDecimal("0"))) {
 			if(andFlg) sqlBuilder.append(" AND ");
 			sqlBuilder.append("weight <= :weightTo");
 			params.addValue("weightTo", msSearchEntity.getWeightTo());
 			andFlg = true;
 		}
 		
-		if(!msSearchEntity.getTotalWeightFrom().equals(new BigDecimal(0))) {
+		if(!msSearchEntity.getTotalWeightFrom().equals(new BigDecimal("0"))) {
 			if(andFlg) sqlBuilder.append(" AND ");
 			sqlBuilder.append("total_weight >= :totalWeightFrom");
 			params.addValue("totalWeightFrom", msSearchEntity.getTotalWeightFrom());
 			andFlg = true;
 		}
 		
-		if(!msSearchEntity.getTotalWeightTo().equals(new BigDecimal(0))) {
+		if(!msSearchEntity.getTotalWeightTo().equals(new BigDecimal("0"))) {
 			if(andFlg) sqlBuilder.append(" AND ");
 			sqlBuilder.append("total_weight <= :totalWeightTo");
 			params.addValue("totalWeightTo", msSearchEntity.getTotalWeightTo());

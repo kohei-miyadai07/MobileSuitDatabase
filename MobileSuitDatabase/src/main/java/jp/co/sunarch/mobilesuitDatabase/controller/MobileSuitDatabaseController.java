@@ -175,8 +175,11 @@ public class MobileSuitDatabaseController {
 	
 	@GetMapping("/MSDB/MobileSuitSearch")
 	public String MobileSuitSearch(Model model) {
+		/*
 		MobileSuitSearchForm msSearchForm = mobilesuitService.getSearchMobileSuit();
 		model.addAttribute("msSearchForm", msSearchForm);
+		*/
+		model.addAttribute("msSearchForm", new MobileSuitSearchForm());
 		return "/MSDB/searches/MobileSuitSearch";
 	}
 	
