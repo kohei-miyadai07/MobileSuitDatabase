@@ -22,11 +22,13 @@ import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitSearchEntity;
 import jp.co.sunarch.mobilesuitDatabase.entity.MobileSuitsEntity;
 import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitArmedEditForm;
 import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitArmedRegistForm;
+import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitArmedSearchForm;
 import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitEditForm;
 import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitEquipmentEditForm;
 import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitEquipmentRegistForm;
 import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitRegistForm;
 import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitSearchForm;
+import jp.co.sunarch.mobilesuitDatabase.model.result.MobileSuitArmedResult;
 import jp.co.sunarch.mobilesuitDatabase.model.result.MobileSuitDetailResult;
 import jp.co.sunarch.mobilesuitDatabase.model.result.MobileSuitsResult;
 import jp.co.sunarch.mobilesuitDatabase.vo.MobileSuitArmedInfo;
@@ -398,6 +400,23 @@ public class MobileSuitService {
 		}
 		
 		return mobilesuitsResultList;
+	}
+	
+	public List<MobileSuitArmedResult> searchMobileSuitArmed(MobileSuitArmedSearchForm msArmedSearchForm) {
+		
+		List<MobileSuitArmedEntity> msArmedEntityList = mobilesuitDao.searchesMobileSuitArmed(msArmedSearchForm.getArmedName());
+		
+		List<MobileSuitArmedResult> msArmedResultList = new ArrayList<>();
+		for (MobileSuitArmedEntity entity : msArmedEntityList) {
+			MobileSuitArmedResult msArmedResult = MobileSuitArmedResult.builder()
+					.armedId(entity.getArmedId())
+					.armedName(entity.getArmedName())
+					.armedExplanation(entity.getArmedExplanation())
+					.build();
+			msArmedResultList.add(msArmedResult);
+		}
+		
+		return msArmedResultList;
 	}
 
 }

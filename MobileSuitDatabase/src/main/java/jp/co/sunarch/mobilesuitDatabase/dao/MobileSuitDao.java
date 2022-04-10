@@ -522,5 +522,30 @@ public class MobileSuitDao {
 		return namedParameterJdbcTemplate.query(sqlBuilder.toString(), params, mapper);
 		
 	}
+	
+	public List<MobileSuitArmedEntity> searchesMobileSuitArmed(String armedName) {
+		
+		StringBuilder sqlBuilder = new StringBuilder();
+		sqlBuilder.append("""
+				select
+				  armed_id
+				 ,armed_name
+				 ,armed_explanation
+				from
+				 Armed
+				where
+				""");
+		
+		MapSqlParameterSource params = new MapSqlParameterSource();
+		RowMapper<MobileSuitArmedEntity> mapper = 
+				new BeanPropertyRowMapper<MobileSuitArmedEntity>(MobileSuitArmedEntity.class);
+		
+		sqlBuilder.append("""
+				armed_name like :armedName
+				""");
+		params.addValue("armedName", armedName);
+		
+		return namedParameterJdbcTemplate.query(sqlBuilder.toString(), params, mapper);
+	}
 
 }

@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitArmedEditForm;
 import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitArmedRegistForm;
+import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitArmedSearchForm;
 import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitEditForm;
 import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitEquipmentEditForm;
 import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitEquipmentRegistForm;
 import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitRegistForm;
 import jp.co.sunarch.mobilesuitDatabase.model.form.MobileSuitSearchForm;
+import jp.co.sunarch.mobilesuitDatabase.model.result.MobileSuitArmedResult;
 import jp.co.sunarch.mobilesuitDatabase.model.result.MobileSuitDetailResult;
 import jp.co.sunarch.mobilesuitDatabase.model.result.MobileSuitsResult;
 import jp.co.sunarch.mobilesuitDatabase.service.MobileSuitService;
@@ -181,6 +183,19 @@ public class MobileSuitDatabaseController {
 		List<MobileSuitsResult> MobileSuits = mobilesuitService.searchMobileSuit(msSearchForm);
 		model.addAttribute("mobilesuits", MobileSuits);
 		return "/MSDB/Lists/MobileSuitList";
+	}
+	
+	@GetMapping("/MSDB/MobileSuitArmedSearch")
+	public String MobileSuitArmedSearch(Model model) {
+		model.addAttribute("msArmedSearchForm", new MobileSuitArmedSearchForm());
+		return "/MSDB/searches/MobileSuitArmedSearch";
+	}
+	
+	@PostMapping("/MSDB/MobileSuitArmedSearch")
+	public String MobileSuitArmedSearch(@ModelAttribute MobileSuitArmedSearchForm msArmedSearchForm, Model model) {
+		List<MobileSuitArmedResult> msArmedResultList = mobilesuitService.searchMobileSuitArmed(msArmedSearchForm);
+		model.addAttribute("msArmedResultList", msArmedResultList);
+		return "/MSDB/Lists/MobileSuitArmedList";
 	}
 
 }
