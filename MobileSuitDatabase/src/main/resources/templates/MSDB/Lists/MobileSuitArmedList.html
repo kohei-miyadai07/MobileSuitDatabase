@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>モビルスーツ武装一覧</title>
+    </head>
+    <body>
+        <h1>モビルスーツ武装一覧</h1>
+        <table border="1">
+            <tr>
+                <th>武装ID</th>
+                <th>武装名</th>
+                <th>武装説明</th>
+            </tr>
+            <tr th:each="msArmedResult : ${msArmedResultList}">
+                <td th:text="${msArmedResult.armedId}"></td>
+                <td th:text="${msArmedResult.armedName}"></td>
+                <td th:text="${msArmedResult.armedExplanation}"></td>
+            </tr>
+        </table>
+    </body>
+</html>
