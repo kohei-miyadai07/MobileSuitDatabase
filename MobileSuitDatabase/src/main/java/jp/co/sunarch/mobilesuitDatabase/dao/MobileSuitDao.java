@@ -547,5 +547,47 @@ public class MobileSuitDao {
 		
 		return namedParameterJdbcTemplate.query(sqlBuilder.toString(), params, mapper);
 	}
+	
+	public List<MobileSuitEquipmentEntity> searchesMobileSuitEquipment(String msName, String armedName) {
+		
+		StringBuilder sqlBuilder = new StringBuilder();
+		sqlBuilder.append("""
+				select
+				e.equipment_id
+				, e.ms_id
+				, m.ms_name
+				, e.armed_id
+				, a.armed_name
+				, e.number_equipment 
+				from
+				Equipment e 
+				inner join MobileSuit m 
+				on e.ms_id = m.ms_id 
+				inner join Armed a 
+				on e.armed_id = a.armed_id 
+				where
+				""");
+		
+		MapSqlParameterSource params = new MapSqlParameterSource();
+		RowMapper<MobileSuitEquipmentEntity> mapper = 
+				new BeanPropertyRowMapper<MobileSuitEquipmentEntity>(MobileSuitEquipmentEntity.class);
+		
+        boolean andFlg = false;
+		
+		if(msName != null && msName != "") {
+			sqlBuilder.append("m.ms_name = :msName");
+			params.addValue("msName", msName);
+			andFlg = true;
+		}
+		
+		if(armedName != null && armedName != "") {
+			if(andFlg) sqlBuilder.append(" AND ");
+			sqlBuilder.append("a.armed_name = :armedName");
+			params.addValue("armedName", armedName);
+			andFlg = true;
+		}
+		
+		return namedParameterJdbcTemplate.query(sqlBuilder.toString(), params, mapper);
+	}
 
 }

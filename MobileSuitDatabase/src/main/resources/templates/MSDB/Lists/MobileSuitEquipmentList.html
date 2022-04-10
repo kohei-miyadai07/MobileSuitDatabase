@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>モビルスーツ装備一覧</title>
+    </head>
+    <body>
+        <h1>モビルスーツ装備一覧</h1>
+        <table border="1">
+            <tr>
+                <th>装備ID</th>
+                <th>機体名</th>
+                <th>武装名</th>
+                <th>装備数</th>
+            </tr>
+            <tr th:each="msEquipmentResult : ${msEquipmentResultList}">
+                <td th:text="${msEquipmentResult.equipmentId}"></td>
+                <td th:text="${msEquipmentResult.msName}"></td>
+                <td th:text="${msEquipmentResult.armedName}"></td>
+                <td th:text="${msEquipmentResult.numberEquipment}"></td>
+            </tr>
+        </table>
+    </body>
+</html>
