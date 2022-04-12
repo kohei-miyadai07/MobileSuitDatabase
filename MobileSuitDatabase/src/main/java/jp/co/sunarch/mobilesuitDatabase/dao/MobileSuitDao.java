@@ -413,7 +413,6 @@ public class MobileSuitDao {
 				 ,update_date
 				from
 				 MobileSuit
-				where
 				""");
 
 		MapSqlParameterSource params = new MapSqlParameterSource();
@@ -423,97 +422,152 @@ public class MobileSuitDao {
 		boolean andFlg = false;
 		
 		if(msSearchEntity.getMsName() != null && msSearchEntity.getMsName() != "") {
+			if(!andFlg) {
+				sqlBuilder.append(" where ");
+			}
 			sqlBuilder.append("ms_name = :msName");
 			params.addValue("msName", msSearchEntity.getMsName());
 			andFlg = true;
 		}
 		
 		if(msSearchEntity.getModelNumber() != null && msSearchEntity.getModelNumber() != "") {
-			if(andFlg) sqlBuilder.append(" AND ");
+			if(andFlg) {
+				sqlBuilder.append(" and ");
+			} else {
+				sqlBuilder.append(" where ");
+			}
 			sqlBuilder.append("model_number = :modelNumber");
 			params.addValue("modelNumber", msSearchEntity.getModelNumber());
 			andFlg = true;
 		}
 		
 		if(!msSearchEntity.getHeadHeightFrom().equals(new BigDecimal("0"))) {
-			if(andFlg) sqlBuilder.append(" AND ");
+			if(andFlg) {
+				sqlBuilder.append(" and ");
+			} else {
+				sqlBuilder.append(" where ");
+			}
 			sqlBuilder.append("head_height >= :headHeightFrom");
 			params.addValue("headHeightFrom", msSearchEntity.getHeadHeightFrom());
 			andFlg = true;
 		}
 		
 		if(!msSearchEntity.getHeadHeightTo().equals(new BigDecimal("0"))) {
-			if(andFlg) sqlBuilder.append(" AND ");
+			if(andFlg) {
+				sqlBuilder.append(" and ");
+			} else {
+				sqlBuilder.append(" where ");
+			}
 			sqlBuilder.append("head_height <= :headHeightTo");
 			params.addValue("headHeightTo", msSearchEntity.getHeadHeightTo());
 			andFlg = true;
 		}
 		
 		if(!msSearchEntity.getWeightFrom().equals(new BigDecimal("0"))) {
-			if(andFlg) sqlBuilder.append(" AND ");
+			if(andFlg) {
+				sqlBuilder.append(" and ");
+			} else {
+				sqlBuilder.append(" where ");
+			}
 			sqlBuilder.append("weight >= :weightFrom");
 			params.addValue("weightFrom", msSearchEntity.getWeightFrom());
 			andFlg = true;
 		}
 		
 		if(!msSearchEntity.getWeightTo().equals(new BigDecimal("0"))) {
-			if(andFlg) sqlBuilder.append(" AND ");
+			if(andFlg) {
+				sqlBuilder.append(" and ");
+			} else {
+				sqlBuilder.append(" where ");
+			}
 			sqlBuilder.append("weight <= :weightTo");
 			params.addValue("weightTo", msSearchEntity.getWeightTo());
 			andFlg = true;
 		}
 		
 		if(!msSearchEntity.getTotalWeightFrom().equals(new BigDecimal("0"))) {
-			if(andFlg) sqlBuilder.append(" AND ");
+			if(andFlg) {
+				sqlBuilder.append(" and ");
+			} else {
+				sqlBuilder.append(" where ");
+			}
 			sqlBuilder.append("total_weight >= :totalWeightFrom");
 			params.addValue("totalWeightFrom", msSearchEntity.getTotalWeightFrom());
 			andFlg = true;
 		}
 		
 		if(!msSearchEntity.getTotalWeightTo().equals(new BigDecimal("0"))) {
-			if(andFlg) sqlBuilder.append(" AND ");
+			if(andFlg) {
+				sqlBuilder.append(" and ");
+			} else {
+				sqlBuilder.append(" where ");
+			}
 			sqlBuilder.append("total_weight <= :totalWeightTo");
 			params.addValue("totalWeightTo", msSearchEntity.getTotalWeightTo());
 			andFlg = true;
 		}
 		
 		if(msSearchEntity.getPowerSource() != null && msSearchEntity.getPowerSource() != "") {
-			if(andFlg) sqlBuilder.append(" AND ");
+			if(andFlg) {
+				sqlBuilder.append(" and ");
+			} else {
+				sqlBuilder.append(" where ");
+			}
 			sqlBuilder.append("power_source = :powerSource");
 			params.addValue("powerSource", msSearchEntity.getPowerSource());
 			andFlg = true;
 		}
 		
 		if(msSearchEntity.getMaterial() != null && msSearchEntity.getMaterial() != "") {
-			if(andFlg) sqlBuilder.append(" AND ");
+			if(andFlg) {
+				sqlBuilder.append(" and ");
+			} else {
+				sqlBuilder.append(" where ");
+			}
 			sqlBuilder.append("material = material");
 			params.addValue("material", msSearchEntity.getMaterial());
 			andFlg = true;
 		}
 		
 		if(msSearchEntity.getGeneratorOutputFrom() > 0) {
-			if(andFlg) sqlBuilder.append(" AND ");
+			if(andFlg) {
+				sqlBuilder.append(" and ");
+			} else {
+				sqlBuilder.append(" where ");
+			}
 			sqlBuilder.append("generator_output >= :generatorOutputFrom");
 			params.addValue("generatorOutputFrom", msSearchEntity.getGeneratorOutputFrom());
 			andFlg = true;
 		}
 		
 		if(msSearchEntity.getGeneratorOutputTo() > 0) {
-			if(andFlg) sqlBuilder.append(" AND ");
+			if(andFlg) {
+				sqlBuilder.append(" and ");
+			} else {
+				sqlBuilder.append(" where ");
+			}
 			sqlBuilder.append("generator_output <= :generatorOutputTo");
 			params.addValue("generatorOutputTo", msSearchEntity.getGeneratorOutputTo());
 			andFlg = true;
 		}
 		
 		if(msSearchEntity.getTotalThrustersOutputFrom() > 0) {
-			if(andFlg) sqlBuilder.append(" AND ");
+			if(andFlg) {
+				sqlBuilder.append(" and ");
+			} else {
+				sqlBuilder.append(" where ");
+			}
 			sqlBuilder.append("total_thrusters_output <= :totalThrustersOutputFrom");
 			params.addValue("totalThrustersOutputFrom", msSearchEntity.getTotalThrustersOutputFrom());
 			andFlg = true;
 		}
 		
 		if(msSearchEntity.getTotalThrustersOutputTo() > 0) {
-			if(andFlg) sqlBuilder.append(" AND ");
+			if(andFlg) {
+				sqlBuilder.append(" and ");
+			} else {
+				sqlBuilder.append(" where ");
+			}
 			sqlBuilder.append("total_thrusters_output >= :totalThrustersOutputTo");
 			params.addValue("totalThrustersOutputTo", msSearchEntity.getTotalThrustersOutputTo());
 			andFlg = true;
