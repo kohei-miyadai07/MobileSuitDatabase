@@ -587,17 +587,19 @@ public class MobileSuitDao {
 				 ,armed_explanation
 				from
 				 Armed
-				where
 				""");
 		
 		MapSqlParameterSource params = new MapSqlParameterSource();
 		RowMapper<MobileSuitArmedEntity> mapper = 
 				new BeanPropertyRowMapper<MobileSuitArmedEntity>(MobileSuitArmedEntity.class);
 		
-		sqlBuilder.append("""
-				armed_name like :armedName
-				""");
-		params.addValue("armedName", armedName);
+		if(armedName != null && armedName != "") {
+			sqlBuilder.append(" where ");
+			sqlBuilder.append("""
+					armed_name = :armedName
+					""");
+			params.addValue("armedName", armedName);
+		}
 		
 		return namedParameterJdbcTemplate.query(sqlBuilder.toString(), params, mapper);
 	}
@@ -619,7 +621,6 @@ public class MobileSuitDao {
 				on e.ms_id = m.ms_id 
 				inner join Armed a 
 				on e.armed_id = a.armed_id 
-				where
 				""");
 		
 		MapSqlParameterSource params = new MapSqlParameterSource();
@@ -629,13 +630,20 @@ public class MobileSuitDao {
         boolean andFlg = false;
 		
 		if(msName != null && msName != "") {
+			if(!andFlg) {
+				sqlBuilder.append(" where ");
+			}
 			sqlBuilder.append("m.ms_name = :msName");
 			params.addValue("msName", msName);
 			andFlg = true;
 		}
 		
 		if(armedName != null && armedName != "") {
-			if(andFlg) sqlBuilder.append(" AND ");
+			if(andFlg) {
+				sqlBuilder.append(" and ");
+			} else {
+				sqlBuilder.append(" where ");
+			}
 			sqlBuilder.append("a.armed_name = :armedName");
 			params.addValue("armedName", armedName);
 			andFlg = true;
