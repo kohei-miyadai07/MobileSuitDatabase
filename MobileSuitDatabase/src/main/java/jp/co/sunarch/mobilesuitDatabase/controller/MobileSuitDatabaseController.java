@@ -81,7 +81,7 @@ public class MobileSuitDatabaseController {
 			Model model) {
 		String message = mobilesuitService.insertMobileSuit(msRegistForm);
 		model.addAttribute("message", message);
-		model.addAttribute("url", "/MSDB/MobileSuitRegister");
+		model.addAttribute("url", "/MSDB/MobileSuitList");
 		return "/MSDB/Registers/RegisterResult";
 	}
 	
@@ -96,7 +96,7 @@ public class MobileSuitDatabaseController {
 			Model model) {
 		String message = mobilesuitService.insertMobileSuitArmed(msArmedRegistForm);
 		model.addAttribute("message", message);
-		model.addAttribute("url", "/MSDB/MobileSuitArmedRegister");
+		model.addAttribute("url", "/MSDB/MobileSuitArmedList");
 		return "/MSDB/Registers/RegisterResult";
 	}
 	
@@ -114,7 +114,7 @@ public class MobileSuitDatabaseController {
 			Model model) {
 		String message = mobilesuitService.insertMobileSuitEquipment(msEquipmentRegistForm);
 		model.addAttribute("message", message);
-		model.addAttribute("url", "/MSDB/MobileSuitEquipmentRegister");
+		model.addAttribute("url", "/MSDB/MobileSuitEquipmentList");
 		return "/MSDB/Registers/RegisterResult";
 	}
 	
@@ -131,6 +131,7 @@ public class MobileSuitDatabaseController {
 		msEditForm.setMsId(msId);
 		String message = mobilesuitService.updateMobileSuit(msEditForm);
 		model.addAttribute("message", message);
+		model.addAttribute("url", "/MSDB/MobileSuitList");
 		return "/MSDB/Edits/EditResult";
 	}
 	
@@ -147,6 +148,7 @@ public class MobileSuitDatabaseController {
 		msArmedEditForm.setArmedId(armedId);
 		String message = mobilesuitService.updateMobileSuitArmed(msArmedEditForm);
 		model.addAttribute("message", message);
+		model.addAttribute("url", "/MSDB/MobileSuitArmedList");
 		return "/MSDB/Edits/EditResult";
 	}
 	
@@ -163,6 +165,7 @@ public class MobileSuitDatabaseController {
 		msEquipmentEditForm.setEquipmentId(equipmentId);
 		String message = mobilesuitService.updateMobileSuitEquipment(msEquipmentEditForm);
 		model.addAttribute("message", message);
+		model.addAttribute("url", "/MSDB/MobileSuitEquipmentList");
 		return "/MSDB/Edits/EditResult";
 	}
 	
@@ -170,6 +173,7 @@ public class MobileSuitDatabaseController {
 	public String MobileSuitDelete(@PathVariable String msId, Model model) {
 		String message = mobilesuitService.deleteMobileSuit(msId);
 		model.addAttribute("message", message);
+		model.addAttribute("url", "/MSDB/MobileSuitList");
 		return "/MSDB/Deletes/DeleteResult";
 	}
 	
@@ -177,6 +181,7 @@ public class MobileSuitDatabaseController {
 	public String MobileSuitArmedDelete(@PathVariable String armedId, Model model) {
 		String message = mobilesuitService.deleteArmed(armedId);
 		model.addAttribute("message", message);
+		model.addAttribute("url", "/MSDB/MobileSuitArmedList");
 		return "/MSDB/Deletes/DeleteResult";
 	}
 	
@@ -184,6 +189,7 @@ public class MobileSuitDatabaseController {
 	public String MobileSuitEquipmentDelete(@PathVariable String equipmentId, Model model) {
 		String message = mobilesuitService.deleteEquipment(equipmentId);
 		model.addAttribute("message", message);
+		model.addAttribute("url", "/MSDB/MobileSuitEquipmentList");
 		return "/MSDB/Deletes/DeleteResult";
 	}
 	
