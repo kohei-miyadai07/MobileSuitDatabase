@@ -49,6 +49,20 @@ public class MobileSuitDatabaseController {
 		return "/MSDB/Lists/MobileSuitList";
 	}
 	
+	@GetMapping("/MSDB/MobileSuitArmedList")
+	public String getMobileSuitArmedList(Model model) {
+		List<MobileSuitArmedResult> msArmedResultList = mobilesuitService.getMobileSuitArmedList();
+		model.addAttribute("msArmedResultList", msArmedResultList);
+		return "/MSDB/Lists/MobileSuitArmedList";
+	}
+	
+	@GetMapping("/MSDB/MobileSuitEquipmentList")
+	public String getMobileSuitEquipmentList(Model model) {
+		List<MobileSuitEquipmentResult> msEquipmentResultList = mobilesuitService.getMobileSuitEquipmentList();
+		model.addAttribute("msEquipmentResultList", msEquipmentResultList);
+		return "/MSDB/Lists/MobileSuitEquipmentList";
+	}
+	
 	@GetMapping("/MSDB/MobileSuitDetail/{msName}")
 	public String getMobileSuitDetail(@PathVariable("msName")String msName, Model model) {
 		MobileSuitDetailResult mobilesuitDetail = mobilesuitService.getMobileSuitDetail(msName);

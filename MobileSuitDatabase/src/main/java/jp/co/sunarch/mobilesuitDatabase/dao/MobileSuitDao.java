@@ -40,6 +40,32 @@ public class MobileSuitDao {
 			ms_name
 			,ms_id
 			""";
+	
+	final String MOBILESUIT_ARMED_LIST_QUERY = """
+			select
+			 *
+			from
+			Armed
+			order by
+			armed_name
+			,armed_id
+			""";
+	
+	final String MOBILESUIT_EQUIPMENT_LIST_QUERY = """
+			select
+			e.equipment_id
+			, e.ms_id
+			, m.ms_name
+			, e.armed_id
+			, a.armed_name
+			, e.number_equipment 
+			from
+			Equipment e 
+			inner join MobileSuit m 
+			on e.ms_id = m.ms_id 
+			inner join Armed a 
+			on e.armed_id = a.armed_id 
+			""";
 
 	final String SEARCH_MOBILESUIT_DETAIL_QUERY = """
 			select
@@ -222,6 +248,24 @@ public class MobileSuitDao {
 				new BeanPropertyRowMapper<MobileSuitsEntity>(MobileSuitsEntity.class);
 
 		return namedParameterJdbcTemplate.query(SEARCH_MOBILESUITS_QUERY, params, mapper);
+	}
+	
+	public List<MobileSuitArmedEntity> getMobileSuitArmedList() {
+		
+		SqlParameterSource params = new MapSqlParameterSource();
+		RowMapper<MobileSuitArmedEntity> mapper = 
+				new BeanPropertyRowMapper<MobileSuitArmedEntity>(MobileSuitArmedEntity.class);
+		
+		return namedParameterJdbcTemplate.query(MOBILESUIT_ARMED_LIST_QUERY, params, mapper);
+	}
+	
+	public List<MobileSuitEquipmentEntity> getMobileSuitEquipmentList() {
+		
+		SqlParameterSource params = new MapSqlParameterSource();
+		RowMapper<MobileSuitEquipmentEntity> mapper = 
+				new BeanPropertyRowMapper<MobileSuitEquipmentEntity>(MobileSuitEquipmentEntity.class);
+		
+		return namedParameterJdbcTemplate.query(MOBILESUIT_EQUIPMENT_LIST_QUERY, params, mapper);
 	}
 
 	public MobileSuitDetailEntity searchMobileSuitDetail(String id) {

@@ -67,6 +67,39 @@ public class MobileSuitService {
 		}
 		return mobilesuitsResultList;
 	}
+	
+	public List<MobileSuitArmedResult> getMobileSuitArmedList() {
+		
+		List<MobileSuitArmedEntity> msArmedEntityList = mobilesuitDao.getMobileSuitArmedList();
+		
+		List<MobileSuitArmedResult> msArmedResultList = new ArrayList<>();
+		for (MobileSuitArmedEntity entity : msArmedEntityList) {
+			MobileSuitArmedResult msArmedResult = MobileSuitArmedResult.builder()
+					.armedId(entity.getArmedId())
+					.armedName(entity.getArmedName())
+					.armedExplanation(entity.getArmedExplanation())
+					.build();
+			msArmedResultList.add(msArmedResult);
+		}
+		return msArmedResultList;
+	}
+	
+	public List<MobileSuitEquipmentResult> getMobileSuitEquipmentList() {
+		
+		List<MobileSuitEquipmentEntity> msEquipmentEntityList = mobilesuitDao.getMobileSuitEquipmentList();
+		
+		List<MobileSuitEquipmentResult> msEquipmentResultList = new ArrayList<>();
+		for (MobileSuitEquipmentEntity entity : msEquipmentEntityList) {
+			MobileSuitEquipmentResult msEquipmentResult = MobileSuitEquipmentResult.builder()
+					.equipmentId(entity.getEquipmentId())
+					.msName(entity.getMsName())
+					.armedName(entity.getArmedName())
+					.numberEquipment(String.valueOf(entity.getNumberEquipment()))
+					.build();
+			msEquipmentResultList.add(msEquipmentResult);
+		}
+		return msEquipmentResultList;
+	}
 
 	public MobileSuitDetailResult getMobileSuitDetail(String msName) {
 
