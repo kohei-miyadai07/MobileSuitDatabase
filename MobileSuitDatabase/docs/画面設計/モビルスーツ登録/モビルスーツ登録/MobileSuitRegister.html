@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>モビルスーツ登録</title>
+</head>
+
+<body>
+  <h1>モビルスーツ登録</h1>
+  <div id="msRegister">
+    <form action="#" method="post">
+      <label class="label" for="msName">機体名</label>
+      <input id="msName" type="text" name="msName">
+      <label class="label" for="modelNumber">型式番号</label>
+      <input id="modelNumber" type="text" name="modelNumber">
+      <label class="label" for="msUrl">機体URL</label>
+      <input id="msUrl" type="text" name="msUrl">
+      <label class="label" for="headHeight">頭高頂</label>
+      <input id="headHeight" type="text" name="headHeight">
+      <label class="label" for="weight">本体重量</label>
+      <input id="weight" type="text" name="weight">
+      <label class="label" for="totalWeight">全備重量</label>
+      <input id="totalWeight" type="text" name="totalWeight">
+      <label class="label" for="powerSource">動力源</label>
+      <input id="powerSource" type="text" name="powerSource">
+      <label class="label" for="material">装甲材質</label>
+      <input id="material" type="text" name="material">
+      <label class="label" for="generatorOutput">ジェネレーター出力</label>
+      <input id="generatorOutput" type="text" name="generatorOutput">
+      <label class="label" for="totalThrustersOutput">スラスター総推力</label>
+      <input id="totalThrustersOutput" type="text" name="totalThrustersOutput">
+      <label class="label" for="msOverview">機体概要</label>
+      <textarea rows="5" id="msOverview" placeholder="機体概要" name="msOverview"></textarea>
+      <label class="label" for="action">活躍</label>
+      <textarea rows="5" id="action" placeholder="活躍" name="action"></textarea>
+      <button type="submit">登録</button>
+    </form>
+  </div>
+  <style>
+    #msRegister label,
+    input,
+    textarea,
+    button {
+      display: block;
+    }
+  </style>
+</body>
+
+</html>
