@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>モビルスーツ装備検索</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+
+  <body>
+    <h1>モビルスーツ装備検索</h1>
+    <div class="msEquipmentSearch">
+      <form
+        action="#"
+        th:action="@{/MSDB/MobileSuitEquipmentSearch}"
+        th:object="${msEquipmentSearchForm}"
+        method="post"
+      >
+        <label class="label" for="msName">機体名</label>
+        <input type="text" th:field="*{msName}" />
+        <label class="label" for="armedName">武装名</label>
+        <input type="text" th:field="*{armedName}" />
+        <p>
+          <button type="submit">検索</button
+          ><button type="reset">リセット</button>
+        </p>
+      </form>
+    </div>
+    <style>
+      .msEquipmentSearch label,
+      input,
+      textarea,
+      p {
+        display: block;
+      }
+
+    </style>
+  </body>
+</html>

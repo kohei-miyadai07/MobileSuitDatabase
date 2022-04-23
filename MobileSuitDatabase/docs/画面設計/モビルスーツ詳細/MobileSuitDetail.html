@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>モビルスーツ詳細</title>
+</head>
+
+<body>
+    <h1>MobileSuit.ms_name</h1>
+    <img src=MobileSuit.ms_url alt=MobileSuit.ms_name width="280" height="417" style="float:left;">
+    <div id="spec">
+        <h2>スペック</h2>
+        <table border="1">
+            <tr>
+                <td><b>型式番号</b></td>
+                <td>MobileSuit.model_number</td>
+            </tr>
+            <tr>
+                <td><b>頭頂高</b></td>
+                <td>MobileSuit.head_height</td>
+            </tr>
+            <tr>
+                <td><b>本体重量</b></td>
+                <td>MobileSuit.weight</td>
+            </tr>
+            <tr>
+                <td><b>全備重量</b></td>
+                <td>MobileSuit.total_weight</td>
+            </tr>
+            <tr>
+                <td><b>動力源</b></td>
+                <td>MobileSuit.power_source</td>
+            </tr>
+            <tr>
+                <td><b>装甲材質</b></td>
+                <td>MobileSuit.material</td>
+            </tr>
+            <tr>
+                <td><b>ジェネレーター出力</b></td>
+                <td>MobileSuit.generator_output(3桁カンマ区切り)</td>
+            </tr>
+            <tr>
+                <td><b>スラスター総推力</b></td>
+                <td>MobileSuit.total_thrusters_output</td>
+            </tr>
+            <tr>
+                <td><b>武装</b></td>
+                <td>
+                    Equipment.armed_name × Equipment.number_equipment
+                    /*Equipmentのリストをループさせる。一行目以外には行頭に<br>付与*/
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="text" style="clear:both">
+        <h2>機体概要</h2>
+        <p>MobileSuit.ms_overview</p>
+        <h2>武装解説</h2>
+        <dl>
+            <dt>Armed.armed_name</dt>
+            <dd>Armed.armed_explanation</dd>
+        </dl>
+        <h2>活躍</h2>
+        <p>MobileSuit.action</p>
+    </div>
+</body>
+
+</html>
