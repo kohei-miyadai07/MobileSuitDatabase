@@ -1,44 +1,92 @@
---ãƒ¢ãƒ“ãƒ«ã‚¹ãƒ¼ãƒ„
+-- Project Name : noname
+-- Date/Time    : 2022/05/25 1:02:26
+-- Author       : mk26s
+-- RDBMS Type   : PostgreSQL
+-- Application  : A5:SQL Mk-2
+
+-- •‘•
+create table Armed (
+  arms_id VARCHAR(8) not null
+  , ms_id VARCHAR(8) not null
+  , detail TEXT
+  , number_equipment INTEGER
+  , constraint Armed_PKC primary key (arms_id,ms_id)
+) ;
+
+-- •Ší
+create table Arms (
+  arms_id VARCHAR(8) not null
+  , arms_name VARCHAR(90)
+  , detail TEXT
+  , constraint arms_PKC primary key (arms_id)
+) ;
+
+-- •ª—Ş
+create table Grouping (
+  grouping_id VARCHAR(8) not null
+  , grouping_name VARCHAR(90) not null
+  , detail text
+  , constraint Grouping_PKC primary key (grouping_id)
+) ;
+
+-- ƒ‚ƒrƒ‹ƒX[ƒc
 create table MobileSuit (
   ms_id VARCHAR(8) not null
   , model_number VARCHAR(50) not null
   , ms_name VARCHAR(90) not null
   , ms_url VARCHAR(100) not null
+  , grouping_id VARCHAR(8) not null
   , head_height DECIMAL(5,2)
+  , overall_height DECIMAL(5,2)
   , weight DECIMAL(5,2)
   , total_weight DECIMAL(5,2)
   , power_source VARCHAR(90)
   , material VARCHAR(90)
+  , sensor_effective_radius BIGINT
   , generator_output BIGINT
   , total_thrusters_output BIGINT
   , ms_overview VARCHAR(2000)
   , action VARCHAR(2000)
   , insert_date TIMESTAMP not null
   , update_date TIMESTAMP not null
+  , version VARCHAR(3) not null
   , constraint MobileSuit_PKC primary key (ms_id)
 ) ;
 
+comment on table Armed is '•‘•';
+comment on column Armed.arms_id is '•ŠíID';
+comment on column Armed.ms_id is '‹@‘ÌID';
+comment on column Armed.detail is 'Ú×';
+comment on column Armed.number_equipment is '‘•”õ”';
 
---æ­¦è£…
-create table Armed (
-  armed_id VARCHAR(8) not null
-  , armed_name VARCHAR(90) not null
-  , armed_explanation VARCHAR(2000)
-  , constraint Armed_PKC primary key (armed_id)
-) ;
+comment on table arms is '•Ší';
+comment on column arms.arms_id is '•ŠíID';
+comment on column arms.arms_name is '•Ší–¼';
+comment on column arms.detail is 'Ú×';
 
+comment on table Grouping is '•ª—Ş';
+comment on column Grouping.grouping_id is '•ª—ŞID';
+comment on column Grouping.grouping_name is '•ª—Ş–¼';
+comment on column Grouping.detail is 'Ú×';
 
---è£…å‚™
-create table Equipment (
-  equipment_id VARCHAR(8) not null
-  , ms_id VARCHAR(8) not null
-  , armed_id VARCHAR(8) not null
-  , number_equipment INTEGER
-  , constraint Equipment_PKC primary key (equipment_id)
-) ;
+comment on table MobileSuit is 'ƒ‚ƒrƒ‹ƒX[ƒc';
+comment on column MobileSuit.ms_id is '‹@‘ÌID';
+comment on column MobileSuit.model_number is 'Œ^®”Ô†';
+comment on column MobileSuit.ms_name is '‹@‘Ì–¼';
+comment on column MobileSuit.ms_url is '‹@‘ÌÊ^URL';
+comment on column MobileSuit.grouping_id is '•ª—ŞID';
+comment on column MobileSuit.head_height is '“ª‚’¸';
+comment on column MobileSuit.overall_height is '‘S‚';
+comment on column MobileSuit.weight is '–{‘Ìd—Ê';
+comment on column MobileSuit.total_weight is '‘S”õd—Ê';
+comment on column MobileSuit.power_source is '“®—ÍŒ¹';
+comment on column MobileSuit.material is '‘•bŞ¿';
+comment on column MobileSuit.sensor_effective_radius is 'ƒZƒ“ƒT[—LŒø”¼Œa';
+comment on column MobileSuit.generator_output is 'ƒWƒFƒlƒŒ[ƒ^[o—Í';
+comment on column MobileSuit.total_thrusters_output is 'ƒXƒ‰ƒXƒ^[‘„—Í';
+comment on column MobileSuit.ms_overview is '‹@‘ÌŠT—v';
+comment on column MobileSuit.action is 'Šˆ–ô';
+comment on column MobileSuit.insert_date is '“o˜^“ú';
+comment on column MobileSuit.update_date is 'XV“ú';
+comment on column MobileSuit.version is 'ƒo[ƒWƒ‡ƒ“';
 
-alter table Equipment
-  add constraint Equipment_FK1 foreign key (armed_id) references Armed(armed_id);
-
-alter table Equipment
-  add constraint Equipment_FK2 foreign key (ms_id) references MobileSuit(ms_id);
