@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>モビルスーツ検索</title>
+</head>
+
+<body>
+  <h1>モビルスーツ検索</h1>
+  <div class="msSearch">
+    <form action="#" method="post">
+      <table border="1">
+        <tr>
+          <th>型式番号</th>
+          <td><input id="modelNumber" type="text" name="modelNumber"></td>
+        </tr>
+        <tr>
+          <th>機体名</th>
+          <td><input id="msName" type="text" name="msName"></td>
+          <th>分類</th>
+          <td><input id="group" type="text" name="group"></td>
+        </tr>
+        <tr>
+          <th>動力源</th>
+          <td><input id="powerSource" type="text" name="powerSource"></td>
+          <th>装甲材質</th>
+          <td><input id="material" type="text" name="material"></td>
+        </tr>
+        <tr>
+          <th>頭高頂</th>
+          <td>
+            <input id="headHeightFrom" type="text" name="headHeightFrom"> ～ <input id="headHeightTO" type="text" name="headHeightTO"></td>
+          <th>全高</th>
+          <td><input id="overallHeightFrom" type="text" name="overallHeightFrom"> ～ <input id="overallHeightTo" type="text" name="overallHeightTo"></td>
+        </tr>
+        <tr>
+          <th>本体重量</th>
+          <td><input id="weightFrom" type="text" name="weightFrom"> ～ <input id="weightTo" type="text" name="weightTo"></td>
+          <th>全備重量</th>
+          <td><input id="totalWeightFrom" type="text" name="totalWeightFrom"> ～ <input id="totalWeightTo" type="text" name="totalWeightTo"></td>
+        </tr>
+        <tr>
+          <th>センサー有効半径</th>
+          <td><input id="sensorEffectiveRadiusFrom" type="text" name="sensorEffectiveRadiusFrom"> ～ <input id="sensorEffectiveRadiusTo" type="text" name="sensorEffectiveRadiusTo"></td>
+          <th>ジェネレーター出力</th>
+          <td><input id="generatorOutputFrom" type="text" name="generatorOutputFrom"> ～ <input id="generatorOutputTo" type="text" name="generatorOutputTo"></td>
+        </tr>
+        <tr>
+          <th>スラスター総推力</th>
+          <td><input id="totalThrustersOutputFrom" type="text" name="totalThrustersOutputFrom"> ～ <input id="totalThrustersOutputTo" type="text" name="totalThrustersOutputTo"></td>
+        </tr>
+      </table>
+      <p><button type="submit">検索</button><button type="reset">リセット</button></p>
+    </form>
+  </div>
+  <style>
+    .msSearch label,
+    input,
+    textarea,
+    p {
+      display: block;
+    }
+
+    .msNumeric input {
+      display: inline-block;
+    }
+  </style>
+</body>
+
+</html>
