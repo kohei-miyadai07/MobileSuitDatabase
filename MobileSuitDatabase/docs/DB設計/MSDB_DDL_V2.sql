@@ -1,5 +1,5 @@
 -- Project Name : noname
--- Date/Time    : 2022/06/01 7:58:16
+-- Date/Time    : 2022/06/16 7:33:40
 -- Author       : mk26s
 -- RDBMS Type   : PostgreSQL
 -- Application  : A5:SQL Mk-2
@@ -11,6 +11,15 @@
   この機能は一時的に $$TableName のような一時テーブルを作成します。
   この機能は A5:SQL Mk-2でのみ有効であることに注意してください。
 */
+
+-- カテゴライズ
+--* RestoreFromTempTable
+create table Categorice (
+  grouping_id VARCHAR(8) not null
+  , ms_id VARCHAR(8) not null
+  , detail TEXT
+  , constraint Categorice_PKC primary key (grouping_id,ms_id)
+) ;
 
 -- 運用組織
 --* RestoreFromTempTable
@@ -173,7 +182,6 @@ create table MobileSuit (
   , model_number VARCHAR(50) not null
   , ms_name VARCHAR(90) not null
   , ms_url VARCHAR(100) not null
-  , grouping_id VARCHAR(8) not null
   , head_height DECIMAL(5,2)
   , overall_height DECIMAL(5,2)
   , weight DECIMAL(5,2)
@@ -190,6 +198,11 @@ create table MobileSuit (
   , version VARCHAR(3) not null
   , constraint MobileSuit_PKC primary key (ms_id)
 ) ;
+
+comment on table Categorice is 'カテゴライズ';
+comment on column Categorice.grouping_id is '分類ID';
+comment on column Categorice.ms_id is '機体ID';
+comment on column Categorice.detail is '詳細';
 
 comment on table Unit is '運用組織';
 comment on column Unit.org_id is '組織ID';
@@ -282,7 +295,6 @@ comment on column MobileSuit.ms_id is '機体ID';
 comment on column MobileSuit.model_number is '型式番号';
 comment on column MobileSuit.ms_name is '機体名';
 comment on column MobileSuit.ms_url is '機体写真URL';
-comment on column MobileSuit.grouping_id is '分類ID';
 comment on column MobileSuit.head_height is '頭高頂';
 comment on column MobileSuit.overall_height is '全高';
 comment on column MobileSuit.weight is '本体重量';

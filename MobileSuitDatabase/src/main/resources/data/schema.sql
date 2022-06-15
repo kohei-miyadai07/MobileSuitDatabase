@@ -1,5 +1,5 @@
 -- Project Name : noname
--- Date/Time    : 2022/05/25 1:02:26
+-- Date/Time    : 2022/06/16 7:33:40
 -- Author       : mk26s
 -- RDBMS Type   : PostgreSQL
 -- Application  : A5:SQL Mk-2
@@ -18,15 +18,7 @@ create table Arms (
   arms_id VARCHAR(8) not null
   , arms_name VARCHAR(90)
   , detail TEXT
-  , constraint arms_PKC primary key (arms_id)
-) ;
-
--- 分類
-create table Grouping (
-  grouping_id VARCHAR(8) not null
-  , grouping_name VARCHAR(90) not null
-  , detail text
-  , constraint Grouping_PKC primary key (grouping_id)
+  , constraint Arms_PKC primary key (arms_id)
 ) ;
 
 -- モビルスーツ
@@ -35,7 +27,6 @@ create table MobileSuit (
   , model_number VARCHAR(50) not null
   , ms_name VARCHAR(90) not null
   , ms_url VARCHAR(100) not null
-  , grouping_id VARCHAR(8) not null
   , head_height DECIMAL(5,2)
   , overall_height DECIMAL(5,2)
   , weight DECIMAL(5,2)
@@ -64,17 +55,11 @@ comment on column arms.arms_id is '武器ID';
 comment on column arms.arms_name is '武器名';
 comment on column arms.detail is '詳細';
 
-comment on table Grouping is '分類';
-comment on column Grouping.grouping_id is '分類ID';
-comment on column Grouping.grouping_name is '分類名';
-comment on column Grouping.detail is '詳細';
-
 comment on table MobileSuit is 'モビルスーツ';
 comment on column MobileSuit.ms_id is '機体ID';
 comment on column MobileSuit.model_number is '型式番号';
 comment on column MobileSuit.ms_name is '機体名';
 comment on column MobileSuit.ms_url is '機体写真URL';
-comment on column MobileSuit.grouping_id is '分類ID';
 comment on column MobileSuit.head_height is '頭高頂';
 comment on column MobileSuit.overall_height is '全高';
 comment on column MobileSuit.weight is '本体重量';

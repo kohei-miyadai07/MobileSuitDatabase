@@ -51,7 +51,6 @@ Field="機体ID","ms_id","VARCHAR(8)","NOT NULL",0,"","",$FFFFFFFF,""
 Field="型式番号","model_number","VARCHAR(50)","NOT NULL",,"","",$FFFFFFFF,""
 Field="機体名","ms_name","VARCHAR(90)","NOT NULL",,"","",$FFFFFFFF,""
 Field="機体写真URL","ms_url","VARCHAR(100)","NOT NULL",,"","",$FFFFFFFF,""
-Field="分類ID","grouping_id","VARCHAR(8)","NOT NULL",,"","",$FFFFFFFF,""
 Field="頭高頂","head_height","DECIMAL(5,2)",,,"","",$FFFFFFFF,""
 Field="全高","overall_height","DECIMAL(5,2)",,,"","",$FFFFFFFF,""
 Field="本体重量","weight","DECIMAL(5,2)",,,"","",$FFFFFFFF,""
@@ -79,7 +78,7 @@ LName=分類
 Comment=
 TableOption=
 Page=MAIN
-Left=850
+Left=550
 Top=100
 Field="分類ID","grouping_id","VARCHAR(8)","NOT NULL",0,"","",$FFFFFFFF,""
 Field="分類名","grouping_name","VARCHAR(90)","NOT NULL",,"","",$FFFFFFFF,""
@@ -87,8 +86,8 @@ Field="詳細","detail","text",,,"","",$FFFFFFFF,""
 EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
-ModifiedDateTime=20220524002054
-Position="MAIN",850,100,110,97
+ModifiedDateTime=20220616011920
+Position="MAIN",550,100,110,97
 ZOrder=3
 
 [Entity]
@@ -216,28 +215,6 @@ BkColor=$FFFFFF
 ModifiedDateTime=20220601075442
 Position="MAIN",2300,100
 ZOrder=14
-
-[Relation]
-Entity1=Grouping
-Entity2=MobileSuit
-RelationType1=2
-RelationType2=2
-Fields1=grouping_id
-Fields2=grouping_id
-Cardinarity1=
-Cardinarity2=
-Position="MAIN",0,1221,8779,536,R,R,""
-Dependence=0
-Caption=
-PName=
-ModifiedDateTime=20220516001301
-LineMode=0
-Bar1=122
-Bar2=878
-Bar3=54
-TermPos1=R
-TermPos2=R
-ZOrder=16
 
 [Entity]
 PName=DevelopOrg
@@ -782,3 +759,63 @@ Bar3=317
 TermPos1=R
 TermPos2=R
 ZOrder=50
+
+[Entity]
+PName=Categorice
+LName=カテゴライズ
+Comment=
+TableOption=
+Page=MAIN
+Left=900
+Top=100
+Field="分類ID","grouping_id","VARCHAR(8)","NOT NULL",0,"","",$FFFFFFFF,""
+Field="機体ID","ms_id","VARCHAR(8)","NOT NULL",1,"","",$FFFFFFFF,""
+Field="詳細","detail","TEXT",,,"","",$FFFFFFFF,""
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20220616011929
+Position="MAIN",900,100
+ZOrder=51
+
+[Relation]
+Entity1=Grouping
+Entity2=Categorice
+RelationType1=2
+RelationType2=3
+Fields1=grouping_id
+Fields2=grouping_id
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,4093,9500,5210,R,R,""
+Dependence=1
+Caption=
+PName=
+LineMode=0
+Bar1=409
+Bar2=950
+Bar3=521
+TermPos1=R
+TermPos2=R
+ZOrder=52
+
+[Relation]
+Entity1=MobileSuit
+Entity2=Categorice
+RelationType1=2
+RelationType2=3
+Fields1=ms_id
+Fields2=ms_id
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,500,9500,4377,R,R,""
+Dependence=1
+Caption=
+PName=
+LineMode=0
+Bar1=50
+Bar2=950
+Bar3=438
+TermPos1=R
+TermPos2=R
+ZOrder=53
