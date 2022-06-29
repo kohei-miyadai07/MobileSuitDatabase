@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.MobileSuitResponse;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.MobileSuitModel;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -17,7 +17,7 @@ public class MobileSuitController {
 	
 	@GetMapping("/MSDB/MobileSuits")
 	public String getMobileSuits(Model model) {
-		List<MobileSuitResponse> msResponse = mobileSuitOuery.findAll();
+		List<MobileSuitModel> msResponse = mobileSuitOuery.findAll();
 		model.addAttribute("mobilesuits", msResponse);
 		return "/MSDB/MobileSuits/MobileSuitList";
 	}
