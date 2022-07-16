@@ -15,6 +15,7 @@
             <label class="label" for="armedExplanation">武装解説</label>
             <textarea rows="5" placeholder="武装解説" th:field="*{armedExplanation}"></textarea>
             <p><button type="submit">更新</button><button type="reset">リセット</button></p>
+            <p><input type="button" value="戻る" onclick="history.back();" /></p>
             <p><button type="submit" th:formaction="@{/MSDB/MobileSuitArmedDelete/{armedId}(armedId=*{armedId})}">削除</button></p>
         </form>
     </div>
