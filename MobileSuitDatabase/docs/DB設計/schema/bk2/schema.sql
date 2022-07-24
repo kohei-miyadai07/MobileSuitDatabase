@@ -1,16 +1,16 @@
 -- Project Name : noname
--- Date/Time    : 2022/07/24 10:19:19
+-- Date/Time    : 2022/06/16 7:33:40
 -- Author       : mk26s
 -- RDBMS Type   : PostgreSQL
 -- Application  : A5:SQL Mk-2
 
--- 装備
-create table Equipment (
+-- 武装
+create table Armed (
   arms_id VARCHAR(8) not null
   , ms_id VARCHAR(8) not null
   , detail TEXT
   , number_equipment INTEGER
-  , constraint Equipment_PKC primary key (arms_id,ms_id)
+  , constraint Armed_PKC primary key (arms_id,ms_id)
 ) ;
 
 -- 武器
@@ -44,16 +44,16 @@ create table MobileSuit (
   , constraint MobileSuit_PKC primary key (ms_id)
 ) ;
 
-comment on table Equipment is '装備';
-comment on column Equipment.arms_id is '武器ID';
-comment on column Equipment.ms_id is '機体ID';
-comment on column Equipment.detail is '詳細';
-comment on column Equipment.number_equipment is '装備数';
+comment on table Armed is '武装';
+comment on column Armed.arms_id is '武器ID';
+comment on column Armed.ms_id is '機体ID';
+comment on column Armed.detail is '詳細';
+comment on column Armed.number_equipment is '装備数';
 
-comment on table Arms is '武器';
-comment on column Arms.arms_id is '武器ID';
-comment on column Arms.arms_name is '武器名';
-comment on column Arms.detail is '詳細';
+comment on table arms is '武器';
+comment on column arms.arms_id is '武器ID';
+comment on column arms.arms_name is '武器名';
+comment on column arms.detail is '詳細';
 
 comment on table MobileSuit is 'モビルスーツ';
 comment on column MobileSuit.ms_id is '機体ID';

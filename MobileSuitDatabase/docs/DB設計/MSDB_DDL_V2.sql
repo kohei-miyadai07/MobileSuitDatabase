@@ -1,5 +1,5 @@
 -- Project Name : noname
--- Date/Time    : 2022/06/16 7:33:40
+-- Date/Time    : 2022/07/24 10:19:19
 -- Author       : mk26s
 -- RDBMS Type   : PostgreSQL
 -- Application  : A5:SQL Mk-2
@@ -30,14 +30,14 @@ create table Unit (
   , constraint Unit_PKC primary key (org_id,ms_id)
 ) ;
 
--- 武装
+-- 装備
 --* RestoreFromTempTable
-create table Armed (
+create table Equipment (
   arms_id VARCHAR(8) not null
   , ms_id VARCHAR(8) not null
   , detail TEXT
   , number_equipment INTEGER
-  , constraint Armed_PKC primary key (arms_id,ms_id)
+  , constraint Equipment_PKC primary key (arms_id,ms_id)
 ) ;
 
 -- 能力
@@ -209,11 +209,11 @@ comment on column Unit.org_id is '組織ID';
 comment on column Unit.ms_id is '機体ID';
 comment on column Unit.detail is '詳細';
 
-comment on table Armed is '武装';
-comment on column Armed.arms_id is '武器ID';
-comment on column Armed.ms_id is '機体ID';
-comment on column Armed.detail is '詳細';
-comment on column Armed.number_equipment is '装備数';
+comment on table Equipment is '装備';
+comment on column Equipment.arms_id is '武器ID';
+comment on column Equipment.ms_id is '機体ID';
+comment on column Equipment.detail is '詳細';
+comment on column Equipment.number_equipment is '装備数';
 
 comment on table Ability is '能力';
 comment on column Ability.func_id is '機能ID';

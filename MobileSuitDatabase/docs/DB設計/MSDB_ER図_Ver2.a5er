@@ -640,8 +640,8 @@ TermPos2=R
 ZOrder=44
 
 [Entity]
-PName=Armed
-LName=武装
+PName=Equipment
+LName=装備
 Comment=
 TableOption=
 Page=MAIN
@@ -654,13 +654,13 @@ Field="装備数","number_equipment","INTEGER",,,"","",$FFFFFFFF,""
 EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
-ModifiedDateTime=20220524000716
+ModifiedDateTime=20220724101624
 Position="MAIN",1900,100
 ZOrder=45
 
 [Relation]
 Entity1=Arms
-Entity2=Armed
+Entity2=Equipment
 RelationType1=2
 RelationType2=3
 Fields1=arms_id
@@ -681,7 +681,7 @@ ZOrder=46
 
 [Relation]
 Entity1=MobileSuit
-Entity2=Armed
+Entity2=Equipment
 RelationType1=2
 RelationType2=3
 Fields1=ms_id

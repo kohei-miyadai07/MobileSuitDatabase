@@ -15,6 +15,11 @@ insert
 into Arms 
 values ('00000004', 'テスト用バズーカ', 'テスト用バズーカです。');
 
+--分類
+insert 
+into Grouping 
+values ('b001', '試作モビルスーツ', '試作モビルスーツです。');
+
 --モビルスーツ
 insert 
 into MobileSuit 
@@ -40,9 +45,9 @@ values (
   , '1'
 );
 
---装備
+--武装
 insert 
-into Equipment 
+into Armed 
 values ( 
   '00000001'
   , 'as000178'
@@ -51,7 +56,7 @@ values (
 );
 
 insert 
-into Equipment 
+into Armed 
 values ( 
   '00000002'
   , 'as000178'
@@ -60,7 +65,7 @@ values (
 );
 
 insert 
-into Equipment 
+into Armed 
 values ( 
   '00000003'
   , 'as000178'
