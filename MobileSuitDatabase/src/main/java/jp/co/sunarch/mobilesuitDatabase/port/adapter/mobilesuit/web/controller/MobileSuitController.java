@@ -1,4 +1,4 @@
-package jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.mobilesuit;
+package jp.co.sunarch.mobilesuitDatabase.port.adapter.mobilesuit.web.controller;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.MobileSuitModel;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.mobilesuit.model.MobileSuitModel;
 import lombok.RequiredArgsConstructor;
 
 @Controller

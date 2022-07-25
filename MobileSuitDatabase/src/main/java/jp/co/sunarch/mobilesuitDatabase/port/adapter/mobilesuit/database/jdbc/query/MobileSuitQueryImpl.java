@@ -1,4 +1,4 @@
-package jp.co.sunarch.mobilesuitDatabase.port.adapter.web.jdbc.query.mobilesuit;
+package jp.co.sunarch.mobilesuitDatabase.port.adapter.mobilesuit.database.jdbc.query;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Repository;
 
-import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.mobilesuit.MobileSuitQuery;
-import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.MobileSuitModel;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.mobilesuit.model.MobileSuitModel;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.mobilesuit.web.controller.MobileSuitQuery;
 import lombok.RequiredArgsConstructor;
 
 @Repository

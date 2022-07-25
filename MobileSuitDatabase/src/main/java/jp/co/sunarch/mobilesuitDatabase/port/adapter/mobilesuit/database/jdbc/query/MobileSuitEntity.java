@@ -1,4 +1,4 @@
-package jp.co.sunarch.mobilesuitDatabase.port.adapter.web.jdbc.query.mobilesuit;
+package jp.co.sunarch.mobilesuitDatabase.port.adapter.mobilesuit.database.jdbc.query;
 
 import java.sql.Timestamp;
 
