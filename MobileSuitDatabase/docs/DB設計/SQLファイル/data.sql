@@ -46,8 +46,8 @@ into Equipment
 values ( 
   'as000178'
   , '00000001'
-  , 1
   , 'テストです。'
+  , 1
 );
 
 insert 
@@ -55,8 +55,8 @@ into Equipment
 values ( 
   'as000178'
   , '00000002'
-  , 2
   , 'テストです。'
+  , 2
 );
 
 insert 
@@ -64,6 +64,6 @@ into Equipment
 values ( 
   'as000178'
   , '00000003'
-  , 2
   , 'テストです。'
+  , 1
 );
