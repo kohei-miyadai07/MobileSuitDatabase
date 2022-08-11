@@ -2,7 +2,7 @@
 <html lang="ja">
 	<head>
 		<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
-		<title>テーブル定義書&#32;MSDB_ER</title>
+		<title>テーブル定義書&#32;MSDB_ER図_Ver2</title>
 		<link rel="stylesheet" href="a5m2.css">
 	</head>
 	<body>
@@ -15,15 +15,15 @@
 				<col width="180">
 			</colgroup>
 			<th>システム名</th>
-			<td>MSDB_ER&nbsp;</td>
+			<td>MSDB_ER図_Ver2&nbsp;</td>
 			<th>作成者</th>
-			<td>宮臺滉平&nbsp;</td>
+			<td>&nbsp;</td>
 		</tr>
 		<tr>
 			<th>サブシステム名</th>
 			<td>&nbsp;</td>
 			<th>作成日</th>
-			<td>2022/03/12&nbsp;</td>
+			<td>2022/08/11&nbsp;</td>
 		</tr>
 		<tr>
 			<th>スキーマ名</th>
@@ -117,6 +117,15 @@
 		</tr>
 		<tr>
 			<td style="text-align:right;">6</td>
+			<td>全高</td>
+			<td>overall_height</td>
+			<td>DECIMAL(5,2)</td>
+			<td>&nbsp;</td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td style="text-align:right;">7</td>
 			<td>本体重量</td>
 			<td>weight</td>
 			<td>DECIMAL(5,2)</td>
@@ -125,7 +134,7 @@
 			<td></td>
 		</tr>
 		<tr>
-			<td style="text-align:right;">7</td>
+			<td style="text-align:right;">8</td>
 			<td>全備重量</td>
 			<td>total_weight</td>
 			<td>DECIMAL(5,2)</td>
@@ -134,7 +143,7 @@
 			<td></td>
 		</tr>
 		<tr>
-			<td style="text-align:right;">8</td>
+			<td style="text-align:right;">9</td>
 			<td>動力源</td>
 			<td>power_source</td>
 			<td>VARCHAR(90)</td>
@@ -143,7 +152,7 @@
 			<td></td>
 		</tr>
 		<tr>
-			<td style="text-align:right;">9</td>
+			<td style="text-align:right;">10</td>
 			<td>装甲材質</td>
 			<td>material</td>
 			<td>VARCHAR(90)</td>
@@ -152,7 +161,16 @@
 			<td></td>
 		</tr>
 		<tr>
-			<td style="text-align:right;">10</td>
+			<td style="text-align:right;">11</td>
+			<td>センサー有効半径</td>
+			<td>effective_sensor_radius</td>
+			<td>BIGINT</td>
+			<td>&nbsp;</td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td style="text-align:right;">12</td>
 			<td>ジェネレーター出力</td>
 			<td>generator_output</td>
 			<td>BIGINT</td>
@@ -161,7 +179,7 @@
 			<td></td>
 		</tr>
 		<tr>
-			<td style="text-align:right;">11</td>
+			<td style="text-align:right;">13</td>
 			<td>スラスター総推力</td>
 			<td>total_thrusters_output</td>
 			<td>BIGINT</td>
@@ -170,25 +188,25 @@
 			<td></td>
 		</tr>
 		<tr>
-			<td style="text-align:right;">12</td>
+			<td style="text-align:right;">14</td>
 			<td>機体概要</td>
 			<td>ms_overview</td>
-			<td>VARCHAR(2000)</td>
+			<td>TEXT</td>
 			<td>&nbsp;</td>
 			<td></td>
 			<td></td>
 		</tr>
 		<tr>
-			<td style="text-align:right;">13</td>
+			<td style="text-align:right;">15</td>
 			<td>活躍</td>
 			<td>action</td>
-			<td>VARCHAR(2000)</td>
+			<td>TEXT</td>
 			<td>&nbsp;</td>
 			<td></td>
 			<td></td>
 		</tr>
 		<tr>
-			<td style="text-align:right;">14</td>
+			<td style="text-align:right;">16</td>
 			<td>登録日時</td>
 			<td>insert_date</td>
 			<td>TIMESTAMP</td>
@@ -197,11 +215,20 @@
 			<td></td>
 		</tr>
 		<tr>
-			<td style="text-align:right;">15</td>
+			<td style="text-align:right;">17</td>
 			<td>更新日時</td>
 			<td>update_date</td>
 			<td>TIMESTAMP</td>
 			<td>Yes</td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td style="text-align:right;">18</td>
+			<td>バージョン</td>
+			<td>version</td>
+			<td>VARCHAR(3)</td>
+			<td>&nbsp;</td>
 			<td></td>
 			<td></td>
 		</tr>
@@ -266,6 +293,69 @@
 		</tr>
 		<tr>
 			<td style="text-align:right;">1</td>
+			<td></td>
+			<td>ms_id</td>
+			<td>Ability</td>
+			<td>ms_id</td>
+		</tr>
+		<tr>
+			<td style="text-align:right;">2</td>
+			<td></td>
+			<td>ms_id</td>
+			<td>Works</td>
+			<td>ms_id</td>
+		</tr>
+		<tr>
+			<td style="text-align:right;">3</td>
+			<td></td>
+			<td>ms_id</td>
+			<td>Operation_Carrier</td>
+			<td>ms_id</td>
+		</tr>
+		<tr>
+			<td style="text-align:right;">4</td>
+			<td></td>
+			<td>ms_id</td>
+			<td>Passenger</td>
+			<td>ms_id</td>
+		</tr>
+		<tr>
+			<td style="text-align:right;">5</td>
+			<td></td>
+			<td>ms_id</td>
+			<td>Belonging</td>
+			<td>ms_id</td>
+		</tr>
+		<tr>
+			<td style="text-align:right;">6</td>
+			<td></td>
+			<td>ms_id</td>
+			<td>Developer</td>
+			<td>ms_id</td>
+		</tr>
+		<tr>
+			<td style="text-align:right;">7</td>
+			<td></td>
+			<td>ms_id</td>
+			<td>Development_Base</td>
+			<td>ms_id</td>
+		</tr>
+		<tr>
+			<td style="text-align:right;">8</td>
+			<td></td>
+			<td>ms_id</td>
+			<td>Development_Org</td>
+			<td>ms_id</td>
+		</tr>
+		<tr>
+			<td style="text-align:right;">9</td>
+			<td></td>
+			<td>ms_id</td>
+			<td>Categorize</td>
+			<td>ms_id</td>
+		</tr>
+		<tr>
+			<td style="text-align:right;">10</td>
 			<td></td>
 			<td>ms_id</td>
 			<td>Equipment</td>

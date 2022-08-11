@@ -33,13 +33,13 @@
 		</tr>
 		<tr>
 			<th>論理エンティティ名</th>
-			<td>装備&nbsp;</td>
+			<td>武器&nbsp;</td>
 			<th>タグ&nbsp;</th>
 			<td>&nbsp;</td>
 		</tr>
 		<tr>
 			<th>物理エンティティ名</th>
-			<td>Equipment&nbsp;</td>
+			<td>Arms&nbsp;</td>
 			<th>&nbsp;</th>
 			<td>&nbsp;</td>
 		</tr>
@@ -72,15 +72,6 @@
 		</tr>
 		<tr>
 			<td style="text-align:right;">1</td>
-			<td>機体ID</td>
-			<td>ms_id</td>
-			<td>VARCHAR(8)</td>
-			<td>Yes (PK)</td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td style="text-align:right;">2</td>
 			<td>武器ID</td>
 			<td>arms_id</td>
 			<td>VARCHAR(8)</td>
@@ -89,16 +80,16 @@
 			<td></td>
 		</tr>
 		<tr>
-			<td style="text-align:right;">3</td>
-			<td>装備数</td>
-			<td>number_equipment</td>
-			<td>INTEGER</td>
-			<td>&nbsp;</td>
+			<td style="text-align:right;">2</td>
+			<td>武器名</td>
+			<td>arms_name</td>
+			<td>VARCHAR(90)</td>
+			<td>Yes</td>
 			<td></td>
 			<td></td>
 		</tr>
 		<tr>
-			<td style="text-align:right;">4</td>
+			<td style="text-align:right;">3</td>
 			<td>詳細</td>
 			<td>detail</td>
 			<td>TEXT</td>
@@ -145,20 +136,6 @@
 			<th>参照先</th>
 			<th>参照先カラムリスト</th>
 		</tr>
-		<tr>
-			<td style="text-align:right;">1</td>
-			<td></td>
-			<td>arms_id</td>
-			<td>Arms</td>
-			<td>arms_id</td>
-		</tr>
-		<tr>
-			<td style="text-align:right;">2</td>
-			<td></td>
-			<td>ms_id</td>
-			<td>MobileSuit</td>
-			<td>ms_id</td>
-		</tr>
 	</table>
 
 <br>
@@ -178,6 +155,13 @@
 			<th>カラムリスト</th>
 			<th>参照元</th>
 			<th>参照元カラムリスト</th>
+		</tr>
+		<tr>
+			<td style="text-align:right;">1</td>
+			<td></td>
+			<td>arms_id</td>
+			<td>Equipment</td>
+			<td>arms_id</td>
 		</tr>
 	</table>
 
