@@ -5,7 +5,10 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.from.mobilesuit.MobileSuitIdFrom;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.result.mobilesuit.MobileSuitDetailResult;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.result.mobilesuit.MobileSuitResult;
 import lombok.RequiredArgsConstructor;
 
@@ -20,6 +23,14 @@ public class MobileSuitController {
 		List<MobileSuitResult> msResultList = mobileSuitQuery.getMobileSuitList();
 		model.addAttribute("mobilesuits", msResultList);
 		return "/MSDB/MobileSuits/MobileSuitList";
+	}
+
+	@GetMapping("/MSDB/MobileSuits/{msId}")
+	public String getMobileSuitDetail(@PathVariable String msId, Model model) {
+		MobileSuitIdFrom mobileSuitIdFrom = MobileSuitIdFrom.of(msId);
+		MobileSuitDetailResult msDetailResult = mobileSuitQuery.getMobileSuitDetail(mobileSuitIdFrom);
+		model.addAttribute("mobilesuitDetail", msDetailResult);
+		return "/MSDB/MobileSuits/msId/MobileSuitDetail";
 	}
 
 }

@@ -1,4 +1,4 @@
-package jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit;
+package jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.entity;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
