@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.from.mobilesuit.MobileSuitIdFrom;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.from.mobilesuit.MobileSuitDetailFrom;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.result.mobilesuit.MobileSuitDetailResult;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.result.mobilesuit.MobileSuitResult;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +27,7 @@ public class MobileSuitController {
 
 	@GetMapping("/MSDB/MobileSuits/{msId}")
 	public String getMobileSuitDetail(@PathVariable String msId, Model model) {
-		MobileSuitIdFrom mobileSuitIdFrom = MobileSuitIdFrom.of(msId);
+		MobileSuitDetailFrom mobileSuitIdFrom = MobileSuitDetailFrom.of(msId);
 		MobileSuitDetailResult msDetailResult = mobileSuitQuery.getMobileSuitDetail(mobileSuitIdFrom);
 		model.addAttribute("mobilesuitDetail", msDetailResult);
 		return "/MSDB/MobileSuits/msId/MobileSuitDetail";

@@ -1,0 +1,43 @@
+package jp.co.sunarch.mobilesuitDatabase.port.adapter.database.repository.mobilesuit;
+
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.stereotype.Component;
+
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.repository.mobilesuit.entity.MobileSuitEntity;
+import lombok.RequiredArgsConstructor;
+
+@Component
+@RequiredArgsConstructor
+public class MobileSuitRepositoryDao {
+	
+	private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+	
+	public int insertOneMobileSuit(MobileSuitEntity msEntity) {
+
+		SqlParameterSource params = new MapSqlParameterSource()
+				.addValue("msId", msEntity.getMsId())
+				.addValue("modelNumber", msEntity.getModelNumber())
+				.addValue("msName", msEntity.getMsName())
+				.addValue("msUrl", msEntity.getMsUrl())
+				.addValue("headHeight", msEntity.getHeadHeight())
+				.addValue("overallHeight", msEntity.getOverallHeight())
+				.addValue("weight", msEntity.getWeight())
+				.addValue("totalWeight", msEntity.getTotalWeight())
+				.addValue("powerSource", msEntity.getPowerSource())
+				.addValue("material", msEntity.getMaterial())
+				.addValue("effectiveSensorRadius", msEntity.getEffectiveSensorRadius())
+				.addValue("generatorOutput", msEntity.getGeneratorOutput())
+				.addValue("totalThrustersOutput", msEntity.getTotalThrustersOutput())
+				.addValue("msOverview", msEntity.getMsOverview())
+				.addValue("action", msEntity.getAction())
+				.addValue("insertDate", msEntity.getInsertDate())
+				.addValue("updateDate", msEntity.getUpdateDate())
+				.addValue("version", msEntity.getVersion());
+
+		return namedParameterJdbcTemplate.update(MobileSuitSqlCode.INSERT_MOBILESUIT, params);
+
+	}
+
+}

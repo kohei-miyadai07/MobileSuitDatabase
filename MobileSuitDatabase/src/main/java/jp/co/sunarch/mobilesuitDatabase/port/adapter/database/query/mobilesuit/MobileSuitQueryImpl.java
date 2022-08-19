@@ -10,7 +10,7 @@ import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.equipment.Jd
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.equipment.entity.EquipmentArmsEntity;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.entity.MobileSuitEntity;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.mobilesuit.MobileSuitQuery;
-import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.from.mobilesuit.MobileSuitIdFrom;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.from.mobilesuit.MobileSuitDetailFrom;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.result.equipment.EquipmentArmsResult;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.result.mobilesuit.MobileSuitDetailResult;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.result.mobilesuit.MobileSuitResult;
@@ -37,7 +37,7 @@ public class MobileSuitQueryImpl implements MobileSuitQuery {
 	}
 
 	@Override
-	public MobileSuitDetailResult getMobileSuitDetail(MobileSuitIdFrom msIdFrom) {
+	public MobileSuitDetailResult getMobileSuitDetail(MobileSuitDetailFrom msIdFrom) {
 
 		MobileSuitEntity msEntity = mobileSuitDao.selectMobileSuitById(msIdFrom.getMsId());
 		List<EquipmentArmsEntity> equipmentArmsEntityList = equipmentDao.selectEquipmentArmsByMsId(msIdFrom.getMsId());
