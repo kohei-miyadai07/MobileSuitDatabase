@@ -35,12 +35,14 @@ public class MobileSuitDatabaseController {
 	@Autowired
 	private MobileSuitService mobilesuitService;
 	
+	/**
 	@GetMapping("/")
 	public String getMessage() {
 		String result = jdbcTemplate.queryForObject("select 1",String.class);
 		System.out.println(result);
 		return "/MSDB/ms";
 	}
+	**/
 	
 	@GetMapping("/MSDB/MobileSuitList")
 	public String getMoblieSuits(Model model) {
