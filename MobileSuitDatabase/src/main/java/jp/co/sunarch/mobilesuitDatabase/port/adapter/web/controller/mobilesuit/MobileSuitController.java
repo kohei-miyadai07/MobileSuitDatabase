@@ -27,8 +27,7 @@ public class MobileSuitController {
 
 	@GetMapping("/MSDB/MobileSuits/{msId}")
 	public String getMobileSuitDetail(@PathVariable String msId, Model model) {
-		MobileSuitDetailFrom mobileSuitIdFrom = MobileSuitDetailFrom.of(msId);
-		MobileSuitDetailForm msDetailResult = mobileSuitQuery.getMobileSuitDetail(mobileSuitIdFrom);
+		MobileSuitDetailForm msDetailResult = mobileSuitQuery.getMobileSuitDetail(msId);
 		model.addAttribute("mobilesuitDetail", msDetailResult);
 		return "/MSDB/MobileSuits/msId/MobileSuitDetail";
 	}

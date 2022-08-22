@@ -6,15 +6,14 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.equipment.JdbcTemplateEquipmentDao;
-import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.equipment.entity.EquipmentArmsEntity;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.entity.MobileSuitEntity;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.entity.MobileSuitIdEntity;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.equipment.JdbcTemplateEquipmentDao;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.equipment.entity.EquipmentArmsEntity;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.mobilesuit.MobileSuitQuery;
-import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.equipment.EquipmentArmsForm;
-import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.from.mobilesuit.MobileSuitDetailFrom;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.MobileSuitDetailForm;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.MobileSuitForm;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.equipment.EquipmentArmsForm;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.result.mobilesuit.EditMobileSuitResult;
 import lombok.RequiredArgsConstructor;
 
@@ -39,10 +38,10 @@ public class MobileSuitQueryImpl implements MobileSuitQuery {
 	}
 
 	@Override
-	public MobileSuitDetailForm getMobileSuitDetail(MobileSuitDetailFrom msIdFrom) {
+	public MobileSuitDetailForm getMobileSuitDetail(String msId) {
 
-		MobileSuitEntity msEntity = mobileSuitDao.selectMobileSuitById(msIdFrom.getMsId());
-		List<EquipmentArmsEntity> equipmentArmsEntityList = equipmentDao.selectEquipmentArmsByMsId(msIdFrom.getMsId());
+		MobileSuitEntity msEntity = mobileSuitDao.selectMobileSuitById(msId);
+		List<EquipmentArmsEntity> equipmentArmsEntityList = equipmentDao.selectEquipmentArmsByMsId(msId);
 
 		return toJoinResult(msEntity, equipmentArmsEntityList);
 	}

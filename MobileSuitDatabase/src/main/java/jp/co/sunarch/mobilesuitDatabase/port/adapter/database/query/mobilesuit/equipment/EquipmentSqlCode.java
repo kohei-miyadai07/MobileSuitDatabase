@@ -1,4 +1,4 @@
-package jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.equipment;
+package jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.equipment;
 
 public class EquipmentSqlCode {
 

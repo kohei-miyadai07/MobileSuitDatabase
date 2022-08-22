@@ -2,7 +2,7 @@ package jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit;
 
 import java.util.List;
 
-import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.equipment.EquipmentArmsForm;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.equipment.EquipmentArmsForm;
 import lombok.Builder;
 import lombok.Value;
 

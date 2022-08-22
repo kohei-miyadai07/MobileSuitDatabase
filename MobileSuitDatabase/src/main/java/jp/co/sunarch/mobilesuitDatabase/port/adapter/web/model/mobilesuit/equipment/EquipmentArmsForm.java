@@ -1,4 +1,4 @@
-package jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.equipment;
+package jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.equipment;
 
 import lombok.Builder;
 import lombok.Value;
