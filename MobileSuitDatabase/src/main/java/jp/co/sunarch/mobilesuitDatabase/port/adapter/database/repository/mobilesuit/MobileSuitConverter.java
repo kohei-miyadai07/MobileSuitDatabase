@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 import org.springframework.stereotype.Component;
 
 import jp.co.sunarch.mobilesuitDatabase.domain.model.mobilesuit.MobileSuit;
+import jp.co.sunarch.mobilesuitDatabase.domain.model.mobilesuit.MobileSuitId;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.repository.mobilesuit.entity.MobileSuitEntity;
 
 @Component
@@ -33,6 +34,31 @@ public class MobileSuitConverter {
 		msEntity.setVersion(mobileSuit.getVersion());
 
 		return msEntity;
+	}
+
+	public MobileSuit entityToDomain(MobileSuitEntity msEntity) {
+		
+		MobileSuit mobileSuit = MobileSuit.create(
+				MobileSuitId.of(msEntity.getMsId())
+				,msEntity.getModelNumber()
+				,msEntity.getMsName()
+				,msEntity.getMsUrl()
+				,msEntity.getHeadHeight()
+				,msEntity.getOverallHeight()
+				,msEntity.getWeight()
+				,msEntity.getTotalWeight()
+				,msEntity.getPowerSource()
+				,msEntity.getMaterial()
+				,msEntity.getEffectiveSensorRadius()
+				,msEntity.getGeneratorOutput()
+				,msEntity.getTotalThrustersOutput()
+				,msEntity.getMsOverview()
+				,msEntity.getAction()
+				,msEntity.getInsertDate().toLocalDateTime()
+				,msEntity.getUpdateDate().toLocalDateTime()
+				,msEntity.getVersion());
+
+		return mobileSuit;
 	}
 
 }

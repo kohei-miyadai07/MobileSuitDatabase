@@ -1,11 +1,11 @@
-package jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.result.equipment;
+package jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.equipment;
 
 import lombok.Builder;
 import lombok.Value;
 
 @Value
 @Builder
-public class EquipmentArmsResult {
+public class EquipmentArmsForm {
 	private String msId;
 	private String armsId;
 	private String armsName;

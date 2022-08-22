@@ -25,4 +25,24 @@ public class MobileSuitRepositoryImpl implements MobileSuitRepository {
 		return result;
 	}
 
+	@Override
+	public int UpdateMobileSuit(MobileSuit mobileSuit) {
+
+		MobileSuitEntity msEntity = mobileSuitConverter.domainToEntity(mobileSuit);
+
+		int result = mobileSuitRepositoryDao.updateOneMobileSuit(msEntity);
+
+		return result;
+	}
+
+	@Override
+	public MobileSuit GetMobileSuitById(String msId) {
+
+		MobileSuitEntity msEntity = mobileSuitRepositoryDao.selectMobileSuitById(msId);
+
+		MobileSuit mobileSuit = mobileSuitConverter.entityToDomain(msEntity);
+
+		return mobileSuit;
+	}
+
 }

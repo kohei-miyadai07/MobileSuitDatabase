@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Component;
 
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.entity.MobileSuitEntity;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.entity.MobileSuitIdEntity;
 import lombok.RequiredArgsConstructor;
 
 @Component
@@ -33,6 +34,14 @@ public class JdbcTemplateMobileSuitDao {
 				new BeanPropertyRowMapper<MobileSuitEntity>(MobileSuitEntity.class);
 		
 		return namedParameterJdbcTemplate.queryForObject(MobileSuitSqlCode.SELECT_MOBILESUIT_QUERY_BY_ID, params, mapper);
+	}
+
+	public MobileSuitIdEntity selectMobileSuitIdById(String msId) {
+		SqlParameterSource params = new MapSqlParameterSource().addValue("msId", msId);
+		RowMapper<MobileSuitIdEntity> mapper = 
+				new BeanPropertyRowMapper<MobileSuitIdEntity>(MobileSuitIdEntity.class);
+
+		return namedParameterJdbcTemplate.queryForObject(MobileSuitSqlCode.SELECT_MOBILESUIT_ID_QUERY_BY_ID, params, mapper);
 	}
 
 }

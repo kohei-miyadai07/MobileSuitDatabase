@@ -6,4 +6,8 @@ public interface MobileSuitRepository {
 
 	public int RegistMobileSuit(MobileSuit mobileSuit);
 
+	public int UpdateMobileSuit(MobileSuit mobileSuit);
+
+	public MobileSuit GetMobileSuitById(String msId);
+
 }

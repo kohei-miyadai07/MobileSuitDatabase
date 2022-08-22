@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.stereotype.Component;
 
+import jp.co.sunarch.mobilesuitDatabase.application.command.mobilesuit.EditMobileSuitCommand;
 import jp.co.sunarch.mobilesuitDatabase.application.command.mobilesuit.RegistMobileSuitCommand;
 import jp.co.sunarch.mobilesuitDatabase.application.repository.mobilesuit.MobileSuitRepository;
 import jp.co.sunarch.mobilesuitDatabase.domain.model.mobilesuit.MobileSuit;
@@ -53,6 +54,14 @@ public class MobileSuitRecodeService {
 		}
 
 		return message;
+	}
+
+	public String EditMobileSuit(EditMobileSuitCommand command) {
+
+		MobileSuit mobileSuit = mobileSuitRepository.GetMobileSuitById(command.getMsId());
+		
+		
+		return null;
 	}
 
 }

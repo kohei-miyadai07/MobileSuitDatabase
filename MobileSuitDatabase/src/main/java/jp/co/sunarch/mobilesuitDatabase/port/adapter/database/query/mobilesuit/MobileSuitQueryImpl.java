@@ -9,11 +9,13 @@ import org.springframework.stereotype.Repository;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.equipment.JdbcTemplateEquipmentDao;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.equipment.entity.EquipmentArmsEntity;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.entity.MobileSuitEntity;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.entity.MobileSuitIdEntity;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.mobilesuit.MobileSuitQuery;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.equipment.EquipmentArmsForm;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.from.mobilesuit.MobileSuitDetailFrom;
-import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.result.equipment.EquipmentArmsResult;
-import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.result.mobilesuit.MobileSuitDetailResult;
-import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.result.mobilesuit.MobileSuitResult;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.MobileSuitDetailForm;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.MobileSuitForm;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.result.mobilesuit.EditMobileSuitResult;
 import lombok.RequiredArgsConstructor;
 
 @Repository
@@ -29,15 +31,15 @@ public class MobileSuitQueryImpl implements MobileSuitQuery {
 	private NumberFormat comFormat = NumberFormat.getNumberInstance();
 
 	@Override
-	public List<MobileSuitResult> getMobileSuitList() {
+	public List<MobileSuitForm> getMobileSuitList() {
 
 		List<MobileSuitEntity> msEntityList = mobileSuitDao.selectMobileSuitList();
-		List<MobileSuitResult> msResultList = msEntityList.stream().map(l -> toResult(l)).toList();
+		List<MobileSuitForm> msResultList = msEntityList.stream().map(l -> toResult(l)).toList();
 		return msResultList;
 	}
 
 	@Override
-	public MobileSuitDetailResult getMobileSuitDetail(MobileSuitDetailFrom msIdFrom) {
+	public MobileSuitDetailForm getMobileSuitDetail(MobileSuitDetailFrom msIdFrom) {
 
 		MobileSuitEntity msEntity = mobileSuitDao.selectMobileSuitById(msIdFrom.getMsId());
 		List<EquipmentArmsEntity> equipmentArmsEntityList = equipmentDao.selectEquipmentArmsByMsId(msIdFrom.getMsId());
@@ -45,9 +47,19 @@ public class MobileSuitQueryImpl implements MobileSuitQuery {
 		return toJoinResult(msEntity, equipmentArmsEntityList);
 	}
 
-	private MobileSuitResult toResult(MobileSuitEntity msEntity) {
+	@Override
+	public EditMobileSuitResult getMobileSuitId(String msId) {
 
-		MobileSuitResult msResult = MobileSuitResult.builder()
+		MobileSuitIdEntity entity = mobileSuitDao.selectMobileSuitIdById(msId);
+		EditMobileSuitResult result = new EditMobileSuitResult();
+		result.setMsId(entity.getMsId());
+
+		return result;
+	}
+
+	private MobileSuitForm toResult(MobileSuitEntity msEntity) {
+
+		MobileSuitForm msResult = MobileSuitForm.builder()
 				.msId(msEntity.getMsId())
 				.modelNumber(msEntity.getModelNumber())
 				.msName(msEntity.getMsName())
@@ -73,9 +85,9 @@ public class MobileSuitQueryImpl implements MobileSuitQuery {
 		return msResult;
 	}
 
-	private EquipmentArmsResult toEquipmentResult(EquipmentArmsEntity Entity) {
+	private EquipmentArmsForm toEquipmentResult(EquipmentArmsEntity Entity) {
 		
-		EquipmentArmsResult result = EquipmentArmsResult.builder()
+		EquipmentArmsForm result = EquipmentArmsForm.builder()
 				.msId(Entity.getMsId())
 				.armsId(Entity.getArmsId())
 				.armsName(Entity.getArmsName())
@@ -86,9 +98,9 @@ public class MobileSuitQueryImpl implements MobileSuitQuery {
 		return result;
 	}
 
-	private MobileSuitDetailResult toJoinResult(MobileSuitEntity msEntity, List<EquipmentArmsEntity> equipmentArmsEntityList) {
+	private MobileSuitDetailForm toJoinResult(MobileSuitEntity msEntity, List<EquipmentArmsEntity> equipmentArmsEntityList) {
 		
-		MobileSuitDetailResult msDetailResult = MobileSuitDetailResult.builder()
+		MobileSuitDetailForm msDetailResult = MobileSuitDetailForm.builder()
 				.msId(msEntity.getMsId())
 				.modelNumber(msEntity.getModelNumber())
 				.msName(msEntity.getMsName())

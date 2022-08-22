@@ -56,5 +56,14 @@ public class MobileSuitSqlCode {
 			where
 			ms_id = :msId
 			""";
+	
+	public static String SELECT_MOBILESUIT_ID_QUERY_BY_ID = """
+			select
+			ms_id
+			from
+			MobileSuit 
+			where
+			ms_id = :msId
+			""";
 
 }
