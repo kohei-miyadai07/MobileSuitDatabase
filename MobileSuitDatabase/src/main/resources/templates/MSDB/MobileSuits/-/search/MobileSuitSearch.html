@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>モビルスーツ検索</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+
+  <body>
+    <h1>モビルスーツ検索</h1>
+    <div class="msSearch">
+      <form
+        action="#"
+        th:action="@{/MSDB/MobileSuitSearch}"
+        th:object="${msSearchForm}"
+        method="post"
+      >
+        <label class="label" for="modelNumber">型式番号</label>
+        <input type="text" th:field="*{modelNumber}" />
+        <label class="label" for="msName">機体名</label>
+        <input type="text" th:field="*{msName}" />
+        <div class="msNumeric">
+          <label class="label" for="headHeight">頭高頂</label>
+          <input type="text" th:field="*{headHeightFrom}" /> ～
+          <input type="text" th:field="*{headHeightTo}" />
+          <label class="label" for="overallHeight">全高</label>
+          <input type="text" th:field="*{overallHeightFrom}" /> ～
+          <input type="text" th:field="*{overallHeightTo}" />
+          <label class="label" for="weight">本体重量</label>
+          <input type="text" th:field="*{weightFrom}" /> ～
+          <input type="text" th:field="*{weightTo}" />
+          <label class="label" for="totalWeight">全備重量</label>
+          <input type="text" th:field="*{totalWeightFrom}" /> ～
+          <input type="text" th:field="*{totalWeightTo}" />
+        </div>
+        <label class="label" for="powerSource">動力源</label>
+        <input type="text" th:field="*{powerSource}" />
+        <label class="label" for="material">装甲材質</label>
+        <input type="text" th:field="*{material}" />
+        <div class="msNumeric">
+          <label class="label" for="effectiveSensorRadius">センサー有効半径</label>
+          <input type="text" th:field="*{effectiveSensorRadiusFrom}" /> ～
+          <input type="text" th:field="*{effectiveSensorRadiusTo}" />
+          <label class="label" for="generatorOutput">ジェネレーター出力</label>
+          <input type="text" th:field="*{generatorOutputFrom}" /> ～
+          <input type="text" th:field="*{generatorOutputTo}" />
+          <label class="label" for="totalThrustersOutput"
+            >スラスター総推力</label
+          >
+          <input type="text" th:field="*{totalThrustersOutputFrom}" /> ～
+          <input type="text" th:field="*{totalThrustersOutputTo}" />
+        </div>
+        <p>
+          <button type="submit">検索</button
+          ><button type="reset">リセット</button>
+        </p>
+        <p><input type="button" value="戻る" onclick="history.back();" /></p>
+      </form>
+    </div>
+    <style>
+      .msSearch label,
+      input,
+      textarea,
+      p {
+        display: block;
+      }
+
+      .msNumeric input {
+        display: inline-block;
+      }
+    </style>
+  </body>
+</html>

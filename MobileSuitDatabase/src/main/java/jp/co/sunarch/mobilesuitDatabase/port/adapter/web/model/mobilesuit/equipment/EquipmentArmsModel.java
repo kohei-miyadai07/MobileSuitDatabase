@@ -5,7 +5,7 @@ import lombok.Value;
 
 @Value
 @Builder
-public class EquipmentArmsForm {
+public class EquipmentArmsModel {
 	private String msId;
 	private String armsId;
 	private String armsName;

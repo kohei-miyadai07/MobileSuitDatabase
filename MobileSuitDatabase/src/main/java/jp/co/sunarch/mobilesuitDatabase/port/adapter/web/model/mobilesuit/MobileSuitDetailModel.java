@@ -2,13 +2,13 @@ package jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit;
 
 import java.util.List;
 
-import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.equipment.EquipmentArmsForm;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.equipment.EquipmentArmsModel;
 import lombok.Builder;
 import lombok.Value;
 
 @Value
 @Builder
-public class MobileSuitDetailForm {
+public class MobileSuitDetailModel {
 	private String msId;
 	private String modelNumber;
 	private String msName;
@@ -28,6 +28,6 @@ public class MobileSuitDetailForm {
 	private String updateDate;
 	private String version;
 	
-	private List<EquipmentArmsForm> equipmentArmsResultList;
+	private List<EquipmentArmsModel> equipmentArmsResultList;
 
 }

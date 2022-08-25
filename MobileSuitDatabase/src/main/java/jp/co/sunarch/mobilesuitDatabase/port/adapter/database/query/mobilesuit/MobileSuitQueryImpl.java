@@ -11,9 +11,9 @@ import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.e
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.equipment.JdbcTemplateEquipmentDao;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.equipment.entity.EquipmentArmsEntity;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.mobilesuit.MobileSuitQuery;
-import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.MobileSuitDetailForm;
-import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.MobileSuitForm;
-import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.equipment.EquipmentArmsForm;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.MobileSuitDetailModel;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.MobileSuitModel;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.equipment.EquipmentArmsModel;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.result.mobilesuit.EditMobileSuitResult;
 import lombok.RequiredArgsConstructor;
 
@@ -30,15 +30,15 @@ public class MobileSuitQueryImpl implements MobileSuitQuery {
 	private NumberFormat comFormat = NumberFormat.getNumberInstance();
 
 	@Override
-	public List<MobileSuitForm> getMobileSuitList() {
+	public List<MobileSuitModel> getMobileSuitList() {
 
 		List<MobileSuitEntity> msEntityList = mobileSuitDao.selectMobileSuitList();
-		List<MobileSuitForm> msResultList = msEntityList.stream().map(l -> toResult(l)).toList();
+		List<MobileSuitModel> msResultList = msEntityList.stream().map(l -> toResult(l)).toList();
 		return msResultList;
 	}
 
 	@Override
-	public MobileSuitDetailForm getMobileSuitDetail(String msId) {
+	public MobileSuitDetailModel getMobileSuitDetail(String msId) {
 
 		MobileSuitEntity msEntity = mobileSuitDao.selectMobileSuitById(msId);
 		List<EquipmentArmsEntity> equipmentArmsEntityList = equipmentDao.selectEquipmentArmsByMsId(msId);
@@ -56,9 +56,17 @@ public class MobileSuitQueryImpl implements MobileSuitQuery {
 		return result;
 	}
 
-	private MobileSuitForm toResult(MobileSuitEntity msEntity) {
+	@Override
+	public List<MobileSuitModel> searchMobileSuit(Criteria criteria) {
+		List<MobileSuitEntity> msEntityList = mobileSuitDao.selectMobileSuitByCriteria(criteria);
+		List<MobileSuitModel> msModelList = msEntityList.stream().map(l -> toResult(l)).toList();
 
-		MobileSuitForm msResult = MobileSuitForm.builder()
+		return msModelList;
+	}
+
+	private MobileSuitModel toResult(MobileSuitEntity msEntity) {
+
+		MobileSuitModel msResult = MobileSuitModel.builder()
 				.msId(msEntity.getMsId())
 				.modelNumber(msEntity.getModelNumber())
 				.msName(msEntity.getMsName())
@@ -84,9 +92,9 @@ public class MobileSuitQueryImpl implements MobileSuitQuery {
 		return msResult;
 	}
 
-	private EquipmentArmsForm toEquipmentResult(EquipmentArmsEntity Entity) {
+	private EquipmentArmsModel toEquipmentResult(EquipmentArmsEntity Entity) {
 		
-		EquipmentArmsForm result = EquipmentArmsForm.builder()
+		EquipmentArmsModel result = EquipmentArmsModel.builder()
 				.msId(Entity.getMsId())
 				.armsId(Entity.getArmsId())
 				.armsName(Entity.getArmsName())
@@ -97,9 +105,9 @@ public class MobileSuitQueryImpl implements MobileSuitQuery {
 		return result;
 	}
 
-	private MobileSuitDetailForm toJoinResult(MobileSuitEntity msEntity, List<EquipmentArmsEntity> equipmentArmsEntityList) {
+	private MobileSuitDetailModel toJoinResult(MobileSuitEntity msEntity, List<EquipmentArmsEntity> equipmentArmsEntityList) {
 		
-		MobileSuitDetailForm msDetailResult = MobileSuitDetailForm.builder()
+		MobileSuitDetailModel msDetailResult = MobileSuitDetailModel.builder()
 				.msId(msEntity.getMsId())
 				.modelNumber(msEntity.getModelNumber())
 				.msName(msEntity.getMsName())
