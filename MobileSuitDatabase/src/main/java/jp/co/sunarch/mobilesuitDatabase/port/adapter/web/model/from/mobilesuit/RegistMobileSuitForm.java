@@ -4,7 +4,6 @@ import lombok.Data;
 
 @Data
 public class RegistMobileSuitForm {
-	private String msId;
 	private String modelNumber;
 	private String msName;
 	private String msUrl;

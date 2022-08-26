@@ -1,5 +1,7 @@
 package jp.co.sunarch.mobilesuitDatabase.port.adapter.database.repository.mobilesuit;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import jp.co.sunarch.mobilesuitDatabase.application.repository.mobilesuit.MobileSuitRepository;
@@ -20,7 +22,7 @@ public class MobileSuitRepositoryImpl implements MobileSuitRepository {
 
 		MobileSuitEntity msEntity = mobileSuitConverter.domainToEntity(mobileSuit);
 
-		int result = mobileSuitRepositoryDao.insertOneMobileSuit(msEntity);
+		int result = mobileSuitRepositoryDao.insert(msEntity);
 
 		return result;
 	}
@@ -30,7 +32,7 @@ public class MobileSuitRepositoryImpl implements MobileSuitRepository {
 
 		MobileSuitEntity msEntity = mobileSuitConverter.domainToEntity(mobileSuit);
 
-		int result = mobileSuitRepositoryDao.updateOneMobileSuit(msEntity);
+		int result = mobileSuitRepositoryDao.update(msEntity);
 
 		return result;
 	}
@@ -43,6 +45,23 @@ public class MobileSuitRepositoryImpl implements MobileSuitRepository {
 		MobileSuit mobileSuit = mobileSuitConverter.entityToDomain(msEntity);
 
 		return mobileSuit;
+	}
+
+	@Override
+	public int save(MobileSuit mobileSuit) {
+		
+		int result;
+		
+		MobileSuitEntity msEntity = mobileSuitConverter.domainToEntity(mobileSuit);
+		List<String> msIds = mobileSuitRepositoryDao.selectMobileSuitIdById(msEntity.getMsId());
+
+		if (msIds.isEmpty()) {
+			result = mobileSuitRepositoryDao.insert(msEntity);
+		} else {
+			result = mobileSuitRepositoryDao.update(msEntity);
+		}
+
+		return result;
 	}
 
 }

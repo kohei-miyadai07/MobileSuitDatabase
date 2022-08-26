@@ -27,7 +27,6 @@ public class RegistMobileSuitController {
 	public String RegistMobileSuit(@ModelAttribute RegistMobileSuitForm registMobileSuitForm, Model model) {
 		
 		RegistMobileSuitCommand command = RegistMobileSuitCommand.builder()
-				.msId(registMobileSuitForm.getMsId())
 				.modelNumber(registMobileSuitForm.getModelNumber())
 				.msName(registMobileSuitForm.getMsName())
 				.msUrl(registMobileSuitForm.getMsUrl())

@@ -10,4 +10,6 @@ public interface MobileSuitRepository {
 
 	public MobileSuit GetMobileSuitById(String msId);
 
+	public int save(MobileSuit mobileSuit);
+
 }

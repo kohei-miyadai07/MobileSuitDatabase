@@ -6,7 +6,6 @@ import lombok.Value;
 @Value
 @Builder
 public class RegistMobileSuitCommand {
-	private String msId;
 	private String modelNumber;
 	private String msName;
 	private String msUrl;

@@ -1,5 +1,7 @@
 package jp.co.sunarch.mobilesuitDatabase.port.adapter.database.repository.mobilesuit;
 
+import java.util.List;
+
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -16,7 +18,7 @@ public class MobileSuitRepositoryDao {
 	
 	private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 	
-	public int insertOneMobileSuit(MobileSuitEntity msEntity) {
+	public int insert(MobileSuitEntity msEntity) {
 
 		SqlParameterSource params = new MapSqlParameterSource()
 				.addValue("msId", msEntity.getMsId())
@@ -42,7 +44,7 @@ public class MobileSuitRepositoryDao {
 
 	}
 
-	public int updateOneMobileSuit(MobileSuitEntity msEntity) {
+	public int update(MobileSuitEntity msEntity) {
 
 		SqlParameterSource params = new MapSqlParameterSource()
 				.addValue("msId", msEntity.getMsId())
@@ -74,6 +76,15 @@ public class MobileSuitRepositoryDao {
 				new BeanPropertyRowMapper<MobileSuitEntity>(MobileSuitEntity.class);
 
 		return namedParameterJdbcTemplate.queryForObject(MobileSuitSqlCode.SELECT_MOBILESUIT_QUERY_BY_ID, params, mapper);
+	}
+
+	public List<String> selectMobileSuitIdById(String msId) {
+
+		SqlParameterSource params = new MapSqlParameterSource().addValue("msId", msId);
+		RowMapper<String> mapper = 
+				new BeanPropertyRowMapper<String>(String.class);
+
+		return namedParameterJdbcTemplate.query(MobileSuitSqlCode.SELECT_MOBILESUIT_ID_QUERY_BY_ID, params, mapper);
 	}
 
 }

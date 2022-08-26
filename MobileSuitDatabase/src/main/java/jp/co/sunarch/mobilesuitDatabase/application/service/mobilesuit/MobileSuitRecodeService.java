@@ -45,7 +45,7 @@ public class MobileSuitRecodeService {
 				,LocalDateTime.now()
 				,"1");
 
-		int result = mobileSuitRepository.RegistMobileSuit(mobileSuit);
+		int result = mobileSuitRepository.save(mobileSuit);
 
 		if (result != 1) {
 			message = "登録処理に失敗しました。";
