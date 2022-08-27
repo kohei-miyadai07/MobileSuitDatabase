@@ -5,7 +5,7 @@ import lombok.Value;
 
 @Value
 @Builder
-public class EditMobileSuitCommand {
+public class UpdateMobileSuitCommand {
 	private String msId;
 	private String modelNumber;
 	private String msName;

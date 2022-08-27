@@ -32,7 +32,8 @@ public class MobileSuitSqlCode {
 	public static String UPDATE_MOBILESUIT = """
 			update MobileSuit 
 			set
-			model_number = :modelNumber
+			ms_id = :msId
+			, model_number = :modelNumber
 			, ms_name = :msName
 			, ms_url = :msUrl
 			, head_height = :headHeight
@@ -46,6 +47,7 @@ public class MobileSuitSqlCode {
 			, total_thrusters_output = :totalThrustersOutput
 			, ms_overview = :msOverview
 			, action = :action
+			, insert_date = :insertDate
 			, update_date = :updateDate
 			, version = :version 
 			where
