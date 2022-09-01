@@ -38,7 +38,7 @@ public interface MobileSuitQuery {
 
 	public MobileSuitDetailModel getMobileSuitDetail(String msId);
 
-	public EditMobileSuitResult getMobileSuitId(String msId);
+	public MobileSuitModel getMobileSuitId(String msId);
 
 	public List<MobileSuitModel> searchMobileSuit(Criteria criteria);
 

@@ -47,13 +47,12 @@ public class MobileSuitQueryImpl implements MobileSuitQuery {
 	}
 
 	@Override
-	public EditMobileSuitResult getMobileSuitId(String msId) {
+	public MobileSuitModel getMobileSuitId(String msId) {
 
-		MobileSuitIdEntity entity = mobileSuitDao.selectMobileSuitIdById(msId);
-		EditMobileSuitResult result = new EditMobileSuitResult();
-		result.setMsId(entity.getMsId());
+		MobileSuitEntity msEntity = mobileSuitDao.selectMobileSuitById(msId);
+		MobileSuitModel msModel = toResult(msEntity);
 
-		return result;
+		return msModel;
 	}
 
 	@Override
