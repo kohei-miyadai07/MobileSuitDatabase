@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import jp.co.sunarch.mobilesuitDatabase.application.command.mobilesuit.RegistMobileSuitCommand;
 import jp.co.sunarch.mobilesuitDatabase.application.usecase.mobilesuit.RegistMobileSuitUseCase;
-import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.RegistMobileSuitModel;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.form.mobilesuit.RegistMobileSuitForm;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -19,12 +19,12 @@ public class RegistMobileSuitController {
 	
 	@GetMapping("/MSDB/MobileSuits/MobileSuit/-/new")
 	public String RegistMobileSuit(Model model) {
-		model.addAttribute("msRegistForm", new RegistMobileSuitModel());
+		model.addAttribute("msRegistForm", new RegistMobileSuitForm());
 		return "/MSDB/MobileSuits/-/new/MobileSuitRegister";
 	}
 
 	@PostMapping("/MSDB/MobileSuits/MobileSuit/-/new")
-	public String RegistMobileSuit(@ModelAttribute RegistMobileSuitModel registMobileSuitForm, Model model) {
+	public String RegistMobileSuit(@ModelAttribute RegistMobileSuitForm registMobileSuitForm, Model model) {
 		
 		RegistMobileSuitCommand command = RegistMobileSuitCommand.builder()
 				.modelNumber(registMobileSuitForm.getModelNumber())

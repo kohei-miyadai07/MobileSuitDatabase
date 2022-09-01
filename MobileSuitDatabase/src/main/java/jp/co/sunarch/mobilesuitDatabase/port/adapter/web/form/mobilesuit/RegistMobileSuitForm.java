@@ -1,9 +1,9 @@
-package jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit;
+package jp.co.sunarch.mobilesuitDatabase.port.adapter.web.form.mobilesuit;
 
 import lombok.Data;
 
 @Data
-public class RegistMobileSuitModel {
+public class RegistMobileSuitForm {
 	private String modelNumber;
 	private String msName;
 	private String msUrl;
