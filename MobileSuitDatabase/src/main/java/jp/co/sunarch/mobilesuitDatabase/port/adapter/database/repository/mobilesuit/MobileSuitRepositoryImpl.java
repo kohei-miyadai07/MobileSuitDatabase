@@ -18,7 +18,7 @@ public class MobileSuitRepositoryImpl implements MobileSuitRepository {
 	private final MobileSuitConverter mobileSuitConverter;
 
 	@Override
-	public int RegistMobileSuit(MobileSuit mobileSuit) {
+	public int registMobileSuit(MobileSuit mobileSuit) {
 
 		MobileSuitEntity msEntity = mobileSuitConverter.domainToEntity(mobileSuit);
 
@@ -28,7 +28,7 @@ public class MobileSuitRepositoryImpl implements MobileSuitRepository {
 	}
 
 	@Override
-	public int UpdateMobileSuit(MobileSuit mobileSuit) {
+	public int updateMobileSuit(MobileSuit mobileSuit) {
 
 		MobileSuitEntity msEntity = mobileSuitConverter.domainToEntity(mobileSuit);
 
@@ -38,7 +38,7 @@ public class MobileSuitRepositoryImpl implements MobileSuitRepository {
 	}
 
 	@Override
-	public MobileSuit GetMobileSuitById(String msId) {
+	public MobileSuit getMobileSuitById(String msId) {
 
 		MobileSuitEntity msEntity = mobileSuitRepositoryDao.selectMobileSuitById(msId);
 

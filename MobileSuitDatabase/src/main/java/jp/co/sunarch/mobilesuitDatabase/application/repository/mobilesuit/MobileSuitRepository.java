@@ -4,11 +4,11 @@ import jp.co.sunarch.mobilesuitDatabase.domain.model.mobilesuit.MobileSuit;
 
 public interface MobileSuitRepository {
 
-	public int RegistMobileSuit(MobileSuit mobileSuit);
+	public int registMobileSuit(MobileSuit mobileSuit);
 
-	public int UpdateMobileSuit(MobileSuit mobileSuit);
+	public int updateMobileSuit(MobileSuit mobileSuit);
 
-	public MobileSuit GetMobileSuitById(String msId);
+	public MobileSuit getMobileSuitById(String msId);
 
 	public int save(MobileSuit mobileSuit);
 

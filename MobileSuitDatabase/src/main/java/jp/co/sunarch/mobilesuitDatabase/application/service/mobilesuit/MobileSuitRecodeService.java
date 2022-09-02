@@ -58,7 +58,7 @@ public class MobileSuitRecodeService {
 
 	public String UpdateMobileSuit(UpdateMobileSuitCommand command) {
 
-		MobileSuit mobileSuit = mobileSuitRepository.GetMobileSuitById(command.getMsId());
+		MobileSuit mobileSuit = mobileSuitRepository.getMobileSuitById(command.getMsId());
 
 		
 		
