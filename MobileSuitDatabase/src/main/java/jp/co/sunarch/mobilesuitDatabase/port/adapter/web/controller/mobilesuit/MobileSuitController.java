@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import jp.co.sunarch.mobilesuitDatabase.common.utils.CommonItemSettings;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.mobilesuit.MobileSuitQuery.Criteria;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.form.mobilesuit.MobileSuitSearchForm;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.MobileSuitDetailModel;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.MobileSuitModel;
-import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.MobileSuitSearchModel;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -39,12 +39,12 @@ public class MobileSuitController {
 
 	@GetMapping("/MSDB/MobileSuits/-/search")
 	public String searchMobileSuit(Model model) {
-		model.addAttribute("msSearchForm", new MobileSuitSearchModel());
+		model.addAttribute("msSearchForm", new MobileSuitSearchForm());
 		return "/MSDB/MobileSuits/-/search/MobileSuitSearch";
 	}
 
 	@PostMapping("/MSDB/MobileSuits/-/search")
-	public String searchMobileSuit(@ModelAttribute MobileSuitSearchModel msSearchModel, Model model) {
+	public String searchMobileSuit(@ModelAttribute MobileSuitSearchForm msSearchModel, Model model) {
 		Criteria criteria = MobileSuitQuery.Criteria.builder()
 				.modelNumber(msSearchModel.getModelNumber())
 				.msName(msSearchModel.getMsName())

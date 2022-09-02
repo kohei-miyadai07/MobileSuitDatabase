@@ -1,9 +1,9 @@
-package jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit;
+package jp.co.sunarch.mobilesuitDatabase.port.adapter.web.form.mobilesuit;
 
 import lombok.Data;
 
 @Data
-public class MobileSuitSearchModel {
+public class MobileSuitSearchForm {
 	private String modelNumber;
 	private String msName;
 	private String headHeightFrom;
