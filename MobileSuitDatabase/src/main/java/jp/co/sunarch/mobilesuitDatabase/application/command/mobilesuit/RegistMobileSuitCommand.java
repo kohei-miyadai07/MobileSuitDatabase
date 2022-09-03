@@ -1,5 +1,7 @@
 package jp.co.sunarch.mobilesuitDatabase.application.command.mobilesuit;
 
+import java.math.BigDecimal;
+
 import lombok.Builder;
 import lombok.Value;
 
@@ -9,15 +11,15 @@ public class RegistMobileSuitCommand {
 	private String modelNumber;
 	private String msName;
 	private String msUrl;
-	private String headHeight;
-	private String overallHeight;
-	private String weight;
-	private String totalWeight;
+	private BigDecimal headHeight;
+	private BigDecimal overallHeight;
+	private BigDecimal weight;
+	private BigDecimal totalWeight;
 	private String powerSource;
 	private String material;
-	private String effectiveSensorRadius;
-	private String generatorOutput;
-	private String totalThrustersOutput;
+	private long effectiveSensorRadius;
+	private long generatorOutput;
+	private long totalThrustersOutput;
 	private String msOverview;
 	private String action;
 

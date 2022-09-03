@@ -5,7 +5,6 @@ import java.util.List;
 
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.MobileSuitDetailModel;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.MobileSuitModel;
-import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.result.mobilesuit.EditMobileSuitResult;
 import lombok.Builder;
 import lombok.Value;
 
@@ -34,12 +33,12 @@ public interface MobileSuitQuery {
 		private long totalThrustersOutputTo;
 	}
 	
-	public List<MobileSuitModel> getMobileSuitList();
+	List<MobileSuitModel> getMobileSuitList();
 
-	public MobileSuitDetailModel getMobileSuitDetail(String msId);
+	MobileSuitDetailModel getMobileSuitDetail(String msId);
 
-	public MobileSuitModel getMobileSuitId(String msId);
+	MobileSuitModel getMobileSuitById(String msId);
 
-	public List<MobileSuitModel> searchMobileSuit(Criteria criteria);
+	List<MobileSuitModel> searchMobileSuit(Criteria criteria);
 
 }

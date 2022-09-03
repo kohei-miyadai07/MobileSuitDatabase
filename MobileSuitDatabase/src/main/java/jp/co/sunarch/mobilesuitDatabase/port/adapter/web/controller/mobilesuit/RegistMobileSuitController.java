@@ -1,5 +1,7 @@
 package jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.mobilesuit;
 
+import java.math.BigDecimal;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,28 +19,27 @@ public class RegistMobileSuitController {
 	
 	private final RegistMobileSuitUseCase registMobileSuitUseCase;
 	
-	@GetMapping("/MSDB/MobileSuits/MobileSuit/-/new")
+	@GetMapping("/MSDB/MobileSuits/-/new")
 	public String RegistMobileSuit(Model model) {
 		model.addAttribute("msRegistForm", new RegistMobileSuitForm());
 		return "/MSDB/MobileSuits/-/new/MobileSuitRegister";
 	}
 
-	@PostMapping("/MSDB/MobileSuits/MobileSuit/-/new")
+	@PostMapping("/MSDB/MobileSuits/-/new")
 	public String RegistMobileSuit(@ModelAttribute RegistMobileSuitForm registMobileSuitForm, Model model) {
-		
 		RegistMobileSuitCommand command = RegistMobileSuitCommand.builder()
 				.modelNumber(registMobileSuitForm.getModelNumber())
 				.msName(registMobileSuitForm.getMsName())
 				.msUrl(registMobileSuitForm.getMsUrl())
-				.headHeight(registMobileSuitForm.getHeadHeight())
-				.overallHeight(registMobileSuitForm.getOverallHeight())
-				.weight(registMobileSuitForm.getWeight())
-				.totalWeight(registMobileSuitForm.getTotalWeight())
+				.headHeight(new BigDecimal(registMobileSuitForm.getHeadHeight()))
+				.overallHeight(new BigDecimal(registMobileSuitForm.getOverallHeight()))
+				.weight(new BigDecimal(registMobileSuitForm.getWeight()))
+				.totalWeight(new BigDecimal(registMobileSuitForm.getTotalWeight()))
 				.powerSource(registMobileSuitForm.getPowerSource())
 				.material(registMobileSuitForm.getMaterial())
-				.effectiveSensorRadius(registMobileSuitForm.getEffectiveSensorRadius())
-				.generatorOutput(registMobileSuitForm.getGeneratorOutput())
-				.totalThrustersOutput(registMobileSuitForm.getTotalThrustersOutput())
+				.effectiveSensorRadius(Long.parseLong(registMobileSuitForm.getEffectiveSensorRadius()))
+				.generatorOutput(Long.parseLong(registMobileSuitForm.getGeneratorOutput()))
+				.totalThrustersOutput(Long.parseLong(registMobileSuitForm.getTotalThrustersOutput()))
 				.msOverview(registMobileSuitForm.getMsOverview())
 				.action(registMobileSuitForm.getAction())
 				.build();

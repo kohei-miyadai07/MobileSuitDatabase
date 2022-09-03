@@ -7,14 +7,12 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.entity.MobileSuitEntity;
-import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.entity.MobileSuitIdEntity;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.equipment.JdbcTemplateEquipmentDao;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.equipment.entity.EquipmentArmsEntity;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.mobilesuit.MobileSuitQuery;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.MobileSuitDetailModel;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.MobileSuitModel;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.equipment.EquipmentArmsModel;
-import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.result.mobilesuit.EditMobileSuitResult;
 import lombok.RequiredArgsConstructor;
 
 @Repository
@@ -47,7 +45,7 @@ public class MobileSuitQueryImpl implements MobileSuitQuery {
 	}
 
 	@Override
-	public MobileSuitModel getMobileSuitId(String msId) {
+	public MobileSuitModel getMobileSuitById(String msId) {
 
 		MobileSuitEntity msEntity = mobileSuitDao.selectMobileSuitById(msId);
 		MobileSuitModel msModel = toResult(msEntity);
@@ -70,17 +68,15 @@ public class MobileSuitQueryImpl implements MobileSuitQuery {
 				.modelNumber(msEntity.getModelNumber())
 				.msName(msEntity.getMsName())
 				.msUrl(msEntity.getMsUrl())
-				.headHeight(String.format("%sm", msEntity.getHeadHeight().toPlainString()))
-				.overallHeight(String.format("%sm", msEntity.getOverallHeight().toPlainString()))
-				.weight(String.format("%st", msEntity.getWeight().toString()))
-				.totalWeight(String.format("%st", msEntity.getTotalWeight().toString()))
+				.headHeight(msEntity.getHeadHeight().toPlainString())
+				.overallHeight(msEntity.getOverallHeight().toPlainString())
+				.weight(msEntity.getWeight().toString())
+				.totalWeight(msEntity.getTotalWeight().toString())
 				.powerSource(msEntity.getPowerSource())
 				.material(msEntity.getMaterial())
-				.effectiveSensorRadius(String.format("%sm", comFormat.format(msEntity.getEffectiveSensorRadius())))
-				.generatorOutput(String.format("%skW", 
-						comFormat.format(msEntity.getGeneratorOutput())))
-				.totalThrustersOutput(String.format("%skg", 
-						comFormat.format(msEntity.getTotalThrustersOutput())))
+				.effectiveSensorRadius(String.valueOf(msEntity.getEffectiveSensorRadius()))
+				.generatorOutput(String.valueOf(msEntity.getGeneratorOutput()))
+				.totalThrustersOutput(String.valueOf(msEntity.getTotalThrustersOutput()))
 				.msOverview(msEntity.getMsOverview())
 				.action(msEntity.getAction())
 				.insertDate(sdf.format(msEntity.getInsertDate()))

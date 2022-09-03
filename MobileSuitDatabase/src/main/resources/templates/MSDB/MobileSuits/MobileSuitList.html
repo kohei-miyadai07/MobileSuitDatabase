@@ -5,7 +5,7 @@
     </head>
     <body>
         <h1>モビルスーツ一覧</h1>
-        <p><a th:href="@{/MSDB/MobileSuits/MobileSuit/-/new}">新規登録</a></p>
+        <p><a th:href="@{/MSDB/MobileSuits/-/new}">新規登録</a></p>
         <table border="1">
             <tr>
                 <th>モビルスーツID</th>
@@ -21,7 +21,7 @@
                 <td><a th:href="@{'/MSDB/MobileSuits/' + ${mobilesuit.msId}}"><span th:text="${mobilesuit.msName}"></span></a></td>
                 <td th:text="${mobilesuit.insertDate}"></td>
                 <td th:text="${mobilesuit.updateDate}"></td>
-                <td><a th:href="@{'/MSDB/MobileSuitEdit/' + ${mobilesuit.msId}}">編集</a></td>
+                <td><a th:href="@{'/MSDB/MobileSuits/' + ${mobilesuit.msId} + '/edit'}">編集</a></td>
             </tr>
         </table>
         <p><a th:href="@{/MSDB/MobileSuits/-/search}">検索画面へ</a><br>
