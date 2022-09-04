@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>武器一覧</title>
+    </head>
+    <body>
+        <h1>武器一覧</h1>
+        <p><a th:href="@{/MSDB/MobileSuitArmedRegister}">新規登録</a></p>
+        <table border="1">
+            <tr>
+                <th>武器ID</th>
+                <th>武器名</th>
+                <th>詳細</th>
+                <th></th>
+            </tr>
+            <tr th:each="arms : ${armsList}">
+                <td th:text="${arms.armsId}"></td>
+                <td th:text="${arms.armsName}"></td>
+                <td th:text="${arms.detail}"></td>
+                <td><a th:href="@{'/MSDB/MobileSuitArmedEdit/' + ${arms.armsId}}">編集</a></td>
+            </tr>
+        </table>
+        <p><a th:href="@{/MSDB/MobileSuitArmedSearch}">検索画面へ</a><br>
+            <a th:href="@{/}">トップページへ</a>
+        </p>
+    </body>
+</html>
