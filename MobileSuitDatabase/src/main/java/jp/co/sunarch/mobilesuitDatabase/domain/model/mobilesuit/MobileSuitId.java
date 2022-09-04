@@ -4,6 +4,6 @@ import lombok.Value;
 
 @Value(staticConstructor = "of")
 public class MobileSuitId {
-	private String msId;
+	private String value;
 
 }

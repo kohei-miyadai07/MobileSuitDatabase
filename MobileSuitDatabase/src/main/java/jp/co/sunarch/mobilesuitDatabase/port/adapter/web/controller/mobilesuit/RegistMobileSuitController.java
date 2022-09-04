@@ -20,13 +20,13 @@ public class RegistMobileSuitController {
 	private final RegistMobileSuitUseCase registMobileSuitUseCase;
 	
 	@GetMapping("/MSDB/MobileSuits/-/new")
-	public String RegistMobileSuit(Model model) {
+	public String registMobileSuit(Model model) {
 		model.addAttribute("msRegistForm", new RegistMobileSuitForm());
 		return "/MSDB/MobileSuits/-/new/MobileSuitRegister";
 	}
 
 	@PostMapping("/MSDB/MobileSuits/-/new")
-	public String RegistMobileSuit(@ModelAttribute RegistMobileSuitForm registMobileSuitForm, Model model) {
+	public String registMobileSuit(@ModelAttribute RegistMobileSuitForm registMobileSuitForm, Model model) {
 		RegistMobileSuitCommand command = RegistMobileSuitCommand.builder()
 				.modelNumber(registMobileSuitForm.getModelNumber())
 				.msName(registMobileSuitForm.getMsName())

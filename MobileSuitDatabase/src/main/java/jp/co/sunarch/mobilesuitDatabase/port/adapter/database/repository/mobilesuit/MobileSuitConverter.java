@@ -14,7 +14,7 @@ public class MobileSuitConverter {
 	public MobileSuitEntity domainToEntity(MobileSuit mobileSuit) {
 
 		MobileSuitEntity msEntity = new MobileSuitEntity();
-		msEntity.setMsId(mobileSuit.getMsId().getMsId());
+		msEntity.setMsId(mobileSuit.getMsId().getValue());
 		msEntity.setModelNumber(mobileSuit.getModelNumber());
 		msEntity.setMsName(mobileSuit.getMsName());
 		msEntity.setMsUrl(mobileSuit.getMsUrl());

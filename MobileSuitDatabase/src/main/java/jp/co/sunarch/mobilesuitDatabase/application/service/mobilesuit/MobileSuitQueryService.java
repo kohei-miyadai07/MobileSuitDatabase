@@ -14,6 +14,6 @@ public class MobileSuitQueryService {
 	private final MobileSuitRepository mobileSuitRepository;
 
 	public MobileSuit getMobileSuitById(MobileSuitId msId) {
-		return mobileSuitRepository.getMobileSuitById(msId.getMsId());
+		return mobileSuitRepository.getMobileSuitById(msId.getValue());
 	}
 }

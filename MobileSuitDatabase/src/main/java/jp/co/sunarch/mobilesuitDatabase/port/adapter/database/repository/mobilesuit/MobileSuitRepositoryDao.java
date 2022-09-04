@@ -77,4 +77,10 @@ public class MobileSuitRepositoryDao {
 		return namedParameterJdbcTemplate.update(MobileSuitSqlCode.UPDATE_MOBILESUIT, params);
 	}
 
+	public int deleteById(String msId) {
+		SqlParameterSource params = new MapSqlParameterSource().addValue("msId", msId);
+
+		return namedParameterJdbcTemplate.update(MobileSuitSqlCode.DELETE_MOBILESUIT_BY_ID, params);
+	}
+
 }

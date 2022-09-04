@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 
 import jp.co.sunarch.mobilesuitDatabase.application.repository.mobilesuit.MobileSuitRepository;
 import jp.co.sunarch.mobilesuitDatabase.domain.model.mobilesuit.MobileSuit;
+import jp.co.sunarch.mobilesuitDatabase.domain.model.mobilesuit.MobileSuitId;
 import lombok.RequiredArgsConstructor;
 
 @Component
@@ -12,7 +13,7 @@ public class MobileSuitRecodeService {
 
 	private final MobileSuitRepository mobileSuitRepository;
 	
-	public String RegistMobileSuit(MobileSuit mobileSuit) {
+	public String registMobileSuit(MobileSuit mobileSuit) {
 		String message = null;
 
 		int result = mobileSuitRepository.save(mobileSuit);
@@ -25,7 +26,7 @@ public class MobileSuitRecodeService {
 		return message;
 	}
 
-	public String UpdateMobileSuit(MobileSuit mobileSuit) {
+	public String updateMobileSuit(MobileSuit mobileSuit) {
 		String message = null;
 
 		int result = mobileSuitRepository.save(mobileSuit);
@@ -36,6 +37,10 @@ public class MobileSuitRecodeService {
 		}
 
 		return message;
+	}
+
+	public int deleteMobileSuit(MobileSuitId msId) {
+		return mobileSuitRepository.deleteMobileSuitById(msId.getValue());
 	}
 
 }

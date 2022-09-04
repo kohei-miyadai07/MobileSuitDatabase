@@ -39,7 +39,7 @@ public class UpdateMobileSuitUseCase {
 		mobileSuit.setUpdateDate(LocalDateTime.now());
 		mobileSuit.setVersion(String.valueOf(Integer.parseInt(mobileSuit.getVersion()) + 1));
 
-		return mobileSuitRecodeService.UpdateMobileSuit(mobileSuit);
+		return mobileSuitRecodeService.updateMobileSuit(mobileSuit);
 	}
 
 }

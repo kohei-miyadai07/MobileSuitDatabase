@@ -40,7 +40,7 @@ public class RegistMobileSuitUseCase {
 				,LocalDateTime.now()
 				,"1");
 		
-		return mobileSuitRecodeService.RegistMobileSuit(mobileSuit);
+		return mobileSuitRecodeService.registMobileSuit(mobileSuit);
 	}
 
 }

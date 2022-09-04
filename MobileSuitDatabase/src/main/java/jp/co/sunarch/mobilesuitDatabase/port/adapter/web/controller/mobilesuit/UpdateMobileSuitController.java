@@ -24,7 +24,7 @@ public class UpdateMobileSuitController {
 	private final UpdateMobileSuitUseCase updateMobileSuitUseCase;
 
 	@GetMapping("/MSDB/MobileSuits/{msId}/edit")
-	public String UpdateMobileSuit(@PathVariable String msId, Model model) {
+	public String updateMobileSuit(@PathVariable String msId, Model model) {
 		MobileSuitModel msModel = mobileSuitQuery.getMobileSuitById(msId);
 		UpdateMobileSuitForm updateMobileSuitForm = UpdateMobileSuitForm.ModelToForm(msModel);
 		model.addAttribute("msEditForm", updateMobileSuitForm);
@@ -33,7 +33,7 @@ public class UpdateMobileSuitController {
 	}
 
 	@PostMapping("/MSDB/MobileSuits/{msId}/edit-update")
-	public String UpdateMobileSuit(@PathVariable String msId,
+	public String updateMobileSuit(@PathVariable String msId,
 			@ModelAttribute UpdateMobileSuitForm updateMobileSuitForm, Model model) {
 		UpdateMobileSuitCommand command = UpdateMobileSuitCommand.builder()
 				.msId(MobileSuitId.of(updateMobileSuitForm.getMsId()))
