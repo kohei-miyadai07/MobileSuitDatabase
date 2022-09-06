@@ -14,4 +14,13 @@ public class ArmsSqlCode {
 			, arms_id
 			""";
 
+	public static String SELECT_ARMS_QUERY_BASE = """
+			select
+			arms_id
+			, arms_name
+			, detail 
+			from
+			Arms
+			""";
+
 }
