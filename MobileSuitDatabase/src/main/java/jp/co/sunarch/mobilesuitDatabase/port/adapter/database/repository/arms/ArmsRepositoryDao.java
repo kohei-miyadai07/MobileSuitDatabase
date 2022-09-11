@@ -39,6 +39,11 @@ public class ArmsRepositoryDao {
 	}
 
 	public int update(ArmsEntity armsEntity) {
-		return 0;
+		SqlParameterSource params = new MapSqlParameterSource()
+				.addValue("armsId", armsEntity.getArmsId())
+				.addValue("armsName", armsEntity.getArmsName())
+				.addValue("detail", armsEntity.getDetail());
+
+		return namedParameterJdbcTemplate.update(ArmsSqlCode.UPDATE_ARMS, params);
 	}
 }

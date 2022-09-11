@@ -8,6 +8,15 @@ public class ArmsSqlCode {
 			values (:armsId, :armsName, :detail);
 			""";
 
+	public static String UPDATE_ARMS = """
+			update Arms 
+			set
+			arms_name = :armsName
+			, detail = :detail 
+			where
+			arms_id = :armsId;
+			""";
+
 	public static String SELECT_ARMS_QUERY_BY_ID = """
 			select
 			arms_id

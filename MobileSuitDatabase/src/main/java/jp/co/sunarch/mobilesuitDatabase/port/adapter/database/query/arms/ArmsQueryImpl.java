@@ -24,6 +24,14 @@ public class ArmsQueryImpl implements ArmsQuery {
 	}
 
 	@Override
+	public ArmsModel getArmsById(String armsId) {
+		ArmsEntity armsEntity = armsQueryDao.selectArmsById(armsId);
+		ArmsModel armsModel = toModel(armsEntity);
+
+		return armsModel;
+	}
+
+	@Override
 	public List<ArmsModel> searchArms(Criteria criteria) {
 		List<ArmsEntity> armsEntityList = armsQueryDao.selectArmsByCriteria(criteria);
 		List<ArmsModel> armsModelList = armsEntityList.stream().map(l -> toModel(l)).toList();

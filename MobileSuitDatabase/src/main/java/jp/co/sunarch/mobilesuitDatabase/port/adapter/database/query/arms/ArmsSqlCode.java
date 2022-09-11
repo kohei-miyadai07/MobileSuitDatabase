@@ -14,6 +14,17 @@ public class ArmsSqlCode {
 			, arms_id
 			""";
 
+	public static String SELECT_ARMS_QUERY_BY_ID = """
+			select
+			arms_id
+			, arms_name
+			, detail 
+			from
+			Arms 
+			where
+			arms_id = :armsId;
+			""";
+
 	public static String SELECT_ARMS_QUERY_BASE = """
 			select
 			arms_id

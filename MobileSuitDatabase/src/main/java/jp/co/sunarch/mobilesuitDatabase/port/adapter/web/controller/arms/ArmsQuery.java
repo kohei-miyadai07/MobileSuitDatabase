@@ -17,6 +17,8 @@ public interface ArmsQuery {
 
 	List<ArmsModel> getArmsList();
 
+	ArmsModel getArmsById(String armsId);
+
 	List<ArmsModel> searchArms(Criteria criteria);
 
 }

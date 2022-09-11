@@ -28,6 +28,14 @@ public class ArmsQueryDao {
 		return namedParameterJdbcTemplate.query(ArmsSqlCode.SELECT_ARMS_LIST, params, mapper);
 	}
 
+	public ArmsEntity selectArmsById(String armsId) {
+		SqlParameterSource params = new MapSqlParameterSource().addValue("armsId", armsId);
+		RowMapper<ArmsEntity> mapper = 
+				new BeanPropertyRowMapper<ArmsEntity>(ArmsEntity.class);
+
+		return namedParameterJdbcTemplate.queryForObject(ArmsSqlCode.SELECT_ARMS_QUERY_BY_ID, params, mapper);
+	}
+
 	public List<ArmsEntity> selectArmsByCriteria(Criteria criteria) {
 		StringBuilder sqlBuilder = new StringBuilder();
 		sqlBuilder.append(ArmsSqlCode.SELECT_ARMS_QUERY_BASE);

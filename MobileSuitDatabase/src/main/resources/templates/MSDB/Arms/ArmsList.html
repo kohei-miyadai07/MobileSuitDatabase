@@ -17,7 +17,7 @@
                 <td th:text="${arms.armsId}"></td>
                 <td th:text="${arms.armsName}"></td>
                 <td th:text="${arms.detail}"></td>
-                <td><a th:href="@{'/MSDB/MobileSuitArmedEdit/' + ${arms.armsId}}">編集</a></td>
+                <td><a th:href="@{'/MSDB/Arms/' + ${arms.armsId} + '/edit'}">編集</a></td>
             </tr>
         </table>
         <p><a th:href="@{/MSDB/Arms/-/search}">検索画面へ</a><br>

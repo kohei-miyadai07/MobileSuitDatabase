@@ -24,4 +24,17 @@ public class ArmsRecodeService {
 
 		return message;
 	}
+
+	public String updateArms(Arms arms) {
+		String message = null;
+
+		int result = armsRepository.save(arms);
+		if (result != 1) {
+			message = "更新処理に失敗しました。";
+		} else {
+			message = "更新処理に成功しました。";
+		}
+
+		return message;
+	}
 }
