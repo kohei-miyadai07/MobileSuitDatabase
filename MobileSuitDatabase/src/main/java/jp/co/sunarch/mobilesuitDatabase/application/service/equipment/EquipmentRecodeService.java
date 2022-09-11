@@ -3,7 +3,8 @@ package jp.co.sunarch.mobilesuitDatabase.application.service.equipment;
 import org.springframework.stereotype.Component;
 
 import jp.co.sunarch.mobilesuitDatabase.application.repository.equipment.EquipmentRepository;
-import jp.co.sunarch.mobilesuitDatabase.domain.model.mobilesuit.MobileSuitId;
+import jp.co.sunarch.mobilesuitDatabase.domain.model.arms.Arms;
+import jp.co.sunarch.mobilesuitDatabase.domain.model.mobilesuit.MobileSuit;
 import lombok.RequiredArgsConstructor;
 
 @Component
@@ -12,7 +13,13 @@ public class EquipmentRecodeService {
 
 	private final EquipmentRepository equipmentRepository;
 
-	public int deleteEquipmentByMobileSuit(MobileSuitId msId) {
-		return equipmentRepository.deleteEquipmentByMsid(msId.getValue());
+	public int deleteEquipmentByMobileSuit(MobileSuit mobileSuit) {
+		return equipmentRepository.deleteEquipmentByMsid(mobileSuit.getMsId().getValue());
 	}
+
+	public int deleteEquipmentByArms(Arms arms) {
+		return equipmentRepository.deleteEquipmentByArmsId(arms.getArmsId().getValue());
+	}
+
+	
 }

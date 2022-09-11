@@ -46,4 +46,10 @@ public class ArmsRepositoryDao {
 
 		return namedParameterJdbcTemplate.update(ArmsSqlCode.UPDATE_ARMS, params);
 	}
+
+	public int deleteById(String armsId) {
+		SqlParameterSource params = new MapSqlParameterSource().addValue("armsId", armsId);
+
+		return namedParameterJdbcTemplate.update(ArmsSqlCode.DELETE_ARMS_BY_ID, params);
+	}
 }

@@ -35,8 +35,8 @@ public class DeleteMobileSuitUseCase {
 		List<Equipment> equipmentList = equipmentQueryService.getEquipmentByMobileSuitId(command.getMsId());
 
 		if (mobileSuit != null || equipmentList.size() != 0) {
-			resultEquipment = equipmentRecodeService.deleteEquipmentByMobileSuit(command.getMsId());
-			resultMobileSuit = mobileSuitRecodeService.deleteMobileSuit(mobileSuit.getMsId());
+			resultEquipment = equipmentRecodeService.deleteEquipmentByMobileSuit(mobileSuit);
+			resultMobileSuit = mobileSuitRecodeService.deleteMobileSuit(mobileSuit);
 		}
 
 		if (resultEquipment == 0 || resultMobileSuit == 0) {

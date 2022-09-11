@@ -26,9 +26,22 @@ public class EquipmentRepositoryDao {
 		return namedParameterJdbcTemplate.query(EquipmentSqlCode.SELECT_EQUIPMENT_BY_MSID, params, mapper);
 	}
 
+	public List<EquipmentEntity> selectByArmsId(String armsId) {
+		SqlParameterSource params = new MapSqlParameterSource().addValue("armsId", armsId);
+		RowMapper<EquipmentEntity> mapper = new BeanPropertyRowMapper<EquipmentEntity>(EquipmentEntity.class);
+
+		return namedParameterJdbcTemplate.query(EquipmentSqlCode.SELECT_EQUIPMENT_BY_ARMSID, params, mapper);
+	}
+
 	public int deleteByMsId(String msId) {
 		SqlParameterSource params = new MapSqlParameterSource().addValue("msId", msId);
 
 		return namedParameterJdbcTemplate.update(EquipmentSqlCode.DELETE_EQUIPMENT_BY_MSID, params);
+	}
+
+	public int deleteByArmsId(String armsId) {
+		SqlParameterSource params = new MapSqlParameterSource().addValue("armsId", armsId);
+
+		return namedParameterJdbcTemplate.update(EquipmentSqlCode.DELETE_EQUIPMENT_BY_ARMSID, params);
 	}
 }

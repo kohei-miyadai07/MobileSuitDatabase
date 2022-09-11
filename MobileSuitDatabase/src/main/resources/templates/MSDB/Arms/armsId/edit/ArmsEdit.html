@@ -16,7 +16,7 @@
             <textarea rows="5" placeholder="詳細" th:field="*{detail}"></textarea>
             <p><button type="submit">更新</button><button type="reset">リセット</button></p>
             <p><input type="button" value="戻る" onclick="history.back();" /></p>
-            <p><button type="submit" th:formaction="@{/MSDB/MobileSuitArmedDelete/{armsId}(armsId=*{armsId})}">削除</button></p>
+            <p><button type="submit" th:formaction="@{'/MSDB/Arms/' + *{armsId} + '/edit-delete'}">削除</button></p>
         </form>
     </div>
     <style>

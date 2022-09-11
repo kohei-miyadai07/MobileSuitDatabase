@@ -8,4 +8,6 @@ public interface ArmsRepository {
 
 	int save(Arms arms);
 
+	int deleteArmsById(String armsId);
+
 }

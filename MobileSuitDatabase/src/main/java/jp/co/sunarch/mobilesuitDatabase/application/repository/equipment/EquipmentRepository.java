@@ -8,5 +8,10 @@ public interface EquipmentRepository {
 
 	List<Equipment> getEquipmentListByMsId(String msId);
 
+	List<Equipment> getEquipmentListByArmsId(String armsId);
+
 	int deleteEquipmentByMsid(String msId);
+
+	int deleteEquipmentByArmsId(String armsId);
+
 }

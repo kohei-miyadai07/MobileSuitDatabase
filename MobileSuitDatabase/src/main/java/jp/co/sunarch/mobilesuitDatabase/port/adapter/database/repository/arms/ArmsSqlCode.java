@@ -16,6 +16,14 @@ public class ArmsSqlCode {
 			where
 			arms_id = :armsId;
 			""";
+	
+	public static String DELETE_ARMS_BY_ID = """
+			delete 
+			from
+			Arms 
+			where
+			arms_id = :armsId;
+			""";
 
 	public static String SELECT_ARMS_QUERY_BY_ID = """
 			select

@@ -25,8 +25,21 @@ public class EquipmentRepositoryImpl implements EquipmentRepository {
 	}
 
 	@Override
+	public List<Equipment> getEquipmentListByArmsId(String armsId) {
+		List<EquipmentEntity> equipmentEntityList = equipmentRepositoryDao.selectByArmsId(armsId);
+		List<Equipment> equipmentList = equipmentEntityList.stream().map(e -> equipmentConverter.entityToDomain(e)).toList();
+
+		return equipmentList;
+	}
+
+	@Override
 	public int deleteEquipmentByMsid(String msId) {
 		return equipmentRepositoryDao.deleteByMsId(msId);
+	}
+
+	@Override
+	public int deleteEquipmentByArmsId(String armsId) {
+		return equipmentRepositoryDao.deleteByArmsId(armsId);
 	}
 
 }

@@ -39,4 +39,10 @@ public class ArmsRepositoryImpl implements ArmsRepository {
 		return result;
 	}
 
+	@Override
+	public int deleteArmsById(String armsId) {
+
+		return armsRepositoryDao.deleteById(armsId);
+	}
+
 }

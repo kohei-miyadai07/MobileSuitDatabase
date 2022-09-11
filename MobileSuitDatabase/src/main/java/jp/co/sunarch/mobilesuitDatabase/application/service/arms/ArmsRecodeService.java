@@ -37,4 +37,9 @@ public class ArmsRecodeService {
 
 		return message;
 	}
+
+	public int deleteArms(Arms arms) {
+		return armsRepository.deleteArmsById(arms.getArmsId().getValue());
+	}
+
 }
