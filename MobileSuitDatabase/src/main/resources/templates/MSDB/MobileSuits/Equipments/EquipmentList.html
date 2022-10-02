@@ -8,18 +8,22 @@
         <p><a th:href="@{/MSDB/MobileSuitEquipmentRegister}">新規登録</a></p>
         <table border="1">
             <tr>
-                <th>装備ID</th>
+                <th>モビルスーツID</th>
                 <th>機体名</th>
-                <th>武装名</th>
+                <th>武器ID</th>
+                <th>武器名</th>
                 <th>装備数</th>
+                <th>詳細</th>
                 <th></th>
             </tr>
-            <tr th:each="msEquipmentResult : ${msEquipmentResultList}">
-                <td th:text="${msEquipmentResult.equipmentId}"></td>
-                <td th:text="${msEquipmentResult.msName}"></td>
-                <td th:text="${msEquipmentResult.armedName}"></td>
-                <td th:text="${msEquipmentResult.numberEquipment}"></td>
-                <td><a th:href="@{'/MSDB/MobileSuitEquipmentEdit/' + ${msEquipmentResult.equipmentId}}">編集</a></td>
+            <tr th:each="equipment : ${equipments}">
+                <td th:text="${equipment.msId}"></td>
+                <td th:text="${equipment.msName}"></td>
+                <td th:text="${equipment.armsId}"></td>
+                <td th:text="${equipment.armsName}"></td>
+                <td th:text="${equipment.numberEquipment}"></td>
+                <td th:text="${equipment.detail}"></td>
+                <td><a th:href="@{'/MSDB/MobileSuitEquipmentEdit/' + ${equipment.msName}}">編集</a></td>
             </tr>
         </table>
         <p><a th:href="@{/MSDB/MobileSuitEquipmentSearch}">検索画面へ</a><br>

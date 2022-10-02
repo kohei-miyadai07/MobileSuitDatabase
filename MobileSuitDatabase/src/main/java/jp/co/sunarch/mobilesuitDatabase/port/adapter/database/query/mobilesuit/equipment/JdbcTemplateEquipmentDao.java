@@ -1,6 +1,5 @@
 package jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.equipment;
 
-import java.util.Collections;
 import java.util.List;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -11,7 +10,7 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Component;
 
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.equipment.entity.EquipmentArmsEntity;
-import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.repository.equipment.entity.EquipmentEntity;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.equipment.entity.EquipmentEntity;
 import lombok.RequiredArgsConstructor;
 
 @Component
@@ -29,7 +28,11 @@ public class JdbcTemplateEquipmentDao {
 	}
 
 	public List<EquipmentEntity> selectEquipmentList() {
-		return Collections.emptyList();
+		SqlParameterSource params = new MapSqlParameterSource();
+		RowMapper<EquipmentEntity> mapper = 
+				new BeanPropertyRowMapper<EquipmentEntity>(EquipmentEntity.class);
+
+		return namedParameterJdbcTemplate.query(EquipmentSqlCode.SELECT_EQUIPMENT_LIST, params, mapper);
 	}
 
 }
