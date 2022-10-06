@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.equipment.entity.EquipmentArmsEntity;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.equipment.entity.EquipmentEntity;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.mobilesuit.equipment.EquipmentQuery.Criteria;
 import lombok.RequiredArgsConstructor;
 
 @Component
@@ -33,6 +34,39 @@ public class JdbcTemplateEquipmentDao {
 				new BeanPropertyRowMapper<EquipmentEntity>(EquipmentEntity.class);
 
 		return namedParameterJdbcTemplate.query(EquipmentSqlCode.SELECT_EQUIPMENT_LIST, params, mapper);
+	}
+
+	public List<EquipmentEntity> selectEquipmentByCriteria(Criteria criteria) {
+		StringBuilder sqlBuilder = new StringBuilder();
+		sqlBuilder.append(EquipmentSqlCode.SELECT_EQUIPMENT_QUERY_BASE);
+
+		MapSqlParameterSource params = new MapSqlParameterSource();
+		RowMapper<EquipmentEntity> mapper =
+				new BeanPropertyRowMapper<EquipmentEntity>(EquipmentEntity.class);
+
+		boolean andFlg = false;
+
+		if(criteria.getMsName() != null && criteria.getMsName() != "") {
+			if(!andFlg) {
+				sqlBuilder.append(" where ");
+			}
+			sqlBuilder.append("m.ms_name = :msName");
+			params.addValue("msName", criteria.getMsName());
+			andFlg = true;
+		}
+
+		if(criteria.getArmsName() != null && criteria.getArmsName() != "") {
+			if(andFlg) {
+				sqlBuilder.append(" and ");
+			} else {
+				sqlBuilder.append(" where ");
+			}
+			sqlBuilder.append("a.arms_name = :armsName");
+			params.addValue("armsName", criteria.getArmsName());
+			andFlg = true;
+		}
+
+		return namedParameterJdbcTemplate.query(sqlBuilder.toString(), params, mapper);
 	}
 
 }

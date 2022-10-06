@@ -23,6 +23,14 @@ public class EquipmentQueryImpl implements EquipmentQuery {
 		return equipmentModelList;
 	}
 
+	@Override
+	public List<EquipmentModel> searchEquipment(Criteria criteria) {
+		List<EquipmentEntity> equipmentEntityList = equipmentDao.selectEquipmentByCriteria(criteria);
+		List<EquipmentModel> equipmentModelList = equipmentEntityList.stream().map(e -> toModel(e)).toList();
+
+		return equipmentModelList;
+	}
+
 	private EquipmentModel toModel(EquipmentEntity entity) {
 		return EquipmentModel.builder()
 				.msId(entity.getMsId())
