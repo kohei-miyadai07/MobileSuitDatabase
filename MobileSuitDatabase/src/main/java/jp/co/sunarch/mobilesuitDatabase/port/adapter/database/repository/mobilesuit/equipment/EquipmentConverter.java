@@ -1,11 +1,11 @@
-package jp.co.sunarch.mobilesuitDatabase.port.adapter.database.repository.equipment;
+package jp.co.sunarch.mobilesuitDatabase.port.adapter.database.repository.mobilesuit.equipment;
 
 import org.springframework.stereotype.Component;
 
 import jp.co.sunarch.mobilesuitDatabase.domain.model.arms.ArmsId;
 import jp.co.sunarch.mobilesuitDatabase.domain.model.mobilesuit.MobileSuitId;
 import jp.co.sunarch.mobilesuitDatabase.domain.model.mobilesuit.equipment.Equipment;
-import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.repository.equipment.entity.EquipmentEntity;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.repository.mobilesuit.equipment.entity.EquipmentEntity;
 
 @Component
 public class EquipmentConverter {

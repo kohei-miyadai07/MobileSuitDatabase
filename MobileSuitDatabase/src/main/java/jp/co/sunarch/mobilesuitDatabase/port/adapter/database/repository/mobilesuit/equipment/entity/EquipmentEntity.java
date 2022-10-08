@@ -1,4 +1,4 @@
-package jp.co.sunarch.mobilesuitDatabase.port.adapter.database.repository.equipment.entity;
+package jp.co.sunarch.mobilesuitDatabase.port.adapter.database.repository.mobilesuit.equipment.entity;
 
 import lombok.Data;
 

@@ -1,4 +1,4 @@
-package jp.co.sunarch.mobilesuitDatabase.port.adapter.database.repository.equipment;
+package jp.co.sunarch.mobilesuitDatabase.port.adapter.database.repository.mobilesuit.equipment;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import jp.co.sunarch.mobilesuitDatabase.application.repository.mobilesuit.equipment.EquipmentRepository;
 import jp.co.sunarch.mobilesuitDatabase.domain.model.mobilesuit.equipment.Equipment;
-import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.repository.equipment.entity.EquipmentEntity;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.repository.mobilesuit.equipment.entity.EquipmentEntity;
 import lombok.RequiredArgsConstructor;
 
 @Repository

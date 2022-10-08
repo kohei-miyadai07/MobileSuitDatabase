@@ -1,4 +1,4 @@
-package jp.co.sunarch.mobilesuitDatabase.port.adapter.database.repository.equipment;
+package jp.co.sunarch.mobilesuitDatabase.port.adapter.database.repository.mobilesuit.equipment;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Component;
 
-import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.repository.equipment.entity.EquipmentEntity;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.repository.mobilesuit.equipment.entity.EquipmentEntity;
 import lombok.RequiredArgsConstructor;
 
 @Component
