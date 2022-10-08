@@ -1,8 +1,8 @@
-package jp.co.sunarch.mobilesuitDatabase.application.repository.equipment;
+package jp.co.sunarch.mobilesuitDatabase.application.repository.mobilesuit.equipment;
 
 import java.util.List;
 
-import jp.co.sunarch.mobilesuitDatabase.domain.model.mobilesuit.Equipment.Equipment;
+import jp.co.sunarch.mobilesuitDatabase.domain.model.mobilesuit.equipment.Equipment;
 
 public interface EquipmentRepository {
 
