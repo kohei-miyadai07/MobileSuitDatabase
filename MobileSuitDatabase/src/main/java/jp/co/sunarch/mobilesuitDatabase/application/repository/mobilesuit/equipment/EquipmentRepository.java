@@ -10,6 +10,10 @@ public interface EquipmentRepository {
 
 	List<Equipment> getEquipmentListByArmsId(String armsId);
 
+	Equipment getEquipmentByMsIdAndArmsId(String msId, String armsId);
+
+	int save(Equipment equipment);
+
 	int deleteEquipmentByMsid(String msId);
 
 	int deleteEquipmentByArmsId(String armsId);

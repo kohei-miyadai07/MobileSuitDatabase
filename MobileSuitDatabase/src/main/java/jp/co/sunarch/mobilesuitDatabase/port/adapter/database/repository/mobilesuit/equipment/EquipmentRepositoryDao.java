@@ -33,6 +33,33 @@ public class EquipmentRepositoryDao {
 		return namedParameterJdbcTemplate.query(EquipmentSqlCode.SELECT_EQUIPMENT_BY_ARMSID, params, mapper);
 	}
 
+	public EquipmentEntity selectByMsIdAndArmsId(String msId, String armsId) {
+		SqlParameterSource params = new MapSqlParameterSource()
+				.addValue("msId", msId)
+				.addValue("armsId", armsId);
+		RowMapper<EquipmentEntity> mapper = new BeanPropertyRowMapper<EquipmentEntity>(EquipmentEntity.class);
+
+		try {
+			return namedParameterJdbcTemplate.queryForObject(
+					EquipmentSqlCode.SELECT_EQUIPMENT_BY_MSID_AND_ARMSID,
+					params,
+					mapper);
+		} catch (Exception e) {
+			return null;
+		}
+
+	}
+
+	public int insert(EquipmentEntity equipmentEntity) {
+		SqlParameterSource params = new MapSqlParameterSource()
+				.addValue("msId", equipmentEntity.getMsId())
+				.addValue("armsId", equipmentEntity.getArmsId())
+				.addValue("numberEquipment", equipmentEntity.getNumberEquipment())
+				.addValue("detail", equipmentEntity.getDetail());
+
+		return namedParameterJdbcTemplate.update(EquipmentSqlCode.INSERT_EQUIPMENT, params);
+	}
+
 	public int deleteByMsId(String msId) {
 		SqlParameterSource params = new MapSqlParameterSource().addValue("msId", msId);
 

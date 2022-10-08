@@ -19,4 +19,14 @@ public class EquipmentConverter {
 
 		return equipment;
 	}
+
+	public EquipmentEntity domainToEntity(Equipment domain) {
+		EquipmentEntity entity = new EquipmentEntity();
+		entity.setMsId(domain.getMsId().getValue());
+		entity.setArmsId(domain.getArmsId().getValue());
+		entity.setNumberEquipment(domain.getNumberEquipment());
+		entity.setDetail(domain.getDetail());
+
+		return entity;
+	}
 }

@@ -33,6 +33,29 @@ public class EquipmentRepositoryImpl implements EquipmentRepository {
 	}
 
 	@Override
+	public Equipment getEquipmentByMsIdAndArmsId(String msId, String armsId) {
+		EquipmentEntity equipmentEntity = equipmentRepositoryDao.selectByMsIdAndArmsId(msId, armsId);
+		Equipment equipment = equipmentConverter.entityToDomain(equipmentEntity);
+
+		return equipment;
+	}
+
+	@Override
+	public int save(Equipment equipment) {
+		int result = 0;
+
+		EquipmentEntity before = equipmentRepositoryDao.selectByMsIdAndArmsId(
+				equipment.getMsId().getValue(), 
+				equipment.getArmsId().getValue());
+		if(before == null) {
+			EquipmentEntity equipmentEntity = equipmentConverter.domainToEntity(equipment);
+			result = equipmentRepositoryDao.insert(equipmentEntity);
+		}
+
+		return result;
+	}
+
+	@Override
 	public int deleteEquipmentByMsid(String msId) {
 		return equipmentRepositoryDao.deleteByMsId(msId);
 	}
