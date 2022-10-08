@@ -2,7 +2,7 @@ package jp.co.sunarch.mobilesuitDatabase.application.repository.equipment;
 
 import java.util.List;
 
-import jp.co.sunarch.mobilesuitDatabase.domain.model.equipment.Equipment;
+import jp.co.sunarch.mobilesuitDatabase.domain.model.mobilesuit.Equipment.Equipment;
 
 public interface EquipmentRepository {
 

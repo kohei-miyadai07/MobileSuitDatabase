@@ -10,7 +10,7 @@ import jp.co.sunarch.mobilesuitDatabase.application.service.arms.ArmsRecodeServi
 import jp.co.sunarch.mobilesuitDatabase.application.service.equipment.EquipmentQueryService;
 import jp.co.sunarch.mobilesuitDatabase.application.service.equipment.EquipmentRecodeService;
 import jp.co.sunarch.mobilesuitDatabase.domain.model.arms.Arms;
-import jp.co.sunarch.mobilesuitDatabase.domain.model.equipment.Equipment;
+import jp.co.sunarch.mobilesuitDatabase.domain.model.mobilesuit.Equipment.Equipment;
 import lombok.RequiredArgsConstructor;
 
 @Service

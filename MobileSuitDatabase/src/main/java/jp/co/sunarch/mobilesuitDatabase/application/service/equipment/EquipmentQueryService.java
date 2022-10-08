@@ -6,8 +6,8 @@ import org.springframework.stereotype.Component;
 
 import jp.co.sunarch.mobilesuitDatabase.application.repository.equipment.EquipmentRepository;
 import jp.co.sunarch.mobilesuitDatabase.domain.model.arms.ArmsId;
-import jp.co.sunarch.mobilesuitDatabase.domain.model.equipment.Equipment;
 import jp.co.sunarch.mobilesuitDatabase.domain.model.mobilesuit.MobileSuitId;
+import jp.co.sunarch.mobilesuitDatabase.domain.model.mobilesuit.Equipment.Equipment;
 import lombok.RequiredArgsConstructor;
 
 @Component

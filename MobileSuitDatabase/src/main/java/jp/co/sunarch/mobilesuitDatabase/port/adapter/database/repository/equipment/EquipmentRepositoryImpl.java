@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import jp.co.sunarch.mobilesuitDatabase.application.repository.equipment.EquipmentRepository;
-import jp.co.sunarch.mobilesuitDatabase.domain.model.equipment.Equipment;
+import jp.co.sunarch.mobilesuitDatabase.domain.model.mobilesuit.Equipment.Equipment;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.repository.equipment.entity.EquipmentEntity;
 import lombok.RequiredArgsConstructor;
 

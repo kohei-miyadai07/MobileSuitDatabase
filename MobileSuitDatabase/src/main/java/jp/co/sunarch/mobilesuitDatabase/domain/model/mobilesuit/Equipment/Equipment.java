@@ -1,4 +1,4 @@
-package jp.co.sunarch.mobilesuitDatabase.domain.model.equipment;
+package jp.co.sunarch.mobilesuitDatabase.domain.model.mobilesuit.Equipment;
 
 import jp.co.sunarch.mobilesuitDatabase.domain.model.arms.ArmsId;
 import jp.co.sunarch.mobilesuitDatabase.domain.model.mobilesuit.MobileSuitId;

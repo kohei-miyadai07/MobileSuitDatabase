@@ -9,8 +9,8 @@ import jp.co.sunarch.mobilesuitDatabase.application.service.equipment.EquipmentQ
 import jp.co.sunarch.mobilesuitDatabase.application.service.equipment.EquipmentRecodeService;
 import jp.co.sunarch.mobilesuitDatabase.application.service.mobilesuit.MobileSuitQueryService;
 import jp.co.sunarch.mobilesuitDatabase.application.service.mobilesuit.MobileSuitRecodeService;
-import jp.co.sunarch.mobilesuitDatabase.domain.model.equipment.Equipment;
 import jp.co.sunarch.mobilesuitDatabase.domain.model.mobilesuit.MobileSuit;
+import jp.co.sunarch.mobilesuitDatabase.domain.model.mobilesuit.Equipment.Equipment;
 import lombok.RequiredArgsConstructor;
 
 @Service
