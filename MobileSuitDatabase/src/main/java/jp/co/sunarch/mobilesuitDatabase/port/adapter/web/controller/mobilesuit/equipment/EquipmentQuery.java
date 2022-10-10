@@ -18,4 +18,6 @@ public interface EquipmentQuery {
 	List<EquipmentModel> getEquipmentList();
 
 	List<EquipmentModel> searchEquipment(Criteria criteria);
+
+	EquipmentModel getEquipmentByMsIdAndArmsId(String msId, String armsId);
 }

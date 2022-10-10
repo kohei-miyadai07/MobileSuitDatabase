@@ -36,6 +36,16 @@ public class JdbcTemplateEquipmentDao {
 		return namedParameterJdbcTemplate.query(EquipmentSqlCode.SELECT_EQUIPMENT_LIST, params, mapper);
 	}
 
+	public EquipmentEntity selectEquipmentByMsIdAndArmsId(String msId, String armsId) {
+		SqlParameterSource params = new MapSqlParameterSource()
+				.addValue("msId", msId)
+				.addValue("armsId", armsId);
+		RowMapper<EquipmentEntity> mapper =
+				new BeanPropertyRowMapper<EquipmentEntity>(EquipmentEntity.class);
+
+		return namedParameterJdbcTemplate.queryForObject(EquipmentSqlCode.SELECT_EQUIPMENT_QUERY_BY_MSID_AND_ARMSID, params, mapper);
+	}
+
 	public List<EquipmentEntity> selectEquipmentByCriteria(Criteria criteria) {
 		StringBuilder sqlBuilder = new StringBuilder();
 		sqlBuilder.append(EquipmentSqlCode.SELECT_EQUIPMENT_QUERY_BASE);
