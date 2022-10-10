@@ -70,6 +70,14 @@ public class EquipmentRepositoryDao {
 		return namedParameterJdbcTemplate.update(EquipmentSqlCode.UPDATE_EQUIPMENT, params);
 	}
 
+	public int deleteByMsIdAndArmsId(String msId, String armsId) {
+		SqlParameterSource params = new MapSqlParameterSource()
+				.addValue("msId", msId)
+				.addValue("armsId", armsId);
+
+		return namedParameterJdbcTemplate.update(EquipmentSqlCode.DELETE_EQUIPMENT_BY_MSID_AND_ARMSID, params);
+	}
+
 	public int deleteByMsId(String msId) {
 		SqlParameterSource params = new MapSqlParameterSource().addValue("msId", msId);
 

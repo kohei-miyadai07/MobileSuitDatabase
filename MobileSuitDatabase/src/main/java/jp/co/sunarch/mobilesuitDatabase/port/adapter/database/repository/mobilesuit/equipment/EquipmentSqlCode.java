@@ -58,6 +58,16 @@ public class EquipmentSqlCode {
 			and arms_id = :armsId
 			""";
 
+	public static String DELETE_EQUIPMENT_BY_MSID_AND_ARMSID = """
+			delete 
+			from
+			Equipment 
+			where
+			ms_id = :msId
+			and
+			arms_id = :armsId
+			""";
+
 	public static String DELETE_EQUIPMENT_BY_MSID = """
 			delete 
 			from

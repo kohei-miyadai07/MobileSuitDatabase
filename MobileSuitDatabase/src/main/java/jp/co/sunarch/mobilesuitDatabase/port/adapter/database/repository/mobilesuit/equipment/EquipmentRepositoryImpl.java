@@ -59,6 +59,11 @@ public class EquipmentRepositoryImpl implements EquipmentRepository {
 	}
 
 	@Override
+	public int deleteEquipmentByMsIdAndArmsId(String msId, String armsId) {
+		return equipmentRepositoryDao.deleteByMsIdAndArmsId(msId, armsId);
+	}
+
+	@Override
 	public int deleteEquipmentByMsid(String msId) {
 		return equipmentRepositoryDao.deleteByMsId(msId);
 	}

@@ -40,6 +40,20 @@ public class EquipmentRecodeService {
 		return message;
 	}
 
+	public String deleteEquipment(Equipment equipment) {
+		String message = null;
+
+		int result = equipmentRepository.deleteEquipmentByMsIdAndArmsId(
+				equipment.getMsId().getValue(), equipment.getArmsId().getValue());
+		if (result != 1) {
+			message = "削除処理に失敗しました。";
+		} else {
+			message = "削除処理に成功しました。";
+		}
+
+		return message;
+	}
+
 	public int deleteEquipmentByMobileSuit(MobileSuit mobileSuit) {
 		return equipmentRepository.deleteEquipmentByMsid(mobileSuit.getMsId().getValue());
 	}

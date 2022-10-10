@@ -14,6 +14,8 @@ public interface EquipmentRepository {
 
 	int save(Equipment equipment);
 
+	int deleteEquipmentByMsIdAndArmsId(String msId, String armsId);
+
 	int deleteEquipmentByMsid(String msId);
 
 	int deleteEquipmentByArmsId(String armsId);
