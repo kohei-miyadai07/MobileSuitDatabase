@@ -60,6 +60,16 @@ public class EquipmentRepositoryDao {
 		return namedParameterJdbcTemplate.update(EquipmentSqlCode.INSERT_EQUIPMENT, params);
 	}
 
+	public int update(EquipmentEntity equipmentEntity) {
+		SqlParameterSource params = new MapSqlParameterSource()
+				.addValue("msId", equipmentEntity.getMsId())
+				.addValue("armsId", equipmentEntity.getArmsId())
+				.addValue("numberEquipment", equipmentEntity.getNumberEquipment())
+				.addValue("detail", equipmentEntity.getDetail());
+
+		return namedParameterJdbcTemplate.update(EquipmentSqlCode.UPDATE_EQUIPMENT, params);
+	}
+
 	public int deleteByMsId(String msId) {
 		SqlParameterSource params = new MapSqlParameterSource().addValue("msId", msId);
 

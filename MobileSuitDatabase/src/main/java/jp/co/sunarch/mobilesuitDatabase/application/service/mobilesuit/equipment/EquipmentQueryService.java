@@ -24,4 +24,8 @@ public class EquipmentQueryService {
 		return equipmentRepository.getEquipmentListByArmsId(armsId.getValue());
 	}
 
+	public Equipment getEquipmentByMobileSuitIdAndArmsId(MobileSuitId msId, ArmsId armsId) {
+		return equipmentRepository.getEquipmentByMsIdAndArmsId(msId.getValue(), armsId.getValue());
+	}
+
 }

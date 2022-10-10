@@ -27,6 +27,19 @@ public class EquipmentRecodeService {
 		return message;
 	}
 
+	public String updateEquipment(Equipment equipment) {
+		String message = null;
+
+		int result = equipmentRepository.save(equipment);
+		if (result != 1) {
+			message = "更新処理に失敗しました。";
+		} else {
+			message = "更新処理に成功しました。";
+		}
+
+		return message;
+	}
+
 	public int deleteEquipmentByMobileSuit(MobileSuit mobileSuit) {
 		return equipmentRepository.deleteEquipmentByMsid(mobileSuit.getMsId().getValue());
 	}

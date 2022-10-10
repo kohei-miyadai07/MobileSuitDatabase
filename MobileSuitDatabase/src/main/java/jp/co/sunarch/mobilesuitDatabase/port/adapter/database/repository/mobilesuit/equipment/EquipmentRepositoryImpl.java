@@ -50,6 +50,9 @@ public class EquipmentRepositoryImpl implements EquipmentRepository {
 		if(before == null) {
 			EquipmentEntity equipmentEntity = equipmentConverter.domainToEntity(equipment);
 			result = equipmentRepositoryDao.insert(equipmentEntity);
+		} else {
+			EquipmentEntity equipmentEntity = equipmentConverter.domainToEntity(equipment);
+			result = equipmentRepositoryDao.update(equipmentEntity);
 		}
 
 		return result;
