@@ -50,7 +50,7 @@ public class MobileSuitRecodeService {
 		String filePath = "src/main/resources/static/images/";
 
 		try {
-			FileOperations.updateImageFile(multipartFile, filePath);
+			FileOperations.uploadImageFile(multipartFile, filePath);
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (RuntimeException e) {

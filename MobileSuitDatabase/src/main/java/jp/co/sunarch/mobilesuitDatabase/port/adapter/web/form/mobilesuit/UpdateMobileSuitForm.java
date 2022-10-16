@@ -1,5 +1,7 @@
 package jp.co.sunarch.mobilesuitDatabase.port.adapter.web.form.mobilesuit;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.MobileSuitModel;
 import lombok.Data;
 
@@ -20,6 +22,7 @@ public class UpdateMobileSuitForm {
 	private String totalThrustersOutput;
 	private String msOverview;
 	private String action;
+	private MultipartFile msMultipartFile;
 
 	public static UpdateMobileSuitForm ModelToForm(MobileSuitModel model) {
 		UpdateMobileSuitForm form = new UpdateMobileSuitForm();
@@ -38,6 +41,7 @@ public class UpdateMobileSuitForm {
 		form.setTotalThrustersOutput(model.getTotalThrustersOutput());
 		form.setMsOverview(model.getMsOverview());
 		form.setAction(model.getAction());
+		form.setMsMultipartFile(null);
 
 		return form;
 	}

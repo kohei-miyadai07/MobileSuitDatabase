@@ -51,6 +51,7 @@ public class UpdateMobileSuitController {
 				.totalThrustersOutput(Long.parseLong(updateMobileSuitForm.getTotalThrustersOutput()))
 				.msOverview(updateMobileSuitForm.getMsOverview())
 				.action(updateMobileSuitForm.getAction())
+				.msMultipartFile(updateMobileSuitForm.getMsMultipartFile())
 				.build();
 
 		String message = updateMobileSuitUseCase.execute(command);

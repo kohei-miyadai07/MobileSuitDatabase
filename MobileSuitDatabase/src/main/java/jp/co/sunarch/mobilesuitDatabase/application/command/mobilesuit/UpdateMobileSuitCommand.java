@@ -2,6 +2,8 @@ package jp.co.sunarch.mobilesuitDatabase.application.command.mobilesuit;
 
 import java.math.BigDecimal;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import jp.co.sunarch.mobilesuitDatabase.domain.model.mobilesuit.MobileSuitId;
 import lombok.Builder;
 import lombok.Value;
@@ -24,5 +26,6 @@ public class UpdateMobileSuitCommand {
 	private long totalThrustersOutput;
 	private String msOverview;
 	private String action;
+	private MultipartFile msMultipartFile;
 
 }

@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class FileOperations {
 	
-	public static void updateImageFile(MultipartFile multipartFile, String path) throws IOException {
+	public static void uploadImageFile(MultipartFile multipartFile, String path) throws IOException {
 		Path filePath = Paths.get(path, multipartFile.getOriginalFilename());
 
 		if (Files.notExists(filePath)) {
@@ -22,6 +22,21 @@ public class FileOperations {
 			stream.write(bytes);
 		} else {
 			throw new RuntimeException("登録対象のファイルが存在します。");
+		}
+	}
+
+	public static void updateImageFile(MultipartFile multipartFile, String path) throws IOException {
+		Path filePath = Paths.get(path, multipartFile.getOriginalFilename());
+
+		if (Files.exists(filePath)) {
+			new File(path + multipartFile.getOriginalFilename()).delete();
+
+			byte[] bytes  = multipartFile.getBytes();
+			OutputStream stream = Files.newOutputStream(filePath);
+
+			stream.write(bytes);
+		} else {
+			throw new RuntimeException("更新対象のファイルが存在しません。");
 		}
 	}
 

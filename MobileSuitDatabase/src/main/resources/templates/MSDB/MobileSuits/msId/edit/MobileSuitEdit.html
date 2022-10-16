@@ -14,8 +14,6 @@
       <input type="text" th:field="*{msName}" />
       <label class="label" for="modelNumber">型式番号</label>
       <input type="text" th:field="*{modelNumber}" />
-      <label class="label" for="msUrl">機体URL</label>
-      <input type="text" th:field="*{msUrl}" />
       <label class="label" for="headHeight">頭高頂</label>
       <input type="text" th:field="*{headHeight}" />
       <label class="label" for="overallHeight">全高</label>
@@ -38,6 +36,8 @@
       <textarea rows="5" placeholder="機体概要" th:field="*{msOverview}"></textarea>
       <label class="label" for="action">活躍</label>
       <textarea rows="5" placeholder="活躍" th:field="*{action}"></textarea>
+      <label class="label" for="msMultipartFile">画像ファイル</label>
+      <input type="file" th:field="*{msMultipartFile}">
       <p><button type="submit">更新</button><button type="reset">リセット</button></p>
       <p><input type="button" value="戻る" onclick="history.back();" /></p>
       <p><button type="submit" th:formaction="@{'/MSDB/MobileSuits/' + *{msId} + '/edit-delete'}">削除</button></p>
