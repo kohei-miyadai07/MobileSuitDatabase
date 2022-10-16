@@ -1,5 +1,6 @@
 package jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.mobilesuit;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import jp.co.sunarch.mobilesuitDatabase.common.utils.CommonItemSettings;
+import jp.co.sunarch.mobilesuitDatabase.common.utils.FileOperations;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.mobilesuit.MobileSuitQuery.Criteria;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.form.mobilesuit.MobileSuitSearchForm;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.MobileSuitDetailModel;
@@ -33,6 +35,15 @@ public class MobileSuitController {
 	@GetMapping("/MSDB/MobileSuits/{msId}")
 	public String getMobileSuitDetail(@PathVariable String msId, Model model) {
 		MobileSuitDetailModel msDetailModel = mobileSuitQuery.getMobileSuitDetail(msId);
+
+		String base64Data = "";
+		try {
+			base64Data = FileOperations.getImage(msDetailModel.getMsUrl());
+		} catch (IOException e) {
+			base64Data = "";
+		}
+
+		model.addAttribute("base64Data", "data:image/png;base64,"+ base64Data);
 		model.addAttribute("mobilesuitDetail", msDetailModel);
 		return "/MSDB/MobileSuits/msId/MobileSuitDetail";
 	}

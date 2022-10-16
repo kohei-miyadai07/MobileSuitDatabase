@@ -8,7 +8,7 @@
 
 <body>
     <h1 th:text="${mobilesuitDetail.msName}"></h1>
-    <img th:src="@{${mobilesuitDetail.msUrl}}" alt="モビルスーツ画像" width="280" height="417" style="float:left;">
+    <img th:src="${base64Data}" alt="モビルスーツ画像" width="280" height="417" style="float:left;">
     <div id="spec">
         <h2>スペック</h2>
         <table border="1">

@@ -5,7 +5,7 @@ values (
   'as000178'
   , 'RX-78-02'
   , 'ガンダム'
-  , '/images/RX-78-02.PNG'
+  , 'src/main/resources/static/images/RX-78-02.PNG'
   , 18
   , 19
   , 72.5
