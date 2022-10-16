@@ -1,8 +1,12 @@
 package jp.co.sunarch.mobilesuitDatabase.application.service.mobilesuit;
 
+import java.io.IOException;
+
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 import jp.co.sunarch.mobilesuitDatabase.application.repository.mobilesuit.MobileSuitRepository;
+import jp.co.sunarch.mobilesuitDatabase.common.utils.FileOperations;
 import jp.co.sunarch.mobilesuitDatabase.domain.model.mobilesuit.MobileSuit;
 import lombok.RequiredArgsConstructor;
 
@@ -40,6 +44,18 @@ public class MobileSuitRecodeService {
 
 	public int deleteMobileSuit(MobileSuit mobileSuit) {
 		return mobileSuitRepository.deleteMobileSuitById(mobileSuit.getMsId().getValue());
+	}
+
+	public void uploadImageFile(MultipartFile multipartFile) {
+		String filePath = "src/main/resources/static/images/";
+
+		try {
+			FileOperations.updateImageFile(multipartFile, filePath);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (RuntimeException e) {
+			e.getMessage();
+		}
 	}
 
 }

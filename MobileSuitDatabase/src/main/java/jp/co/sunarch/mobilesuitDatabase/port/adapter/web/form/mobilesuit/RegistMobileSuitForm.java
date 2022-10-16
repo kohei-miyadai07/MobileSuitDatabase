@@ -1,12 +1,13 @@
 package jp.co.sunarch.mobilesuitDatabase.port.adapter.web.form.mobilesuit;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 
 @Data
 public class RegistMobileSuitForm {
 	private String modelNumber;
 	private String msName;
-	private String msUrl;
 	private String headHeight;
 	private String overallHeight;
 	private String weight;
@@ -18,5 +19,6 @@ public class RegistMobileSuitForm {
 	private String totalThrustersOutput;
 	private String msOverview;
 	private String action;
+	private MultipartFile msMultipartFile;
 
 }

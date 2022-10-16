@@ -20,11 +20,13 @@ public class RegistMobileSuitUseCase {
 	public String execute(RegistMobileSuitCommand command) {
 
 		MobileSuitId msId = MobileSuitId.of(RandomStringUtils.randomAlphanumeric(8));
+		String msUrl = "/images/" + command.getMsMultipartFile().getOriginalFilename();
+
 		MobileSuit mobileSuit = MobileSuit.create(
 				msId
 				,command.getModelNumber()
 				,command.getMsName()
-				,command.getMsUrl()
+				,msUrl
 				,command.getHeadHeight()
 				,command.getOverallHeight()
 				,command.getWeight()
@@ -39,7 +41,8 @@ public class RegistMobileSuitUseCase {
 				,LocalDateTime.now()
 				,LocalDateTime.now()
 				,"1");
-		
+
+		mobileSuitRecodeService.uploadImageFile(command.getMsMultipartFile());
 		return mobileSuitRecodeService.registMobileSuit(mobileSuit);
 	}
 

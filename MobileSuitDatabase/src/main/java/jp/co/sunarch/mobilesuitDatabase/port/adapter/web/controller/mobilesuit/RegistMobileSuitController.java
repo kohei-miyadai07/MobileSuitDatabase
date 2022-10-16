@@ -30,7 +30,6 @@ public class RegistMobileSuitController {
 		RegistMobileSuitCommand command = RegistMobileSuitCommand.builder()
 				.modelNumber(registMobileSuitForm.getModelNumber())
 				.msName(registMobileSuitForm.getMsName())
-				.msUrl(registMobileSuitForm.getMsUrl())
 				.headHeight(new BigDecimal(registMobileSuitForm.getHeadHeight()))
 				.overallHeight(new BigDecimal(registMobileSuitForm.getOverallHeight()))
 				.weight(new BigDecimal(registMobileSuitForm.getWeight()))
@@ -42,6 +41,7 @@ public class RegistMobileSuitController {
 				.totalThrustersOutput(Long.parseLong(registMobileSuitForm.getTotalThrustersOutput()))
 				.msOverview(registMobileSuitForm.getMsOverview())
 				.action(registMobileSuitForm.getAction())
+				.msMultipartFile(registMobileSuitForm.getMsMultipartFile())
 				.build();
 
 		String message = registMobileSuitUseCase.execute(command);
