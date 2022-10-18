@@ -58,4 +58,16 @@ public class MobileSuitRecodeService {
 		}
 	}
 
+	public void updateImageFile(MultipartFile multipartFile) {
+		String filePath = "src/main/resources/static/images/";
+
+		try {
+			FileOperations.updateImageFile(multipartFile, filePath);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (RuntimeException e) {
+			e.getMessage();
+		}
+	}
+
 }

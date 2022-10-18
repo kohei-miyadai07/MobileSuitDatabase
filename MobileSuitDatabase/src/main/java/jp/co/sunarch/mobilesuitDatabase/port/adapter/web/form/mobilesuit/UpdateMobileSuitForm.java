@@ -10,7 +10,6 @@ public class UpdateMobileSuitForm {
 	private String msId;
 	private String modelNumber;
 	private String msName;
-	private String msUrl;
 	private String headHeight;
 	private String overallHeight;
 	private String weight;
@@ -29,7 +28,6 @@ public class UpdateMobileSuitForm {
 		form.setMsId(model.getMsId());
 		form.setModelNumber(model.getModelNumber());
 		form.setMsName(model.getMsName());
-		form.setMsUrl(model.getMsUrl());
 		form.setHeadHeight(model.getHeadHeight());
 		form.setOverallHeight(model.getOverallHeight());
 		form.setWeight(model.getWeight());

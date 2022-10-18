@@ -39,7 +39,6 @@ public class UpdateMobileSuitController {
 				.msId(MobileSuitId.of(updateMobileSuitForm.getMsId()))
 				.modelNumber(updateMobileSuitForm.getModelNumber())
 				.msName(updateMobileSuitForm.getMsName())
-				.msUrl(updateMobileSuitForm.getMsUrl())
 				.headHeight(new BigDecimal(updateMobileSuitForm.getHeadHeight()))
 				.overallHeight(new BigDecimal(updateMobileSuitForm.getOverallHeight()))
 				.weight(new BigDecimal(updateMobileSuitForm.getWeight()))

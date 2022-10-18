@@ -14,7 +14,6 @@ public class UpdateMobileSuitCommand {
 	private MobileSuitId msId;
 	private String modelNumber;
 	private String msName;
-	private String msUrl;
 	private BigDecimal headHeight;
 	private BigDecimal overallHeight;
 	private BigDecimal weight;

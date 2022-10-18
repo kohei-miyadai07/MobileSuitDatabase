@@ -36,7 +36,10 @@ public class FileOperations {
 
 			stream.write(bytes);
 		} else {
-			throw new RuntimeException("更新対象のファイルが存在しません。");
+			byte[] bytes  = multipartFile.getBytes();
+			OutputStream stream = Files.newOutputStream(filePath);
+
+			stream.write(bytes);
 		}
 	}
 

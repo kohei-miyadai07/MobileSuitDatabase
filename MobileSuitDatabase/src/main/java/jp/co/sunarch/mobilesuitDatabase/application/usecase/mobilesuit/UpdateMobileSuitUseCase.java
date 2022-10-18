@@ -24,7 +24,6 @@ public class UpdateMobileSuitUseCase {
 		// 更新対象のMobileSuitに更新項目をセット
 		mobileSuit.setModelNumber(command.getModelNumber());
 		mobileSuit.setMsName(command.getMsName());
-		mobileSuit.setMsUrl(command.getMsUrl());
 		mobileSuit.setHeadHeight(command.getHeadHeight());
 		mobileSuit.setOverallHeight(command.getOverallHeight());
 		mobileSuit.setWeight(command.getWeight());
@@ -38,6 +37,13 @@ public class UpdateMobileSuitUseCase {
 		mobileSuit.setAction(command.getAction());
 		mobileSuit.setUpdateDate(LocalDateTime.now());
 		mobileSuit.setVersion(String.valueOf(Integer.parseInt(mobileSuit.getVersion()) + 1));
+
+		if (!command.getMsMultipartFile().isEmpty()) {
+			String msUrl = "src/main/resources/static/images/" + command.getMsMultipartFile().getOriginalFilename();
+			mobileSuit.setMsUrl(msUrl);
+
+			mobileSuitRecodeService.updateImageFile(command.getMsMultipartFile());
+		}
 
 		return mobileSuitRecodeService.updateMobileSuit(mobileSuit);
 	}
