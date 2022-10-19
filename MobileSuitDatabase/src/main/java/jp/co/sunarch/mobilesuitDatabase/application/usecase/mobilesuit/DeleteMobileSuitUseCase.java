@@ -35,6 +35,7 @@ public class DeleteMobileSuitUseCase {
 		List<Equipment> equipmentList = equipmentQueryService.getEquipmentByMobileSuitId(command.getMsId());
 
 		if (mobileSuit != null || equipmentList.size() != 0) {
+			mobileSuitRecodeService.deleteImageFile(mobileSuit.getMsUrl());
 			resultEquipment = equipmentRecodeService.deleteEquipmentByMobileSuit(mobileSuit);
 			resultMobileSuit = mobileSuitRecodeService.deleteMobileSuit(mobileSuit);
 		}

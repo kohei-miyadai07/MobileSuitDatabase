@@ -70,4 +70,14 @@ public class MobileSuitRecodeService {
 		}
 	}
 
+	public void deleteImageFile(String filePath) {
+
+		try {
+			FileOperations.deleteImageFile(filePath);
+		} catch (RuntimeException e) {
+			e.getMessage();
+		}
+		
+	}
+
 }

@@ -43,6 +43,14 @@ public class FileOperations {
 		}
 	}
 
+	public static void deleteImageFile(String path) throws RuntimeException {
+		if (Files.exists(Paths.get(path))) {
+			new File(path).delete();
+		} else {
+			throw new RuntimeException("削除対象のファイルがありません。");
+		}
+	}
+
 	public static String getImage(String path) throws IOException {
 		File file = new File(path);
 
