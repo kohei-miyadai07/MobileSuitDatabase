@@ -47,7 +47,7 @@ public class MobileSuitRecodeService {
 	}
 
 	public void uploadImageFile(MultipartFile multipartFile) {
-		String filePath = "src/main/resources/static/images/";
+		String filePath = "lib/images/";
 
 		try {
 			FileOperations.uploadImageFile(multipartFile, filePath);
@@ -59,7 +59,7 @@ public class MobileSuitRecodeService {
 	}
 
 	public void updateImageFile(MultipartFile multipartFile) {
-		String filePath = "src/main/resources/static/images/";
+		String filePath = "lib/images/";
 
 		try {
 			FileOperations.updateImageFile(multipartFile, filePath);

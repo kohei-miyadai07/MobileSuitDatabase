@@ -20,7 +20,7 @@ public class RegistMobileSuitUseCase {
 	public String execute(RegistMobileSuitCommand command) {
 
 		MobileSuitId msId = MobileSuitId.of(RandomStringUtils.randomAlphanumeric(8));
-		String msUrl = "src/main/resources/static/images/" + command.getMsMultipartFile().getOriginalFilename();
+		String msUrl = "lib/images/" + command.getMsMultipartFile().getOriginalFilename();
 
 		MobileSuit mobileSuit = MobileSuit.create(
 				msId

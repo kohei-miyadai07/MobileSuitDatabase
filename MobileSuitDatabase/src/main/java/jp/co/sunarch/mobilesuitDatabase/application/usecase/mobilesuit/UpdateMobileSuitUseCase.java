@@ -39,9 +39,10 @@ public class UpdateMobileSuitUseCase {
 		mobileSuit.setVersion(String.valueOf(Integer.parseInt(mobileSuit.getVersion()) + 1));
 
 		if (!command.getMsMultipartFile().isEmpty()) {
-			String msUrl = "src/main/resources/static/images/" + command.getMsMultipartFile().getOriginalFilename();
-			mobileSuit.setMsUrl(msUrl);
+			mobileSuitRecodeService.deleteImageFile(mobileSuit.getMsUrl());
 
+			String msUrl = "lib/images/" + command.getMsMultipartFile().getOriginalFilename();
+			mobileSuit.setMsUrl(msUrl);
 			mobileSuitRecodeService.updateImageFile(command.getMsMultipartFile());
 		}
 
