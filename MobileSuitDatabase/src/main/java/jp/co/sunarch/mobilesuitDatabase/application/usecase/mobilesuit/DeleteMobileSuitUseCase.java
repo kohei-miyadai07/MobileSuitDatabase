@@ -24,7 +24,6 @@ public class DeleteMobileSuitUseCase {
 	private final EquipmentRecodeService equipmentRecodeService;
 
 	public String execute(DeleteMobileSuitCommand command) {
-		int resultEquipment = 0;
 		int resultMobileSuit = 0;
 		String message = null;
 
@@ -36,11 +35,11 @@ public class DeleteMobileSuitUseCase {
 
 		if (mobileSuit != null || equipmentList.size() != 0) {
 			mobileSuitRecodeService.deleteImageFile(mobileSuit.getMsUrl());
-			resultEquipment = equipmentRecodeService.deleteEquipmentByMobileSuit(mobileSuit);
+			equipmentRecodeService.deleteEquipmentByMobileSuit(mobileSuit);
 			resultMobileSuit = mobileSuitRecodeService.deleteMobileSuit(mobileSuit);
 		}
 
-		if (resultEquipment == 0 || resultMobileSuit == 0) {
+		if (resultMobileSuit == 0) {
 			message = "削除処理に失敗しました。";
 		} else {
 			message = "削除処理に成功しました。";
