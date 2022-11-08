@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>武器検索</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+
+  <body>
+    <h1>武器検索</h1>
+    <div class="ArmsSearch">
+      <form
+        action="#"
+        th:action="@{/MSDB/Arms/-/search}"
+        th:object="${armsSearchForm}"
+        method="post"
+      >
+        <label class="label" for="armsName">武装名</label>
+        <input type="text" th:field="*{armsName}" />
+        <p>
+          <button type="submit">検索</button
+          ><button type="reset">リセット</button>
+        </p>
+        <p><input type="button" value="戻る" onclick="history.back();" /></p>
+      </form>
+    </div>
+    <style>
+      .ArmsSearch label,
+      input,
+      textarea,
+      p {
+        display: block;
+      }
+
+    </style>
+  </body>
+</html>

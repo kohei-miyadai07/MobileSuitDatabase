@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>装備一覧</title>
+    </head>
+    <body>
+        <h1>装備一覧</h1>
+        <p><a th:href="@{/MSDB/MobileSuits/Equipments/-/new}">新規登録</a></p>
+        <table border="1">
+            <tr>
+                <th>モビルスーツID</th>
+                <th>機体名</th>
+                <th>武器ID</th>
+                <th>武器名</th>
+                <th>装備数</th>
+                <th>詳細</th>
+                <th></th>
+            </tr>
+            <tr th:each="equipment : ${equipments}">
+                <td th:text="${equipment.msId}"></td>
+                <td th:text="${equipment.msName}"></td>
+                <td th:text="${equipment.armsId}"></td>
+                <td th:text="${equipment.armsName}"></td>
+                <td th:text="${equipment.numberEquipment}"></td>
+                <td th:text="${equipment.detail}"></td>
+                <td><a th:href="@{'/MSDB/MobileSuits/Equipments/' + ${equipment.msId} + '/' + ${equipment.armsId} + '/edit'}">編集</a></td>
+            </tr>
+        </table>
+        <p><a th:href="@{/MSDB/MobileSuits/Equipments/-/search}">検索画面へ</a><br>
+            <a th:href="@{/}">トップページへ</a>
+        </p>
+    </body>
+</html>
