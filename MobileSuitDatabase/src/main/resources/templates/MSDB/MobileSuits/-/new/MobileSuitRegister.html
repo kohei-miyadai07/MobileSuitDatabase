@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title>モビルスーツ登録</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+  <h1>モビルスーツ登録</h1>
+  <div id="msRegister">
+    <form action="#" th:action="@{/MSDB/MobileSuits/-/new}" enctype="multipart/form-data" th:object="${msRegistForm}" method="post">
+      <label class="label" for="msName">機体名</label>
+      <input type="text" th:field="*{msName}" />
+      <label class="label" for="modelNumber">型式番号</label>
+      <input type="text" th:field="*{modelNumber}" />
+      <label class="label" for="headHeight">頭高頂</label>
+      <input type="text" th:field="*{headHeight}" />
+      <label class="label" for="overallHeight">全高</label>
+      <input type="text" th:field="*{overallHeight}" />
+      <label class="label" for="weight">本体重量</label>
+      <input type="text" th:field="*{weight}" />
+      <label class="label" for="totalWeight">全備重量</label>
+      <input type="text" th:field="*{totalWeight}" />
+      <label class="label" for="powerSource">動力源</label>
+      <input type="text" th:field="*{powerSource}" />
+      <label class="label" for="material">装甲材質</label>
+      <input type="text" th:field="*{material}" />
+      <label class="label" for="effectiveSensorRadius">センサー有効半径</label>
+      <input type="text" th:field="*{effectiveSensorRadius}" />
+      <label class="label" for="generatorOutput">ジェネレーター出力</label>
+      <input type="text" th:field="*{generatorOutput}" />
+      <label class="label" for="totalThrustersOutput">スラスター総推力</label>
+      <input type="text" th:field="*{totalThrustersOutput}" />
+      <label class="label" for="msOverview">機体概要</label>
+      <textarea rows="5" placeholder="機体概要" th:field="*{msOverview}"></textarea>
+      <label class="label" for="action">活躍</label>
+      <textarea rows="5" placeholder="活躍" th:field="*{action}"></textarea>
+      <label class="label" for="msMultipartFile">画像ファイル</label>
+      <input type="file" th:field="*{msMultipartFile}">
+      <p><button type="submit">登録</button><button type="reset">リセット</button></p>
+      <p><input type="button" value="戻る" onclick="history.back();" /></p>
+    </form>
+  </div>
+  <style>
+    #msRegister label,
+    input,
+    textarea,
+    p {
+      display: block;
+    }
+  </style>
+</body>
+
+</html>

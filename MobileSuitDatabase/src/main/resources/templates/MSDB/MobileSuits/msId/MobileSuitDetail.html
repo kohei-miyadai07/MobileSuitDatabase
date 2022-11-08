@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>モビルスーツ詳細</title>
+</head>
+
+<body>
+    <h1 th:text="${mobilesuitDetail.msName}"></h1>
+    <img th:src="${base64Data}" alt="モビルスーツ画像" width="280" height="417" style="float:left;">
+    <div id="spec">
+        <h2>スペック</h2>
+        <table border="1">
+            <tr>
+                <td><b>型式番号</b></td>
+                <td th:text="${mobilesuitDetail.modelNumber}"></td>
+            </tr>
+            <tr>
+                <td><b>頭頂高</b></td>
+                <td th:text="${mobilesuitDetail.headHeight}"></td>
+            </tr>
+            <tr>
+                <td><b>全高</b></td>
+                <td th:text="${mobilesuitDetail.overallHeight}"></td>
+            </tr>
+            <tr>
+                <td><b>本体重量</b></td>
+                <td th:text="${mobilesuitDetail.weight}"></td>
+            </tr>
+            <tr>
+                <td><b>全備重量</b></td>
+                <td th:text="${mobilesuitDetail.totalWeight}"></td>
+            </tr>
+            <tr>
+                <td><b>動力源</b></td>
+                <td th:text="${mobilesuitDetail.powerSource}"></td>
+            </tr>
+            <tr>
+                <td><b>装甲材質</b></td>
+                <td th:text="${mobilesuitDetail.material}"></td>
+            </tr>
+            <tr>
+                <td><b>センサー有効半径</b></td>
+                <td th:text="${mobilesuitDetail.effectiveSensorRadius}"></td>
+            </tr>
+            <tr>
+                <td><b>ジェネレーター出力</b></td>
+                <td th:text="${mobilesuitDetail.generatorOutput}"></td>
+            </tr>
+            <tr>
+                <td><b>スラスター総推力</b></td>
+                <td th:text="${mobilesuitDetail.totalThrustersOutput}"></td>
+            </tr>
+            <tr>
+                <td><b>武装</b></td>
+                <td>
+                    <div th:each="equipment : ${mobilesuitDetail.equipmentArmsResultList}">
+                        <p th:text="|${equipment.armsName} × ${equipment.numberEquipment}|"></p>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="text" style="clear:both">
+        <h2>機体概要</h2>
+        <p th:text="${mobilesuitDetail.msOverview}"></p>
+        <h2>武装解説</h2>
+        <dl th:each="arms : ${mobilesuitDetail.equipmentArmsResultList}">
+            <dt th:text="${arms.armsName}"></dt>
+            <dd th:text="${arms.detail}"></dd>
+        </dl>
+        <h2>活躍</h2>
+        <p th:text="${mobilesuitDetail.action}"></p>
+    </div>
+    <div>
+        <a href="#" th:href="@{/MSDB/MobileSuits}">一覧画面に戻る</a>
+    </div>
+</body>
+
+</html>

@@ -2,7 +2,7 @@
 <html lang="ja">
 	<head>
 		<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
-		<title>テーブル定義書&#32;MSDB_ER</title>
+		<title>テーブル定義書&#32;MSDB_ER図_Ver2</title>
 		<link rel="stylesheet" href="a5m2.css">
 	</head>
 	<body>
@@ -15,15 +15,15 @@
 				<col width="180">
 			</colgroup>
 			<th>システム名</th>
-			<td>MSDB_ER&nbsp;</td>
+			<td>MSDB_ER図_Ver2&nbsp;</td>
 			<th>作成者</th>
-			<td>宮臺滉平&nbsp;</td>
+			<td>&nbsp;</td>
 		</tr>
 		<tr>
 			<th>サブシステム名</th>
 			<td>&nbsp;</td>
 			<th>作成日</th>
-			<td>2022/03/12&nbsp;</td>
+			<td>2022/08/11&nbsp;</td>
 		</tr>
 		<tr>
 			<th>スキーマ名</th>
@@ -72,8 +72,8 @@
 		</tr>
 		<tr>
 			<td style="text-align:right;">1</td>
-			<td>装備ID</td>
-			<td>equipment_id</td>
+			<td>機体ID</td>
+			<td>ms_id</td>
 			<td>VARCHAR(8)</td>
 			<td>Yes (PK)</td>
 			<td></td>
@@ -81,27 +81,27 @@
 		</tr>
 		<tr>
 			<td style="text-align:right;">2</td>
-			<td>機体ID</td>
-			<td>ms_id</td>
+			<td>武器ID</td>
+			<td>arms_id</td>
 			<td>VARCHAR(8)</td>
-			<td>Yes</td>
+			<td>Yes (PK)</td>
 			<td></td>
 			<td></td>
 		</tr>
 		<tr>
 			<td style="text-align:right;">3</td>
-			<td>武装ID</td>
-			<td>armed_id</td>
-			<td>VARCHAR(8)</td>
-			<td>Yes</td>
+			<td>装備数</td>
+			<td>number_equipment</td>
+			<td>INTEGER</td>
+			<td>&nbsp;</td>
 			<td></td>
 			<td></td>
 		</tr>
 		<tr>
 			<td style="text-align:right;">4</td>
-			<td>装備数</td>
-			<td>number_equipment</td>
-			<td>INTEGER</td>
+			<td>詳細</td>
+			<td>detail</td>
+			<td>TEXT</td>
 			<td>&nbsp;</td>
 			<td></td>
 			<td></td>
@@ -148,9 +148,9 @@
 		<tr>
 			<td style="text-align:right;">1</td>
 			<td></td>
-			<td>armed_id</td>
-			<td>Armed</td>
-			<td>armed_id</td>
+			<td>arms_id</td>
+			<td>Arms</td>
+			<td>arms_id</td>
 		</tr>
 		<tr>
 			<td style="text-align:right;">2</td>
