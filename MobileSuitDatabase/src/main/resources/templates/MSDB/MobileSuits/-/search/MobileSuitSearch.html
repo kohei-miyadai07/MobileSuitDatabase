@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-  <head>
+<html xmlns:th="http://www.thymeleaf.org" class="h-100">
+  <head th:replace="common/common :: meta_head">
     <title>モビルスーツ検索</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   </head>
-
-  <body>
-    <h1>モビルスーツ検索</h1>
+  <body class="h-100">
+    <div th:replace="common/common :: header"></div>
+    <div class="container-fluid">
+      <div class="row">
+        <div th:replace="common/common :: sidebar"></div>
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
+          <h1>モビルスーツ検索</h1>
     <div class="msSearch">
       <form
         action="#"
@@ -55,6 +58,9 @@
         </p>
         <p><input type="button" value="戻る" onclick="history.back();" /></p>
       </form>
+    </div>
+        </main>
+      </div>
     </div>
     <style>
       .msSearch label,
