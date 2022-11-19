@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-
-<head>
+<html xmlns:th="http://www.thymeleaf.org" class="h-100">
+  <head th:replace="common/common :: meta_head">
     <title>更新結果</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-</head>
-
-<body>
-    <span th:text="${message}"></span>
-    <a href="#" th:href="@{${url}}">一覧画面に戻る</a>
-</body>
-
+  </head>
+  <body class="h-100">
+    <div th:replace="common/common :: header"></div>
+    <div class="container-fluid">
+      <div class="row">
+        <div th:replace="common/common :: sidebar"></div>
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
+          <span th:text="${message}"></span>
+          <a href="#" th:href="@{${url}}">一覧画面に戻る</a>
+        </main>
+      </div>
+    </div>
+  </body>
 </html>

@@ -1,31 +1,49 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-
-<head>
+<html xmlns:th="http://www.thymeleaf.org" class="h-100">
+  <head th:replace="common/common :: meta_head">
     <title>武器登録</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-</head>
-
-<body>
-    <h1>武器登録</h1>
-    <div id="ArmsRegister">
-        <form action="#" th:action="@{/MSDB/Arms/-/new}" th:object="${armsRegistForm}" method="post">
-            <label class="label" for="armsName">武器名</label>
-            <input type="text" th:field="*{armsName}" />
-            <label class="label" for="detail">詳細</label>
-            <textarea rows="5" placeholder="詳細" th:field="*{detail}"></textarea>
-            <p><button type="submit">登録</button><button type="reset">リセット</button></p>
-            <p><input type="button" value="戻る" onclick="history.back();" /></p>
-        </form>
+  </head>
+  <body class="h-100">
+    <div th:replace="common/common :: header"></div>
+    <div class="container-fluid">
+      <div class="row">
+        <div th:replace="common/common :: sidebar"></div>
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
+          <h1>武器登録</h1>
+          <div id="ArmsRegister">
+            <form
+              action="#"
+              th:action="@{/MSDB/Arms/-/new}"
+              th:object="${armsRegistForm}"
+              method="post"
+            >
+              <label class="label" for="armsName">武器名</label>
+              <input type="text" th:field="*{armsName}" />
+              <label class="label" for="detail">詳細</label>
+              <textarea
+                rows="5"
+                placeholder="詳細"
+                th:field="*{detail}"
+              ></textarea>
+              <p>
+                <button type="submit">登録</button
+                ><button type="reset">リセット</button>
+              </p>
+              <p>
+                <input type="button" value="戻る" onclick="history.back();" />
+              </p>
+            </form>
+          </div>
+        </main>
+      </div>
     </div>
     <style>
-        #ArmsRegister label,
-        input,
-        textarea,
-        p {
-          display: block;
-        }
-      </style>
-</body>
-
+      #ArmsRegister label,
+      input,
+      textarea,
+      p {
+        display: block;
+      }
+    </style>
+  </body>
 </html>

@@ -1,27 +1,40 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>武器一覧</title>
-    </head>
-    <body>
-        <h1>武器一覧</h1>
-        <p><a th:href="@{/MSDB/Arms/-/new}">新規登録</a></p>
-        <table border="1">
+<html xmlns:th="http://www.thymeleaf.org" class="h-100">
+  <head th:replace="common/common :: meta_head">
+    <title>武器一覧</title>
+  </head>
+  <body class="h-100">
+    <div th:replace="common/common :: header"></div>
+    <div class="container-fluid">
+      <div class="row">
+        <div th:replace="common/common :: sidebar"></div>
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
+          <h1>武器一覧</h1>
+          <p><a th:href="@{/MSDB/Arms/-/new}">新規登録</a></p>
+          <table border="1">
             <tr>
-                <th>武器ID</th>
-                <th>武器名</th>
-                <th>詳細</th>
-                <th></th>
+              <th>武器ID</th>
+              <th>武器名</th>
+              <th>詳細</th>
+              <th></th>
             </tr>
             <tr th:each="arms : ${armsList}">
-                <td th:text="${arms.armsId}"></td>
-                <td th:text="${arms.armsName}"></td>
-                <td th:text="${arms.detail}"></td>
-                <td><a th:href="@{'/MSDB/Arms/' + ${arms.armsId} + '/edit'}">編集</a></td>
+              <td th:text="${arms.armsId}"></td>
+              <td th:text="${arms.armsName}"></td>
+              <td th:text="${arms.detail}"></td>
+              <td>
+                <a th:href="@{'/MSDB/Arms/' + ${arms.armsId} + '/edit'}"
+                  >編集</a
+                >
+              </td>
             </tr>
-        </table>
-        <p><a th:href="@{/MSDB/Arms/-/search}">検索画面へ</a><br>
+          </table>
+          <p>
+            <a th:href="@{/MSDB/Arms/-/search}">検索画面へ</a><br />
             <a th:href="@{/}">トップページへ</a>
-        </p>
-    </body>
+          </p>
+        </main>
+      </div>
+    </div>
+  </body>
 </html>
