@@ -1,6 +1,7 @@
 package jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.mobilesuit;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -53,12 +54,12 @@ public class UpdateMobileSuitController {
 				.msMultipartFile(updateMobileSuitForm.getMsMultipartFile())
 				.build();
 
-		String message = updateMobileSuitUseCase.execute(command);
+		updateMobileSuitUseCase.execute(command);
 
-		model.addAttribute("message", message);
-		model.addAttribute("url", "/MSDB/MobileSuits");
+		List<MobileSuitModel> msModelList = mobileSuitQuery.getMobileSuitList();
+		model.addAttribute("mobilesuits", msModelList);
 
-		return "/MSDB/MobileSuits/msId/edit/EditResult";
+		return "/MSDB/MobileSuits/MobileSuitList";
 	}
 
 }

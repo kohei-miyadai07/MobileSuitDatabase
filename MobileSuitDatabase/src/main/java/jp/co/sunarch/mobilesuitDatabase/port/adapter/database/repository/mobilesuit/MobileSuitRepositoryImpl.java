@@ -24,25 +24,20 @@ public class MobileSuitRepositoryImpl implements MobileSuitRepository {
 	}
 
 	@Override
-	public int save(MobileSuit mobileSuit) {
-		int result;
-		
+	public void save(MobileSuit mobileSuit) {
 		MobileSuitEntity before = mobileSuitRepositoryDao.selectMobileSuitById(mobileSuit.getMsId().getValue());
 		if (before == null) {
 			MobileSuitEntity msEntity = mobileSuitConverter.domainToEntity(mobileSuit);
-			result = mobileSuitRepositoryDao.insert(msEntity);
+			mobileSuitRepositoryDao.insert(msEntity);
 		} else {
 			MobileSuitEntity msEntity = mobileSuitConverter.domainToEntity(mobileSuit);
-			result = mobileSuitRepositoryDao.update(msEntity);
+			mobileSuitRepositoryDao.update(msEntity);
 		}
-
-		return result;
 	}
 
 	@Override
-	public int deleteMobileSuitById(String msId) {
-		
-		return mobileSuitRepositoryDao.deleteById(msId);
+	public void deleteMobileSuitById(String msId) {
+		mobileSuitRepositoryDao.deleteById(msId);
 	}
 
 }

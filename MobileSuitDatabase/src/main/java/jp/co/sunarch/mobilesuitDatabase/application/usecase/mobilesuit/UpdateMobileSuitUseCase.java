@@ -17,7 +17,7 @@ public class UpdateMobileSuitUseCase {
 	private final MobileSuitQueryService mobileSuitQueryService;
 	private final MobileSuitRecodeService mobileSuitRecodeService;
 
-	public String execute(UpdateMobileSuitCommand command) {
+	public void execute(UpdateMobileSuitCommand command) {
 		// 更新対象のMobileSuitを取得
 		MobileSuit mobileSuit = mobileSuitQueryService.getMobileSuitById(command.getMsId());
 
@@ -46,7 +46,7 @@ public class UpdateMobileSuitUseCase {
 			mobileSuitRecodeService.updateImageFile(command.getMsMultipartFile());
 		}
 
-		return mobileSuitRecodeService.updateMobileSuit(mobileSuit);
+		mobileSuitRecodeService.updateMobileSuit(mobileSuit);
 	}
 
 }
