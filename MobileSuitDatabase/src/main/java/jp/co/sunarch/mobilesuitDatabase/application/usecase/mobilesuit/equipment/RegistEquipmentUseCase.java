@@ -13,14 +13,14 @@ public class RegistEquipmentUseCase {
 
 	private final EquipmentRecodeService equipmentRecodeService;
 
-	public String exeute(RegistEquipmentCommand command) {
+	public void exeute(RegistEquipmentCommand command) {
 		Equipment equipment = Equipment.create(
 				command.getMsId(),
 				command.getArmsId(),
 				command.getNumberEquipment(), 
 				command.getDetail());
 
-		return equipmentRecodeService.registEquipment(equipment);
+		equipmentRecodeService.registEquipment(equipment);
 	}
 
 }
