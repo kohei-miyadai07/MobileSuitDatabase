@@ -24,25 +24,20 @@ public class ArmsRepositoryImpl implements ArmsRepository {
 	}
 
 	@Override
-	public int save(Arms arms) {
-		int result;
-
+	public void save(Arms arms) {
 		ArmsEntity before = armsRepositoryDao.selectArmsById(arms.getArmsId().getValue());
 		if (before == null) {
 			ArmsEntity armsEntity = armsConverter.domainToEntity(arms);
-			result = armsRepositoryDao.insert(armsEntity);
+			armsRepositoryDao.insert(armsEntity);
 		} else {
 			ArmsEntity armsEntity = armsConverter.domainToEntity(arms);
-			result = armsRepositoryDao.update(armsEntity);
+			armsRepositoryDao.update(armsEntity);
 		}
-
-		return result;
 	}
 
 	@Override
-	public int deleteArmsById(String armsId) {
-
-		return armsRepositoryDao.deleteById(armsId);
+	public void deleteArmsById(String armsId) {
+		armsRepositoryDao.deleteById(armsId);
 	}
 
 }

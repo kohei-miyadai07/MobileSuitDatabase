@@ -15,7 +15,7 @@ public class UpdateArmsUseCase {
 	private final ArmsQueryService armsQueryService;
 	private final ArmsRecodeService armsRecodeService;
 
-	public String execute (UpdateArmsCommand command) {
+	public void execute (UpdateArmsCommand command) {
 		// 更新対象のArmsを取得
 		Arms arms = armsQueryService.getArmsById(command.getArmsId());
 
@@ -23,6 +23,6 @@ public class UpdateArmsUseCase {
 		arms.setArmsName(command.getArmsName());
 		arms.setDetail(command.getDetail());
 
-		return armsRecodeService.updateArms(arms);
+		armsRecodeService.updateArms(arms);
 	}
 }

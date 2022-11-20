@@ -15,13 +15,13 @@ public class RegistArmsUseCase {
 
 	private final ArmsRecodeService armsRecodeService;
 
-	public String execute(RegistArmsCommand command) {
+	public void execute(RegistArmsCommand command) {
 		ArmsId armsId = ArmsId.of(RandomStringUtils.randomAlphanumeric(8));
 		Arms arms = Arms.create(
 				armsId
 				,command.getArmsName()
 				,command.getDetail());
 
-		return armsRecodeService.registArms(arms);
+		armsRecodeService.registArms(arms);
 	}
 }

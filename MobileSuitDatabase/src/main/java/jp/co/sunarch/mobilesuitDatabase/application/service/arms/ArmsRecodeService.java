@@ -12,34 +12,16 @@ public class ArmsRecodeService {
 
 	private final ArmsRepository armsRepository;
 
-	public String registArms(Arms arms) {
-		String message = null;
-
-		int result = armsRepository.save(arms);
-		if (result != 1) {
-			message = "登録処理に失敗しました。";
-		} else {
-			message = "登録処理に成功しました。";
-		}
-
-		return message;
+	public void registArms(Arms arms) {
+		armsRepository.save(arms);
 	}
 
-	public String updateArms(Arms arms) {
-		String message = null;
-
-		int result = armsRepository.save(arms);
-		if (result != 1) {
-			message = "更新処理に失敗しました。";
-		} else {
-			message = "更新処理に成功しました。";
-		}
-
-		return message;
+	public void updateArms(Arms arms) {
+		armsRepository.save(arms);
 	}
 
-	public int deleteArms(Arms arms) {
-		return armsRepository.deleteArmsById(arms.getArmsId().getValue());
+	public void deleteArms(Arms arms) {
+		armsRepository.deleteArmsById(arms.getArmsId().getValue());
 	}
 
 }

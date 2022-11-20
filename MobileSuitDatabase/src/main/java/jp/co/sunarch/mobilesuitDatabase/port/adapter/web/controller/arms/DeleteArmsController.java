@@ -1,5 +1,7 @@
 package jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.arms;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -8,12 +10,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import jp.co.sunarch.mobilesuitDatabase.application.command.arms.DeleteArmsCommand;
 import jp.co.sunarch.mobilesuitDatabase.application.usecase.arms.DeleteArmsUseCase;
 import jp.co.sunarch.mobilesuitDatabase.domain.model.arms.ArmsId;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.arms.ArmsModel;
 import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
 public class DeleteArmsController {
 
+	private final ArmsQuery armsQuery;
 	private final DeleteArmsUseCase deleteArmsUseCase;
 
 	@PostMapping("/MSDB/Arms/{armsId}/edit-delete")
@@ -22,12 +26,12 @@ public class DeleteArmsController {
 				.armsId(ArmsId.of(armsId))
 				.build();
 
-		String message = deleteArmsUseCase.execute(command);
+		deleteArmsUseCase.execute(command);
 
-		model.addAttribute("message", message);
-		model.addAttribute("url", "/MSDB/Arms");
+		List<ArmsModel> armsModelList = armsQuery.getArmsList();
+		model.addAttribute("armsList", armsModelList);
 
-		return "/MSDB/Arms/armsId/edit/DeleteResult";
+		return "/MSDB/Arms/ArmsList";
 	}
 
 }
