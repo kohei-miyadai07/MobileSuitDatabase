@@ -17,8 +17,8 @@
               th:object="${armsSearchForm}"
               method="post"
             >
-              <label class="label" for="armsName">武装名</label>
-              <input type="text" th:field="*{armsName}" />
+              <label class="form-label" for="armsName">武装名</label>
+              <input type="text" class="form-control" th:field="*{armsName}" />
               <p>
                 <button type="submit">検索</button
                 ><button type="reset">リセット</button>
@@ -31,13 +31,5 @@
         </main>
       </div>
     </div>
-    <style>
-      .ArmsSearch label,
-      input,
-      textarea,
-      p {
-        display: block;
-      }
-    </style>
   </body>
 </html>

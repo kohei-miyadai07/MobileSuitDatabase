@@ -17,10 +17,11 @@
               th:object="${armsRegistForm}"
               method="post"
             >
-              <label class="label" for="armsName">武器名</label>
-              <input type="text" th:field="*{armsName}" />
-              <label class="label" for="detail">詳細</label>
+              <label class="form-label" for="armsName">武器名</label>
+              <input type="text" class="form-control" th:field="*{armsName}" />
+              <label class="form-label" for="detail">詳細</label>
               <textarea
+                class="form-control"
                 rows="5"
                 placeholder="詳細"
                 th:field="*{detail}"
@@ -37,13 +38,5 @@
         </main>
       </div>
     </div>
-    <style>
-      #ArmsRegister label,
-      input,
-      textarea,
-      p {
-        display: block;
-      }
-    </style>
   </body>
 </html>
