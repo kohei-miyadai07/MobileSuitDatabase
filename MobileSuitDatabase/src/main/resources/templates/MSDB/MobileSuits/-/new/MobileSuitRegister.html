@@ -18,48 +18,84 @@
               th:object="${msRegistForm}"
               method="post"
             >
-              <label class="label" for="msName">機体名</label>
-              <input type="text" th:field="*{msName}" />
-              <label class="label" for="modelNumber">型式番号</label>
-              <input type="text" th:field="*{modelNumber}" />
-              <label class="label" for="headHeight">頭高頂</label>
-              <input type="text" th:field="*{headHeight}" />
-              <label class="label" for="overallHeight">全高</label>
-              <input type="text" th:field="*{overallHeight}" />
-              <label class="label" for="weight">本体重量</label>
-              <input type="text" th:field="*{weight}" />
-              <label class="label" for="totalWeight">全備重量</label>
-              <input type="text" th:field="*{totalWeight}" />
-              <label class="label" for="powerSource">動力源</label>
-              <input type="text" th:field="*{powerSource}" />
-              <label class="label" for="material">装甲材質</label>
-              <input type="text" th:field="*{material}" />
-              <label class="label" for="effectiveSensorRadius"
+              <label class="form-label" for="msName">機体名</label>
+              <input type="text" class="form-control" th:field="*{msName}" />
+              <label class="form-label" for="modelNumber">型式番号</label>
+              <input
+                type="text"
+                class="form-control"
+                th:field="*{modelNumber}"
+              />
+              <label class="form-label" for="headHeight">頭高頂</label>
+              <input
+                type="text"
+                class="form-control"
+                th:field="*{headHeight}"
+              />
+              <label class="form-label" for="overallHeight">全高</label>
+              <input
+                type="text"
+                class="form-control"
+                th:field="*{overallHeight}"
+              />
+              <label class="form-label" for="weight">本体重量</label>
+              <input type="text" class="form-control" th:field="*{weight}" />
+              <label class="form-label" for="totalWeight">全備重量</label>
+              <input
+                type="text"
+                class="form-control"
+                th:field="*{totalWeight}"
+              />
+              <label class="form-label" for="powerSource">動力源</label>
+              <input
+                type="text"
+                class="form-control"
+                th:field="*{powerSource}"
+              />
+              <label class="form-label" for="material">装甲材質</label>
+              <input type="text" class="form-control" th:field="*{material}" />
+              <label class="form-label" for="effectiveSensorRadius"
                 >センサー有効半径</label
               >
-              <input type="text" th:field="*{effectiveSensorRadius}" />
-              <label class="label" for="generatorOutput"
+              <input
+                type="text"
+                class="form-control"
+                th:field="*{effectiveSensorRadius}"
+              />
+              <label class="form-label" for="generatorOutput"
                 >ジェネレーター出力</label
               >
-              <input type="text" th:field="*{generatorOutput}" />
-              <label class="label" for="totalThrustersOutput"
+              <input
+                type="text"
+                class="form-control"
+                th:field="*{generatorOutput}"
+              />
+              <label class="form-label" for="totalThrustersOutput"
                 >スラスター総推力</label
               >
-              <input type="text" th:field="*{totalThrustersOutput}" />
-              <label class="label" for="msOverview">機体概要</label>
+              <input
+                type="text"
+                class="form-control"
+                th:field="*{totalThrustersOutput}"
+              />
+              <label class="form-label" for="msOverview">機体概要</label>
               <textarea
+                class="form-control"
                 rows="5"
                 placeholder="機体概要"
                 th:field="*{msOverview}"
               ></textarea>
-              <label class="label" for="action">活躍</label>
+              <label class="form-label" for="action">活躍</label>
               <textarea
+                class="form-control"
                 rows="5"
                 placeholder="活躍"
                 th:field="*{action}"
               ></textarea>
-              <label class="label" for="msMultipartFile">画像ファイル</label>
-              <input type="file" th:field="*{msMultipartFile}" />
+              <label class="form-label" for="msMultipartFile"
+                >画像ファイル</label
+              >
+              <input type="file" class="form-control-file" th:field="*{msMultipartFile}" />
               <p>
                 <button type="submit">登録</button
                 ><button type="reset">リセット</button>
