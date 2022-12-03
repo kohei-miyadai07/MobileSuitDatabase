@@ -15,25 +15,25 @@
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th scope="col">モビルスーツID</th>
-                  <th scope="col">機体名</th>
-                  <th scope="col">武器ID</th>
-                  <th scope="col">武器名</th>
-                  <th scope="col">装備数</th>
-                  <th scope="col">詳細</th>
-                  <th scope="col">#</th>
+                  <th class="text-nowrap" scope="col">機体名</th>
+                  <th class="text-nowrap" scope="col">武器名</th>
+                  <th class="text-nowrap" scope="col">装備数</th>
+                  <th class="text-nowrap" scope="col">詳細</th>
+                  <th class="text-nowrap" scope="col">#</th>
                 </tr>
               </thead>
               <tbody>
                 <tr th:each="equipment : ${equipments}">
-                  <td th:text="${equipment.msId}"></td>
-                  <td th:text="${equipment.msName}"></td>
-                  <td th:text="${equipment.armsId}"></td>
-                  <td th:text="${equipment.armsName}"></td>
-                  <td th:text="${equipment.numberEquipment}"></td>
+                  <td class="text-nowrap" th:text="${equipment.msName}"></td>
+                  <td class="text-nowrap" th:text="${equipment.armsName}"></td>
+                  <td
+                    class="text-nowrap"
+                    th:text="${equipment.numberEquipment}"
+                  ></td>
                   <td th:text="${equipment.detail}"></td>
                   <td>
                     <a
+                      class="text-nowrap"
                       th:href="@{'/MSDB/MobileSuits/Equipments/' + ${equipment.msId} + '/' + ${equipment.armsId} + '/edit'}"
                       >編集</a
                     >

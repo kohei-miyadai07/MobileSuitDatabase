@@ -15,27 +15,44 @@
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th scope="col">モビルスーツID</th>
-                  <th scope="col">型式番号</th>
-                  <th scope="col">機体名</th>
-                  <th scope="col">登録日時</th>
-                  <th scope="col">更新日時</th>
-                  <th scope="col">#</th>
+                  <th class="text-nowrap" scope="col">モビルスーツID</th>
+                  <th class="text-nowrap" scope="col">型式番号</th>
+                  <th class="text-nowrap" scope="col">機体名</th>
+                  <th class="text-nowrap" scope="col">登録日時</th>
+                  <th class="text-nowrap" scope="col">更新日時</th>
+                  <th class="text-nowrap" scope="col">#</th>
                 </tr>
               </thead>
               <tbody>
                 <tr th:each="mobilesuit : ${mobilesuits}">
-                  <th th:text="${mobilesuit.msId}" scope="row"></th>
-                  <td th:text="${mobilesuit.modelNumber}"></td>
+                  <th
+                    class="text-nowrap"
+                    th:text="${mobilesuit.msId}"
+                    scope="row"
+                  ></th>
+                  <td
+                    class="text-nowrap"
+                    th:text="${mobilesuit.modelNumber}"
+                  ></td>
                   <td>
                     <a th:href="@{'/MSDB/MobileSuits/' + ${mobilesuit.msId}}"
-                      ><span th:text="${mobilesuit.msName}"></span
+                      ><span
+                        class="text-nowrap"
+                        th:text="${mobilesuit.msName}"
+                      ></span
                     ></a>
                   </td>
-                  <td th:text="${mobilesuit.insertDate}"></td>
-                  <td th:text="${mobilesuit.updateDate}"></td>
+                  <td
+                    class="text-nowrap"
+                    th:text="${mobilesuit.insertDate}"
+                  ></td>
+                  <td
+                    class="text-nowrap"
+                    th:text="${mobilesuit.updateDate}"
+                  ></td>
                   <td>
                     <a
+                      class="text-nowrap"
                       th:href="@{'/MSDB/MobileSuits/' + ${mobilesuit.msId} + '/edit'}"
                       >編集</a
                     >

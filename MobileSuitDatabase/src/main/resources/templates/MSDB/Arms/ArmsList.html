@@ -15,19 +15,25 @@
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th scope="col">武器ID</th>
-                  <th scope="col">武器名</th>
-                  <th scope="col">詳細</th>
-                  <th scope="col">#</th>
+                  <th class="text-nowrap" scope="col">武器ID</th>
+                  <th class="text-nowrap" scope="col">武器名</th>
+                  <th class="text-nowrap" scope="col">詳細</th>
+                  <th class="text-nowrap" scope="col">#</th>
                 </tr>
               </thead>
               <tbody>
                 <tr th:each="arms : ${armsList}">
-                  <th th:text="${arms.armsId}" scope="row"></th>
-                  <td th:text="${arms.armsName}"></td>
+                  <th
+                    class="text-nowrap"
+                    th:text="${arms.armsId}"
+                    scope="row"
+                  ></th>
+                  <td class="text-nowrap" th:text="${arms.armsName}"></td>
                   <td th:text="${arms.detail}"></td>
                   <td>
-                    <a th:href="@{'/MSDB/Arms/' + ${arms.armsId} + '/edit'}"
+                    <a
+                      class="text-nowrap"
+                      th:href="@{'/MSDB/Arms/' + ${arms.armsId} + '/edit'}"
                       >編集</a
                     >
                   </td>
