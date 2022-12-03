@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" class="h-100">
+<html xmlns:th="http://www.thymeleaf.org">
   <head th:replace="common/common :: meta_head">
     <title>装備検索</title>
   </head>
@@ -17,10 +17,10 @@
               th:object="${equipmentSearchForm}"
               method="post"
             >
-              <label class="label" for="msName">機体名</label>
-              <input type="text" th:field="*{msName}" />
-              <label class="label" for="armsName">武装名</label>
-              <input type="text" th:field="*{armsName}" />
+              <label class="form-label" for="msName">機体名</label>
+              <input type="text" class="form-control" th:field="*{msName}" />
+              <label class="form-label" for="armsName">武装名</label>
+              <input type="text" class="form-control" th:field="*{armsName}" />
               <p>
                 <button type="submit">検索</button
                 ><button type="reset">リセット</button>
@@ -33,13 +33,5 @@
         </main>
       </div>
     </div>
-    <style>
-      .equipmentSearch label,
-      input,
-      textarea,
-      p {
-        display: block;
-      }
-    </style>
   </body>
 </html>

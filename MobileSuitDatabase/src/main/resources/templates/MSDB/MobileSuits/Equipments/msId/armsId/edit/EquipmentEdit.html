@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" class="h-100">
+<html xmlns:th="http://www.thymeleaf.org">
   <head th:replace="common/common :: meta_head">
     <title>装備編集</title>
   </head>
@@ -17,14 +17,23 @@
               th:object="${equipmentEditForm}"
               method="post"
             >
-              <label class="label" for="msName">機体名</label>
+              <label class="form-label" for="msName">機体名</label>
               <p th:text="*{msName}"></p>
-              <label class="label" for="armsName">武器名</label>
+              <label class="form-label" for="armsName">武器名</label>
               <p th:text="*{armsName}"></p>
-              <label class="label" for="numberEquipment">装備数</label>
-              <input type="text" th:field="*{numberEquipment}" />
-              <label class="label" for="detail">詳細</label>
-              <input type="text" th:field="*{detail}" />
+              <label class="form-label" for="numberEquipment">装備数</label>
+              <input
+                type="text"
+                class="form-control"
+                th:field="*{numberEquipment}"
+              />
+              <label class="form-label" for="detail">詳細</label>
+              <textarea
+                class="form-control"
+                rows="5"
+                placeholder="詳細"
+                th:field="*{detail}"
+              ></textarea>
               <p>
                 <button type="submit">更新</button
                 ><button type="reset">リセット</button>
@@ -45,13 +54,5 @@
         </main>
       </div>
     </div>
-    <style>
-      #equipmentEdit label,
-      select,
-      input,
-      p {
-        display: block;
-      }
-    </style>
   </body>
 </html>
