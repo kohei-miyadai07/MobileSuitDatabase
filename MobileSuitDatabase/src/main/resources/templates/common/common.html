@@ -79,10 +79,11 @@
         <ul class="nav flex-column">
           <li class="nav-item">
             <button
-              class="btn btn-toggle d-inline-flex align-items-center rounded border-0"
+              class="btn d-inline-flex align-items-center border-0 collapsed"
               data-bs-toggle="collapse"
               data-bs-target="#mobilesuit-collapse"
               aria-expanded="false"
+              aria-controls="mobilesuit-collapse"
             >
               モビルスーツ
             </button>
@@ -104,12 +105,22 @@
             </div>
           </li>
           <li class="nav-item">
-            <a
-              class="nav-link"
-              th:href="@{'/MSDB/Arms'}"
-              style="padding-left: 12px; padding-right: 12px"
-              >武器</a
+            <button
+              class="btn d-inline-flex align-items-center border-0 collapsed"
+              data-bs-toggle="collapse"
+              data-bs-target="#arms-collapse"
+              aria-expanded="false"
+              aria-controls="arms-collapse"
             >
+              武器
+            </button>
+            <div class="collapse" id="arms-collapse">
+              <ul class="nav flex-column">
+                <li class="nav-item">
+                  <a class="nav-link" th:href="@{'/MSDB/Arms'}">武器</a>
+                </li>
+              </ul>
+            </div>
           </li>
         </ul>
       </div>
