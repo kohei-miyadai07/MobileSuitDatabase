@@ -78,49 +78,17 @@
       <div class="position-sticky">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <button
-              class="btn d-inline-flex align-items-center border-0 collapsed"
-              data-bs-toggle="collapse"
-              data-bs-target="#mobilesuit-collapse"
-              aria-expanded="false"
-              aria-controls="mobilesuit-collapse"
+            <a class="nav-link" th:href="@{'/MSDB/MobileSuits'}"
+              >モビルスーツ</a
             >
-              モビルスーツ
-            </button>
-            <div class="collapse" id="mobilesuit-collapse">
-              <ul class="nav flex-column">
-                <li class="nav-item">
-                  <a class="nav-link" th:href="@{'/MSDB/MobileSuits'}"
-                    >モビルスーツ</a
-                  >
-                </li>
-                <li class="nav-item">
-                  <a
-                    class="nav-link"
-                    th:href="@{'/MSDB/MobileSuits/Equipments'}"
-                    >装備</a
-                  >
-                </li>
-              </ul>
-            </div>
           </li>
           <li class="nav-item">
-            <button
-              class="btn d-inline-flex align-items-center border-0 collapsed"
-              data-bs-toggle="collapse"
-              data-bs-target="#arms-collapse"
-              aria-expanded="false"
-              aria-controls="arms-collapse"
+            <a class="nav-link" th:href="@{'/MSDB/MobileSuits/Equipments'}"
+              >装備</a
             >
-              武器
-            </button>
-            <div class="collapse" id="arms-collapse">
-              <ul class="nav flex-column">
-                <li class="nav-item">
-                  <a class="nav-link" th:href="@{'/MSDB/Arms'}">武器</a>
-                </li>
-              </ul>
-            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{'/MSDB/Arms'}">武器</a>
           </li>
         </ul>
       </div>
