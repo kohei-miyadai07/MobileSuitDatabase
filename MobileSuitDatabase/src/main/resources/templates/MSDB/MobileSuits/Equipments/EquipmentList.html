@@ -33,7 +33,8 @@
                   <td th:text="${equipment.detail}"></td>
                   <td>
                     <a
-                      class="text-nowrap"
+                      class="btn btn-primary btn-sm text-nowrap"
+                      role="button"
                       th:href="@{'/MSDB/MobileSuits/Equipments/' + ${equipment.msId} + '/' + ${equipment.armsId} + '/edit'}"
                       >編集</a
                     >
