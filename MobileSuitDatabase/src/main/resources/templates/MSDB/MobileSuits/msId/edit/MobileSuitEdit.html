@@ -97,15 +97,16 @@
               >
               <input type="file" class="form-control" th:field="*{msMultipartFile}" />
               <p>
-                <button type="submit">更新</button
-                ><button type="reset">リセット</button>
+                <button type="submit" class="btn btn-primary">更新</button
+                ><button type="reset" class="btn btn-link">リセット</button>
               </p>
               <p>
-                <input type="button" value="戻る" onclick="history.back();" />
+                <input type="button" class="btn btn-secondary" value="戻る" onclick="history.back();" />
               </p>
               <p>
                 <button
                   type="submit"
+                  class="btn btn-outline-danger"
                   th:formaction="@{'/MSDB/MobileSuits/' + *{msId} + '/edit-delete'}"
                 >
                   削除
