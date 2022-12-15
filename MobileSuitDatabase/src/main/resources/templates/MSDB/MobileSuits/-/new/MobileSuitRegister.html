@@ -18,90 +18,214 @@
               th:object="${msRegistForm}"
               method="post"
             >
-              <label class="form-label" for="msName">機体名</label>
-              <input type="text" class="form-control" th:field="*{msName}" />
-              <label class="form-label" for="modelNumber">型式番号</label>
-              <input
-                type="text"
-                class="form-control"
-                th:field="*{modelNumber}"
-              />
-              <label class="form-label" for="headHeight">頭高頂</label>
-              <input
-                type="text"
-                class="form-control"
-                th:field="*{headHeight}"
-              />
-              <label class="form-label" for="overallHeight">全高</label>
-              <input
-                type="text"
-                class="form-control"
-                th:field="*{overallHeight}"
-              />
-              <label class="form-label" for="weight">本体重量</label>
-              <input type="text" class="form-control" th:field="*{weight}" />
-              <label class="form-label" for="totalWeight">全備重量</label>
-              <input
-                type="text"
-                class="form-control"
-                th:field="*{totalWeight}"
-              />
-              <label class="form-label" for="powerSource">動力源</label>
-              <input
-                type="text"
-                class="form-control"
-                th:field="*{powerSource}"
-              />
-              <label class="form-label" for="material">装甲材質</label>
-              <input type="text" class="form-control" th:field="*{material}" />
-              <label class="form-label" for="effectiveSensorRadius"
-                >センサー有効半径</label
-              >
-              <input
-                type="text"
-                class="form-control"
-                th:field="*{effectiveSensorRadius}"
-              />
-              <label class="form-label" for="generatorOutput"
-                >ジェネレーター出力</label
-              >
-              <input
-                type="text"
-                class="form-control"
-                th:field="*{generatorOutput}"
-              />
-              <label class="form-label" for="totalThrustersOutput"
-                >スラスター総推力</label
-              >
-              <input
-                type="text"
-                class="form-control"
-                th:field="*{totalThrustersOutput}"
-              />
-              <label class="form-label" for="msOverview">機体概要</label>
-              <textarea
-                class="form-control"
-                rows="5"
-                placeholder="機体概要"
-                th:field="*{msOverview}"
-              ></textarea>
-              <label class="form-label" for="action">活躍</label>
-              <textarea
-                class="form-control"
-                rows="5"
-                placeholder="活躍"
-                th:field="*{action}"
-              ></textarea>
-              <label class="form-label" for="msMultipartFile"
-                >画像ファイル</label
-              >
-              <input type="file" class="form-control" th:field="*{msMultipartFile}" />
+              <div class="row">
+                <div class="col-md-3">
+                  <h2 class="h5">機体名</h2>
+                </div>
+                <div class="col-md-9">
+                  <input
+                    type="text"
+                    class="form-control"
+                    th:field="*{msName}"
+                  />
+                </div>
+              </div>
+              <div class="mb-5"></div>
+              <div class="row">
+                <div class="col-md-3">
+                  <h2 class="h5">型式番号</h2>
+                </div>
+                <div class="col-md-9">
+                  <input
+                    type="text"
+                    class="form-control"
+                    th:field="*{modelNumber}"
+                  />
+                </div>
+              </div>
+              <div class="mb-5"></div>
+              <div class="row">
+                <div class="col-md-3">
+                  <h2 class="h5">頭高頂</h2>
+                </div>
+                <div class="col-md-9">
+                  <input
+                    type="text"
+                    class="form-control"
+                    th:field="*{headHeight}"
+                  />
+                </div>
+              </div>
+              <div class="mb-5"></div>
+              <div class="row">
+                <div class="col-md-3">
+                  <h2 class="h5">全高</h2>
+                </div>
+                <div class="col-md-9">
+                  <input
+                    type="text"
+                    class="form-control"
+                    th:field="*{overallHeight}"
+                  />
+                </div>
+              </div>
+              <div class="mb-5"></div>
+              <div class="row">
+                <div class="col-md-3">
+                  <h2 class="h5">本体重量</h2>
+                </div>
+                <div class="col-md-9">
+                  <input
+                    type="text"
+                    class="form-control"
+                    th:field="*{weight}"
+                  />
+                </div>
+              </div>
+              <div class="mb-5"></div>
+              <div class="row">
+                <div class="col-md-3">
+                  <h2 class="h5">全備重量</h2>
+                </div>
+                <div class="col-md-9">
+                  <input
+                    type="text"
+                    class="form-control"
+                    th:field="*{totalWeight}"
+                  />
+                </div>
+              </div>
+              <div class="mb-5"></div>
+              <div class="row">
+                <div class="col-md-3">
+                  <h2 class="h5">動力源</h2>
+                </div>
+                <div class="col-md-9">
+                  <input
+                    type="text"
+                    class="form-control"
+                    th:field="*{powerSource}"
+                  />
+                </div>
+              </div>
+              <div class="mb-5"></div>
+              <div class="row">
+                <div class="col-md-3">
+                  <h2 class="h5">動力源</h2>
+                </div>
+                <div class="col-md-9">
+                  <input
+                    type="text"
+                    class="form-control"
+                    th:field="*{powerSource}"
+                  />
+                </div>
+              </div>
+              <div class="mb-5"></div>
+              <div class="row">
+                <div class="col-md-3">
+                  <h2 class="h5">装甲材質</h2>
+                </div>
+                <div class="col-md-9">
+                  <input
+                    type="text"
+                    class="form-control"
+                    th:field="*{material}"
+                  />
+                </div>
+              </div>
+              <div class="mb-5"></div>
+              <div class="row">
+                <div class="col-md-3">
+                  <h2 class="h5">センサー有効半径</h2>
+                </div>
+                <div class="col-md-9">
+                  <input
+                    type="text"
+                    class="form-control"
+                    th:field="*{effectiveSensorRadius}"
+                  />
+                </div>
+              </div>
+              <div class="mb-5"></div>
+              <div class="row">
+                <div class="col-md-3">
+                  <h2 class="h5">ジェネレーター出力</h2>
+                </div>
+                <div class="col-md-9">
+                  <input
+                    type="text"
+                    class="form-control"
+                    th:field="*{generatorOutput}"
+                  />
+                </div>
+              </div>
+              <div class="mb-5"></div>
+              <div class="row">
+                <div class="col-md-3">
+                  <h2 class="h5">スラスター総推力</h2>
+                </div>
+                <div class="col-md-9">
+                  <input
+                    type="text"
+                    class="form-control"
+                    th:field="*{totalThrustersOutput}"
+                  />
+                </div>
+              </div>
+              <div class="mb-5"></div>
+              <div class="row">
+                <div class="col-md-3">
+                  <h2 class="h5">機体概要</h2>
+                </div>
+                <div class="col-md-9">
+                  <textarea
+                    class="form-control"
+                    rows="5"
+                    placeholder="機体概要"
+                    th:field="*{msOverview}"
+                  ></textarea>
+                </div>
+              </div>
+              <div class="mb-5"></div>
+              <div class="row">
+                <div class="col-md-3">
+                  <h2 class="h5">活躍</h2>
+                </div>
+                <div class="col-md-9">
+                  <textarea
+                    class="form-control"
+                    rows="5"
+                    placeholder="活躍"
+                    th:field="*{action}"
+                  ></textarea>
+                </div>
+              </div>
+              <div class="mb-5"></div>
+              <div class="row">
+                <div class="col-md-3">
+                  <h2 class="h5">画像ファイル</h2>
+                </div>
+                <div class="col-md-9">
+                  <input
+                    type="file"
+                    class="form-control"
+                    th:field="*{msMultipartFile}"
+                  />
+                </div>
+              </div>
+              <div class="mb-5"></div>
               <p>
                 <button type="submit" class="btn btn-primary">登録</button
                 ><button type="reset" class="btn btn-link">リセット</button>
               </p>
               <p>
-                <input type="button" class="btn btn-secondary" value="戻る" onclick="history.back();" />
+                <input
+                  type="button"
+                  class="btn btn-secondary"
+                  value="戻る"
+                  onclick="history.back();"
+                />
               </p>
             </form>
           </div>
@@ -109,4 +233,9 @@
       </div>
     </div>
   </body>
+  <style>
+    #msRegister {
+      width: 60%;
+    }
+  </style>
 </html>

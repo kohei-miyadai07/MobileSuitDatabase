@@ -10,116 +10,247 @@
         <div th:replace="common/common :: sidebar"></div>
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
           <h1>モビルスーツ検索</h1>
-    <div class="msSearch">
-      <form
-        action="#"
-        th:action="@{/MSDB/MobileSuits/-/search}"
-        th:object="${msSearchForm}"
-        method="post"
-      >
-        <label class="form-label" for="modelNumber">型式番号</label>
-        <input type="text" class="form-control" th:field="*{modelNumber}" />
-        <label class="form-label" for="msName">機体名</label>
-        <input type="text" class="form-control" th:field="*{msName}" />
-        <div class="row">
-          <label class="form-label" for="headHeight">頭高頂</label>
-          <div class="col-sm">
-            <input type="text" class="form-control" th:field="*{headHeightFrom}" />
+          <div id="msSearch">
+            <form
+              action="#"
+              th:action="@{/MSDB/MobileSuits/-/search}"
+              th:object="${msSearchForm}"
+              method="post"
+            >
+              <div class="row">
+                <div class="col-md-3">
+                  <h2 class="h5">型式番号</h2>
+                </div>
+                <div class="col-md-9">
+                  <input
+                    type="text"
+                    class="form-control"
+                    th:field="*{modelNumber}"
+                  />
+                </div>
+              </div>
+              <div class="mb-5"></div>
+              <div class="row">
+                <div class="col-md-3">
+                  <h2 class="h5">機体名</h2>
+                </div>
+                <div class="col-md-9">
+                  <input
+                    type="text"
+                    class="form-control"
+                    th:field="*{msName}"
+                  />
+                </div>
+              </div>
+              <div class="mb-5"></div>
+              <div class="row">
+                <div class="col-md-3">
+                  <h2 class="h5">頭高頂</h2>
+                </div>
+                <div class="col-md">
+                  <input
+                    type="text"
+                    class="form-control"
+                    th:field="*{headHeightFrom}"
+                  />
+                </div>
+                <div class="col-auto">
+                  <span class="form-control-plaintext">～</span>
+                </div>
+                <div class="col-md">
+                  <input
+                    type="text"
+                    class="form-control"
+                    th:field="*{headHeightTo}"
+                  />
+                </div>
+              </div>
+              <div class="mb-5"></div>
+              <div class="row">
+                <div class="col-md-3">
+                  <h2 class="h5">全高</h2>
+                </div>
+                <div class="col-md">
+                  <input
+                    type="text"
+                    class="form-control"
+                    th:field="*{overallHeightFrom}"
+                  />
+                </div>
+                <div class="col-auto">
+                  <span class="form-control-plaintext">～</span>
+                </div>
+                <div class="col-md">
+                  <input
+                    type="text"
+                    class="form-control"
+                    th:field="*{overallHeightTo}"
+                  />
+                </div>
+              </div>
+              <div class="mb-5"></div>
+              <div class="row">
+                <div class="col-md-3">
+                  <h2 class="h5">本体重量</h2>
+                </div>
+                <div class="col-md">
+                  <input
+                    type="text"
+                    class="form-control"
+                    th:field="*{weightFrom}"
+                  />
+                </div>
+                <div class="col-auto">
+                  <span class="form-control-plaintext">～</span>
+                </div>
+                <div class="col-md">
+                  <input
+                    type="text"
+                    class="form-control"
+                    th:field="*{weightTo}"
+                  />
+                </div>
+              </div>
+              <div class="mb-5"></div>
+              <div class="row">
+                <div class="col-md-3">
+                  <h2 class="h5">全備重量</h2>
+                </div>
+                <div class="col-md">
+                  <input
+                    type="text"
+                    class="form-control"
+                    th:field="*{totalWeightFrom}"
+                  />
+                </div>
+                <div class="col-auto">
+                  <span class="form-control-plaintext">～</span>
+                </div>
+                <div class="col-md">
+                  <input
+                    type="text"
+                    class="form-control"
+                    th:field="*{totalWeightTo}"
+                  />
+                </div>
+              </div>
+              <div class="mb-5"></div>
+              <div class="row">
+                <div class="col-md-3">
+                  <h2 class="h5">動力源</h2>
+                </div>
+                <div class="col-md-9">
+                  <input
+                    type="text"
+                    class="form-control"
+                    th:field="*{powerSource}"
+                  />
+                </div>
+              </div>
+              <div class="mb-5"></div>
+              <div class="row">
+                <div class="col-md-3">
+                  <h2 class="h5">装甲材質</h2>
+                </div>
+                <div class="col-md-9">
+                  <input
+                    type="text"
+                    class="form-control"
+                    th:field="*{material}"
+                  />
+                </div>
+              </div>
+              <div class="mb-5"></div>
+              <div class="row">
+                <div class="col-md-3">
+                  <h2 class="h5">センサー有効半径</h2>
+                </div>
+                <div class="col-md">
+                  <input
+                    type="text"
+                    class="form-control"
+                    th:field="*{effectiveSensorRadiusFrom}"
+                  />
+                </div>
+                <div class="col-auto">
+                  <span class="form-control-plaintext">～</span>
+                </div>
+                <div class="col-md">
+                  <input
+                    type="text"
+                    class="form-control"
+                    th:field="*{effectiveSensorRadiusTo}"
+                  />
+                </div>
+              </div>
+              <div class="mb-5"></div>
+              <div class="row">
+                <div class="col-md-3">
+                  <h2 class="h5">ジェネレーター出力</h2>
+                </div>
+                <div class="col-md">
+                  <input
+                    type="text"
+                    class="form-control"
+                    th:field="*{generatorOutputFrom}"
+                  />
+                </div>
+                <div class="col-auto">
+                  <span class="form-control-plaintext">～</span>
+                </div>
+                <div class="col-md">
+                  <input
+                    type="text"
+                    class="form-control"
+                    th:field="*{generatorOutputTo}"
+                  />
+                </div>
+              </div>
+              <div class="mb-5"></div>
+              <div class="row">
+                <div class="col-md-3">
+                  <h2 class="h5">スラスター総推力</h2>
+                </div>
+                <div class="col-md">
+                  <input
+                    type="text"
+                    class="form-control"
+                    th:field="*{totalThrustersOutputFrom}"
+                  />
+                </div>
+                <div class="col-auto">
+                  <span class="form-control-plaintext">～</span>
+                </div>
+                <div class="col-md">
+                  <input
+                    type="text"
+                    class="form-control"
+                    th:field="*{totalThrustersOutputTo}"
+                  />
+                </div>
+              </div>
+              <div class="mb-5"></div>
+              <p>
+                <button type="submit" class="btn btn-primary">検索</button
+                ><button type="reset" class="btn btn-link">リセット</button>
+              </p>
+              <p>
+                <input
+                  type="button"
+                  class="btn btn-secondary"
+                  value="戻る"
+                  onclick="history.back();"
+                />
+              </p>
+            </form>
           </div>
-          <div class="col-auto">
-            <span class="form-control-plaintext">～</span>
-          </div>
-          <div class="col-sm">
-            <input type="text" class="form-control" th:field="*{headHeightTo}" />
-          </div>
-        </div>
-        <div class="row">
-          <label class="form-label" for="overallHeight">全高</label>
-          <div class="col-sm">
-            <input type="text" class="form-control" th:field="*{overallHeightFrom}" />
-          </div>
-          <div class="col-auto">
-            <span class="form-control-plaintext">～</span>
-          </div>
-          <div class="col-sm">
-            <input type="text" class="form-control" th:field="*{overallHeightTo}" />
-          </div>
-        </div>
-        <div class="row">
-          <label class="form-label" for="weight">本体重量</label>
-          <div class="col-sm">
-            <input type="text" class="form-control" th:field="*{weightFrom}" />
-          </div>
-          <div class="col-auto">
-            <span class="form-control-plaintext">～</span>
-          </div>
-          <div class="col-sm">
-            <input type="text" class="form-control" th:field="*{weightTo}" />
-          </div>
-        </div>
-        <div class="row">
-          <label class="form-label" for="totalWeight">全備重量</label>
-          <div class="col-sm">
-            <input type="text" class="form-control" th:field="*{totalWeightFrom}" />
-          </div>
-          <div class="col-auto">
-            <span class="form-control-plaintext">～</span>
-          </div>
-          <div class="col-sm">
-            <input type="text" class="form-control" th:field="*{totalWeightTo}" />
-          </div>
-        </div>
-        <label class="form-label" for="powerSource">動力源</label>
-        <input type="text" class="form-control" th:field="*{powerSource}" />
-        <label class="form-label" for="material">装甲材質</label>
-        <input type="text" class="form-control" th:field="*{material}" />
-        <div class="row">
-          <label class="form-label" for="effectiveSensorRadius">センサー有効半径</label>
-          <div class="col-sm">
-            <input type="text" class="form-control" th:field="*{effectiveSensorRadiusFrom}" />
-          </div>
-          <div class="col-auto">
-            <span class="form-control-plaintext">～</span>
-          </div>
-          <div class="col-sm">
-            <input type="text" class="form-control" th:field="*{effectiveSensorRadiusTo}" />
-          </div>
-        </div>
-        <div class="row">
-          <label class="form-label" for="generatorOutput">ジェネレーター出力</label>
-          <div class="col-sm">
-            <input type="text" class="form-control" th:field="*{generatorOutputFrom}" />
-          </div>
-          <div class="col-auto">
-            <span class="form-control-plaintext">～</span>
-          </div>
-          <div class="col-sm">
-            <input type="text" class="form-control" th:field="*{generatorOutputTo}" />
-          </div>
-        </div>
-        <div class="row">
-          <label class="form-label" for="totalThrustersOutput"
-            >スラスター総推力</label
-          >
-          <div class="col-sm">
-            <input type="text" class="form-control" th:field="*{totalThrustersOutputFrom}" />
-          </div>
-          <div class="col-auto">
-            <span class="form-control-plaintext">～</span>
-          </div>
-          <div class="col-sm">
-            <input type="text" class="form-control" th:field="*{totalThrustersOutputTo}" />
-          </div>
-        </div>
-        <p>
-          <button type="submit" class="btn btn-primary">検索</button
-          ><button type="reset" class="btn btn-link">リセット</button>
-        </p>
-        <p><input type="button" class="btn btn-secondary" value="戻る" onclick="history.back();" /></p>
-      </form>
-    </div>
         </main>
       </div>
     </div>
   </body>
+  <style>
+    #msSearch {
+      width: 60%;
+    }
+  </style>
 </html>
