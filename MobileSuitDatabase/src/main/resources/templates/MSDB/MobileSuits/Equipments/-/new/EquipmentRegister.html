@@ -17,43 +17,76 @@
               th:object="${equipmentRegistForm}"
               method="post"
             >
-              <label class="form-label" for="msName">機体名</label>
-              <select class="form-select" id="msId" name="msId">
-                <option
-                  th:each="mobilesuit : *{msList}"
-                  th:value="${mobilesuit.msId}"
-                  th:text="${mobilesuit.msName}"
-                  th:select="${mobilesuit.msId} == *{msId}"
-                ></option>
-              </select>
-              <label class="form-label" for="armsName">武器名</label>
-              <select class="form-select" id="armsId" name="armsId">
-                <option
-                  th:each="arms : *{armsList}"
-                  th:value="${arms.armsId}"
-                  th:text="${arms.armsName}"
-                  th:select="${arms.armsId} == *{armsId}"
-                ></option>
-              </select>
-              <label class="form-label" for="numberEquipment">装備数</label>
-              <input
-                type="text"
-                class="form-control"
-                th:field="*{numberEquipment}"
-              />
-              <label class="form-label" for="detail">詳細</label>
-              <textarea
-                class="form-control"
-                rows="5"
-                placeholder="詳細"
-                th:field="*{detail}"
-              ></textarea>
+              <div class="row">
+                <div class="col-md-3">
+                  <h2 class="h5">機体名</h2>
+                </div>
+                <div class="col-md-9">
+                  <select class="form-select" id="msId" name="msId">
+                    <option
+                      th:each="mobilesuit : *{msList}"
+                      th:value="${mobilesuit.msId}"
+                      th:text="${mobilesuit.msName}"
+                      th:select="${mobilesuit.msId} == *{msId}"
+                    ></option>
+                  </select>
+                </div>
+              </div>
+              <div class="mb-5"></div>
+              <div class="row">
+                <div class="col-md-3">
+                  <h2 class="h5">武器名</h2>
+                </div>
+                <div class="col-md-9">
+                  <select class="form-select" id="armsId" name="armsId">
+                    <option
+                      th:each="arms : *{armsList}"
+                      th:value="${arms.armsId}"
+                      th:text="${arms.armsName}"
+                      th:select="${arms.armsId} == *{armsId}"
+                    ></option>
+                  </select>
+                </div>
+              </div>
+              <div class="mb-5"></div>
+              <div class="row">
+                <div class="col-md-3">
+                  <h2 class="h5">装備数</h2>
+                </div>
+                <div class="col-md-9">
+                  <input
+                    type="text"
+                    class="form-control"
+                    th:field="*{numberEquipment}"
+                  />
+                </div>
+              </div>
+              <div class="mb-5"></div>
+              <div class="row">
+                <div class="col-md-3">
+                  <h2 class="h5">詳細</h2>
+                </div>
+                <div class="col-md-9">
+                  <textarea
+                    class="form-control"
+                    rows="5"
+                    placeholder="詳細"
+                    th:field="*{detail}"
+                  ></textarea>
+                </div>
+              </div>
+              <div class="mb-5"></div>
               <p>
                 <button type="submit" class="btn btn-primary">登録</button
                 ><button type="reset" class="btn btn-link">リセット</button>
               </p>
               <p>
-                <input type="button"  class="btn btn-secondary" value="戻る" onclick="history.back();" />
+                <input
+                  type="button"
+                  class="btn btn-secondary"
+                  value="戻る"
+                  onclick="history.back();"
+                />
               </p>
             </form>
           </div>
@@ -61,4 +94,9 @@
       </div>
     </div>
   </body>
+  <style>
+    #equipmentRegister {
+      width: 60%;
+    }
+  </style>
 </html>
