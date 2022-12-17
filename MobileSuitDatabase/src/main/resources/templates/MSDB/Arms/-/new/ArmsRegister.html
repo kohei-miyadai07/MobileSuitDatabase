@@ -10,28 +10,51 @@
         <div th:replace="common/common :: sidebar"></div>
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
           <h1>武器登録</h1>
-          <div id="ArmsRegister">
+          <div id="armsRegister">
             <form
               action="#"
               th:action="@{/MSDB/Arms/-/new}"
               th:object="${armsRegistForm}"
               method="post"
             >
-              <label class="form-label" for="armsName">武器名</label>
-              <input type="text" class="form-control" th:field="*{armsName}" />
-              <label class="form-label" for="detail">詳細</label>
-              <textarea
-                class="form-control"
-                rows="5"
-                placeholder="詳細"
-                th:field="*{detail}"
-              ></textarea>
+              <div class="row">
+                <div class="col-md-3">
+                  <h2 class="h5">武器名</h2>
+                </div>
+                <div class="col-md-9">
+                  <input
+                    type="text"
+                    class="form-control"
+                    th:field="*{armsName}"
+                  />
+                </div>
+              </div>
+              <div class="mb-5"></div>
+              <div class="row">
+                <div class="col-md-3">
+                  <h2 class="h5">詳細</h2>
+                </div>
+                <div class="col-md-9">
+                  <textarea
+                    class="form-control"
+                    rows="5"
+                    placeholder="詳細"
+                    th:field="*{detail}"
+                  ></textarea>
+                </div>
+              </div>
+              <div class="mb-5"></div>
               <p>
                 <button type="submit" class="btn btn-primary">登録</button
                 ><button type="reset" class="btn btn-link">リセット</button>
               </p>
               <p>
-                <input type="button" class="btn btn-secondary" value="戻る" onclick="history.back();" />
+                <input
+                  type="button"
+                  class="btn btn-secondary"
+                  value="戻る"
+                  onclick="history.back();"
+                />
               </p>
             </form>
           </div>
@@ -39,4 +62,9 @@
       </div>
     </div>
   </body>
+  <style>
+    #armsRegister {
+      width: 60%;
+    }
+  </style>
 </html>

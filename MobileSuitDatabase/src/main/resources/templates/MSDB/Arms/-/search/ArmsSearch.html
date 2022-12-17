@@ -10,21 +10,37 @@
         <div th:replace="common/common :: sidebar"></div>
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
           <h1>武器検索</h1>
-          <div class="ArmsSearch">
+          <div id="armsSearch">
             <form
               action="#"
               th:action="@{/MSDB/Arms/-/search}"
               th:object="${armsSearchForm}"
               method="post"
             >
-              <label class="form-label" for="armsName">武装名</label>
-              <input type="text" class="form-control" th:field="*{armsName}" />
+              <div class="row">
+                <div class="col-md-3">
+                  <h2 class="h5">武器名</h2>
+                </div>
+                <div class="col-md-9">
+                  <input
+                    type="text"
+                    class="form-control"
+                    th:field="*{armsName}"
+                  />
+                </div>
+              </div>
+              <div class="mb-5"></div>
               <p>
                 <button type="submit" class="btn btn-primary">検索</button
                 ><button type="reset" class="btn btn-link">リセット</button>
               </p>
               <p>
-                <input type="button" class="btn btn-secondary" value="戻る" onclick="history.back();" />
+                <input
+                  type="button"
+                  class="btn btn-secondary"
+                  value="戻る"
+                  onclick="history.back();"
+                />
               </p>
             </form>
           </div>
@@ -32,4 +48,9 @@
       </div>
     </div>
   </body>
+  <style>
+    #armsSearch {
+      width: 60%;
+    }
+  </style>
 </html>
