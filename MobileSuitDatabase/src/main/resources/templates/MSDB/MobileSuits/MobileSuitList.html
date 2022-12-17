@@ -9,8 +9,19 @@
       <div class="row">
         <div th:replace="common/common :: sidebar"></div>
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
-          <h1>モビルスーツ一覧</h1>
-          <p><a th:href="@{/MSDB/MobileSuits/-/new}">新規登録</a></p>
+          <div
+            class="d-flex justify-content-between align-items-center pb-2 mb-4 border-bottom"
+          >
+            <h1 class="h2">モビルスーツ一覧</h1>
+            <div class="btn-toolbar mb-2 mb-md-0">
+              <a
+                class="btn btn-outline-primary btn-sm"
+                th:href="@{/MSDB/MobileSuits/-/new}"
+                role="button"
+                >新規登録</a
+              >
+            </div>
+          </div>
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>
@@ -62,7 +73,14 @@
               </tbody>
             </table>
           </div>
-          <p><a th:href="@{/MSDB/MobileSuits/-/search}">検索画面へ</a><br /></p>
+          <div class="pt-2">
+            <a
+              class="btn btn-outline-primary btn-sm"
+              th:href="@{/MSDB/MobileSuits/-/search}"
+              role="button"
+              >検索</a
+            >
+          </div>
         </main>
       </div>
     </div>
