@@ -9,17 +9,30 @@
       <div class="row">
         <div th:replace="common/common :: sidebar"></div>
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
-          <h1 th:text="${mobilesuitDetail.msName}"></h1>
+          <div
+            class="d-flex justify-content-between align-items-center pb-2 mb-4 border-bottom"
+          >
+            <h1 th:text="${mobilesuitDetail.msName}" class=""></h1>
+            <div class="btn-toolbar mb-2 mb-md-0">
+              <a
+                class="btn btn-outline-secondary btn-sm"
+                href="#"
+                th:href="@{/MSDB/MobileSuits}"
+                role="button"
+                >一覧に戻る</a
+              >
+            </div>
+          </div>
+
           <div class="d-flex">
             <div class="flex-shrink-0">
               <img
                 th:src="${base64Data}"
                 alt="モビルスーツ画像"
-                style="width: 24.5em; height: 30em;"
+                style="width: 24.5em; height: 30em"
               />
             </div>
             <div id="spec" class="flex-grow-1 ms-3">
-              <h2>スペック</h2>
               <table class="table">
                 <tr>
                   <td><b>型式番号</b></td>
@@ -68,6 +81,7 @@
                       th:each="equipment : ${mobilesuitDetail.equipmentArmsResultList}"
                     >
                       <p
+                        id="armsList"
                         th:text="|${equipment.armsName} × ${equipment.numberEquipment}|"
                       ></p>
                     </div>
@@ -76,28 +90,47 @@
               </table>
             </div>
           </div>
+          <div class="mb-5"></div>
           <div class="text" style="clear: both">
-            <h2>機体概要</h2>
-            <p th:text="${mobilesuitDetail.msOverview}"></p>
-            <h2>武装解説</h2>
-            <dl th:each="arms : ${mobilesuitDetail.equipmentArmsResultList}">
-              <dt th:text="${arms.armsName}"></dt>
-              <dd th:text="${arms.detail}"></dd>
-            </dl>
-            <h2>活躍</h2>
-            <p th:text="${mobilesuitDetail.action}"></p>
+            <div>
+              <div
+                class="d-flex justify-content-between align-items-center pb-1 mb-2 border-bottom"
+              >
+                <h2>機体概要</h2>
+              </div>
+              <p th:text="${mobilesuitDetail.msOverview}"></p>
+            </div>
+            <div class="mb-5"></div>
+            <div>
+              <div
+                class="d-flex justify-content-between align-items-center pb-1 mb-2 border-bottom"
+              >
+                <h2>武装解説</h2>
+              </div>
+              <dl th:each="arms : ${mobilesuitDetail.equipmentArmsResultList}">
+                <dt th:text="${arms.armsName}"></dt>
+                <dd th:text="${arms.detail}"></dd>
+              </dl>
+            </div>
+            <div class="mb-5"></div>
+            <div>
+              <div
+                class="d-flex justify-content-between align-items-center pb-1 mb-2 border-bottom"
+              >
+                <h2>活躍</h2>
+              </div>
+              <p th:text="${mobilesuitDetail.action}"></p>
+            </div>
+            <div class="mb-5"></div>
           </div>
-          <div>
-            <a
-              class="btn btn-secondary"
-              href="#"
-              th:href="@{/MSDB/MobileSuits}"
-              role="button"
-              >一覧画面に戻る</a
-            >
-          </div>
+          <div class="mb-5"></div>
         </main>
       </div>
     </div>
   </body>
+  <style>
+    #armsList {
+      margin-bottom: 5px;
+    }
+  </style>
 </html>
