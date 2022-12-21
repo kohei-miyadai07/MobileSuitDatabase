@@ -223,19 +223,21 @@
                 </div>
               </div>
               <div class="mb-5"></div>
-              <p>
-                <button type="submit" class="btn btn-primary">更新</button
-                ><button type="reset" class="btn btn-link">リセット</button>
-              </p>
-              <p>
-                <button
-                  type="submit"
-                  class="btn btn-outline-danger"
-                  th:formaction="@{'/MSDB/MobileSuits/' + *{msId} + '/edit-delete'}"
-                >
-                  削除
-                </button>
-              </p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <button type="submit" class="btn btn-primary">更新</button
+                  ><button type="reset" class="btn btn-link">リセット</button>
+                </div>
+                <div>
+                  <button
+                    type="submit"
+                    class="btn btn-outline-danger"
+                    th:formaction="@{'/MSDB/MobileSuits/' + *{msId} + '/edit-delete'}"
+                  >
+                    削除
+                  </button>
+                </div>
+              </div>
             </form>
           </div>
         </main>
