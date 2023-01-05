@@ -1,4 +1,8 @@
 spring:
+  thymeleaf:
+    cache: false
+    cache-period: 0
+    prefix: file:src/main/resources/templates/
   datasource:
     connectionProperties: useUnicode=true;characterEncoding=utf-8
     data-source-class-name: org.h2.Driver

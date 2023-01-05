@@ -6,8 +6,8 @@ public interface ArmsRepository {
 
 	Arms getArmsById(String armsId);
 
-	int save(Arms arms);
+	void save(Arms arms);
 
-	int deleteArmsById(String armsId);
+	void deleteArmsById(String armsId);
 
 }

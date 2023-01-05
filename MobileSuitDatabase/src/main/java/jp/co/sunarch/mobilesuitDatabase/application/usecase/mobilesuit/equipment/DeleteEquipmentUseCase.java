@@ -15,11 +15,11 @@ public class DeleteEquipmentUseCase {
 	private final EquipmentQueryService equipmentQueryService;
 	private final EquipmentRecodeService equipmentRecodeService;
 
-	public String execute(DeleteEquipmentCommand command) {
+	public void execute(DeleteEquipmentCommand command) {
 		// 削除対象のEquipmentを取得
 		Equipment equipment = equipmentQueryService.getEquipmentByMobileSuitIdAndArmsId(command.getMsId(), command.getArmsId());
 
-		return equipmentRecodeService.deleteEquipment(equipment);
+		equipmentRecodeService.deleteEquipment(equipment);
 	}
 
 }

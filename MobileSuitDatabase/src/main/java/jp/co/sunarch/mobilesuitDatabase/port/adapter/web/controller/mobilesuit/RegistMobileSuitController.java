@@ -1,6 +1,7 @@
 package jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.mobilesuit;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,12 +12,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import jp.co.sunarch.mobilesuitDatabase.application.command.mobilesuit.RegistMobileSuitCommand;
 import jp.co.sunarch.mobilesuitDatabase.application.usecase.mobilesuit.RegistMobileSuitUseCase;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.form.mobilesuit.RegistMobileSuitForm;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.MobileSuitModel;
 import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
 public class RegistMobileSuitController {
-	
+
+	private final MobileSuitQuery mobileSuitQuery;
 	private final RegistMobileSuitUseCase registMobileSuitUseCase;
 	
 	@GetMapping("/MSDB/MobileSuits/-/new")
@@ -44,12 +47,12 @@ public class RegistMobileSuitController {
 				.msMultipartFile(registMobileSuitForm.getMsMultipartFile())
 				.build();
 
-		String message = registMobileSuitUseCase.execute(command);
+		registMobileSuitUseCase.execute(command);
 
-		model.addAttribute("message", message);
-		model.addAttribute("url", "/MSDB/MobileSuits");
+		List<MobileSuitModel> msModelList = mobileSuitQuery.getMobileSuitList();
+		model.addAttribute("mobilesuits", msModelList);
 
-		return "/MSDB/MobileSuits/-/new/RegisterResult";
+		return "/MSDB/MobileSuits/MobileSuitList";
 	}
 
 }

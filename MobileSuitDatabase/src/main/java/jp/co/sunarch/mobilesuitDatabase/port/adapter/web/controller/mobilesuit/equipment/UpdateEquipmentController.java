@@ -1,5 +1,7 @@
 package jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.mobilesuit.equipment;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,12 +43,12 @@ public class UpdateEquipmentController {
 				.detail(updateEquipmentForm.getDetail())
 				.build();
 
-		String message = updateEquipmentUseCase.execute(command);
+		updateEquipmentUseCase.execute(command);
 
-		model.addAttribute("message", message);
-		model.addAttribute("url", "/MSDB/MobileSuits/Equipments");
+		List<EquipmentModel> equipmentModelList = equipmentQuery.getEquipmentList();
+		model.addAttribute("equipments", equipmentModelList);
 
-		return "/MSDB/MobileSuits/Equipments/msId/armsId/edit/EditResult";
+		return "/MSDB/MobileSuits/Equipments/EquipmentList";
 	}
 
 }

@@ -1,5 +1,7 @@
 package jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.arms;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,11 +41,11 @@ public class UpdateArmsController {
 				.detail(updateArmsForm.getDetail())
 				.build();
 
-		String message = updateArmsUseCase.execute(command);
+		updateArmsUseCase.execute(command);
 
-		model.addAttribute("message", message);
-		model.addAttribute("url", "/MSDB/Arms");
+		List<ArmsModel> armsModelList = armsQuery.getArmsList();
+		model.addAttribute("armsList", armsModelList);
 
-		return "/MSDB/Arms/armsId/edit/EditResult";
+		return "/MSDB/Arms/ArmsList";
 	}
 }

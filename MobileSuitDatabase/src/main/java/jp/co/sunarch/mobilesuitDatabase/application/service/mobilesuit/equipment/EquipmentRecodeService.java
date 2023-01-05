@@ -14,52 +14,25 @@ public class EquipmentRecodeService {
 
 	private final EquipmentRepository equipmentRepository;
 	
-	public String registEquipment(Equipment equipment) {
-		String message = null;
-
-		int result = equipmentRepository.save(equipment);
-		if (result != 1) {
-			message = "登録処理に失敗しました。";
-		} else {
-			message = "登録処理に成功しました。";
-		}
-
-		return message;
+	public void registEquipment(Equipment equipment) {
+		equipmentRepository.save(equipment);
 	}
 
-	public String updateEquipment(Equipment equipment) {
-		String message = null;
-
-		int result = equipmentRepository.save(equipment);
-		if (result != 1) {
-			message = "更新処理に失敗しました。";
-		} else {
-			message = "更新処理に成功しました。";
-		}
-
-		return message;
+	public void updateEquipment(Equipment equipment) {
+		equipmentRepository.save(equipment);
 	}
 
-	public String deleteEquipment(Equipment equipment) {
-		String message = null;
-
-		int result = equipmentRepository.deleteEquipmentByMsIdAndArmsId(
+	public void deleteEquipment(Equipment equipment) {
+		equipmentRepository.deleteEquipmentByMsIdAndArmsId(
 				equipment.getMsId().getValue(), equipment.getArmsId().getValue());
-		if (result != 1) {
-			message = "削除処理に失敗しました。";
-		} else {
-			message = "削除処理に成功しました。";
-		}
-
-		return message;
 	}
 
-	public int deleteEquipmentByMobileSuit(MobileSuit mobileSuit) {
-		return equipmentRepository.deleteEquipmentByMsid(mobileSuit.getMsId().getValue());
+	public void deleteEquipmentByMobileSuit(MobileSuit mobileSuit) {
+		equipmentRepository.deleteEquipmentByMsid(mobileSuit.getMsId().getValue());
 	}
 
-	public int deleteEquipmentByArms(Arms arms) {
-		return equipmentRepository.deleteEquipmentByArmsId(arms.getArmsId().getValue());
+	public void deleteEquipmentByArms(Arms arms) {
+		equipmentRepository.deleteEquipmentByArmsId(arms.getArmsId().getValue());
 	}
 
 	

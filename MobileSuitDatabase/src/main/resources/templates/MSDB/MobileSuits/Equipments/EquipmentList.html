@@ -1,33 +1,87 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>装備一覧</title>
-    </head>
-    <body>
-        <h1>装備一覧</h1>
-        <p><a th:href="@{/MSDB/MobileSuits/Equipments/-/new}">新規登録</a></p>
-        <table border="1">
-            <tr>
-                <th>モビルスーツID</th>
-                <th>機体名</th>
-                <th>武器ID</th>
-                <th>武器名</th>
-                <th>装備数</th>
-                <th>詳細</th>
-                <th></th>
-            </tr>
-            <tr th:each="equipment : ${equipments}">
-                <td th:text="${equipment.msId}"></td>
-                <td th:text="${equipment.msName}"></td>
-                <td th:text="${equipment.armsId}"></td>
-                <td th:text="${equipment.armsName}"></td>
-                <td th:text="${equipment.numberEquipment}"></td>
-                <td th:text="${equipment.detail}"></td>
-                <td><a th:href="@{'/MSDB/MobileSuits/Equipments/' + ${equipment.msId} + '/' + ${equipment.armsId} + '/edit'}">編集</a></td>
-            </tr>
-        </table>
-        <p><a th:href="@{/MSDB/MobileSuits/Equipments/-/search}">検索画面へ</a><br>
-            <a th:href="@{/}">トップページへ</a>
-        </p>
-    </body>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="common/common :: meta_head">
+    <title>装備一覧</title>
+  </head>
+  <body class="h-100">
+    <div th:replace="common/common :: header"></div>
+    <div class="container-fluid">
+      <div class="row">
+        <div th:replace="common/common :: sidebar"></div>
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
+          <div
+            class="d-flex justify-content-between align-items-center pb-2 mb-4 border-bottom"
+          >
+            <div class="d-flex align-items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="2.7rem"
+                height="2.7rem"
+                fill="currentColor"
+                class="bi bi-motherboard"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M11.5 2a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5Zm2 0a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5Zm-10 8a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1h-6Zm0 2a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1h-6ZM5 3a1 1 0 0 0-1 1h-.5a.5.5 0 0 0 0 1H4v1h-.5a.5.5 0 0 0 0 1H4a1 1 0 0 0 1 1v.5a.5.5 0 0 0 1 0V8h1v.5a.5.5 0 0 0 1 0V8a1 1 0 0 0 1-1h.5a.5.5 0 0 0 0-1H9V5h.5a.5.5 0 0 0 0-1H9a1 1 0 0 0-1-1v-.5a.5.5 0 0 0-1 0V3H6v-.5a.5.5 0 0 0-1 0V3Zm0 1h3v3H5V4Zm6.5 7a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-2Z"
+                />
+                <path
+                  d="M1 2a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-2H.5a.5.5 0 0 1-.5-.5v-1A.5.5 0 0 1 .5 9H1V8H.5a.5.5 0 0 1-.5-.5v-1A.5.5 0 0 1 .5 6H1V5H.5a.5.5 0 0 1-.5-.5v-2A.5.5 0 0 1 .5 2H1Zm1 11a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v11Z"
+                />
+              </svg>
+              <h1 class="h2 mb-0 ms-2">装備一覧</h1>
+            </div>
+            <div class="btn-toolbar mb-2 mb-md-0">
+              <a
+                class="btn btn-outline-primary btn-sm"
+                th:href="@{/MSDB/MobileSuits/Equipments/-/new}"
+                role="button"
+                >新規登録</a
+              >
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th class="text-nowrap" scope="col">機体名</th>
+                  <th class="text-nowrap" scope="col">武器名</th>
+                  <th class="text-nowrap" scope="col">装備数</th>
+                  <th class="text-nowrap" scope="col">詳細</th>
+                  <th class="text-nowrap" scope="col">#</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr th:each="equipment : ${equipments}">
+                  <td class="text-nowrap" th:text="${equipment.msName}"></td>
+                  <td class="text-nowrap" th:text="${equipment.armsName}"></td>
+                  <td
+                    class="text-nowrap"
+                    th:text="${equipment.numberEquipment}"
+                  ></td>
+                  <td th:text="${equipment.detail}"></td>
+                  <td>
+                    <a
+                      class="btn btn-primary btn-sm text-nowrap"
+                      role="button"
+                      th:href="@{'/MSDB/MobileSuits/Equipments/' + ${equipment.msId} + '/' + ${equipment.armsId} + '/edit'}"
+                      >編集</a
+                    >
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="pt-2">
+            <a
+              class="btn btn-outline-primary btn-sm"
+              th:href="@{/MSDB/MobileSuits/Equipments/-/search}"
+              role="button"
+              >検索</a
+            >
+          </div>
+          <p></p>
+        </main>
+      </div>
+    </div>
+  </body>
 </html>

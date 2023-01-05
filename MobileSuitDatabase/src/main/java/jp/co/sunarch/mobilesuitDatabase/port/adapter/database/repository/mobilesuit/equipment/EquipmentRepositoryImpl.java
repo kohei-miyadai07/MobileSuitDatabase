@@ -41,36 +41,32 @@ public class EquipmentRepositoryImpl implements EquipmentRepository {
 	}
 
 	@Override
-	public int save(Equipment equipment) {
-		int result = 0;
-
+	public void save(Equipment equipment) {
 		EquipmentEntity before = equipmentRepositoryDao.selectByMsIdAndArmsId(
 				equipment.getMsId().getValue(), 
 				equipment.getArmsId().getValue());
 		if(before == null) {
 			EquipmentEntity equipmentEntity = equipmentConverter.domainToEntity(equipment);
-			result = equipmentRepositoryDao.insert(equipmentEntity);
+			equipmentRepositoryDao.insert(equipmentEntity);
 		} else {
 			EquipmentEntity equipmentEntity = equipmentConverter.domainToEntity(equipment);
-			result = equipmentRepositoryDao.update(equipmentEntity);
+			equipmentRepositoryDao.update(equipmentEntity);
 		}
-
-		return result;
 	}
 
 	@Override
-	public int deleteEquipmentByMsIdAndArmsId(String msId, String armsId) {
-		return equipmentRepositoryDao.deleteByMsIdAndArmsId(msId, armsId);
+	public void deleteEquipmentByMsIdAndArmsId(String msId, String armsId) {
+		equipmentRepositoryDao.deleteByMsIdAndArmsId(msId, armsId);
 	}
 
 	@Override
-	public int deleteEquipmentByMsid(String msId) {
-		return equipmentRepositoryDao.deleteByMsId(msId);
+	public void deleteEquipmentByMsid(String msId) {
+		equipmentRepositoryDao.deleteByMsId(msId);
 	}
 
 	@Override
-	public int deleteEquipmentByArmsId(String armsId) {
-		return equipmentRepositoryDao.deleteByArmsId(armsId);
+	public void deleteEquipmentByArmsId(String armsId) {
+		equipmentRepositoryDao.deleteByArmsId(armsId);
 	}
 
 }
