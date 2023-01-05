@@ -12,12 +12,12 @@ public interface EquipmentRepository {
 
 	Equipment getEquipmentByMsIdAndArmsId(String msId, String armsId);
 
-	int save(Equipment equipment);
+	void save(Equipment equipment);
 
-	int deleteEquipmentByMsIdAndArmsId(String msId, String armsId);
+	void deleteEquipmentByMsIdAndArmsId(String msId, String armsId);
 
-	int deleteEquipmentByMsid(String msId);
+	void deleteEquipmentByMsid(String msId);
 
-	int deleteEquipmentByArmsId(String armsId);
+	void deleteEquipmentByArmsId(String armsId);
 
 }

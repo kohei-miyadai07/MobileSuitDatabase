@@ -17,12 +17,14 @@ import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.mobilesuit.M
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.form.mobilesuit.Equipment.RegistEquipmentForm;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.arms.ArmsModel;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.MobileSuitModel;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.equipment.EquipmentModel;
 import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
 public class RegistEquipmentController {
 
+	private final EquipmentQuery equipmentQuery;
 	private final MobileSuitQuery mobileSuitQuery;
 	private final ArmsQuery armsQuery;
 
@@ -47,12 +49,12 @@ public class RegistEquipmentController {
 				.detail(registEquipmentForm.getDetail())
 				.build();
 
-		String message = registEquipmentUseCase.exeute(command);
+		registEquipmentUseCase.exeute(command);
 
-		model.addAttribute("message", message);
-		model.addAttribute("url", "/MSDB/MobileSuits/Equipments");
+		List<EquipmentModel> equipmentModelList = equipmentQuery.getEquipmentList();
+		model.addAttribute("equipments", equipmentModelList);
 
-		return "/MSDB/MobileSuits/Equipments/-/new/RegisterResult";	
+		return "/MSDB/MobileSuits/Equipments/EquipmentList";	
 	}
 
 }

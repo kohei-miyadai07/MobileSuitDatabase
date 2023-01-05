@@ -6,8 +6,8 @@ public interface MobileSuitRepository {
 
 	MobileSuit getMobileSuitById(String msId);
 
-	int save(MobileSuit mobileSuit);
+	void save(MobileSuit mobileSuit);
 
-	int deleteMobileSuitById(String msId);
+	void deleteMobileSuitById(String msId);
 
 }

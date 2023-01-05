@@ -15,7 +15,7 @@ public class UpdateEquipmentUseCase {
 	private final EquipmentQueryService equipmentQueryService;
 	private final EquipmentRecodeService equipmentRecodeService;
 
-	public String execute(UpdateEquipmentCommand command) {
+	public void execute(UpdateEquipmentCommand command) {
 		// 更新対象のEquipmentを取得
 		Equipment equipment = equipmentQueryService.getEquipmentByMobileSuitIdAndArmsId(command.getMsId(), command.getArmsId());
 
@@ -23,6 +23,6 @@ public class UpdateEquipmentUseCase {
 		equipment.setNumberEquipment(command.getNumberEquipment());
 		equipment.setDetail(command.getDetail());
 
-		return equipmentRecodeService.updateEquipment(equipment);
+		equipmentRecodeService.updateEquipment(equipment);
 	}
 }

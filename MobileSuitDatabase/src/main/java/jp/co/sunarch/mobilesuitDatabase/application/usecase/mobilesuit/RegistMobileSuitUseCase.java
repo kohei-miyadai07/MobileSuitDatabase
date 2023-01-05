@@ -17,7 +17,7 @@ public class RegistMobileSuitUseCase {
 	
 	private final MobileSuitRecodeService mobileSuitRecodeService;
 	
-	public String execute(RegistMobileSuitCommand command) {
+	public void execute(RegistMobileSuitCommand command) {
 
 		MobileSuitId msId = MobileSuitId.of(RandomStringUtils.randomAlphanumeric(8));
 		String msUrl = "lib/images/" + command.getMsMultipartFile().getOriginalFilename();
@@ -43,7 +43,7 @@ public class RegistMobileSuitUseCase {
 				,"1");
 
 		mobileSuitRecodeService.uploadImageFile(command.getMsMultipartFile());
-		return mobileSuitRecodeService.registMobileSuit(mobileSuit);
+		mobileSuitRecodeService.registMobileSuit(mobileSuit);
 	}
 
 }

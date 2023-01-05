@@ -1,5 +1,7 @@
 package jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.mobilesuit.equipment;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,12 +11,14 @@ import jp.co.sunarch.mobilesuitDatabase.application.command.mobilesuit.Equipment
 import jp.co.sunarch.mobilesuitDatabase.application.usecase.mobilesuit.equipment.DeleteEquipmentUseCase;
 import jp.co.sunarch.mobilesuitDatabase.domain.model.arms.ArmsId;
 import jp.co.sunarch.mobilesuitDatabase.domain.model.mobilesuit.MobileSuitId;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.equipment.EquipmentModel;
 import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
 public class DeleteEquipmentController {
 
+	private final EquipmentQuery equipmentQuery;
 	private final DeleteEquipmentUseCase deleteEquipmentUseCase;
 
 	@PostMapping("/MSDB/MobileSuits/Equipments/{msId}/{armsId}/edit-delete")
@@ -24,12 +28,12 @@ public class DeleteEquipmentController {
 				.armsId(ArmsId.of(armsId))
 				.build();
 
-		String message = deleteEquipmentUseCase.execute(command);
+		deleteEquipmentUseCase.execute(command);
 
-		model.addAttribute("message", message);
-		model.addAttribute("url", "/MSDB/MobileSuits/Equipments");
+		List<EquipmentModel> equipmentModelList = equipmentQuery.getEquipmentList();
+		model.addAttribute("equipments", equipmentModelList);
 
-		return "/MSDB/MobileSuits/Equipments/msId/armsId/edit/DeleteResult";
+		return "/MSDB/MobileSuits/Equipments/EquipmentList";
 	}
 
 }

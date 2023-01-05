@@ -16,34 +16,16 @@ public class MobileSuitRecodeService {
 
 	private final MobileSuitRepository mobileSuitRepository;
 	
-	public String registMobileSuit(MobileSuit mobileSuit) {
-		String message = null;
-
-		int result = mobileSuitRepository.save(mobileSuit);
-		if (result != 1) {
-			message = "登録処理に失敗しました。";
-		} else {
-			message = "登録処理に成功しました。";
-		}
-
-		return message;
+	public void registMobileSuit(MobileSuit mobileSuit) {
+		mobileSuitRepository.save(mobileSuit);
 	}
 
-	public String updateMobileSuit(MobileSuit mobileSuit) {
-		String message = null;
-
-		int result = mobileSuitRepository.save(mobileSuit);
-		if (result != 1) {
-			message = "更新処理に失敗しました。";
-		} else {
-			message = "更新処理に成功しました。";
-		}
-
-		return message;
+	public void updateMobileSuit(MobileSuit mobileSuit) {
+		mobileSuitRepository.save(mobileSuit);
 	}
 
-	public int deleteMobileSuit(MobileSuit mobileSuit) {
-		return mobileSuitRepository.deleteMobileSuitById(mobileSuit.getMsId().getValue());
+	public void deleteMobileSuit(MobileSuit mobileSuit) {
+		mobileSuitRepository.deleteMobileSuitById(mobileSuit.getMsId().getValue());
 	}
 
 	public void uploadImageFile(MultipartFile multipartFile) {
