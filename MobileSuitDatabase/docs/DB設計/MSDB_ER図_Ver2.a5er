@@ -44,7 +44,7 @@ PName=MobileSuit
 LName=モビルスーツ
 Comment=
 TableOption=
-Page=Main
+Page=MAIN
 Left=1350
 Top=100
 Field="機体ID","ms_id","VARCHAR(8)","NOT NULL",0,"","",$FFFFFFFF,""
@@ -64,12 +64,12 @@ Field="機体概要","ms_overview","TEXT",,,"","",$FFFFFFFF,""
 Field="活躍","action","TEXT",,,"","",$FFFFFFFF,""
 Field="登録日時","insert_date","TIMESTAMP","NOT NULL",,"","",$FFFFFFFF,""
 Field="更新日時","update_date","TIMESTAMP","NOT NULL",,"","",$FFFFFFFF,""
-Field="バージョン","version","VARCHAR(3)",,,"","",$FFFFFFFF,""
+Field="バージョン","version","integer","NOT NULL",,"","",$FFFFFFFF,""
 EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
-ModifiedDateTime=20220811081109
-Position="Main",1350,100
+ModifiedDateTime=20230114214127
+Position="MAIN",1350,100
 ZOrder=1
 
 [Entity]
@@ -77,7 +77,7 @@ PName=Arms
 LName=武器
 Comment=
 TableOption=
-Page=Main
+Page=MAIN
 Left=2150
 Top=100
 Field="武器ID","arms_id","VARCHAR(8)","NOT NULL",0,"","",$FFFFFFFF,""
@@ -87,7 +87,7 @@ EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
 ModifiedDateTime=20220811081758
-Position="Main",2150,100
+Position="MAIN",2150,100
 ZOrder=2
 
 [Entity]
@@ -95,7 +95,7 @@ PName=Equipment
 LName=装備
 Comment=
 TableOption=
-Page=Main
+Page=MAIN
 Left=1800
 Top=100
 Field="機体ID","ms_id","VARCHAR(8)","NOT NULL",0,"","",$FFFFFFFF,""
@@ -106,7 +106,7 @@ EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
 ModifiedDateTime=20220811081728
-Position="Main",1800,100
+Position="MAIN",1800,100
 ZOrder=3
 
 [Relation]
@@ -156,7 +156,7 @@ PName=CLASS
 LName=分類
 Comment=
 TableOption=
-Page=Main
+Page=MAIN
 Left=500
 Top=100
 Field="分類ID","class_id","VARCHAR(8)","NOT NULL",0,"","",$FFFFFFFF,""
@@ -166,7 +166,7 @@ EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
 ModifiedDateTime=20220811082356
-Position="Main",500,100
+Position="MAIN",500,100
 ZOrder=6
 
 [Entity]
@@ -174,7 +174,7 @@ PName=Categorize
 LName=カテゴライズ
 Comment=
 TableOption=
-Page=Main
+Page=MAIN
 Left=850
 Top=100
 Field="機体ID","ms_id","VARCHAR(8)","NOT NULL",0,"","",$FFFFFFFF,""
@@ -184,7 +184,7 @@ EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
 ModifiedDateTime=20220811082800
-Position="Main",850,100
+Position="MAIN",850,100
 ZOrder=7
 
 [Relation]
@@ -234,7 +234,7 @@ PName=Organization
 LName=組織
 Comment=
 TableOption=
-Page=Main
+Page=MAIN
 Left=500
 Top=250
 Field="組織ID","org_id","VARCHAR(8)","NOT NULL",0,"","",$FFFFFFFF,""
@@ -244,7 +244,7 @@ EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
 ModifiedDateTime=20220811084338
-Position="Main",500,250
+Position="MAIN",500,250
 ZOrder=10
 
 [Entity]
@@ -252,7 +252,7 @@ PName=Development_Org
 LName=開発組織
 Comment=
 TableOption=
-Page=Main
+Page=MAIN
 Left=850
 Top=250
 Field="機体ID","ms_id","VARCHAR(8)","NOT NULL",0,"","",$FFFFFFFF,""
@@ -262,7 +262,7 @@ EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
 ModifiedDateTime=20220811084851
-Position="Main",850,250
+Position="MAIN",850,250
 ZOrder=11
 
 [Relation]
@@ -312,7 +312,7 @@ PName=Base
 LName=拠点
 Comment=
 TableOption=
-Page=Main
+Page=MAIN
 Left=500
 Top=400
 Field="拠点ID","base_id","VARCHAR(8)","NOT NULL",0,"","",$FFFFFFFF,""
@@ -322,7 +322,7 @@ EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
 ModifiedDateTime=20220811085110
-Position="Main",500,400
+Position="MAIN",500,400
 ZOrder=14
 
 [Entity]
@@ -330,7 +330,7 @@ PName=Development_Base
 LName=開発拠点
 Comment=
 TableOption=
-Page=Main
+Page=MAIN
 Left=850
 Top=400
 Field="機体ID","ms_id","VARCHAR(8)","NOT NULL",0,"","",$FFFFFFFF,""
@@ -340,7 +340,7 @@ EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
 ModifiedDateTime=20220811085229
-Position="Main",850,400
+Position="MAIN",850,400
 ZOrder=15
 
 [Relation]
@@ -390,7 +390,7 @@ PName=Person
 LName=人物
 Comment=
 TableOption=
-Page=Main
+Page=MAIN
 Left=500
 Top=550
 Field="人物ID","person_id","VARCHAR(8)","NOT NULL",0,"","",$FFFFFFFF,""
@@ -400,7 +400,7 @@ EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
 ModifiedDateTime=20220811085523
-Position="Main",500,550
+Position="MAIN",500,550
 ZOrder=18
 
 [Entity]
@@ -408,7 +408,7 @@ PName=Developer
 LName=開発者
 Comment=
 TableOption=
-Page=Main
+Page=MAIN
 Left=850
 Top=550
 Field="機体ID","ms_id","VARCHAR(8)","NOT NULL",0,"","",$FFFFFFFF,""
@@ -418,7 +418,7 @@ EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
 ModifiedDateTime=20220811085704
-Position="Main",850,550
+Position="MAIN",850,550
 ZOrder=19
 
 [Relation]
@@ -468,7 +468,7 @@ PName=Team
 LName=チーム
 Comment=
 TableOption=
-Page=Main
+Page=MAIN
 Left=500
 Top=700
 Field="チームID","team_id","VARCHAR(8)","NOT NULL",0,"","",$FFFFFFFF,""
@@ -478,7 +478,7 @@ EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
 ModifiedDateTime=20220811085956
-Position="Main",500,700
+Position="MAIN",500,700
 ZOrder=22
 
 [Entity]
@@ -486,7 +486,7 @@ PName=Belonging
 LName=所属
 Comment=
 TableOption=
-Page=Main
+Page=MAIN
 Left=850
 Top=700
 Field="機体ID","ms_id","VARCHAR(8)","NOT NULL",0,"","",$FFFFFFFF,""
@@ -496,7 +496,7 @@ EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
 ModifiedDateTime=20220811090151
-Position="Main",850,700
+Position="MAIN",850,700
 ZOrder=23
 
 [Relation]
@@ -546,7 +546,7 @@ PName=Pilot
 LName=パイロット
 Comment=
 TableOption=
-Page=Main
+Page=MAIN
 Left=850
 Top=850
 Field="パイロットID","pilot_id","VARCHAR(8)","NOT NULL",0,"","",$FFFFFFFF,""
@@ -556,7 +556,7 @@ EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
 ModifiedDateTime=20220811090552
-Position="Main",850,850
+Position="MAIN",850,850
 ZOrder=26
 
 [Entity]
@@ -564,7 +564,7 @@ PName=Passenger
 LName=搭乗者
 Comment=
 TableOption=
-Page=Main
+Page=MAIN
 Left=1300
 Top=850
 Field="機体ID","ms_id","VARCHAR(8)","NOT NULL",0,"","",$FFFFFFFF,""
@@ -574,7 +574,7 @@ EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
 ModifiedDateTime=20220811090812
-Position="Main",1300,850
+Position="MAIN",1300,850
 ZOrder=27
 
 [Relation]
@@ -624,7 +624,7 @@ PName=Ship
 LName=艦船
 Comment=
 TableOption=
-Page=Main
+Page=MAIN
 Left=2000
 Top=850
 Field="艦船ID","ship_id","VARCHAR(8)","NOT NULL",0,"","",$FFFFFFFF,""
@@ -634,7 +634,7 @@ EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
 ModifiedDateTime=20220811091152
-Position="Main",2000,850
+Position="MAIN",2000,850
 ZOrder=30
 
 [Entity]
@@ -642,7 +642,7 @@ PName=Operation_Carrier
 LName=運用母艦
 Comment=
 TableOption=
-Page=Main
+Page=MAIN
 Left=1600
 Top=850
 Field="機体ID","ms_id","VARCHAR(8)","NOT NULL",0,"","",$FFFFFFFF,""
@@ -652,7 +652,7 @@ EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
 ModifiedDateTime=20220811091339
-Position="Main",1600,850
+Position="MAIN",1600,850
 ZOrder=31
 
 [Relation]
@@ -702,7 +702,7 @@ PName=Opus
 LName=作品
 Comment=
 TableOption=
-Page=Main
+Page=MAIN
 Left=2150
 Top=500
 Field="作品ID","opus_id","VARCHAR(8)","NOT NULL",0,"","",$FFFFFFFF,""
@@ -712,7 +712,7 @@ EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
 ModifiedDateTime=20220811091707
-Position="Main",2150,500,131,89
+Position="MAIN",2150,500,131,89
 ZOrder=34
 
 [Entity]
@@ -720,7 +720,7 @@ PName=Works
 LName=登場作品
 Comment=
 TableOption=
-Page=Main
+Page=MAIN
 Left=1800
 Top=500
 Field="機体ID","ms_id","VARCHAR(8)","NOT NULL",0,"","",$FFFFFFFF,""
@@ -730,7 +730,7 @@ EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
 ModifiedDateTime=20220811091932
-Position="Main",1800,500
+Position="MAIN",1800,500
 ZOrder=35
 
 [Relation]
@@ -780,7 +780,7 @@ PName=Feature
 LName=機能
 Comment=
 TableOption=
-Page=Main
+Page=MAIN
 Left=2150
 Top=300
 Field="機能ID","feature_id","VARCHAR(8)","NOT NULL",0,"","",$FFFFFFFF,""
@@ -790,7 +790,7 @@ EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
 ModifiedDateTime=20220811092359
-Position="Main",2150,300
+Position="MAIN",2150,300
 ZOrder=38
 
 [Entity]
@@ -798,7 +798,7 @@ PName=Ability
 LName=能力
 Comment=
 TableOption=
-Page=Main
+Page=MAIN
 Left=1800
 Top=300
 Field="機体ID","ms_id","VARCHAR(8)","NOT NULL",0,"","",$FFFFFFFF,""
@@ -808,7 +808,7 @@ EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
 ModifiedDateTime=20220811092632
-Position="Main",1800,300
+Position="MAIN",1800,300
 ZOrder=39
 
 [Relation]

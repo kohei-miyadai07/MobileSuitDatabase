@@ -24,6 +24,6 @@ public class MobileSuitEntity {
 	private String action;
 	private Timestamp insertDate;
 	private Timestamp updateDate;
-	private String version;
+	private Integer version;
 
 }

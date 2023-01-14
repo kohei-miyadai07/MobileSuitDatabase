@@ -24,12 +24,12 @@ public class MobileSuit {
 	private String action;
 	private LocalDateTime insertDate;
 	private LocalDateTime updateDate;
-	private String version;
+	private Integer version;
 
 	public static MobileSuit create(MobileSuitId msId, String modelNumber, String msName, String msUrl,
 			BigDecimal headHeight, BigDecimal overallHeight, BigDecimal weight, BigDecimal totalWeight,
 			String powerSource, String material, long effectiveSensorRadius, long generatorOutput, long totalThrustersOutput,
-			String msOverview, String action, LocalDateTime insertDate, LocalDateTime updateDate, String version) {
+			String msOverview, String action, LocalDateTime insertDate, LocalDateTime updateDate, Integer version) {
 		
 		MobileSuit mobileSuit = new MobileSuit();
 		mobileSuit.setMsId(msId);

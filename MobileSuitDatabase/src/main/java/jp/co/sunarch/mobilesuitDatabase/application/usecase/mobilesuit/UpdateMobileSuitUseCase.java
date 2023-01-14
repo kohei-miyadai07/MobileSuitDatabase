@@ -36,7 +36,7 @@ public class UpdateMobileSuitUseCase {
 		mobileSuit.setMsOverview(command.getMsOverview());
 		mobileSuit.setAction(command.getAction());
 		mobileSuit.setUpdateDate(LocalDateTime.now());
-		mobileSuit.setVersion(String.valueOf(Integer.parseInt(mobileSuit.getVersion()) + 1));
+		mobileSuit.setVersion(mobileSuit.getVersion() + 1);
 
 		if (!command.getMsMultipartFile().isEmpty()) {
 			mobileSuitRecodeService.deleteImageFile(mobileSuit.getMsUrl());

@@ -1,5 +1,5 @@
 -- Project Name : MSDB_ERê}_Ver2
--- Date/Time    : 2022/08/11 9:29:08
+-- Date/Time    : 2023/01/14 21:45:31
 -- Author       : mk26s
 -- RDBMS Type   : PostgreSQL
 -- Application  : A5:SQL Mk-2
@@ -213,7 +213,7 @@ create table MobileSuit (
   , action TEXT
   , insert_date TIMESTAMP not null
   , update_date TIMESTAMP not null
-  , version VARCHAR(3)
+  , version integer not null
   , constraint MobileSuit_PKC primary key (ms_id)
 ) ;
 
