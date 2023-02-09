@@ -3,6 +3,12 @@ spring:
     cache: false
     cache-period: 0
     prefix: file:src/main/resources/templates/
+  datasource:
+    connectionProperties: useUnicode=true;characterEncoding=utf-8
+    driver-class-name: org.postgresql.Driver
+    password: root
+    url: jdbc:postgresql://localhost:5432
+    username: root
   sql:
     init:
       mode: always
