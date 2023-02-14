@@ -7,7 +7,7 @@ spring:
     connectionProperties: useUnicode=true;characterEncoding=utf-8
     driver-class-name: org.postgresql.Driver
     password: root
-    url: jdbc:postgresql://localhost:5432
+    url: jdbc:postgresql://localhost:5432/localdb
     username: root
   sql:
     init:
