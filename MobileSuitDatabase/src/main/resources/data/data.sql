@@ -1,3 +1,8 @@
+--データ削除
+TRUNCATE TABLE Equipment;
+TRUNCATE TABLE Arms;
+TRUNCATE TABLE MobileSuit;
+
 --モビルスーツ
 insert 
 into MobileSuit 
