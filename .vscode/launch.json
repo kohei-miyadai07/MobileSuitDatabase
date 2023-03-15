@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-MobileSuitDatabaseApplication<MobileSuitDatabase>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "jp.co.sunarch.mobilesuitDatabase.MobileSuitDatabaseApplication",
+      "projectName": "MobileSuitDatabase",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}
