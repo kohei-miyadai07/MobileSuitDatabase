@@ -24,10 +24,6 @@ import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.arms.ArmsModel;
 @Import({ArmsQueryImpl.class, ArmsQueryDao.class})
 class ArmsQueryImplTest {
 
-	private final String TRUNCATE_ARMS = """
-			TRUNCATE TABLE Arms;
-			""";
-
 	private final String INSERT_ARMS = """
 			insert 
 			into Arms 
@@ -42,7 +38,6 @@ class ArmsQueryImplTest {
 
 	@BeforeEach
 	void seUp() {
-		jdbcTemplate.execute(TRUNCATE_ARMS);
 		jdbcTemplate.update(INSERT_ARMS, "arms1", "テストライフル1", "テスト1");
 		jdbcTemplate.update(INSERT_ARMS, "arms2", "テストライフル2", "テスト2");
 		jdbcTemplate.update(INSERT_ARMS, "arms3", "テストライフル3", "テスト3");
