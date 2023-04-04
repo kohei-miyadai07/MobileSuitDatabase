@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.*;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -16,6 +17,8 @@ import org.springframework.context.annotation.Import;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ActiveProfiles;
 
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.mobilesuit.equipment.EquipmentQuery;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.mobilesuit.equipment.EquipmentQuery.Criteria;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.equipment.EquipmentModel;
 
 @JdbcTest
@@ -148,6 +151,36 @@ class EquipmentQueryImplTest {
 			List<EquipmentModel> equipmentList = sut.getEquipmentList();
 
 			List<EquipmentModel> extendList = createEquipmentModelList();
+			assertThat(equipmentList)
+			.isEqualTo(extendList);
+		}
+	}
+
+	@Nested
+	class GetEquipmentByMsIdAndArmsId {
+		@Test
+		void モビルスーツIDと武器IDを指定すると紐づいた装備データを取得できること() {
+			EquipmentModel equipment = sut.getEquipmentByMsIdAndArmsId("ms1", "arms1");
+
+			EquipmentModel extend = createEquipmentModel(
+					"ms1", "テストモビルスーツ1", "arms1", "テストライフル1", 1, "テスト装備1");
+			assertThat(equipment)
+			.isEqualTo(extend);
+		}
+	}
+
+	@Nested
+	class SearchEquipment {
+		@Test
+		void 条件を指定すると紐づいた装備データを取得できること() {
+			Criteria criteria = EquipmentQuery.Criteria.builder()
+					.msName("テストモビルスーツ1")
+					.armsName("テストライフル1")
+					.build();
+			List<EquipmentModel> equipmentList = sut.searchEquipment(criteria);
+
+			List<EquipmentModel> extendList = Collections.singletonList(
+					createEquipmentModel("ms1", "テストモビルスーツ1", "arms1", "テストライフル1", 1, "テスト装備1"));
 			assertThat(equipmentList)
 			.isEqualTo(extendList);
 		}
