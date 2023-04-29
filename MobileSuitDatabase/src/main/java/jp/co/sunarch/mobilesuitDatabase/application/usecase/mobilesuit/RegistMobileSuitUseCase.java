@@ -40,7 +40,7 @@ public class RegistMobileSuitUseCase {
 				,command.getAction()
 				,LocalDateTime.now()
 				,LocalDateTime.now()
-				,"1");
+				,1);
 
 		mobileSuitRecodeService.uploadImageFile(command.getMsMultipartFile());
 		mobileSuitRecodeService.registMobileSuit(mobileSuit);

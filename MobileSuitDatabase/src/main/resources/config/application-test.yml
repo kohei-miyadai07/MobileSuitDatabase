@@ -1,0 +1,18 @@
+spring:
+  thymeleaf:
+    cache: false
+    cache-period: 0
+    prefix: file:src/main/resources/templates/
+  datasource:
+    connectionProperties: useUnicode=true;characterEncoding=utf-8
+    data-source-class-name: org.h2.Driver
+    password: test
+    url: jdbc:h2:mem:testdb;DB_CLOSE_ON_EXIT=TRUE;MODE=PostgreSQL
+    username: test
+  h2:
+    console:
+      enabled: true
+  sql:
+    init:
+      mode: always
+      data-locations: classpath:data/data_test.sql

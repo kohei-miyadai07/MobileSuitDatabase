@@ -34,7 +34,7 @@ create table MobileSuit (
   , action TEXT
   , insert_date TIMESTAMP not null
   , update_date TIMESTAMP not null
-  , version VARCHAR(3)
+  , version INTEGER not null
   , constraint MobileSuit_PKC primary key (ms_id)
 ) ;
 
