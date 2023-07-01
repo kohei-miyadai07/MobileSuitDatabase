@@ -27,7 +27,7 @@ import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.equipm
 
 @JdbcTest
 @ActiveProfiles("test")
-@Import({MobileSuitQueryImpl.class, JdbcTemplateMobileSuitDao.class, JdbcTemplateEquipmentDao.class})
+@Import({MobileSuitQueryImpl.class, JdbcTemplateMobileSuitDao.class, JdbcTemplateEquipmentDao.class, JdbcMobileSuitDao.class})
 class MobileSuitQueryImplTest {
 
 	private final String INSERT_MOBILESUIT = """
@@ -207,12 +207,12 @@ class MobileSuitQueryImplTest {
 					.weightTo(new BigDecimal(0))
 					.totalWeightFrom(new BigDecimal(0))
 					.totalWeightTo(new BigDecimal(0))
-					.effectiveSensorRadiusFrom(0)
-					.effectiveSensorRadiusTo(0)
-					.generatorOutputFrom(0)
-					.generatorOutputTo(0)
-					.totalThrustersOutputFrom(0)
-					.totalThrustersOutputTo(0)
+					.effectiveSensorRadiusFrom(0L)
+					.effectiveSensorRadiusTo(0L)
+					.generatorOutputFrom(0L)
+					.generatorOutputTo(0L)
+					.totalThrustersOutputFrom(0L)
+					.totalThrustersOutputTo(0L)
 					.build();
 			List<MobileSuitModel> msList = sut.searchMobileSuit(criteria);
 

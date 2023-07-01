@@ -25,12 +25,12 @@ public interface MobileSuitQuery {
 		private BigDecimal totalWeightTo;
 		private String powerSource;
 		private String material;
-		private long effectiveSensorRadiusFrom;
-		private long effectiveSensorRadiusTo;
-		private long generatorOutputFrom;
-		private long generatorOutputTo;
-		private long totalThrustersOutputFrom;
-		private long totalThrustersOutputTo;
+		private Long effectiveSensorRadiusFrom;
+		private Long effectiveSensorRadiusTo;
+		private Long generatorOutputFrom;
+		private Long generatorOutputTo;
+		private Long totalThrustersOutputFrom;
+		private Long totalThrustersOutputTo;
 	}
 	
 	List<MobileSuitModel> getMobileSuitList();
