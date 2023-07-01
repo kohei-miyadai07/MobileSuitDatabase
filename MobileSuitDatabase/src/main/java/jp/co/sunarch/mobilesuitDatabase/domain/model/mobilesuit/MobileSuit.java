@@ -17,9 +17,9 @@ public class MobileSuit {
 	private BigDecimal totalWeight;
 	private String powerSource;
 	private String material;
-	private long effectiveSensorRadius;
-	private long generatorOutput;
-	private long totalThrustersOutput;
+	private Long effectiveSensorRadius;
+	private Long generatorOutput;
+	private Long totalThrustersOutput;
 	private String msOverview;
 	private String action;
 	private LocalDateTime insertDate;

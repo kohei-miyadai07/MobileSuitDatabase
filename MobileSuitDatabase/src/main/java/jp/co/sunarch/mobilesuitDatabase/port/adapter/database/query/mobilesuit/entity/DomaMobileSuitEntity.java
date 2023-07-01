@@ -36,11 +36,11 @@ public class DomaMobileSuitEntity {
 
 	private String material;
 
-	private long effectiveSensorRadius;
+	private Long effectiveSensorRadius;
 
-	private long generatorOutput;
+	private Long generatorOutput;
 
-	private long totalThrustersOutput;
+	private Long totalThrustersOutput;
 
 	private String msOverview;
 
