@@ -1,3 +1,8 @@
+--データ削除
+TRUNCATE TABLE Equipment CASCADE;
+TRUNCATE TABLE Arms CASCADE;
+TRUNCATE TABLE MobileSuit CASCADE;
+
 --モビルスーツ
 insert 
 into MobileSuit 
