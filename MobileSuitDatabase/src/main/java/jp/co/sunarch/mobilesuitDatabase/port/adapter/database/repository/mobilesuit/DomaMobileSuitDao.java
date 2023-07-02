@@ -3,6 +3,7 @@ package jp.co.sunarch.mobilesuitDatabase.port.adapter.database.repository.mobile
 import java.util.Optional;
 
 import org.seasar.doma.Dao;
+import org.seasar.doma.Delete;
 import org.seasar.doma.Insert;
 import org.seasar.doma.Select;
 import org.seasar.doma.Update;
@@ -21,5 +22,8 @@ public interface DomaMobileSuitDao {
 
 	@Update
 	int update(DomaMobileSuitEntity entity);
+
+	@Delete(sqlFile = true)
+	int deleteById(String msId);
 
 }

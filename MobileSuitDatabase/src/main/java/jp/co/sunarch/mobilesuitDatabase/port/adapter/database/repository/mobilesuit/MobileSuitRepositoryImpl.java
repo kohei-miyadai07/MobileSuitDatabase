@@ -45,7 +45,9 @@ public class MobileSuitRepositoryImpl implements MobileSuitRepository {
 
 	@Override
 	public void deleteMobileSuitById(String msId) {
-		mobileSuitRepositoryDao.deleteById(msId);
+//		mobileSuitRepositoryDao.deleteById(msId);
+
+		mobileSuitDao.deleteById(msId);
 	}
 
 }
