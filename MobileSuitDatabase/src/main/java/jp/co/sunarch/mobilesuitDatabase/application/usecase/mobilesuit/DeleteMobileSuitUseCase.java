@@ -24,16 +24,22 @@ public class DeleteMobileSuitUseCase {
 	private final EquipmentRecodeService equipmentRecodeService;
 
 	public void execute(DeleteMobileSuitCommand command) {
-		// 削除対象のMobileSuitを取得
+//		// 削除対象のMobileSuitを取得
+//		MobileSuit mobileSuit = mobileSuitQueryService.getMobileSuitById(command.getMsId());
+//
+//		// 削除対象のEquipmentを取得
+//		List<Equipment> equipmentList = equipmentQueryService.getEquipmentByMobileSuitId(command.getMsId());
+//
+//		if (mobileSuit != null || equipmentList.size() != 0) {
+//			mobileSuitRecodeService.deleteImageFile(mobileSuit.getMsUrl());
+//			equipmentRecodeService.deleteEquipmentByMobileSuit(mobileSuit);
+//			mobileSuitRecodeService.deleteMobileSuit(mobileSuit);
+//		}
+
 		MobileSuit mobileSuit = mobileSuitQueryService.getMobileSuitById(command.getMsId());
 
-		// 削除対象のEquipmentを取得
-		List<Equipment> equipmentList = equipmentQueryService.getEquipmentByMobileSuitId(command.getMsId());
+		mobileSuitRecodeService.deleteImageFile(mobileSuit.getMsUrl());
+		mobileSuitRecodeService.deleteMobileSuit(mobileSuit);
 
-		if (mobileSuit != null || equipmentList.size() != 0) {
-			mobileSuitRecodeService.deleteImageFile(mobileSuit.getMsUrl());
-			equipmentRecodeService.deleteEquipmentByMobileSuit(mobileSuit);
-			mobileSuitRecodeService.deleteMobileSuit(mobileSuit);
-		}
 	}
 }
