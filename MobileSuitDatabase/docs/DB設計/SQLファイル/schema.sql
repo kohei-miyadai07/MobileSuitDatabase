@@ -34,9 +34,17 @@ create table MobileSuit (
   , action TEXT
   , insert_date TIMESTAMP not null
   , update_date TIMESTAMP not null
-  , version INTEGER not null
+  , version integer not null
   , constraint MobileSuit_PKC primary key (ms_id)
 ) ;
+
+alter table Equipment
+  add constraint Equipment_FK1 foreign key (arms_id) references Arms(arms_id)
+  on delete cascade;
+
+alter table Equipment
+  add constraint Equipment_FK2 foreign key (ms_id) references MobileSuit(ms_id)
+  on delete cascade;
 
 comment on table Equipment is '装備';
 comment on column Equipment.ms_id is '機体ID';
