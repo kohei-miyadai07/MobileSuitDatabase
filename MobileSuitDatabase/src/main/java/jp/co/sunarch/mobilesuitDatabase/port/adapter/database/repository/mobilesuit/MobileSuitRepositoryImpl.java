@@ -13,8 +13,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MobileSuitRepositoryImpl implements MobileSuitRepository {
 
-	private final MobileSuitRepositoryDao mobileSuitRepositoryDao;
-
 	private final DomaMobileSuitDao mobileSuitDao;
 
 	private final MobileSuitConverter mobileSuitConverter;
@@ -45,8 +43,6 @@ public class MobileSuitRepositoryImpl implements MobileSuitRepository {
 
 	@Override
 	public void deleteMobileSuitById(String msId) {
-//		mobileSuitRepositoryDao.deleteById(msId);
-
 		mobileSuitDao.deleteById(msId);
 	}
 
