@@ -1,43 +1,51 @@
 package jp.co.sunarch.mobilesuitDatabase.port.adapter.database.repository.arms;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Repository;
 
 import jp.co.sunarch.mobilesuitDatabase.application.repository.arms.ArmsRepository;
 import jp.co.sunarch.mobilesuitDatabase.domain.model.arms.Arms;
-import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.repository.arms.entity.ArmsEntity;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.repository.arms.entity.DomaArmsEntity;
 import lombok.RequiredArgsConstructor;
 
 @Repository
 @RequiredArgsConstructor
 public class ArmsRepositoryImpl implements ArmsRepository {
 
-	private final ArmsRepositoryDao armsRepositoryDao;
+	private final DomaArmsDao armsDao;
 
 	private final ArmsConverter armsConverter;
 
 	@Override
 	public Arms getArmsById(String armsId) {
-		ArmsEntity armsEntity = armsRepositoryDao.selectArmsById(armsId);
-		Arms arms = armsConverter.entityToDomain(armsEntity);
+		Arms arms = new Arms();
+
+		Optional<DomaArmsEntity> armsEntityOpt = armsDao.selectById(armsId);
+		if (armsEntityOpt.isPresent()) {
+			arms = armsConverter.entityToDomain(armsEntityOpt.get());
+		}
 
 		return arms;
+
 	}
 
 	@Override
 	public void save(Arms arms) {
-		ArmsEntity before = armsRepositoryDao.selectArmsById(arms.getArmsId().getValue());
-		if (before == null) {
-			ArmsEntity armsEntity = armsConverter.domainToEntity(arms);
-			armsRepositoryDao.insert(armsEntity);
+		Optional<DomaArmsEntity> before = armsDao.selectById(arms.getArmsId().getValue());
+		if (before.isPresent()) {
+			DomaArmsEntity armsEntity = armsConverter.domainToEntity(arms);
+			armsDao.update(armsEntity);
 		} else {
-			ArmsEntity armsEntity = armsConverter.domainToEntity(arms);
-			armsRepositoryDao.update(armsEntity);
+			DomaArmsEntity armsEntity = armsConverter.domainToEntity(arms);
+			armsDao.insert(armsEntity);
 		}
 	}
 
 	@Override
 	public void deleteArmsById(String armsId) {
-		armsRepositoryDao.deleteById(armsId);
+		armsDao.deleteById(armsId);
+
 	}
 
 }
