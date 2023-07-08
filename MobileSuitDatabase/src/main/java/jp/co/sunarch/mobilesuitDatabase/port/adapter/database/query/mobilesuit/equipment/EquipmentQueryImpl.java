@@ -1,10 +1,11 @@
 package jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.equipment;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 
-import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.equipment.entity.EquipmentEntity;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.equipment.entity.DomaEquipmentEntity;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.mobilesuit.equipment.EquipmentQuery;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.equipment.EquipmentModel;
 import lombok.RequiredArgsConstructor;
@@ -12,33 +13,49 @@ import lombok.RequiredArgsConstructor;
 @Repository
 @RequiredArgsConstructor
 public class EquipmentQueryImpl implements EquipmentQuery {
-	
-	private final JdbcTemplateEquipmentDao equipmentDao;
+
+	private final JdbcEquipmentDao jdbcEquipmentDao;
 
 	@Override
 	public List<EquipmentModel> getEquipmentList() {
-		List<EquipmentEntity> equipmentEntityList = equipmentDao.selectEquipmentList();
-		List<EquipmentModel> equipmentModelList = equipmentEntityList.stream().map(e -> toModel(e)).toList();
+		List<DomaEquipmentEntity> equipmentEntities = jdbcEquipmentDao.selectAll();
+		List<EquipmentModel> equipmentModels = equipmentEntities.stream().map(e -> toDomaModel(e)).toList();
 
-		return equipmentModelList;
+		return equipmentModels;
+
 	}
 
 	@Override
 	public EquipmentModel getEquipmentByMsIdAndArmsId(String msId, String armsId) {
-		EquipmentEntity equipmentEntity = equipmentDao.selectEquipmentByMsIdAndArmsId(msId, armsId);
+		Optional<DomaEquipmentEntity> equipmentEntityOpt = jdbcEquipmentDao.selectByMsIdAndArmsId(msId, armsId);
 
-		return toModel(equipmentEntity);
+		EquipmentModel equipmentModel = EquipmentModel.builder()
+				.msId("")
+				.msName("")
+				.armsId("")
+				.armsName("")
+				.numberEquipment("0")
+				.detail("")
+				.build();
+
+		if (equipmentEntityOpt.isPresent()) {
+			equipmentModel = toDomaModel(equipmentEntityOpt.get());
+		}
+
+		return equipmentModel;
+
 	}
 
 	@Override
 	public List<EquipmentModel> searchEquipment(Criteria criteria) {
-		List<EquipmentEntity> equipmentEntityList = equipmentDao.selectEquipmentByCriteria(criteria);
-		List<EquipmentModel> equipmentModelList = equipmentEntityList.stream().map(e -> toModel(e)).toList();
+		List<DomaEquipmentEntity> equipmentEntities = jdbcEquipmentDao.selectByCriteria(criteria);
+		List<EquipmentModel> equipmentModels = equipmentEntities.stream().map(e -> toDomaModel(e)).toList();
 
-		return equipmentModelList;
+		return equipmentModels;
+
 	}
 
-	private EquipmentModel toModel(EquipmentEntity entity) {
+	private EquipmentModel toDomaModel(DomaEquipmentEntity entity) {
 		return EquipmentModel.builder()
 				.msId(entity.getMsId())
 				.msName(entity.getMsName())

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import jp.co.sunarch.mobilesuitDatabase.common.utils.CommonItemSettings;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.mobilesuit.equipment.EquipmentQuery.Criteria;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.form.mobilesuit.Equipment.EquipmentSearchForm;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.equipment.EquipmentModel;
@@ -35,8 +36,8 @@ public class EquipmentController {
 	@PostMapping("/MSDB/MobileSuits/Equipments/-/search")
 	public String searchEquipment(@ModelAttribute EquipmentSearchForm equipmentSearchForm, Model model) {
 		Criteria criteria = EquipmentQuery.Criteria.builder()
-				.msName(equipmentSearchForm.getMsName())
-				.armsName(equipmentSearchForm.getArmsName())
+				.msName(CommonItemSettings.convertToString(equipmentSearchForm.getMsName()))
+				.armsName(CommonItemSettings.convertToString(equipmentSearchForm.getArmsName()))
 				.build();
 
 		List<EquipmentModel> equipmentModelList = equipmentQuery.searchEquipment(criteria);
