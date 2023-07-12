@@ -9,7 +9,6 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Component;
 
-import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.equipment.entity.EquipmentArmsEntity;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.equipment.entity.EquipmentEntity;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.mobilesuit.equipment.EquipmentQuery.Criteria;
 import lombok.RequiredArgsConstructor;
@@ -20,13 +19,13 @@ public class JdbcTemplateEquipmentDao {
 
 	private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-	public List<EquipmentArmsEntity> selectEquipmentArmsByMsId(String msId) {
-		SqlParameterSource params = new MapSqlParameterSource().addValue("msId", msId);
-		RowMapper<EquipmentArmsEntity> mapper = 
-				new BeanPropertyRowMapper<EquipmentArmsEntity>(EquipmentArmsEntity.class);
-
-		return namedParameterJdbcTemplate.query(EquipmentSqlCode.SELECT_EQUIPMENT_ARMS_BY_MSID_QUERY, params, mapper);
-	}
+//	public List<EquipmentArmsEntity> selectEquipmentArmsByMsId(String msId) {
+//		SqlParameterSource params = new MapSqlParameterSource().addValue("msId", msId);
+//		RowMapper<EquipmentArmsEntity> mapper = 
+//				new BeanPropertyRowMapper<EquipmentArmsEntity>(EquipmentArmsEntity.class);
+//
+//		return namedParameterJdbcTemplate.query(EquipmentSqlCode.SELECT_EQUIPMENT_ARMS_BY_MSID_QUERY, params, mapper);
+//	}
 
 	public List<EquipmentEntity> selectEquipmentList() {
 		SqlParameterSource params = new MapSqlParameterSource();

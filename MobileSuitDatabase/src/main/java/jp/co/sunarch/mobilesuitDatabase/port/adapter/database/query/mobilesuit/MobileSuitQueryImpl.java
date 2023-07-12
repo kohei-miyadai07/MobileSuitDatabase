@@ -8,9 +8,9 @@ import java.util.Optional;
 import org.seasar.doma.jdbc.NoResultException;
 import org.springframework.stereotype.Repository;
 
-import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.entity.DomaMobileSuitEntity;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.entity.MobileSuitEntity;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.equipment.JdbcEquipmentDao;
-import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.equipment.entity.DomaEquipmentArmsEntity;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.equipment.entity.EquipmentArmsEntity;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.mobilesuit.MobileSuitQuery;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.MobileSuitDetailModel;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.MobileSuitModel;
@@ -31,16 +31,16 @@ public class MobileSuitQueryImpl implements MobileSuitQuery {
 
 	@Override
 	public List<MobileSuitModel> getMobileSuitList() {
-		List<DomaMobileSuitEntity> msEntityList = jdbcMobileSuitDao.selectAll();
-		List<MobileSuitModel> msResultList = msEntityList.stream().map(l -> toResult(l)).toList();
+		List<MobileSuitEntity> msEntities = jdbcMobileSuitDao.selectAll();
+		List<MobileSuitModel> msModels = msEntities.stream().map(l -> toResult(l)).toList();
 
-		return msResultList;
+		return msModels;
 
 	}
 
 	@Override
 	public MobileSuitDetailModel getMobileSuitDetail(String msId) {
-		DomaMobileSuitEntity msEntity = null;
+		MobileSuitEntity msEntity = null;
 
 		try {
 			msEntity = jdbcMobileSuitDao.selectDetailById(msId);
@@ -48,14 +48,14 @@ public class MobileSuitQueryImpl implements MobileSuitQuery {
 			e.printStackTrace();
 		}
 
-		List<DomaEquipmentArmsEntity> equipmentArmsEntityList = jdbcEquipmentDao.selectEquipmentArmsByMsId(msId);
+		List<EquipmentArmsEntity> equipmentArmsEntities = jdbcEquipmentDao.selectEquipmentArmsByMsId(msId);
 
-		return toJoinResult(msEntity, equipmentArmsEntityList);
+		return toJoinResult(msEntity, equipmentArmsEntities);
 	}
 
 	@Override
 	public MobileSuitModel getMobileSuitById(String msId) {
-		Optional<DomaMobileSuitEntity> msEntityOpt = jdbcMobileSuitDao.selectById(msId);
+		Optional<MobileSuitEntity> msEntityOpt = jdbcMobileSuitDao.selectById(msId);
 
 		MobileSuitModel msModel = MobileSuitModel.builder()
 				.msId("")
@@ -87,15 +87,15 @@ public class MobileSuitQueryImpl implements MobileSuitQuery {
 
 	@Override
 	public List<MobileSuitModel> searchMobileSuit(Criteria criteria) {
-		List<DomaMobileSuitEntity> msEntityList = jdbcMobileSuitDao.selectByCriteria(criteria);
-		List<MobileSuitModel> msModelList = msEntityList.stream().map(l -> toResult(l)).toList();
+		List<MobileSuitEntity> msEntities = jdbcMobileSuitDao.selectByCriteria(criteria);
+		List<MobileSuitModel> msModels = msEntities.stream().map(l -> toResult(l)).toList();
 
-		return msModelList;
+		return msModels;
 	}
 
-	private MobileSuitModel toResult(DomaMobileSuitEntity msEntity) {
+	private MobileSuitModel toResult(MobileSuitEntity msEntity) {
 
-		MobileSuitModel msResult = MobileSuitModel.builder()
+		MobileSuitModel msModel = MobileSuitModel.builder()
 				.msId(msEntity.getMsId())
 				.modelNumber(msEntity.getModelNumber())
 				.msName(msEntity.getMsName())
@@ -116,25 +116,25 @@ public class MobileSuitQueryImpl implements MobileSuitQuery {
 				.version(String.valueOf(msEntity.getVersion()))
 				.build();
 
-		return msResult;
+		return msModel;
 	}
 
-	private EquipmentArmsModel toEquipmentResult(DomaEquipmentArmsEntity Entity) {
+	private EquipmentArmsModel toEquipmentResult(EquipmentArmsEntity equipmentArmsEntity) {
 
-		EquipmentArmsModel result = EquipmentArmsModel.builder()
-				.msId(Entity.getMsId())
-				.armsId(Entity.getArmsId())
-				.armsName(Entity.getArmsName())
-				.numberEquipment(String.valueOf(Entity.getNumberEquipment()))
-				.detail(Entity.getDetail())
+		EquipmentArmsModel equipmentArmsModel = EquipmentArmsModel.builder()
+				.msId(equipmentArmsEntity.getMsId())
+				.armsId(equipmentArmsEntity.getArmsId())
+				.armsName(equipmentArmsEntity.getArmsName())
+				.numberEquipment(String.valueOf(equipmentArmsEntity.getNumberEquipment()))
+				.detail(equipmentArmsEntity.getDetail())
 				.build();
 
-		return result;
+		return equipmentArmsModel;
 	}
 
-	private MobileSuitDetailModel toJoinResult(DomaMobileSuitEntity msEntity, List<DomaEquipmentArmsEntity> equipmentArmsEntityList) {
+	private MobileSuitDetailModel toJoinResult(MobileSuitEntity msEntity, List<EquipmentArmsEntity> equipmentArmsEntities) {
 
-		MobileSuitDetailModel msDetailResult = MobileSuitDetailModel.builder()
+		MobileSuitDetailModel msDetailModel = MobileSuitDetailModel.builder()
 				.msId(msEntity.getMsId())
 				.modelNumber(msEntity.getModelNumber())
 				.msName(msEntity.getMsName())
@@ -155,10 +155,10 @@ public class MobileSuitQueryImpl implements MobileSuitQuery {
 				.insertDate(sdf.format(msEntity.getInsertDate()))
 				.updateDate(sdf.format(msEntity.getUpdateDate()))
 				.version(String.valueOf(msEntity.getVersion()))
-				.equipmentArmsResultList(equipmentArmsEntityList.stream().map(l -> toEquipmentResult(l)).toList())
+				.equipmentArmsResultList(equipmentArmsEntities.stream().map(l -> toEquipmentResult(l)).toList())
 				.build();
 
-		return msDetailResult;
+		return msDetailModel;
 	}
 
 }

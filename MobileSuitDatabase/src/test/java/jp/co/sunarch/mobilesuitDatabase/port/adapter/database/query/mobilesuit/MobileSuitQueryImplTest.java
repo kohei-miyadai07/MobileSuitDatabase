@@ -18,7 +18,6 @@ import org.springframework.context.annotation.Import;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ActiveProfiles;
 
-import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.equipment.JdbcTemplateEquipmentDao;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.mobilesuit.MobileSuitQuery;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.mobilesuit.MobileSuitQuery.Criteria;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.MobileSuitDetailModel;
@@ -27,7 +26,7 @@ import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.equipm
 
 @JdbcTest
 @ActiveProfiles("test")
-@Import({MobileSuitQueryImpl.class, JdbcTemplateMobileSuitDao.class, JdbcTemplateEquipmentDao.class, JdbcMobileSuitDao.class})
+@Import({MobileSuitQueryImpl.class, JdbcMobileSuitDao.class})
 class MobileSuitQueryImplTest {
 
 	private final String INSERT_MOBILESUIT = """

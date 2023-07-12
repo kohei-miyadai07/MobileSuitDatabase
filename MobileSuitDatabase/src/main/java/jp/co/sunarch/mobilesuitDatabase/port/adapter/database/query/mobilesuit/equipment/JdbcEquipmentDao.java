@@ -7,7 +7,7 @@ import org.seasar.doma.Dao;
 import org.seasar.doma.Select;
 import org.seasar.doma.boot.ConfigAutowireable;
 
-import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.equipment.entity.DomaEquipmentArmsEntity;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.equipment.entity.EquipmentArmsEntity;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.equipment.entity.DomaEquipmentEntity;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.mobilesuit.equipment.EquipmentQuery.Criteria;
 
@@ -21,7 +21,7 @@ public interface JdbcEquipmentDao {
 	public Optional<DomaEquipmentEntity> selectByMsIdAndArmsId(String msId, String armsId);
 
 	@Select
-	public List<DomaEquipmentArmsEntity> selectEquipmentArmsByMsId(String msId);
+	public List<EquipmentArmsEntity> selectEquipmentArmsByMsId(String msId);
 
 	@Select
 	public List<DomaEquipmentEntity> selectByCriteria(Criteria criteria);
