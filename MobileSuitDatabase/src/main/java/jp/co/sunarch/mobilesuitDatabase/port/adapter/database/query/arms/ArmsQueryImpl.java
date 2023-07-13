@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 
-import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.arms.entity.DomaArmsEntity;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.arms.entity.ArmsEntity;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.arms.ArmsQuery;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.arms.ArmsModel;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +18,7 @@ public class ArmsQueryImpl implements ArmsQuery {
 
 	@Override
 	public List<ArmsModel> getArmsList() {
-		List<DomaArmsEntity> armsEntities = jdbcArmsDao.selectAll();
+		List<ArmsEntity> armsEntities = jdbcArmsDao.selectAll();
 		List<ArmsModel> armsModels = armsEntities.stream().map(l -> toModel(l)).toList();
 		
 		return armsModels;
@@ -26,7 +26,7 @@ public class ArmsQueryImpl implements ArmsQuery {
 
 	@Override
 	public ArmsModel getArmsById(String armsId) {
-		Optional<DomaArmsEntity> armsEntityOpt = jdbcArmsDao.selectById(armsId);
+		Optional<ArmsEntity> armsEntityOpt = jdbcArmsDao.selectById(armsId);
 
 		ArmsModel armsModel = ArmsModel.builder()
 				.armsId("")
@@ -44,21 +44,21 @@ public class ArmsQueryImpl implements ArmsQuery {
 
 	@Override
 	public List<ArmsModel> searchArms(Criteria criteria) {
-		List<DomaArmsEntity> armsEntities = jdbcArmsDao.selectByCriteria(criteria);
+		List<ArmsEntity> armsEntities = jdbcArmsDao.selectByCriteria(criteria);
 		List<ArmsModel> armsModels = armsEntities.stream().map(l -> toModel(l)).toList();
 
 		return armsModels;
 	}
 
 
-	private ArmsModel toModel(DomaArmsEntity entity) {
-		ArmsModel armsModel = ArmsModel.builder()
+	private ArmsModel toModel(ArmsEntity entity) {
+		ArmsModel model = ArmsModel.builder()
 				.armsId(entity.getArmsId())
 				.armsName(entity.getArmsName())
 				.detail(entity.getDetail())
 				.build();
 
-		return armsModel;
+		return model;
 	}
 
 }

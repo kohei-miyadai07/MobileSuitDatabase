@@ -21,7 +21,7 @@ import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.arms.ArmsModel;
 
 @JdbcTest
 @ActiveProfiles("test")
-@Import({ArmsQueryImpl.class, ArmsQueryDao.class})
+@Import({ArmsQueryImpl.class, JdbcArmsDao.class})
 class ArmsQueryImplTest {
 
 	private final String INSERT_ARMS = """
