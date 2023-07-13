@@ -17,7 +17,7 @@ import jp.co.sunarch.mobilesuitDatabase.domain.model.arms.ArmsId;
 
 @JdbcTest
 @ActiveProfiles("test")
-@Import({ArmsRepositoryImpl.class, ArmsConverter.class, ArmsRepositoryDao.class})
+@Import({ArmsRepositoryImpl.class, ArmsConverter.class, ArmsDao.class})
 class ArmsRepositoryImplTest {
 
 	private final String INSERT_ARMS = """
