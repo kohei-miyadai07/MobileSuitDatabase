@@ -9,19 +9,19 @@ import org.seasar.doma.Select;
 import org.seasar.doma.Update;
 import org.seasar.doma.boot.ConfigAutowireable;
 
-import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.repository.mobilesuit.entity.DomaMobileSuitEntity;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.repository.mobilesuit.entity.MobileSuitEntity;
 
 @ConfigAutowireable
 @Dao
-public interface DomaMobileSuitDao {
+public interface MobileSuitDao {
 	@Select
-	Optional<DomaMobileSuitEntity> selectById(String msId);
+	Optional<MobileSuitEntity> selectById(String msId);
 
 	@Insert
-	int insert(DomaMobileSuitEntity entity);
+	int insert(MobileSuitEntity entity);
 
 	@Update
-	int update(DomaMobileSuitEntity entity);
+	int update(MobileSuitEntity entity);
 
 	@Delete(sqlFile = true)
 	int deleteById(String msId);
