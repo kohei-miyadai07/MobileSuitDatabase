@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 
-import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.equipment.entity.DomaEquipmentEntity;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.equipment.entity.EquipmentEntity;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.mobilesuit.equipment.EquipmentQuery;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.equipment.EquipmentModel;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +18,7 @@ public class EquipmentQueryImpl implements EquipmentQuery {
 
 	@Override
 	public List<EquipmentModel> getEquipmentList() {
-		List<DomaEquipmentEntity> equipmentEntities = jdbcEquipmentDao.selectAll();
+		List<EquipmentEntity> equipmentEntities = jdbcEquipmentDao.selectAll();
 		List<EquipmentModel> equipmentModels = equipmentEntities.stream().map(e -> toDomaModel(e)).toList();
 
 		return equipmentModels;
@@ -27,7 +27,7 @@ public class EquipmentQueryImpl implements EquipmentQuery {
 
 	@Override
 	public EquipmentModel getEquipmentByMsIdAndArmsId(String msId, String armsId) {
-		Optional<DomaEquipmentEntity> equipmentEntityOpt = jdbcEquipmentDao.selectByMsIdAndArmsId(msId, armsId);
+		Optional<EquipmentEntity> equipmentEntityOpt = jdbcEquipmentDao.selectByMsIdAndArmsId(msId, armsId);
 
 		EquipmentModel equipmentModel = EquipmentModel.builder()
 				.msId("")
@@ -48,14 +48,14 @@ public class EquipmentQueryImpl implements EquipmentQuery {
 
 	@Override
 	public List<EquipmentModel> searchEquipment(Criteria criteria) {
-		List<DomaEquipmentEntity> equipmentEntities = jdbcEquipmentDao.selectByCriteria(criteria);
+		List<EquipmentEntity> equipmentEntities = jdbcEquipmentDao.selectByCriteria(criteria);
 		List<EquipmentModel> equipmentModels = equipmentEntities.stream().map(e -> toDomaModel(e)).toList();
 
 		return equipmentModels;
 
 	}
 
-	private EquipmentModel toDomaModel(DomaEquipmentEntity entity) {
+	private EquipmentModel toDomaModel(EquipmentEntity entity) {
 		return EquipmentModel.builder()
 				.msId(entity.getMsId())
 				.msName(entity.getMsName())
