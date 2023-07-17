@@ -1,5 +1,7 @@
 package jp.co.sunarch.mobilesuitDatabase.port.adapter.database.repository.arms;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Repository;
 
 import jp.co.sunarch.mobilesuitDatabase.application.repository.arms.ArmsRepository;
@@ -11,33 +13,39 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ArmsRepositoryImpl implements ArmsRepository {
 
-	private final ArmsRepositoryDao armsRepositoryDao;
+	private final ArmsDao armsDao;
 
 	private final ArmsConverter armsConverter;
 
 	@Override
 	public Arms getArmsById(String armsId) {
-		ArmsEntity armsEntity = armsRepositoryDao.selectArmsById(armsId);
-		Arms arms = armsConverter.entityToDomain(armsEntity);
+		Arms arms = new Arms();
+
+		Optional<ArmsEntity> armsEntityOpt = armsDao.selectById(armsId);
+		if (armsEntityOpt.isPresent()) {
+			arms = armsConverter.entityToDomain(armsEntityOpt.get());
+		}
 
 		return arms;
+
 	}
 
 	@Override
 	public void save(Arms arms) {
-		ArmsEntity before = armsRepositoryDao.selectArmsById(arms.getArmsId().getValue());
-		if (before == null) {
+		Optional<ArmsEntity> before = armsDao.selectById(arms.getArmsId().getValue());
+		if (before.isPresent()) {
 			ArmsEntity armsEntity = armsConverter.domainToEntity(arms);
-			armsRepositoryDao.insert(armsEntity);
+			armsDao.update(armsEntity);
 		} else {
 			ArmsEntity armsEntity = armsConverter.domainToEntity(arms);
-			armsRepositoryDao.update(armsEntity);
+			armsDao.insert(armsEntity);
 		}
 	}
 
 	@Override
 	public void deleteArmsById(String armsId) {
-		armsRepositoryDao.deleteById(armsId);
+		armsDao.deleteById(armsId);
+
 	}
 
 }

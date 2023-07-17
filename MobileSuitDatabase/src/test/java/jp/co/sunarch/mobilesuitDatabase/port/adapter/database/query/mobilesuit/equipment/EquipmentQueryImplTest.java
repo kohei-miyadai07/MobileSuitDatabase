@@ -23,7 +23,7 @@ import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.equipm
 
 @JdbcTest
 @ActiveProfiles("test")
-@Import({EquipmentQueryImpl.class, JdbcTemplateEquipmentDao.class})
+@Import({EquipmentQueryImpl.class, JdbcEquipmentDao.class})
 class EquipmentQueryImplTest {
 
 	private final String INSERT_MOBILESUIT = """

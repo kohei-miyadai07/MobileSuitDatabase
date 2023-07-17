@@ -23,7 +23,7 @@ import jp.co.sunarch.mobilesuitDatabase.domain.model.mobilesuit.MobileSuitId;
 
 @JdbcTest
 @ActiveProfiles("test")
-@Import({MobileSuitRepositoryImpl.class, MobileSuitConverter.class, MobileSuitRepositoryDao.class})
+@Import({MobileSuitRepositoryImpl.class, MobileSuitConverter.class, MobileSuitDao.class})
 class MobileSuitRepositoryImplTest {
 
 	private final String INSERT_MOBILESUIT = """

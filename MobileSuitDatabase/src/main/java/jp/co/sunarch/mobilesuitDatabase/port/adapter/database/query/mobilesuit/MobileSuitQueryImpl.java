@@ -3,11 +3,13 @@ package jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Optional;
 
+import org.seasar.doma.jdbc.NoResultException;
 import org.springframework.stereotype.Repository;
 
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.entity.MobileSuitEntity;
-import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.equipment.JdbcTemplateEquipmentDao;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.equipment.JdbcEquipmentDao;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.equipment.entity.EquipmentArmsEntity;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.mobilesuit.MobileSuitQuery;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.MobileSuitDetailModel;
@@ -19,9 +21,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MobileSuitQueryImpl implements MobileSuitQuery {
 
-	private final JdbcTemplateMobileSuitDao mobileSuitDao;
-	
-	private final JdbcTemplateEquipmentDao equipmentDao;
+	private final JdbcMobileSuitDao jdbcMobileSuitDao;
+
+	private final JdbcEquipmentDao jdbcEquipmentDao;
 
 	private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
@@ -29,41 +31,71 @@ public class MobileSuitQueryImpl implements MobileSuitQuery {
 
 	@Override
 	public List<MobileSuitModel> getMobileSuitList() {
+		List<MobileSuitEntity> msEntities = jdbcMobileSuitDao.selectAll();
+		List<MobileSuitModel> msModels = msEntities.stream().map(l -> toResult(l)).toList();
 
-		List<MobileSuitEntity> msEntityList = mobileSuitDao.selectMobileSuitList();
-		List<MobileSuitModel> msResultList = msEntityList.stream().map(l -> toResult(l)).toList();
-		return msResultList;
+		return msModels;
+
 	}
 
 	@Override
 	public MobileSuitDetailModel getMobileSuitDetail(String msId) {
+		MobileSuitEntity msEntity = null;
 
-		MobileSuitEntity msEntity = mobileSuitDao.selectMobileSuitById(msId);
-		List<EquipmentArmsEntity> equipmentArmsEntityList = equipmentDao.selectEquipmentArmsByMsId(msId);
+		try {
+			msEntity = jdbcMobileSuitDao.selectDetailById(msId);
+		} catch (NoResultException e) {
+			e.printStackTrace();
+		}
 
-		return toJoinResult(msEntity, equipmentArmsEntityList);
+		List<EquipmentArmsEntity> equipmentArmsEntities = jdbcEquipmentDao.selectEquipmentArmsByMsId(msId);
+
+		return toJoinResult(msEntity, equipmentArmsEntities);
 	}
 
 	@Override
 	public MobileSuitModel getMobileSuitById(String msId) {
+		Optional<MobileSuitEntity> msEntityOpt = jdbcMobileSuitDao.selectById(msId);
 
-		MobileSuitEntity msEntity = mobileSuitDao.selectMobileSuitById(msId);
-		MobileSuitModel msModel = toResult(msEntity);
+		MobileSuitModel msModel = MobileSuitModel.builder()
+				.msId("")
+				.modelNumber("")
+				.msName("")
+				.msUrl("")
+				.headHeight("")
+				.overallHeight("")
+				.weight("")
+				.totalWeight("")
+				.powerSource("")
+				.material("")
+				.effectiveSensorRadius("")
+				.generatorOutput("")
+				.totalThrustersOutput("")
+				.msOverview("")
+				.action("")
+				.insertDate("")
+				.updateDate("")
+				.version("")
+				.build();
+
+		if (msEntityOpt.isPresent()) {
+			msModel = toResult(msEntityOpt.get());
+		}
 
 		return msModel;
 	}
 
 	@Override
 	public List<MobileSuitModel> searchMobileSuit(Criteria criteria) {
-		List<MobileSuitEntity> msEntityList = mobileSuitDao.selectMobileSuitByCriteria(criteria);
-		List<MobileSuitModel> msModelList = msEntityList.stream().map(l -> toResult(l)).toList();
+		List<MobileSuitEntity> msEntities = jdbcMobileSuitDao.selectByCriteria(criteria);
+		List<MobileSuitModel> msModels = msEntities.stream().map(l -> toResult(l)).toList();
 
-		return msModelList;
+		return msModels;
 	}
 
 	private MobileSuitModel toResult(MobileSuitEntity msEntity) {
 
-		MobileSuitModel msResult = MobileSuitModel.builder()
+		MobileSuitModel msModel = MobileSuitModel.builder()
 				.msId(msEntity.getMsId())
 				.modelNumber(msEntity.getModelNumber())
 				.msName(msEntity.getMsName())
@@ -81,28 +113,28 @@ public class MobileSuitQueryImpl implements MobileSuitQuery {
 				.action(msEntity.getAction())
 				.insertDate(sdf.format(msEntity.getInsertDate()))
 				.updateDate(sdf.format(msEntity.getUpdateDate()))
-				.version(msEntity.getVersion())
+				.version(String.valueOf(msEntity.getVersion()))
 				.build();
 
-		return msResult;
+		return msModel;
 	}
 
-	private EquipmentArmsModel toEquipmentResult(EquipmentArmsEntity Entity) {
-		
-		EquipmentArmsModel result = EquipmentArmsModel.builder()
-				.msId(Entity.getMsId())
-				.armsId(Entity.getArmsId())
-				.armsName(Entity.getArmsName())
-				.numberEquipment(String.valueOf(Entity.getNumberEquipment()))
-				.detail(Entity.getDetail())
+	private EquipmentArmsModel toEquipmentResult(EquipmentArmsEntity equipmentArmsEntity) {
+
+		EquipmentArmsModel equipmentArmsModel = EquipmentArmsModel.builder()
+				.msId(equipmentArmsEntity.getMsId())
+				.armsId(equipmentArmsEntity.getArmsId())
+				.armsName(equipmentArmsEntity.getArmsName())
+				.numberEquipment(String.valueOf(equipmentArmsEntity.getNumberEquipment()))
+				.detail(equipmentArmsEntity.getDetail())
 				.build();
-		
-		return result;
+
+		return equipmentArmsModel;
 	}
 
-	private MobileSuitDetailModel toJoinResult(MobileSuitEntity msEntity, List<EquipmentArmsEntity> equipmentArmsEntityList) {
-		
-		MobileSuitDetailModel msDetailResult = MobileSuitDetailModel.builder()
+	private MobileSuitDetailModel toJoinResult(MobileSuitEntity msEntity, List<EquipmentArmsEntity> equipmentArmsEntities) {
+
+		MobileSuitDetailModel msDetailModel = MobileSuitDetailModel.builder()
 				.msId(msEntity.getMsId())
 				.modelNumber(msEntity.getModelNumber())
 				.msName(msEntity.getMsName())
@@ -122,11 +154,11 @@ public class MobileSuitQueryImpl implements MobileSuitQuery {
 				.action(msEntity.getAction())
 				.insertDate(sdf.format(msEntity.getInsertDate()))
 				.updateDate(sdf.format(msEntity.getUpdateDate()))
-				.version(msEntity.getVersion())
-				.equipmentArmsResultList(equipmentArmsEntityList.stream().map(l -> toEquipmentResult(l)).toList())
+				.version(String.valueOf(msEntity.getVersion()))
+				.equipmentArmsResultList(equipmentArmsEntities.stream().map(l -> toEquipmentResult(l)).toList())
 				.build();
 
-		return msDetailResult;
+		return msDetailModel;
 	}
 
 }

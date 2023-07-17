@@ -9,21 +9,21 @@ import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.repository.arms.en
 @Component
 public class ArmsConverter {
 
-	public ArmsEntity domainToEntity(Arms arms) {
-		ArmsEntity armsEntity = new ArmsEntity();
-		armsEntity.setArmsId(arms.getArmsId().getValue());
-		armsEntity.setArmsName(arms.getArmsName());
-		armsEntity.setDetail(arms.getDetail());
+	public ArmsEntity domainToEntity(Arms domain) {
+		ArmsEntity entity = new ArmsEntity();
+		entity.setArmsId(domain.getArmsId().getValue());
+		entity.setArmsName(domain.getArmsName());
+		entity.setDetail(domain.getDetail());
 
-		return armsEntity;
+		return entity;
 	}
 
-	public Arms entityToDomain(ArmsEntity armsEntity) {
-		Arms arms = Arms.create(
-				ArmsId.of(armsEntity.getArmsId())
-				,armsEntity.getArmsName()
-				,armsEntity.getDetail());
+	public Arms entityToDomain(ArmsEntity entity) {
+		Arms domain = Arms.create(
+				ArmsId.of(entity.getArmsId())
+				,entity.getArmsName()
+				,entity.getDetail());
 
-		return arms;
+		return domain;
 	}
 }

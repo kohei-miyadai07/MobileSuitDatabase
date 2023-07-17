@@ -1,5 +1,5 @@
 -- Project Name : MSDB_ERê}_Ver2
--- Date/Time    : 2023/01/14 21:45:31
+-- Date/Time    : 2023/07/02 8:00:27
 -- Author       : mk26s
 -- RDBMS Type   : PostgreSQL
 -- Application  : A5:SQL Mk-2
@@ -216,6 +216,86 @@ create table MobileSuit (
   , version integer not null
   , constraint MobileSuit_PKC primary key (ms_id)
 ) ;
+
+alter table Ability
+  add constraint Ability_FK1 foreign key (feature_id) references Feature(feature_id)
+  on delete cascade;
+
+alter table Ability
+  add constraint Ability_FK2 foreign key (ms_id) references MobileSuit(ms_id)
+  on delete cascade;
+
+alter table Works
+  add constraint Works_FK1 foreign key (opus_id) references Opus(opus_id)
+  on delete cascade;
+
+alter table Works
+  add constraint Works_FK2 foreign key (ms_id) references MobileSuit(ms_id)
+  on delete cascade;
+
+alter table Operation_Carrier
+  add constraint Operation_Carrier_FK1 foreign key (ship_id) references Ship(ship_id)
+  on delete cascade;
+
+alter table Operation_Carrier
+  add constraint Operation_Carrier_FK2 foreign key (ms_id) references MobileSuit(ms_id)
+  on delete cascade;
+
+alter table Passenger
+  add constraint Passenger_FK1 foreign key (pilot_id) references Pilot(pilot_id)
+  on delete cascade;
+
+alter table Passenger
+  add constraint Passenger_FK2 foreign key (ms_id) references MobileSuit(ms_id)
+  on delete cascade;
+
+alter table Belonging
+  add constraint Belonging_FK1 foreign key (team_id) references Team(team_id)
+  on delete cascade;
+
+alter table Belonging
+  add constraint Belonging_FK2 foreign key (ms_id) references MobileSuit(ms_id)
+  on delete cascade;
+
+alter table Developer
+  add constraint Developer_FK1 foreign key (person_id) references Person(person_id)
+  on delete cascade;
+
+alter table Developer
+  add constraint Developer_FK2 foreign key (ms_id) references MobileSuit(ms_id)
+  on delete cascade;
+
+alter table Development_Base
+  add constraint Development_Base_FK1 foreign key (base_id) references Base(base_id)
+  on delete cascade;
+
+alter table Development_Base
+  add constraint Development_Base_FK2 foreign key (ms_id) references MobileSuit(ms_id)
+  on delete cascade;
+
+alter table Development_Org
+  add constraint Development_Org_FK1 foreign key (org_id) references Organization(org_id)
+  on delete cascade;
+
+alter table Development_Org
+  add constraint Development_Org_FK2 foreign key (ms_id) references MobileSuit(ms_id)
+  on delete cascade;
+
+alter table Categorize
+  add constraint Categorize_FK1 foreign key (class_id) references CLASS(class_id)
+  on delete cascade;
+
+alter table Categorize
+  add constraint Categorize_FK2 foreign key (ms_id) references MobileSuit(ms_id)
+  on delete cascade;
+
+alter table Equipment
+  add constraint Equipment_FK1 foreign key (arms_id) references Arms(arms_id)
+  on delete cascade;
+
+alter table Equipment
+  add constraint Equipment_FK2 foreign key (ms_id) references MobileSuit(ms_id)
+  on delete cascade;
 
 comment on table Ability is 'î\óÕ';
 comment on column Ability.ms_id is 'ã@ëÃID';

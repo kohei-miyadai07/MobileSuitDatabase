@@ -38,6 +38,14 @@ create table Equipment (
   , constraint Equipment_PKC primary key (ms_id,arms_id)
 ) ;
 
+alter table Equipment
+  add constraint Equipment_FK1 foreign key (arms_id) references Arms(arms_id)
+  on delete cascade;
+
+alter table Equipment
+  add constraint Equipment_FK2 foreign key (ms_id) references MobileSuit(ms_id)
+  on delete cascade;
+
 comment on table MobileSuit is 'モビルスーツ';
 comment on column MobileSuit.ms_id is '機体ID';
 comment on column MobileSuit.model_number is '型式番号';

@@ -1,6 +1,6 @@
 package jp.co.sunarch.mobilesuitDatabase.port.adapter.database.repository.mobilesuit.equipment;
 
-import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 
@@ -13,60 +13,39 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class EquipmentRepositoryImpl implements EquipmentRepository {
 
-	private final EquipmentRepositoryDao equipmentRepositoryDao;
+	private final EquipmentDao equipmentDao;
+
 	private final EquipmentConverter equipmentConverter;
 
 	@Override
-	public List<Equipment> getEquipmentListByMsId(String msId) {
-		List<EquipmentEntity> equipmentEntityList = equipmentRepositoryDao.selectByMsId(msId);
-		List<Equipment> equipmentList = equipmentEntityList.stream().map(e -> equipmentConverter.entityToDomain(e)).toList();
-
-		return equipmentList;
-	}
-
-	@Override
-	public List<Equipment> getEquipmentListByArmsId(String armsId) {
-		List<EquipmentEntity> equipmentEntityList = equipmentRepositoryDao.selectByArmsId(armsId);
-		List<Equipment> equipmentList = equipmentEntityList.stream().map(e -> equipmentConverter.entityToDomain(e)).toList();
-
-		return equipmentList;
-	}
-
-	@Override
 	public Equipment getEquipmentByMsIdAndArmsId(String msId, String armsId) {
-		EquipmentEntity equipmentEntity = equipmentRepositoryDao.selectByMsIdAndArmsId(msId, armsId);
-		Equipment equipment = equipmentConverter.entityToDomain(equipmentEntity);
+		Equipment equipment = new Equipment();
+
+		Optional<EquipmentEntity> equipmentEntityOpt = equipmentDao.selectByMsIdAndArmsId(msId, armsId);
+		if (equipmentEntityOpt.isPresent()) {
+			equipment = equipmentConverter.entityToDomain(equipmentEntityOpt.get());
+		}
 
 		return equipment;
 	}
 
 	@Override
 	public void save(Equipment equipment) {
-		EquipmentEntity before = equipmentRepositoryDao.selectByMsIdAndArmsId(
-				equipment.getMsId().getValue(), 
+		Optional<EquipmentEntity> before = equipmentDao.selectByMsIdAndArmsId(
+				equipment.getMsId().getValue(),
 				equipment.getArmsId().getValue());
-		if(before == null) {
+		if(before.isPresent()) {
 			EquipmentEntity equipmentEntity = equipmentConverter.domainToEntity(equipment);
-			equipmentRepositoryDao.insert(equipmentEntity);
+			equipmentDao.update(equipmentEntity);
 		} else {
 			EquipmentEntity equipmentEntity = equipmentConverter.domainToEntity(equipment);
-			equipmentRepositoryDao.update(equipmentEntity);
+			equipmentDao.insert(equipmentEntity);
 		}
 	}
 
 	@Override
 	public void deleteEquipmentByMsIdAndArmsId(String msId, String armsId) {
-		equipmentRepositoryDao.deleteByMsIdAndArmsId(msId, armsId);
-	}
-
-	@Override
-	public void deleteEquipmentByMsid(String msId) {
-		equipmentRepositoryDao.deleteByMsId(msId);
-	}
-
-	@Override
-	public void deleteEquipmentByArmsId(String armsId) {
-		equipmentRepositoryDao.deleteByArmsId(armsId);
+		equipmentDao.deleteByMsIdAndArmsId(msId, armsId);
 	}
 
 }

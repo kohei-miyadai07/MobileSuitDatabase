@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import jp.co.sunarch.mobilesuitDatabase.common.utils.CommonItemSettings;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.arms.ArmsQuery.Criteria;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.form.arms.ArmsSearchForm;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.arms.ArmsModel;
@@ -35,7 +36,7 @@ public class ArmsController {
 	@PostMapping("/MSDB/Arms/-/search")
 	public String searchArms(@ModelAttribute ArmsSearchForm armsSearchForm, Model model) {
 		Criteria criteria = ArmsQuery.Criteria.builder()
-				.armsName(armsSearchForm.getArmsName())
+				.armsName(CommonItemSettings.convertToString(armsSearchForm.getArmsName()))
 				.build();
 
 		List<ArmsModel> armsModelList = armsQuery.searchArms(criteria);

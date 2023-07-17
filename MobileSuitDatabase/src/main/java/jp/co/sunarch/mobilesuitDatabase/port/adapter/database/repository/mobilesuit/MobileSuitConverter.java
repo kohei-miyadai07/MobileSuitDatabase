@@ -11,54 +11,54 @@ import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.repository.mobiles
 @Component
 public class MobileSuitConverter {
 
-	public MobileSuitEntity domainToEntity(MobileSuit mobileSuit) {
+	public MobileSuitEntity domainToEntity(MobileSuit domain) {
 
-		MobileSuitEntity msEntity = new MobileSuitEntity();
-		msEntity.setMsId(mobileSuit.getMsId().getValue());
-		msEntity.setModelNumber(mobileSuit.getModelNumber());
-		msEntity.setMsName(mobileSuit.getMsName());
-		msEntity.setMsUrl(mobileSuit.getMsUrl());
-		msEntity.setHeadHeight(mobileSuit.getHeadHeight());
-		msEntity.setOverallHeight(mobileSuit.getOverallHeight());
-		msEntity.setWeight(mobileSuit.getWeight());
-		msEntity.setTotalWeight(mobileSuit.getTotalWeight());
-		msEntity.setPowerSource(mobileSuit.getPowerSource());
-		msEntity.setMaterial(mobileSuit.getMaterial());
-		msEntity.setEffectiveSensorRadius(mobileSuit.getEffectiveSensorRadius());
-		msEntity.setGeneratorOutput(mobileSuit.getGeneratorOutput());
-		msEntity.setTotalThrustersOutput(mobileSuit.getTotalThrustersOutput());
-		msEntity.setMsOverview(mobileSuit.getMsOverview());
-		msEntity.setAction(mobileSuit.getAction());
-		msEntity.setInsertDate(Timestamp.valueOf(mobileSuit.getInsertDate()));
-		msEntity.setUpdateDate(Timestamp.valueOf(mobileSuit.getUpdateDate()));
-		msEntity.setVersion(mobileSuit.getVersion());
+		MobileSuitEntity entity = new MobileSuitEntity();
+		entity.setMsId(domain.getMsId().getValue());
+		entity.setModelNumber(domain.getModelNumber());
+		entity.setMsName(domain.getMsName());
+		entity.setMsUrl(domain.getMsUrl());
+		entity.setHeadHeight(domain.getHeadHeight());
+		entity.setOverallHeight(domain.getOverallHeight());
+		entity.setWeight(domain.getWeight());
+		entity.setTotalWeight(domain.getTotalWeight());
+		entity.setPowerSource(domain.getPowerSource());
+		entity.setMaterial(domain.getMaterial());
+		entity.setEffectiveSensorRadius(domain.getEffectiveSensorRadius());
+		entity.setGeneratorOutput(domain.getGeneratorOutput());
+		entity.setTotalThrustersOutput(domain.getTotalThrustersOutput());
+		entity.setMsOverview(domain.getMsOverview());
+		entity.setAction(domain.getAction());
+		entity.setInsertDate(Timestamp.valueOf(domain.getInsertDate()));
+		entity.setUpdateDate(Timestamp.valueOf(domain.getUpdateDate()));
+		entity.setVersion(domain.getVersion());
 
-		return msEntity;
+		return entity;
 	}
 
-	public MobileSuit entityToDomain(MobileSuitEntity msEntity) {
-		
-		MobileSuit mobileSuit = MobileSuit.create(
-				MobileSuitId.of(msEntity.getMsId())
-				,msEntity.getModelNumber()
-				,msEntity.getMsName()
-				,msEntity.getMsUrl()
-				,msEntity.getHeadHeight()
-				,msEntity.getOverallHeight()
-				,msEntity.getWeight()
-				,msEntity.getTotalWeight()
-				,msEntity.getPowerSource()
-				,msEntity.getMaterial()
-				,msEntity.getEffectiveSensorRadius()
-				,msEntity.getGeneratorOutput()
-				,msEntity.getTotalThrustersOutput()
-				,msEntity.getMsOverview()
-				,msEntity.getAction()
-				,msEntity.getInsertDate().toLocalDateTime()
-				,msEntity.getUpdateDate().toLocalDateTime()
-				,msEntity.getVersion());
+	public MobileSuit entityToDomain(MobileSuitEntity entity) {
 
-		return mobileSuit;
+		MobileSuit domain = MobileSuit.create(
+				MobileSuitId.of(entity.getMsId())
+				,entity.getModelNumber()
+				,entity.getMsName()
+				,entity.getMsUrl()
+				,entity.getHeadHeight()
+				,entity.getOverallHeight()
+				,entity.getWeight()
+				,entity.getTotalWeight()
+				,entity.getPowerSource()
+				,entity.getMaterial()
+				,entity.getEffectiveSensorRadius()
+				,entity.getGeneratorOutput()
+				,entity.getTotalThrustersOutput()
+				,entity.getMsOverview()
+				,entity.getAction()
+				,entity.getInsertDate().toLocalDateTime()
+				,entity.getUpdateDate().toLocalDateTime()
+				,entity.getVersion());
+
+		return domain;
 	}
 
 }

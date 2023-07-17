@@ -17,9 +17,9 @@ public class MobileSuit {
 	private BigDecimal totalWeight;
 	private String powerSource;
 	private String material;
-	private long effectiveSensorRadius;
-	private long generatorOutput;
-	private long totalThrustersOutput;
+	private Long effectiveSensorRadius;
+	private Long generatorOutput;
+	private Long totalThrustersOutput;
 	private String msOverview;
 	private String action;
 	private LocalDateTime insertDate;
@@ -28,7 +28,7 @@ public class MobileSuit {
 
 	public static MobileSuit create(MobileSuitId msId, String modelNumber, String msName, String msUrl,
 			BigDecimal headHeight, BigDecimal overallHeight, BigDecimal weight, BigDecimal totalWeight,
-			String powerSource, String material, long effectiveSensorRadius, long generatorOutput, long totalThrustersOutput,
+			String powerSource, String material, Long effectiveSensorRadius, Long generatorOutput, Long totalThrustersOutput,
 			String msOverview, String action, LocalDateTime insertDate, LocalDateTime updateDate, Integer version) {
 		
 		MobileSuit mobileSuit = new MobileSuit();
