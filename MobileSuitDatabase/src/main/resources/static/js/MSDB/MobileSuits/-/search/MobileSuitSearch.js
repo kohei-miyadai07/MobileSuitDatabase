@@ -16,11 +16,18 @@ document.addEventListener("DOMContentLoaded", function () {
     let hasError = false;
 
     // 型式番号のバリデーション
-    if (modelNumber === "" || modelNumber.length >= 50) {
+    if (modelNumber === "") {
       showError(
         modelNumberInput,
         "modelNumberError",
-        "型式番号は空欄でなく、50文字以下で入力してください。"
+        "型式番号は必須項目です。"
+      );
+      hasError = true;
+    } else if (modelNumber.length > 50) {
+      showError(
+        modelNumberInput,
+        "modelNumberError",
+        "型式番号は50文字以下で入力してください。"
       );
       hasError = true;
     }
