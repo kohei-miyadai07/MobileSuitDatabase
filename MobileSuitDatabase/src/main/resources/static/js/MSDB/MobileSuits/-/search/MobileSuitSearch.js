@@ -1,7 +1,13 @@
 document.addEventListener("DOMContentLoaded", function () {
   // フォーム入力値が変更されたときにバリデーションを実行する
   const form = document.getElementById("msSearchForm");
+
   const modelNumberInput = document.getElementById("modelNumber");
+  const msNameInput = document.getElementById("msName");
+  const headHeightFromInput = document.getElementById("headHeightFrom");
+  const effectiveSensorRadiusFromInput = document.getElementById(
+    "effectiveSensorRadiusFrom"
+  );
 
   form.addEventListener("input", function () {
     validateForm();
@@ -12,6 +18,10 @@ document.addEventListener("DOMContentLoaded", function () {
     clearErrors();
 
     const modelNumber = modelNumberInput.value.trim();
+    const msName = msNameInput.value.trim();
+    const headHeightFrom = headHeightFromInput.value.trim();
+    const effectiveSensorRadiusFrom =
+      effectiveSensorRadiusFromInput.value.trim();
 
     let hasError = false;
 
@@ -28,6 +38,38 @@ document.addEventListener("DOMContentLoaded", function () {
         modelNumberInput,
         "modelNumberError",
         "型式番号は50文字以下で入力してください。"
+      );
+      hasError = true;
+    }
+
+    if (msName === "") {
+      showError(msNameInput, "msNameError", "機体名は必須です。");
+      hasError = true;
+    } else if (msName.length > 90) {
+      showError(
+        msNameInput,
+        "msNameError",
+        "機体名は90文字以下で入力してください。"
+      );
+      hasError = true;
+    }
+
+    // 頭高頂のバリデーション
+    if (!/^(\d{1,5}(\.\d{1,2})?)?$/.test(headHeightFrom)) {
+      showError(
+        headHeightFromInput,
+        "headHeightFromError",
+        "頭高頂は5桁以下の数値（小数点以下2桁まで）を入力してください。"
+      );
+      hasError = true;
+    }
+
+    // センサー有効半径のバリデーション
+    if (isNaN(effectiveSensorRadiusFrom)) {
+      showError(
+        effectiveSensorRadiusFromInput,
+        "effectiveSensorRadiusFromError",
+        "センサー有効半径は数値を入力してください。"
       );
       hasError = true;
     }

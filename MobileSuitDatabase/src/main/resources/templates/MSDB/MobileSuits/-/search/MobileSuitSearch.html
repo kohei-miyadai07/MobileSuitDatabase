@@ -68,10 +68,12 @@
                 </div>
                 <div class="col-md-9">
                   <input
+                    id="msName"
                     type="text"
                     class="form-control"
                     th:field="*{msName}"
                   />
+                  <div id="msNameError" class="invalid-feedback"></div>
                 </div>
               </div>
               <div class="mb-5"></div>
@@ -81,10 +83,12 @@
                 </div>
                 <div class="col-md">
                   <input
+                    id="headHeightFrom"
                     type="text"
                     class="form-control"
                     th:field="*{headHeightFrom}"
                   />
+                  <div id="headHeightFromError" class="invalid-feedback"></div>
                 </div>
                 <div class="col-auto">
                   <span class="form-control-plaintext">～</span>
@@ -199,10 +203,12 @@
                 </div>
                 <div class="col-md">
                   <input
+                    id="effectiveSensorRadiusFrom"
                     type="text"
                     class="form-control"
                     th:field="*{effectiveSensorRadiusFrom}"
                   />
+                  <div id="effectiveSensorRadiusFromError" class="invalid-feedback"></div>
                 </div>
                 <div class="col-auto">
                   <span class="form-control-plaintext">～</span>
