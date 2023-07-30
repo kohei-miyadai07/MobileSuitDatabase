@@ -1,5 +1,5 @@
 -- Project Name : MSDB_ER図_Ver2
--- Date/Time    : 2023/07/02 8:00:27
+-- Date/Time    : 2023/07/30 1:11:48
 -- Author       : mk26s
 -- RDBMS Type   : PostgreSQL
 -- Application  : A5:SQL Mk-2
@@ -15,8 +15,8 @@
 -- 能力
 --* RestoreFromTempTable
 create table Ability (
-  ms_id VARCHAR(8) not null
-  , feature_id VARCHAR(8) not null
+  ms_id VARCHAR(90) not null
+  , feature_id VARCHAR(90) not null
   , detail TEXT
   , constraint Ability_PKC primary key (ms_id,feature_id)
 ) ;
@@ -24,8 +24,8 @@ create table Ability (
 -- 機能
 --* RestoreFromTempTable
 create table Feature (
-  feature_id VARCHAR(8) not null
-  , feature_name VARCHAR(90) not null
+  feature_id VARCHAR(90) not null
+  , feature_name VARCHAR(300) not null
   , detail TEXT
   , constraint Feature_PKC primary key (feature_id)
 ) ;
@@ -33,8 +33,8 @@ create table Feature (
 -- 登場作品
 --* RestoreFromTempTable
 create table Works (
-  ms_id VARCHAR(8) not null
-  , opus_id VARCHAR(8) not null
+  ms_id VARCHAR(90) not null
+  , opus_id VARCHAR(90) not null
   , detail TEXT
   , constraint Works_PKC primary key (ms_id,opus_id)
 ) ;
@@ -42,8 +42,8 @@ create table Works (
 -- 作品
 --* RestoreFromTempTable
 create table Opus (
-  opus_id VARCHAR(8) not null
-  , opus_name VARCHAR(90) not null
+  opus_id VARCHAR(90) not null
+  , opus_name VARCHAR(300) not null
   , detail TEXT
   , constraint Opus_PKC primary key (opus_id)
 ) ;
@@ -51,8 +51,8 @@ create table Opus (
 -- 運用母艦
 --* RestoreFromTempTable
 create table Operation_Carrier (
-  ms_id VARCHAR(8) not null
-  , ship_id VARCHAR(8) not null
+  ms_id VARCHAR(90) not null
+  , ship_id VARCHAR(90) not null
   , detail TEXT
   , constraint Operation_Carrier_PKC primary key (ms_id,ship_id)
 ) ;
@@ -60,8 +60,8 @@ create table Operation_Carrier (
 -- 艦船
 --* RestoreFromTempTable
 create table Ship (
-  ship_id VARCHAR(8) not null
-  , shop_name VARCHAR(90) not null
+  ship_id VARCHAR(90) not null
+  , shop_name VARCHAR(300) not null
   , detail TEXT
   , constraint Ship_PKC primary key (ship_id)
 ) ;
@@ -69,8 +69,8 @@ create table Ship (
 -- 搭乗者
 --* RestoreFromTempTable
 create table Passenger (
-  ms_id VARCHAR(8) not null
-  , pilot_id VARCHAR(8) not null
+  ms_id VARCHAR(90) not null
+  , pilot_id VARCHAR(90) not null
   , detail TEXT
   , constraint Passenger_PKC primary key (ms_id,pilot_id)
 ) ;
@@ -78,8 +78,8 @@ create table Passenger (
 -- パイロット
 --* RestoreFromTempTable
 create table Pilot (
-  pilot_id VARCHAR(8) not null
-  , pilot_name VARCHAR(90) not null
+  pilot_id VARCHAR(90) not null
+  , pilot_name VARCHAR(300) not null
   , detail TEXT
   , constraint Pilot_PKC primary key (pilot_id)
 ) ;
@@ -87,8 +87,8 @@ create table Pilot (
 -- 所属
 --* RestoreFromTempTable
 create table Belonging (
-  ms_id VARCHAR(8) not null
-  , team_id VARCHAR(8) not null
+  ms_id VARCHAR(90) not null
+  , team_id VARCHAR(90) not null
   , detail TEXT
   , constraint Belonging_PKC primary key (ms_id,team_id)
 ) ;
@@ -96,8 +96,8 @@ create table Belonging (
 -- チーム
 --* RestoreFromTempTable
 create table Team (
-  team_id VARCHAR(8) not null
-  , team_name VARCHAR(90) not null
+  team_id VARCHAR(90) not null
+  , team_name VARCHAR(300) not null
   , detail TEXT
   , constraint Team_PKC primary key (team_id)
 ) ;
@@ -105,8 +105,8 @@ create table Team (
 -- 開発者
 --* RestoreFromTempTable
 create table Developer (
-  ms_id VARCHAR(8) not null
-  , person_id VARCHAR(8) not null
+  ms_id VARCHAR(90) not null
+  , person_id VARCHAR(90) not null
   , detail TEXT
   , constraint Developer_PKC primary key (ms_id,person_id)
 ) ;
@@ -114,8 +114,8 @@ create table Developer (
 -- 人物
 --* RestoreFromTempTable
 create table Person (
-  person_id VARCHAR(8) not null
-  , person_name VARCHAR(90) not null
+  person_id VARCHAR(90) not null
+  , person_name VARCHAR(300) not null
   , detail TEXT
   , constraint Person_PKC primary key (person_id)
 ) ;
@@ -123,8 +123,8 @@ create table Person (
 -- 開発拠点
 --* RestoreFromTempTable
 create table Development_Base (
-  ms_id VARCHAR(8) not null
-  , base_id VARCHAR(8) not null
+  ms_id VARCHAR(90) not null
+  , base_id VARCHAR(90) not null
   , detail TEXT
   , constraint Development_Base_PKC primary key (ms_id,base_id)
 ) ;
@@ -132,8 +132,8 @@ create table Development_Base (
 -- 拠点
 --* RestoreFromTempTable
 create table Base (
-  base_id VARCHAR(8) not null
-  , base_name VARCHAR(90) not null
+  base_id VARCHAR(90) not null
+  , base_name VARCHAR(300) not null
   , detail TEXT
   , constraint Base_PKC primary key (base_id)
 ) ;
@@ -141,8 +141,8 @@ create table Base (
 -- 開発組織
 --* RestoreFromTempTable
 create table Development_Org (
-  ms_id VARCHAR(8) not null
-  , org_id VARCHAR(8) not null
+  ms_id VARCHAR(90) not null
+  , org_id VARCHAR(90) not null
   , detail TEXT
   , constraint Development_Org_PKC primary key (ms_id,org_id)
 ) ;
@@ -150,8 +150,8 @@ create table Development_Org (
 -- 組織
 --* RestoreFromTempTable
 create table Organization (
-  org_id VARCHAR(8) not null
-  , org_name VARCHAR(90) not null
+  org_id VARCHAR(90) not null
+  , org_name VARCHAR(300) not null
   , detail TEXT
   , constraint Organization_PKC primary key (org_id)
 ) ;
@@ -159,8 +159,8 @@ create table Organization (
 -- カテゴライズ
 --* RestoreFromTempTable
 create table Categorize (
-  ms_id VARCHAR(8) not null
-  , class_id VARCHAR(8) not null
+  ms_id VARCHAR(90) not null
+  , class_id VARCHAR(90) not null
   , detail TEXT
   , constraint Categorize_PKC primary key (ms_id,class_id)
 ) ;
@@ -168,8 +168,8 @@ create table Categorize (
 -- 分類
 --* RestoreFromTempTable
 create table CLASS (
-  class_id VARCHAR(8) not null
-  , class_name VARCHAR(90) not null
+  class_id VARCHAR(90) not null
+  , class_name VARCHAR(300) not null
   , detail TEXT
   , constraint CLASS_PKC primary key (class_id)
 ) ;
@@ -177,8 +177,8 @@ create table CLASS (
 -- 装備
 --* RestoreFromTempTable
 create table Equipment (
-  ms_id VARCHAR(8) not null
-  , arms_id VARCHAR(8) not null
+  ms_id VARCHAR(90) not null
+  , arms_id VARCHAR(90) not null
   , number_equipment INTEGER
   , detail TEXT
   , constraint Equipment_PKC primary key (ms_id,arms_id)
@@ -187,8 +187,8 @@ create table Equipment (
 -- 武器
 --* RestoreFromTempTable
 create table Arms (
-  arms_id VARCHAR(8) not null
-  , arms_name VARCHAR(90) not null
+  arms_id VARCHAR(90) not null
+  , arms_name VARCHAR(300) not null
   , detail TEXT
   , constraint Arms_PKC primary key (arms_id)
 ) ;
@@ -196,16 +196,16 @@ create table Arms (
 -- モビルスーツ
 --* RestoreFromTempTable
 create table MobileSuit (
-  ms_id VARCHAR(8) not null
-  , model_number VARCHAR(50) not null
-  , ms_name VARCHAR(90) not null
-  , ms_url VARCHAR(100) not null
+  ms_id VARCHAR(90) not null
+  , model_number VARCHAR(300) not null
+  , ms_name VARCHAR(300) not null
+  , ms_url TEXT not null
   , head_height DECIMAL(5,2)
   , overall_height DECIMAL(5,2)
   , weight DECIMAL(5,2)
   , total_weight DECIMAL(5,2)
-  , power_source VARCHAR(90)
-  , material VARCHAR(90)
+  , power_source VARCHAR(300)
+  , material VARCHAR(300)
   , effective_sensor_radius BIGINT
   , generator_output BIGINT
   , total_thrusters_output BIGINT

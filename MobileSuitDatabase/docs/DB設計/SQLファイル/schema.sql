@@ -1,7 +1,7 @@
 -- 装備
 create table Equipment (
-  ms_id VARCHAR(8) not null
-  , arms_id VARCHAR(8) not null
+  ms_id VARCHAR(90) not null
+  , arms_id VARCHAR(90) not null
   , number_equipment INTEGER
   , detail TEXT
   , constraint Equipment_PKC primary key (ms_id,arms_id)
@@ -9,24 +9,24 @@ create table Equipment (
 
 -- 武器
 create table Arms (
-  arms_id VARCHAR(8) not null
-  , arms_name VARCHAR(90) not null
+  arms_id VARCHAR(90) not null
+  , arms_name VARCHAR(300) not null
   , detail TEXT
   , constraint Arms_PKC primary key (arms_id)
 ) ;
 
 -- モビルスーツ
 create table MobileSuit (
-  ms_id VARCHAR(8) not null
-  , model_number VARCHAR(50) not null
-  , ms_name VARCHAR(90) not null
-  , ms_url VARCHAR(100) not null
+  ms_id VARCHAR(90) not null
+  , model_number VARCHAR(300) not null
+  , ms_name VARCHAR(300) not null
+  , ms_url TEXT not null
   , head_height DECIMAL(5,2)
   , overall_height DECIMAL(5,2)
   , weight DECIMAL(5,2)
   , total_weight DECIMAL(5,2)
-  , power_source VARCHAR(90)
-  , material VARCHAR(90)
+  , power_source VARCHAR(300)
+  , material VARCHAR(300)
   , effective_sensor_radius BIGINT
   , generator_output BIGINT
   , total_thrusters_output BIGINT
