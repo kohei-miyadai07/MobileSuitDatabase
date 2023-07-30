@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("msRegisterForm");
 
   const msNameInput = document.getElementById("msName");
+  const modelNumberInput = document.getElementById("modelNumber");
 
   form.addEventListener("input", function () {
     validateForm();
@@ -13,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
     clearErrors();
 
     const msName = msNameInput.value.trim();
+    const modelNumber = modelNumberInput.value.trim();
 
     let hasError = false;
 
@@ -29,6 +31,17 @@ document.addEventListener("DOMContentLoaded", function () {
         "機体名は300文字以下で入力して下さい。"
       );
       hasError = true;
+    }
+
+    // 型式番号のバリデーション
+    if (modelNumber === "") {
+        showError(modelNumberInput, "modelNumberError", "型式番号は必須入力です。");
+        hasError = true;
+    }
+
+    if (modelNumber.length > 300) {
+        showError(modelNumberInput, "modelNumberError", "型式番号は300文字以下で入力して下さい。");
+        hasError = true;
     }
 
     // 検索ボタンの活性/非活性を設定
