@@ -164,7 +164,7 @@ document.addEventListener("DOMContentLoaded", function () {
         hasError = true;
       }
   
-      // 検索ボタンの活性/非活性を設定
+      // 更新ボタンの活性/非活性を設定
       const button = document.getElementById("update");
       button.disabled = hasError;
     }

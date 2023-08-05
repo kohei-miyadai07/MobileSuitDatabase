@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
       hasError = true;
     }
 
-    // 検索ボタンの活性/非活性を設定
+    // 登録ボタンの活性/非活性を設定
     const button = document.getElementById("regist");
     button.disabled = hasError;
   }
