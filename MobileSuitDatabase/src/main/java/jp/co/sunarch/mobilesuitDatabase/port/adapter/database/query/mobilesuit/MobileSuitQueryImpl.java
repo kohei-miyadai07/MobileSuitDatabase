@@ -1,6 +1,5 @@
 package jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit;
 
-import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Optional;
@@ -27,8 +26,6 @@ public class MobileSuitQueryImpl implements MobileSuitQuery {
 	private final JdbcEquipmentDao jdbcEquipmentDao;
 
 	private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-
-	private NumberFormat comFormat = NumberFormat.getNumberInstance();
 
 	@Override
 	public List<MobileSuitModel> getMobileSuitList() {
