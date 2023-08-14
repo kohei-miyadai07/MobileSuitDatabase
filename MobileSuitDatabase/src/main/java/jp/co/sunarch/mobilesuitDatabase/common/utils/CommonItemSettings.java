@@ -20,4 +20,16 @@ public class CommonItemSettings {
 		return (content == "" || content == null) ? null : Long.parseLong(content);
 	}
 
+	public static String convertBigDecimalToString(BigDecimal content) {
+		return content == null ? null : content.toPlainString();
+	}
+
+	public static String convertLongToString(Long content) {
+		return content == null ? null : String.valueOf(content);
+	}
+
+	public static String convertIntegerToString(Integer content) {
+		return content == null ? null : String.valueOf(content);
+	}
+
 }

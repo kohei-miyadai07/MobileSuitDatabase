@@ -8,6 +8,7 @@ import java.util.Optional;
 import org.seasar.doma.jdbc.NoResultException;
 import org.springframework.stereotype.Repository;
 
+import jp.co.sunarch.mobilesuitDatabase.common.utils.CommonItemSettings;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.entity.MobileSuitEntity;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.equipment.JdbcEquipmentDao;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.equipment.entity.EquipmentArmsEntity;
@@ -100,15 +101,15 @@ public class MobileSuitQueryImpl implements MobileSuitQuery {
 				.modelNumber(msEntity.getModelNumber())
 				.msName(msEntity.getMsName())
 				.msUrl(msEntity.getMsUrl())
-				.headHeight(msEntity.getHeadHeight().toPlainString())
-				.overallHeight(msEntity.getOverallHeight().toPlainString())
-				.weight(msEntity.getWeight().toString())
-				.totalWeight(msEntity.getTotalWeight().toString())
+				.headHeight(CommonItemSettings.convertBigDecimalToString(msEntity.getHeadHeight()))
+				.overallHeight(CommonItemSettings.convertBigDecimalToString(msEntity.getOverallHeight()))
+				.weight(CommonItemSettings.convertBigDecimalToString(msEntity.getWeight()))
+				.totalWeight(CommonItemSettings.convertBigDecimalToString(msEntity.getTotalWeight()))
 				.powerSource(msEntity.getPowerSource())
 				.material(msEntity.getMaterial())
-				.effectiveSensorRadius(String.valueOf(msEntity.getEffectiveSensorRadius()))
-				.generatorOutput(String.valueOf(msEntity.getGeneratorOutput()))
-				.totalThrustersOutput(String.valueOf(msEntity.getTotalThrustersOutput()))
+				.effectiveSensorRadius(CommonItemSettings.convertLongToString(msEntity.getEffectiveSensorRadius()))
+				.generatorOutput(CommonItemSettings.convertLongToString(msEntity.getGeneratorOutput()))
+				.totalThrustersOutput(CommonItemSettings.convertLongToString(msEntity.getTotalThrustersOutput()))
 				.msOverview(msEntity.getMsOverview())
 				.action(msEntity.getAction())
 				.insertDate(sdf.format(msEntity.getInsertDate()))
@@ -125,7 +126,7 @@ public class MobileSuitQueryImpl implements MobileSuitQuery {
 				.msId(equipmentArmsEntity.getMsId())
 				.armsId(equipmentArmsEntity.getArmsId())
 				.armsName(equipmentArmsEntity.getArmsName())
-				.numberEquipment(String.valueOf(equipmentArmsEntity.getNumberEquipment()))
+				.numberEquipment(CommonItemSettings.convertIntegerToString(equipmentArmsEntity.getNumberEquipment()))
 				.detail(equipmentArmsEntity.getDetail())
 				.build();
 
@@ -139,17 +140,15 @@ public class MobileSuitQueryImpl implements MobileSuitQuery {
 				.modelNumber(msEntity.getModelNumber())
 				.msName(msEntity.getMsName())
 				.msUrl(msEntity.getMsUrl())
-				.headHeight(String.format("%sm", msEntity.getHeadHeight().toPlainString()))
-				.overallHeight(String.format("%sm", msEntity.getOverallHeight().toPlainString()))
-				.weight(String.format("%st", msEntity.getWeight().toString()))
-				.totalWeight(String.format("%st", msEntity.getTotalWeight().toString()))
+				.headHeight(CommonItemSettings.convertBigDecimalToString(msEntity.getHeadHeight()))
+				.overallHeight(CommonItemSettings.convertBigDecimalToString(msEntity.getOverallHeight()))
+				.weight(CommonItemSettings.convertBigDecimalToString(msEntity.getWeight()))
+				.totalWeight(CommonItemSettings.convertBigDecimalToString(msEntity.getTotalWeight()))
 				.powerSource(msEntity.getPowerSource())
 				.material(msEntity.getMaterial())
-				.effectiveSensorRadius(String.format("%sm", comFormat.format(msEntity.getEffectiveSensorRadius())))
-				.generatorOutput(String.format("%skW", 
-						comFormat.format(msEntity.getGeneratorOutput())))
-				.totalThrustersOutput(String.format("%skg", 
-						comFormat.format(msEntity.getTotalThrustersOutput())))
+				.effectiveSensorRadius(CommonItemSettings.convertLongToString(msEntity.getEffectiveSensorRadius()))
+				.generatorOutput(CommonItemSettings.convertLongToString(msEntity.getGeneratorOutput()))
+				.totalThrustersOutput(CommonItemSettings.convertLongToString(msEntity.getTotalThrustersOutput()))
 				.msOverview(msEntity.getMsOverview())
 				.action(msEntity.getAction())
 				.insertDate(sdf.format(msEntity.getInsertDate()))

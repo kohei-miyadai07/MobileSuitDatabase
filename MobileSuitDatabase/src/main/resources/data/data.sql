@@ -27,6 +27,29 @@ values (
   , 1
 );
 
+insert 
+into MobileSuit 
+values ( 
+  'ko230189'
+  , 'FF-6'
+  , 'TINコッド'
+  , 'lib/images/FF-6.PNG'
+  , null
+  , null
+  , null
+  , null
+  , null
+  , null
+  , null
+  , null
+  , null
+  , null
+  , null
+  , '2022-02-13 11:41:23'
+  , '2022-02-13 11:41:23'
+  , 1
+);
+
 
 --武器
 insert 
