@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="common/common :: meta_head">
+    <title>モビルスーツ詳細</title>
+  </head>
+  <body class="h-100">
+    <div th:replace="common/common :: header"></div>
+    <div class="container-fluid">
+      <div class="row">
+        <div th:replace="common/common :: sidebar"></div>
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
+          <div
+            class="d-flex justify-content-between align-items-center pb-2 mb-4 border-bottom"
+          >
+            <div class="d-flex align-items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="3rem"
+                height="3rem"
+                fill="currentColor"
+                class="bi bi-robot"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M6 12.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5ZM3 8.062C3 6.76 4.235 5.765 5.53 5.886a26.58 26.58 0 0 0 4.94 0C11.765 5.765 13 6.76 13 8.062v1.157a.933.933 0 0 1-.765.935c-.845.147-2.34.346-4.235.346-1.895 0-3.39-.2-4.235-.346A.933.933 0 0 1 3 9.219V8.062Zm4.542-.827a.25.25 0 0 0-.217.068l-.92.9a24.767 24.767 0 0 1-1.871-.183.25.25 0 0 0-.068.495c.55.076 1.232.149 2.02.193a.25.25 0 0 0 .189-.071l.754-.736.847 1.71a.25.25 0 0 0 .404.062l.932-.97a25.286 25.286 0 0 0 1.922-.188.25.25 0 0 0-.068-.495c-.538.074-1.207.145-1.98.189a.25.25 0 0 0-.166.076l-.754.785-.842-1.7a.25.25 0 0 0-.182-.135Z"
+                />
+                <path
+                  d="M8.5 1.866a1 1 0 1 0-1 0V3h-2A4.5 4.5 0 0 0 1 7.5V8a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1v1a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-1a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1v-.5A4.5 4.5 0 0 0 10.5 3h-2V1.866ZM14 7.5V13a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V7.5A3.5 3.5 0 0 1 5.5 4h5A3.5 3.5 0 0 1 14 7.5Z"
+                />
+              </svg>
+              <h1 th:text="${mobilesuitDetail.msName}" class="mb-0 ms-2"></h1>
+            </div>
+            <div class="btn-toolbar mb-2 mb-md-0">
+              <a
+                class="btn btn-outline-secondary btn-sm"
+                href="#"
+                th:href="@{/MSDB/MobileSuits}"
+                role="button"
+                >一覧に戻る</a
+              >
+            </div>
+          </div>
+
+          <div class="d-flex">
+            <div class="flex-shrink-0">
+              <img
+                th:src="${base64Data}"
+                alt="モビルスーツ画像"
+                style="width: 24.5em; height: 30em"
+              />
+            </div>
+            <div id="spec" class="flex-grow-1 ms-3">
+              <table class="table">
+                <tr>
+                  <td><b>型式番号</b></td>
+                  <td th:text="${mobilesuitDetail.modelNumber}"></td>
+                </tr>
+                <tr>
+                  <td><b>頭頂高</b></td>
+                  <td th:text="${mobilesuitDetail.headHeight}"></td>
+                </tr>
+                <tr>
+                  <td><b>全高</b></td>
+                  <td th:text="${mobilesuitDetail.overallHeight}"></td>
+                </tr>
+                <tr>
+                  <td><b>本体重量</b></td>
+                  <td th:text="${mobilesuitDetail.weight}"></td>
+                </tr>
+                <tr>
+                  <td><b>全備重量</b></td>
+                  <td th:text="${mobilesuitDetail.totalWeight}"></td>
+                </tr>
+                <tr>
+                  <td><b>動力源</b></td>
+                  <td th:text="${mobilesuitDetail.powerSource}"></td>
+                </tr>
+                <tr>
+                  <td><b>装甲材質</b></td>
+                  <td th:text="${mobilesuitDetail.material}"></td>
+                </tr>
+                <tr>
+                  <td><b>センサー有効半径</b></td>
+                  <td th:text="${mobilesuitDetail.effectiveSensorRadius}"></td>
+                </tr>
+                <tr>
+                  <td><b>ジェネレーター出力</b></td>
+                  <td th:text="${mobilesuitDetail.generatorOutput}"></td>
+                </tr>
+                <tr>
+                  <td><b>スラスター総推力</b></td>
+                  <td th:text="${mobilesuitDetail.totalThrustersOutput}"></td>
+                </tr>
+                <tr>
+                  <td><b>武装</b></td>
+                  <td>
+                    <div
+                      th:each="equipment : ${mobilesuitDetail.equipmentArmsResultList}"
+                    >
+                      <p
+                        id="armsList"
+                        th:text="|${equipment.armsName} × ${equipment.numberEquipment}|"
+                      ></p>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div class="mb-5"></div>
+          <div class="text" style="clear: both">
+            <div>
+              <div
+                class="d-flex justify-content-between align-items-center pb-1 mb-2 border-bottom"
+              >
+                <h2>機体概要</h2>
+              </div>
+              <p th:text="${mobilesuitDetail.msOverview}"></p>
+            </div>
+            <div class="mb-5"></div>
+            <div>
+              <div
+                class="d-flex justify-content-between align-items-center pb-1 mb-2 border-bottom"
+              >
+                <h2>武装解説</h2>
+              </div>
+              <dl th:each="arms : ${mobilesuitDetail.equipmentArmsResultList}">
+                <dt th:text="${arms.armsName}"></dt>
+                <dd th:text="${arms.detail}"></dd>
+              </dl>
+            </div>
+            <div class="mb-5"></div>
+            <div>
+              <div
+                class="d-flex justify-content-between align-items-center pb-1 mb-2 border-bottom"
+              >
+                <h2>活躍</h2>
+              </div>
+              <p th:text="${mobilesuitDetail.action}"></p>
+            </div>
+            <div class="mb-5"></div>
+          </div>
+          <div class="mb-5"></div>
+        </main>
+      </div>
+    </div>
+  </body>
+  <style>
+    #armsList {
+      margin-bottom: 5px;
+    }
+  </style>
+</html>

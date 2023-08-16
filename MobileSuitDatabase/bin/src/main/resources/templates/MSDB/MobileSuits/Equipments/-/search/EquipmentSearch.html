@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="common/common :: meta_head">
+    <title>装備検索</title>
+  </head>
+  <body class="h-100">
+    <div th:replace="common/common :: header"></div>
+    <div class="container-fluid">
+      <div class="row">
+        <div th:replace="common/common :: sidebar"></div>
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
+          <div id="equipmentSearch">
+            <div
+              class="d-flex justify-content-between align-items-center pb-2 mb-4 border-bottom"
+            >
+              <div class="d-flex align-items-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="2.7rem"
+                  height="2.7rem"
+                  fill="currentColor"
+                  class="bi bi-motherboard"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M11.5 2a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5Zm2 0a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5Zm-10 8a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1h-6Zm0 2a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1h-6ZM5 3a1 1 0 0 0-1 1h-.5a.5.5 0 0 0 0 1H4v1h-.5a.5.5 0 0 0 0 1H4a1 1 0 0 0 1 1v.5a.5.5 0 0 0 1 0V8h1v.5a.5.5 0 0 0 1 0V8a1 1 0 0 0 1-1h.5a.5.5 0 0 0 0-1H9V5h.5a.5.5 0 0 0 0-1H9a1 1 0 0 0-1-1v-.5a.5.5 0 0 0-1 0V3H6v-.5a.5.5 0 0 0-1 0V3Zm0 1h3v3H5V4Zm6.5 7a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-2Z"
+                  />
+                  <path
+                    d="M1 2a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-2H.5a.5.5 0 0 1-.5-.5v-1A.5.5 0 0 1 .5 9H1V8H.5a.5.5 0 0 1-.5-.5v-1A.5.5 0 0 1 .5 6H1V5H.5a.5.5 0 0 1-.5-.5v-2A.5.5 0 0 1 .5 2H1Zm1 11a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v11Z"
+                  />
+                </svg>
+                <h1 class="h2 mb-0 ms-2">装備検索</h1>
+              </div>
+              <div class="btn-toolbar mb-2 mb-md-0">
+                <input
+                  type="button"
+                  class="btn btn-outline-secondary btn-sm"
+                  value="戻る"
+                  onclick="history.back();"
+                />
+              </div>
+            </div>
+            <form
+              action="#"
+              th:action="@{/MSDB/MobileSuits/Equipments/-/search}"
+              th:object="${equipmentSearchForm}"
+              method="post"
+            >
+              <div class="row">
+                <div class="col-md-3">
+                  <h2 class="h5">機体名</h2>
+                </div>
+                <div class="col-md-9">
+                  <input
+                    type="text"
+                    class="form-control"
+                    th:field="*{msName}"
+                  />
+                </div>
+              </div>
+              <div class="mb-5"></div>
+              <div class="row">
+                <div class="col-md-3">
+                  <h2 class="h5">武器名</h2>
+                </div>
+                <div class="col-md-9">
+                  <input
+                    type="text"
+                    class="form-control"
+                    th:field="*{armsName}"
+                  />
+                </div>
+              </div>
+              <div class="mb-5"></div>
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <button type="submit" class="btn btn-primary">検索</button
+                  ><button type="reset" class="btn btn-link">リセット</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </main>
+      </div>
+    </div>
+  </body>
+  <style>
+    #equipmentSearch {
+      width: 60%;
+    }
+  </style>
+</html>

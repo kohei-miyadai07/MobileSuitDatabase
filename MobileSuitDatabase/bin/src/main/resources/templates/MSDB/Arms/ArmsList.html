@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="common/common :: meta_head">
+    <title>武器一覧</title>
+  </head>
+  <body class="h-100">
+    <div th:replace="common/common :: header"></div>
+    <div class="container-fluid">
+      <div class="row">
+        <div th:replace="common/common :: sidebar"></div>
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
+          <div
+            class="d-flex justify-content-between align-items-center pb-2 mb-4 border-bottom"
+          >
+            <div class="d-flex align-items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="2.7rem"
+                height="2.7rem"
+                fill="currentColor"
+                class="bi bi-arrows-fullscreen"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707zm4.344 0a.5.5 0 0 1 .707 0l4.096 4.096V11.5a.5.5 0 1 1 1 0v3.975a.5.5 0 0 1-.5.5H11.5a.5.5 0 0 1 0-1h2.768l-4.096-4.096a.5.5 0 0 1 0-.707zm0-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707zm-4.344 0a.5.5 0 0 1-.707 0L1.025 1.732V4.5a.5.5 0 0 1-1 0V.525a.5.5 0 0 1 .5-.5H4.5a.5.5 0 0 1 0 1H1.732l4.096 4.096a.5.5 0 0 1 0 .707z"
+                />
+              </svg>
+              <h1 class="h2 mb-0 ms-2">武器一覧</h1>
+            </div>
+            <div class="btn-toolbar mb-2 mb-md-0">
+              <a
+                class="btn btn-outline-primary btn-sm"
+                th:href="@{/MSDB/Arms/-/new}"
+                role="button"
+                >新規登録</a
+              >
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th class="text-nowrap" scope="col">武器ID</th>
+                  <th class="text-nowrap" scope="col">武器名</th>
+                  <th class="text-nowrap" scope="col">詳細</th>
+                  <th class="text-nowrap" scope="col">#</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr th:each="arms : ${armsList}">
+                  <th
+                    class="text-nowrap"
+                    th:text="${arms.armsId}"
+                    scope="row"
+                  ></th>
+                  <td class="text-nowrap" th:text="${arms.armsName}"></td>
+                  <td th:text="${arms.detail}"></td>
+                  <td>
+                    <a
+                      class="btn btn-primary btn-sm text-nowrap"
+                      role="button"
+                      th:href="@{'/MSDB/Arms/' + ${arms.armsId} + '/edit'}"
+                      >編集</a
+                    >
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="pt-2">
+            <a
+              class="btn btn-outline-primary btn-sm"
+              th:href="@{/MSDB/Arms/-/search}"
+              role="button"
+              >検索</a
+            >
+          </div>
+          <p></p>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

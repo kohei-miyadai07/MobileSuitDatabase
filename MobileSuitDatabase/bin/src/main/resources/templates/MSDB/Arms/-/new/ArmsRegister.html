@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="common/common :: meta_head">
+    <title>武器登録</title>
+  </head>
+  <body class="h-100">
+    <div th:replace="common/common :: header"></div>
+    <div class="container-fluid">
+      <div class="row">
+        <div th:replace="common/common :: sidebar"></div>
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
+          <div id="armsRegister">
+            <div
+              class="d-flex justify-content-between align-items-center pb-2 mb-4 border-bottom"
+            >
+              <div class="d-flex align-items-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="2.7rem"
+                  height="2.7rem"
+                  fill="currentColor"
+                  class="bi bi-arrows-fullscreen"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707zm4.344 0a.5.5 0 0 1 .707 0l4.096 4.096V11.5a.5.5 0 1 1 1 0v3.975a.5.5 0 0 1-.5.5H11.5a.5.5 0 0 1 0-1h2.768l-4.096-4.096a.5.5 0 0 1 0-.707zm0-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707zm-4.344 0a.5.5 0 0 1-.707 0L1.025 1.732V4.5a.5.5 0 0 1-1 0V.525a.5.5 0 0 1 .5-.5H4.5a.5.5 0 0 1 0 1H1.732l4.096 4.096a.5.5 0 0 1 0 .707z"
+                  />
+                </svg>
+                <h1 class="h2 mb-0 ms-2">武器登録</h1>
+              </div>
+              <div class="btn-toolbar mb-2 mb-md-0">
+                <input
+                  type="button"
+                  class="btn btn-outline-secondary btn-sm"
+                  value="戻る"
+                  onclick="history.back();"
+                />
+              </div>
+            </div>
+            <form
+              action="#"
+              th:action="@{/MSDB/Arms/-/new}"
+              th:object="${armsRegistForm}"
+              method="post"
+            >
+              <div class="row">
+                <div class="col-md-3">
+                  <h2 class="h5">武器名</h2>
+                </div>
+                <div class="col-md-9">
+                  <input
+                    type="text"
+                    class="form-control"
+                    th:field="*{armsName}"
+                  />
+                </div>
+              </div>
+              <div class="mb-5"></div>
+              <div class="row">
+                <div class="col-md-3">
+                  <h2 class="h5">詳細</h2>
+                </div>
+                <div class="col-md-9">
+                  <textarea
+                    class="form-control"
+                    rows="5"
+                    placeholder="詳細"
+                    th:field="*{detail}"
+                  ></textarea>
+                </div>
+              </div>
+              <div class="mb-5"></div>
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <button type="submit" class="btn btn-primary">登録</button
+                  ><button type="reset" class="btn btn-link">リセット</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </main>
+      </div>
+    </div>
+  </body>
+  <style>
+    #armsRegister {
+      width: 60%;
+    }
+  </style>
+</html>
