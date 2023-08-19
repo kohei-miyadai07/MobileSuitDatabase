@@ -13,7 +13,7 @@ public class ArmsConverter {
 		ArmsEntity entity = new ArmsEntity();
 		entity.setArmsId(domain.getArmsId().getValue());
 		entity.setArmsName(domain.getArmsName());
-		entity.setDetail(domain.getDetail());
+		entity.setDetail(domain.getDetail().orElse(null));
 
 		return entity;
 	}
