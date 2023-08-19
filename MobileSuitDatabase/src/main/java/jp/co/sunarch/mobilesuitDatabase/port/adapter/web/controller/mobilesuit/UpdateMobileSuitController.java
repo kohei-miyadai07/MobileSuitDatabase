@@ -1,6 +1,5 @@
 package jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.mobilesuit;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import jp.co.sunarch.mobilesuitDatabase.application.command.mobilesuit.UpdateMobileSuitCommand;
 import jp.co.sunarch.mobilesuitDatabase.application.usecase.mobilesuit.UpdateMobileSuitUseCase;
+import jp.co.sunarch.mobilesuitDatabase.common.utils.CommonItemSettings;
 import jp.co.sunarch.mobilesuitDatabase.domain.model.mobilesuit.MobileSuitId;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.form.mobilesuit.UpdateMobileSuitForm;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.MobileSuitModel;
@@ -40,15 +40,15 @@ public class UpdateMobileSuitController {
 				.msId(MobileSuitId.of(updateMobileSuitForm.getMsId()))
 				.modelNumber(updateMobileSuitForm.getModelNumber())
 				.msName(updateMobileSuitForm.getMsName())
-				.headHeight(new BigDecimal(updateMobileSuitForm.getHeadHeight()))
-				.overallHeight(new BigDecimal(updateMobileSuitForm.getOverallHeight()))
-				.weight(new BigDecimal(updateMobileSuitForm.getWeight()))
-				.totalWeight(new BigDecimal(updateMobileSuitForm.getTotalWeight()))
+				.headHeight(CommonItemSettings.convertToBigDecimal(updateMobileSuitForm.getHeadHeight()))
+				.overallHeight(CommonItemSettings.convertToBigDecimal(updateMobileSuitForm.getOverallHeight()))
+				.weight(CommonItemSettings.convertToBigDecimal(updateMobileSuitForm.getWeight()))
+				.totalWeight(CommonItemSettings.convertToBigDecimal(updateMobileSuitForm.getTotalWeight()))
 				.powerSource(updateMobileSuitForm.getPowerSource())
 				.material(updateMobileSuitForm.getMaterial())
-				.effectiveSensorRadius(Long.parseLong(updateMobileSuitForm.getEffectiveSensorRadius()))
-				.generatorOutput(Long.parseLong(updateMobileSuitForm.getGeneratorOutput()))
-				.totalThrustersOutput(Long.parseLong(updateMobileSuitForm.getTotalThrustersOutput()))
+				.effectiveSensorRadius(CommonItemSettings.convertToLong(updateMobileSuitForm.getEffectiveSensorRadius()))
+				.generatorOutput(CommonItemSettings.convertToLong(updateMobileSuitForm.getGeneratorOutput()))
+				.totalThrustersOutput(CommonItemSettings.convertToLong(updateMobileSuitForm.getTotalThrustersOutput()))
 				.msOverview(updateMobileSuitForm.getMsOverview())
 				.action(updateMobileSuitForm.getAction())
 				.msMultipartFile(updateMobileSuitForm.getMsMultipartFile())
