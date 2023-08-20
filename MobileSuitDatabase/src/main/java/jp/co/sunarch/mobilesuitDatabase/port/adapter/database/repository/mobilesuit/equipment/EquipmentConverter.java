@@ -24,8 +24,8 @@ public class EquipmentConverter {
 		EquipmentEntity entity = new EquipmentEntity();
 		entity.setMsId(domain.getMsId().getValue());
 		entity.setArmsId(domain.getArmsId().getValue());
-		entity.setNumberEquipment(domain.getNumberEquipment());
-		entity.setDetail(domain.getDetail());
+		entity.setNumberEquipment(domain.getNumberEquipment().orElse(null));
+		entity.setDetail(domain.getDetail().orElse(null));
 
 		return entity;
 	}
