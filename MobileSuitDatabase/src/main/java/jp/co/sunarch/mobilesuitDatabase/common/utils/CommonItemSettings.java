@@ -16,6 +16,10 @@ public class CommonItemSettings {
 		return (content.equals("") || content == null) ? null : new BigDecimal(content);
 	}
 
+	public static Integer convertToInteger(String content) {
+		return (content.equals("") || content == null) ? null : Integer.parseInt(content);
+	}
+
 	public static Long convertToLong(String content) {
 		return (content.equals("") || content == null) ? null : Long.parseLong(content);
 	}

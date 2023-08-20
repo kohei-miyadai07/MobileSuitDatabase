@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import jp.co.sunarch.mobilesuitDatabase.application.command.mobilesuit.Equipment.RegistEquipmentCommand;
 import jp.co.sunarch.mobilesuitDatabase.application.usecase.mobilesuit.equipment.RegistEquipmentUseCase;
+import jp.co.sunarch.mobilesuitDatabase.common.utils.CommonItemSettings;
 import jp.co.sunarch.mobilesuitDatabase.domain.model.arms.ArmsId;
 import jp.co.sunarch.mobilesuitDatabase.domain.model.mobilesuit.MobileSuitId;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.arms.ArmsQuery;
@@ -45,7 +46,7 @@ public class RegistEquipmentController {
 		RegistEquipmentCommand command = RegistEquipmentCommand.builder()
 				.msId(MobileSuitId.of(registEquipmentForm.getMsId()))
 				.armsId(ArmsId.of(registEquipmentForm.getArmsId()))
-				.numberEquipment(Integer.parseInt(registEquipmentForm.getNumberEquipment()))
+				.numberEquipment(CommonItemSettings.convertToInteger(registEquipmentForm.getNumberEquipment()))
 				.detail(registEquipmentForm.getDetail())
 				.build();
 

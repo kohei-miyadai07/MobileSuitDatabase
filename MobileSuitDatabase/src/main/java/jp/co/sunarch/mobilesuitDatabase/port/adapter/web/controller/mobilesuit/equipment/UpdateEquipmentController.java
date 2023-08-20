@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import jp.co.sunarch.mobilesuitDatabase.application.command.mobilesuit.Equipment.UpdateEquipmentCommand;
 import jp.co.sunarch.mobilesuitDatabase.application.usecase.mobilesuit.equipment.UpdateEquipmentUseCase;
+import jp.co.sunarch.mobilesuitDatabase.common.utils.CommonItemSettings;
 import jp.co.sunarch.mobilesuitDatabase.domain.model.arms.ArmsId;
 import jp.co.sunarch.mobilesuitDatabase.domain.model.mobilesuit.MobileSuitId;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.form.mobilesuit.Equipment.UpdateEquipmentForm;
@@ -39,7 +40,7 @@ public class UpdateEquipmentController {
 		UpdateEquipmentCommand command = UpdateEquipmentCommand.builder()
 				.msId(MobileSuitId.of(msId))
 				.armsId(ArmsId.of(armsId))
-				.numberEquipment(Integer.valueOf(updateEquipmentForm.getNumberEquipment()))
+				.numberEquipment(CommonItemSettings.convertToInteger(updateEquipmentForm.getNumberEquipment()))
 				.detail(updateEquipmentForm.getDetail())
 				.build();
 
