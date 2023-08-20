@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import jp.co.sunarch.mobilesuitDatabase.application.command.arms.RegistArmsCommand;
 import jp.co.sunarch.mobilesuitDatabase.application.usecase.arms.RegistArmsUseCase;
+import jp.co.sunarch.mobilesuitDatabase.common.utils.CommonItemSettings;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.form.arms.RegistArmsForm;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.arms.ArmsModel;
 import lombok.RequiredArgsConstructor;
@@ -31,7 +32,7 @@ public class RegistArmsController {
 	public String registArms(@ModelAttribute RegistArmsForm registArmsForm, Model model) {
 		RegistArmsCommand command = RegistArmsCommand.builder()
 				.armsName(registArmsForm.getArmsName())
-				.detail(registArmsForm.getDetail())
+				.detail(CommonItemSettings.convertToString(registArmsForm.getDetail()))
 				.build();
 
 		registArmsUseCase.execute(command);

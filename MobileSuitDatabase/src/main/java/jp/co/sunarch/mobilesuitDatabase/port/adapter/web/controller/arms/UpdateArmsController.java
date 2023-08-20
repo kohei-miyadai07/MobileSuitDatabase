@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import jp.co.sunarch.mobilesuitDatabase.application.command.arms.UpdateArmsCommand;
 import jp.co.sunarch.mobilesuitDatabase.application.usecase.arms.UpdateArmsUseCase;
+import jp.co.sunarch.mobilesuitDatabase.common.utils.CommonItemSettings;
 import jp.co.sunarch.mobilesuitDatabase.domain.model.arms.ArmsId;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.form.arms.UpdateArmsForm;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.arms.ArmsModel;
@@ -38,7 +39,7 @@ public class UpdateArmsController {
 		UpdateArmsCommand command = UpdateArmsCommand.builder()
 				.armsId(ArmsId.of(updateArmsForm.getArmsId()))
 				.armsName(updateArmsForm.getArmsName())
-				.detail(updateArmsForm.getDetail())
+				.detail(CommonItemSettings.convertToString(updateArmsForm.getDetail()))
 				.build();
 
 		updateArmsUseCase.execute(command);
