@@ -44,13 +44,13 @@ public class UpdateMobileSuitController {
 				.overallHeight(CommonItemSettings.convertToBigDecimal(updateMobileSuitForm.getOverallHeight()))
 				.weight(CommonItemSettings.convertToBigDecimal(updateMobileSuitForm.getWeight()))
 				.totalWeight(CommonItemSettings.convertToBigDecimal(updateMobileSuitForm.getTotalWeight()))
-				.powerSource(updateMobileSuitForm.getPowerSource())
-				.material(updateMobileSuitForm.getMaterial())
+				.powerSource(CommonItemSettings.convertToString(updateMobileSuitForm.getPowerSource()))
+				.material(CommonItemSettings.convertToString(updateMobileSuitForm.getMaterial()))
 				.effectiveSensorRadius(CommonItemSettings.convertToLong(updateMobileSuitForm.getEffectiveSensorRadius()))
 				.generatorOutput(CommonItemSettings.convertToLong(updateMobileSuitForm.getGeneratorOutput()))
 				.totalThrustersOutput(CommonItemSettings.convertToLong(updateMobileSuitForm.getTotalThrustersOutput()))
-				.msOverview(updateMobileSuitForm.getMsOverview())
-				.action(updateMobileSuitForm.getAction())
+				.msOverview(CommonItemSettings.convertToString(updateMobileSuitForm.getMsOverview()))
+				.action(CommonItemSettings.convertToString(updateMobileSuitForm.getAction()))
 				.msMultipartFile(updateMobileSuitForm.getMsMultipartFile())
 				.build();
 

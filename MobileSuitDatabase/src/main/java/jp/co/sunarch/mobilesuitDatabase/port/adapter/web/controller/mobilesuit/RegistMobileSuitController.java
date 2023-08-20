@@ -37,13 +37,13 @@ public class RegistMobileSuitController {
 				.overallHeight(CommonItemSettings.convertToBigDecimal(registMobileSuitForm.getOverallHeight()))
 				.weight(CommonItemSettings.convertToBigDecimal(registMobileSuitForm.getWeight()))
 				.totalWeight(CommonItemSettings.convertToBigDecimal(registMobileSuitForm.getTotalWeight()))
-				.powerSource(registMobileSuitForm.getPowerSource())
-				.material(registMobileSuitForm.getMaterial())
+				.powerSource(CommonItemSettings.convertToString(registMobileSuitForm.getPowerSource()))
+				.material(CommonItemSettings.convertToString(registMobileSuitForm.getMaterial()))
 				.effectiveSensorRadius(CommonItemSettings.convertToLong(registMobileSuitForm.getEffectiveSensorRadius()))
 				.generatorOutput(CommonItemSettings.convertToLong(registMobileSuitForm.getGeneratorOutput()))
 				.totalThrustersOutput(CommonItemSettings.convertToLong(registMobileSuitForm.getTotalThrustersOutput()))
-				.msOverview(registMobileSuitForm.getMsOverview())
-				.action(registMobileSuitForm.getAction())
+				.msOverview(CommonItemSettings.convertToString(registMobileSuitForm.getMsOverview()))
+				.action(CommonItemSettings.convertToString(registMobileSuitForm.getAction()))
 				.msMultipartFile(registMobileSuitForm.getMsMultipartFile())
 				.build();
 
