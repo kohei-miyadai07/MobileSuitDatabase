@@ -47,7 +47,7 @@ public class RegistEquipmentController {
 				.msId(MobileSuitId.of(registEquipmentForm.getMsId()))
 				.armsId(ArmsId.of(registEquipmentForm.getArmsId()))
 				.numberEquipment(CommonItemSettings.convertToInteger(registEquipmentForm.getNumberEquipment()))
-				.detail(registEquipmentForm.getDetail())
+				.detail(CommonItemSettings.convertToString(registEquipmentForm.getDetail()))
 				.build();
 
 		registEquipmentUseCase.exeute(command);
