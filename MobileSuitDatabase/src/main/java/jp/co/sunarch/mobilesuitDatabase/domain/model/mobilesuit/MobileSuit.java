@@ -2,6 +2,7 @@ package jp.co.sunarch.mobilesuitDatabase.domain.model.mobilesuit;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 import lombok.Data;
 
@@ -53,6 +54,50 @@ public class MobileSuit {
 
 		return mobileSuit;
 	
+	}
+
+	public Optional<BigDecimal> getHeadHeight() {
+		return Optional.ofNullable(headHeight);
+	}
+
+	public Optional<BigDecimal> getOverallHeight() {
+		return Optional.ofNullable(overallHeight);
+	}
+
+	public Optional<BigDecimal> getWeight() {
+		return Optional.ofNullable(weight);
+	}
+
+	public Optional<BigDecimal> getTotalWeight() {
+		return Optional.ofNullable(totalWeight);
+	}
+
+	public Optional<String> getPowerSource() {
+		return Optional.ofNullable(powerSource);
+	}
+
+	public Optional<String> getMaterial() {
+		return Optional.ofNullable(material);
+	}
+
+	public Optional<Long> getEffectiveSensorRadius() {
+		return Optional.ofNullable(effectiveSensorRadius);
+	}
+
+	public Optional<Long> getGeneratorOutput() {
+		return Optional.ofNullable(generatorOutput);
+	}
+
+	public Optional<Long> getTotalThrustersOutput() {
+		return Optional.ofNullable(totalThrustersOutput);
+	}
+
+	public Optional<String> getMsOverview() {
+		return Optional.ofNullable(msOverview);
+	}
+
+	public Optional<String> getAction() {
+		return Optional.ofNullable(action);
 	}
 
 }

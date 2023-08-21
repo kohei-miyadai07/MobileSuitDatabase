@@ -39,6 +39,7 @@
               </div>
             </div>
             <form
+              id="armsEditForm"
               action="#"
               th:action="@{'/MSDB/Arms/' + *{armsId} + '/edit-update'}"
               th:object="${armsEditForm}"
@@ -50,10 +51,12 @@
                 </div>
                 <div class="col-md-9">
                   <input
+                    id="armsName"
                     type="text"
                     class="form-control"
                     th:field="*{armsName}"
                   />
+                  <div id="armsNameError" class="invalid-feedback"></div>
                 </div>
               </div>
               <div class="mb-5"></div>
@@ -73,7 +76,7 @@
               <div class="mb-5"></div>
               <div class="d-flex justify-content-between align-items-center">
                 <div>
-                  <button type="submit" class="btn btn-primary">更新</button
+                  <button id="update" type="submit" class="btn btn-primary">更新</button
                   ><button type="reset" class="btn btn-link">リセット</button>
                 </div>
                 <div>
@@ -92,6 +95,9 @@
       </div>
     </div>
   </body>
+
+  <script th:src="@{/js/MSDB/Arms/armsId/edit/ArmsEdit.js}"></script>
+
   <style>
     #armsEdit {
       width: 60%;

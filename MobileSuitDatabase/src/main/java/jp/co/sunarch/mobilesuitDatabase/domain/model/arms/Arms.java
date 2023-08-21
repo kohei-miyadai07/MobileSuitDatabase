@@ -1,5 +1,7 @@
 package jp.co.sunarch.mobilesuitDatabase.domain.model.arms;
 
+import java.util.Optional;
+
 import lombok.Data;
 
 @Data
@@ -15,6 +17,10 @@ public class Arms {
 		arms.setDetail(detail);
 
 		return arms;
+	}
+
+	public Optional<String> getDetail() {
+		return Optional.ofNullable(detail);
 	}
 
 }

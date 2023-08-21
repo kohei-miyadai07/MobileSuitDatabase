@@ -1,5 +1,7 @@
 package jp.co.sunarch.mobilesuitDatabase.domain.model.mobilesuit.equipment;
 
+import java.util.Optional;
+
 import jp.co.sunarch.mobilesuitDatabase.domain.model.arms.ArmsId;
 import jp.co.sunarch.mobilesuitDatabase.domain.model.mobilesuit.MobileSuitId;
 import lombok.Data;
@@ -19,6 +21,14 @@ public class Equipment {
 		equipment.setDetail(detail);
 
 		return equipment;
+	}
+
+	public Optional<Integer> getNumberEquipment() {
+		return Optional.ofNullable(numberEquipment);
+	}
+
+	public Optional<String> getDetail() {
+		return Optional.ofNullable(detail);
 	}
 
 }

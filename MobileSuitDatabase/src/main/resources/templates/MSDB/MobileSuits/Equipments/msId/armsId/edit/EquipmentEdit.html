@@ -41,6 +41,7 @@
               </div>
             </div>
             <form
+              id="equipmentEditForm"
               action="#"
               th:action="@{'/MSDB/MobileSuits/Equipments/' + *{msId} + '/' + *{armsId} + '/edit-update'}"
               th:object="${equipmentEditForm}"
@@ -66,10 +67,12 @@
                 </div>
                 <div class="col-md-9">
                   <input
+                    id="numberEquipment"
                     type="text"
                     class="form-control"
                     th:field="*{numberEquipment}"
                   />
+                  <div id="numberEquipmentError" class="invalid-feedback"></div>
                 </div>
               </div>
               <div class="mb-5"></div>
@@ -89,7 +92,7 @@
               <div class="mb-5"></div>
               <div class="d-flex justify-content-between align-items-center">
                 <div>
-                  <button type="submit" class="btn btn-primary">更新</button
+                  <button id="update" type="submit" class="btn btn-primary">更新</button
                   ><button type="reset" class="btn btn-link">リセット</button>
                 </div>
                 <div>
@@ -108,6 +111,9 @@
       </div>
     </div>
   </body>
+
+  <script th:src="@{/js/MSDB/MobileSuits/Equipments/msId/armsId/edit/EquipmentEdit.js}"></script>
+
   <style>
     #equipmentEdit {
       width: 60%;

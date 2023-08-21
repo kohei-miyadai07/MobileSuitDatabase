@@ -1,6 +1,5 @@
 package jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.mobilesuit;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import jp.co.sunarch.mobilesuitDatabase.application.command.mobilesuit.RegistMobileSuitCommand;
 import jp.co.sunarch.mobilesuitDatabase.application.usecase.mobilesuit.RegistMobileSuitUseCase;
+import jp.co.sunarch.mobilesuitDatabase.common.utils.CommonItemSettings;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.form.mobilesuit.RegistMobileSuitForm;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.MobileSuitModel;
 import lombok.RequiredArgsConstructor;
@@ -33,17 +33,17 @@ public class RegistMobileSuitController {
 		RegistMobileSuitCommand command = RegistMobileSuitCommand.builder()
 				.modelNumber(registMobileSuitForm.getModelNumber())
 				.msName(registMobileSuitForm.getMsName())
-				.headHeight(new BigDecimal(registMobileSuitForm.getHeadHeight()))
-				.overallHeight(new BigDecimal(registMobileSuitForm.getOverallHeight()))
-				.weight(new BigDecimal(registMobileSuitForm.getWeight()))
-				.totalWeight(new BigDecimal(registMobileSuitForm.getTotalWeight()))
-				.powerSource(registMobileSuitForm.getPowerSource())
-				.material(registMobileSuitForm.getMaterial())
-				.effectiveSensorRadius(Long.parseLong(registMobileSuitForm.getEffectiveSensorRadius()))
-				.generatorOutput(Long.parseLong(registMobileSuitForm.getGeneratorOutput()))
-				.totalThrustersOutput(Long.parseLong(registMobileSuitForm.getTotalThrustersOutput()))
-				.msOverview(registMobileSuitForm.getMsOverview())
-				.action(registMobileSuitForm.getAction())
+				.headHeight(CommonItemSettings.convertToBigDecimal(registMobileSuitForm.getHeadHeight()))
+				.overallHeight(CommonItemSettings.convertToBigDecimal(registMobileSuitForm.getOverallHeight()))
+				.weight(CommonItemSettings.convertToBigDecimal(registMobileSuitForm.getWeight()))
+				.totalWeight(CommonItemSettings.convertToBigDecimal(registMobileSuitForm.getTotalWeight()))
+				.powerSource(CommonItemSettings.convertToString(registMobileSuitForm.getPowerSource()))
+				.material(CommonItemSettings.convertToString(registMobileSuitForm.getMaterial()))
+				.effectiveSensorRadius(CommonItemSettings.convertToLong(registMobileSuitForm.getEffectiveSensorRadius()))
+				.generatorOutput(CommonItemSettings.convertToLong(registMobileSuitForm.getGeneratorOutput()))
+				.totalThrustersOutput(CommonItemSettings.convertToLong(registMobileSuitForm.getTotalThrustersOutput()))
+				.msOverview(CommonItemSettings.convertToString(registMobileSuitForm.getMsOverview()))
+				.action(CommonItemSettings.convertToString(registMobileSuitForm.getAction()))
 				.msMultipartFile(registMobileSuitForm.getMsMultipartFile())
 				.build();
 

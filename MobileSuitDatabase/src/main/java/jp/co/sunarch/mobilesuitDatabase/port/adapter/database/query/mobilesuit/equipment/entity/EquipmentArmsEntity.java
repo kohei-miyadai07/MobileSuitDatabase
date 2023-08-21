@@ -18,7 +18,7 @@ public class EquipmentArmsEntity {
 	private String armsName;
 
 	@Column(name = "number_equipment")
-	private int numberEquipment;
+	private Integer numberEquipment;
 
 	@Column(name = "detail")
 	private String detail;

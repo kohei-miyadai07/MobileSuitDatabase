@@ -41,6 +41,7 @@
               </div>
             </div>
             <form
+              id="equipmentSearchForm"
               action="#"
               th:action="@{/MSDB/MobileSuits/Equipments/-/search}"
               th:object="${equipmentSearchForm}"
@@ -52,10 +53,12 @@
                 </div>
                 <div class="col-md-9">
                   <input
+                    id="msName"
                     type="text"
                     class="form-control"
                     th:field="*{msName}"
                   />
+                  <div id="msNameError" class="invalid-feedback"></div>
                 </div>
               </div>
               <div class="mb-5"></div>
@@ -65,16 +68,18 @@
                 </div>
                 <div class="col-md-9">
                   <input
+                    id="armsName"
                     type="text"
                     class="form-control"
                     th:field="*{armsName}"
                   />
+                  <div id="armsNameError" class="invalid-feedback"></div>
                 </div>
               </div>
               <div class="mb-5"></div>
               <div class="d-flex justify-content-between align-items-center">
                 <div>
-                  <button type="submit" class="btn btn-primary">検索</button
+                  <button id="search" type="submit" class="btn btn-primary">検索</button
                   ><button type="reset" class="btn btn-link">リセット</button>
                 </div>
               </div>
@@ -84,6 +89,9 @@
       </div>
     </div>
   </body>
+
+  <script th:src="@{/js/MSDB/MobileSuits/Equipments/-/search/EquipmentSearch.js}"></script>
+
   <style>
     #equipmentSearch {
       width: 60%;

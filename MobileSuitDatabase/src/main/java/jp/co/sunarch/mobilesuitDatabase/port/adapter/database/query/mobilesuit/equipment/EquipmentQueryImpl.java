@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 
+import jp.co.sunarch.mobilesuitDatabase.common.utils.CommonItemSettings;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.equipment.entity.EquipmentEntity;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.mobilesuit.equipment.EquipmentQuery;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.equipment.EquipmentModel;
@@ -19,7 +20,7 @@ public class EquipmentQueryImpl implements EquipmentQuery {
 	@Override
 	public List<EquipmentModel> getEquipmentList() {
 		List<EquipmentEntity> equipmentEntities = jdbcEquipmentDao.selectAll();
-		List<EquipmentModel> equipmentModels = equipmentEntities.stream().map(e -> toDomaModel(e)).toList();
+		List<EquipmentModel> equipmentModels = equipmentEntities.stream().map(e -> toModel(e)).toList();
 
 		return equipmentModels;
 
@@ -39,7 +40,7 @@ public class EquipmentQueryImpl implements EquipmentQuery {
 				.build();
 
 		if (equipmentEntityOpt.isPresent()) {
-			equipmentModel = toDomaModel(equipmentEntityOpt.get());
+			equipmentModel = toModel(equipmentEntityOpt.get());
 		}
 
 		return equipmentModel;
@@ -49,19 +50,19 @@ public class EquipmentQueryImpl implements EquipmentQuery {
 	@Override
 	public List<EquipmentModel> searchEquipment(Criteria criteria) {
 		List<EquipmentEntity> equipmentEntities = jdbcEquipmentDao.selectByCriteria(criteria);
-		List<EquipmentModel> equipmentModels = equipmentEntities.stream().map(e -> toDomaModel(e)).toList();
+		List<EquipmentModel> equipmentModels = equipmentEntities.stream().map(e -> toModel(e)).toList();
 
 		return equipmentModels;
 
 	}
 
-	private EquipmentModel toDomaModel(EquipmentEntity entity) {
+	private EquipmentModel toModel(EquipmentEntity entity) {
 		return EquipmentModel.builder()
 				.msId(entity.getMsId())
 				.msName(entity.getMsName())
 				.armsId(entity.getArmsId())
 				.armsName(entity.getArmsName())
-				.numberEquipment(String.valueOf(entity.getNumberEquipment()))
+				.numberEquipment(CommonItemSettings.convertIntegerToString(entity.getNumberEquipment()))
 				.detail(entity.getDetail())
 				.build();
 

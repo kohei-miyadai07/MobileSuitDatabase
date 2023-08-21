@@ -57,52 +57,79 @@
                 </tr>
                 <tr>
                   <td><b>頭頂高</b></td>
-                  <td th:text="${mobilesuitDetail.headHeight}"></td>
+                  <td
+                    th:text="${#strings.isEmpty(mobilesuitDetail.headHeight)}? 'unknown' : ${mobilesuitDetail.headHeight} + 'm'"
+                  ></td>
                 </tr>
                 <tr>
                   <td><b>全高</b></td>
-                  <td th:text="${mobilesuitDetail.overallHeight}"></td>
+                  <td
+                    th:text="${#strings.isEmpty(mobilesuitDetail.overallHeight)}? 'unknown' : ${mobilesuitDetail.overallHeight} + 'm'"
+                  ></td>
                 </tr>
                 <tr>
                   <td><b>本体重量</b></td>
-                  <td th:text="${mobilesuitDetail.weight}"></td>
+                  <td
+                    th:text="${#strings.isEmpty(mobilesuitDetail.weight)}? 'unknown' : ${mobilesuitDetail.weight} + 't'"
+                  ></td>
                 </tr>
                 <tr>
                   <td><b>全備重量</b></td>
-                  <td th:text="${mobilesuitDetail.totalWeight}"></td>
+                  <td
+                    th:text="${#strings.isEmpty(mobilesuitDetail.totalWeight)}? 'unknown' : ${mobilesuitDetail.totalWeight} + 't'"
+                  ></td>
                 </tr>
                 <tr>
                   <td><b>動力源</b></td>
-                  <td th:text="${mobilesuitDetail.powerSource}"></td>
+                  <td
+                    th:text="${#strings.isEmpty(mobilesuitDetail.powerSource)}? 'unknown' : ${mobilesuitDetail.powerSource}"
+                  ></td>
                 </tr>
                 <tr>
                   <td><b>装甲材質</b></td>
-                  <td th:text="${mobilesuitDetail.material}"></td>
+                  <td
+                    th:text="${#strings.isEmpty(mobilesuitDetail.material)}? 'unknown' : ${mobilesuitDetail.material}"
+                  ></td>
                 </tr>
                 <tr>
                   <td><b>センサー有効半径</b></td>
-                  <td th:text="${mobilesuitDetail.effectiveSensorRadius}"></td>
+                  <td
+                    th:text="${#strings.isEmpty(mobilesuitDetail.effectiveSensorRadius)}? 'unknown' : ${#numbers.formatInteger(mobilesuitDetail.effectiveSensorRadius, 3, 'COMMA')} + 'm'"
+                  ></td>
                 </tr>
                 <tr>
                   <td><b>ジェネレーター出力</b></td>
-                  <td th:text="${mobilesuitDetail.generatorOutput}"></td>
+                  <td
+                    th:text="${#strings.isEmpty(mobilesuitDetail.generatorOutput)}? 'unknown' : ${#numbers.formatInteger(mobilesuitDetail.generatorOutput, 3, 'COMMA')} + 'kw'"
+                  ></td>
                 </tr>
                 <tr>
                   <td><b>スラスター総推力</b></td>
-                  <td th:text="${mobilesuitDetail.totalThrustersOutput}"></td>
+                  <td
+                    th:text="${#strings.isEmpty(mobilesuitDetail.totalThrustersOutput)}? 'unknown' : ${#numbers.formatInteger(mobilesuitDetail.totalThrustersOutput, 3, 'COMMA')} + 'kg'"
+                  ></td>
                 </tr>
                 <tr>
                   <td><b>武装</b></td>
-                  <td>
-                    <div
-                      th:each="equipment : ${mobilesuitDetail.equipmentArmsResultList}"
-                    >
-                      <p
-                        id="armsList"
-                        th:text="|${equipment.armsName} × ${equipment.numberEquipment}|"
-                      ></p>
-                    </div>
-                  </td>
+                  <th:block
+                    th:if="${#lists.isEmpty(mobilesuitDetail.equipmentArmsResultList)}"
+                  >
+                    <td>unknown</td>
+                  </th:block>
+                  <th:block
+                    th:unless="${#lists.isEmpty(mobilesuitDetail.equipmentArmsResultList)}"
+                  >
+                    <td>
+                      <div
+                        th:each="equipment : ${mobilesuitDetail.equipmentArmsResultList}"
+                      >
+                        <p
+                          id="armsList"
+                          th:text="${#strings.isEmpty(equipment.numberEquipment)}? |${equipment.armsName} × unknown| : |${equipment.armsName} × ${equipment.numberEquipment}|"
+                        ></p>
+                      </div>
+                    </td>
+                  </th:block>
                 </tr>
               </table>
             </div>
@@ -115,7 +142,9 @@
               >
                 <h2>機体概要</h2>
               </div>
-              <p th:text="${mobilesuitDetail.msOverview}"></p>
+              <p
+                th:text="${#strings.isEmpty(mobilesuitDetail.msOverview)}? 'unknown' : ${mobilesuitDetail.msOverview}"
+              ></p>
             </div>
             <div class="mb-5"></div>
             <div>
@@ -124,10 +153,21 @@
               >
                 <h2>武装解説</h2>
               </div>
-              <dl th:each="arms : ${mobilesuitDetail.equipmentArmsResultList}">
-                <dt th:text="${arms.armsName}"></dt>
-                <dd th:text="${arms.detail}"></dd>
-              </dl>
+              <th:block
+                th:if="${#lists.isEmpty(mobilesuitDetail.equipmentArmsResultList)}"
+              >
+                <td>unknown</td>
+              </th:block>
+              <th:block
+                th:unless="${#lists.isEmpty(mobilesuitDetail.equipmentArmsResultList)}"
+              >
+                <dl
+                  th:each="arms : ${mobilesuitDetail.equipmentArmsResultList}"
+                >
+                  <dt th:text="${arms.armsName}"></dt>
+                  <dd th:text="${#strings.isEmpty(arms.detail)}? 'unknown' : ${arms.detail}"></dd>
+                </dl>
+              </th:block>
             </div>
             <div class="mb-5"></div>
             <div>
@@ -136,7 +176,7 @@
               >
                 <h2>活躍</h2>
               </div>
-              <p th:text="${mobilesuitDetail.action}"></p>
+              <p th:text="${#strings.isEmpty(mobilesuitDetail.action)}? 'unknown' : ${mobilesuitDetail.action}"></p>
             </div>
             <div class="mb-5"></div>
           </div>
