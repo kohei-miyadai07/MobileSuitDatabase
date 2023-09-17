@@ -4,6 +4,9 @@ create table Equipment (
   , arms_id VARCHAR(90) not null
   , number_equipment INTEGER
   , detail TEXT
+  , insert_date TIMESTAMP not null
+  , update_date TIMESTAMP not null
+  , version integer not null
   , constraint Equipment_PKC primary key (ms_id,arms_id)
 ) ;
 
@@ -12,6 +15,9 @@ create table Arms (
   arms_id VARCHAR(90) not null
   , arms_name VARCHAR(300) not null
   , detail TEXT
+  , insert_date TIMESTAMP not null
+  , update_date TIMESTAMP not null
+  , version integer not null
   , constraint Arms_PKC primary key (arms_id)
 ) ;
 
@@ -51,11 +57,17 @@ comment on column Equipment.ms_id is '機体ID';
 comment on column Equipment.arms_id is '武器ID';
 comment on column Equipment.number_equipment is '装備数';
 comment on column Equipment.detail is '詳細';
+comment on column Equipment.insert_date is '登録日時';
+comment on column Equipment.update_date is '更新日時';
+comment on column Equipment.version is 'バージョン';
 
 comment on table Arms is '武器';
 comment on column Arms.arms_id is '武器ID';
 comment on column Arms.arms_name is '武器名';
 comment on column Arms.detail is '詳細';
+comment on column Arms.insert_date is '登録日時';
+comment on column Arms.update_date is '更新日時';
+comment on column Arms.version is 'バージョン';
 
 comment on table MobileSuit is 'モビルスーツ';
 comment on column MobileSuit.ms_id is '機体ID';
