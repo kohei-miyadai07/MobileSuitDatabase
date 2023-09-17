@@ -1,5 +1,7 @@
 package jp.co.sunarch.mobilesuitDatabase.port.adapter.database.repository.arms.entity;
 
+import java.sql.Timestamp;
+
 import org.seasar.doma.Entity;
 import org.seasar.doma.Id;
 import org.seasar.doma.Table;
@@ -17,5 +19,11 @@ public class ArmsEntity {
 	private String armsName;
 
 	private String detail;
+
+	private Timestamp insertDate;
+
+	private Timestamp updateDate;
+
+	private Integer version;
 
 }

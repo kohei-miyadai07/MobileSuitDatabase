@@ -15,7 +15,10 @@ public class ArmsRowMapper implements RowMapper<Arms> {
 		return Arms.create(
 				ArmsId.of(rs.getString("arms_id")),
 				rs.getString("arms_name"), 
-				rs.getString("detail"));
+				rs.getString("detail"),
+				rs.getTimestamp("insert_date").toLocalDateTime(),
+				rs.getTimestamp("update_date").toLocalDateTime(),
+				rs.getInt("version"));
 	}
 
 }

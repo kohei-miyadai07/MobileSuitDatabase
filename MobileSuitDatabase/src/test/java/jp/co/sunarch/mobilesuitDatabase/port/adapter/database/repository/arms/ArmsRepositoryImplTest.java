@@ -2,6 +2,9 @@ package jp.co.sunarch.mobilesuitDatabase.port.adapter.database.repository.arms;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -54,9 +57,19 @@ class ArmsRepositoryImplTest {
 
 		@Test
 		void 武器IDを指定すると紐づいた武器ドメインモデルを取得できること() {
+			String strDateTime = "2023/04/02 10:00:00";
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+			LocalDateTime localDateTime = LocalDateTime.parse(strDateTime, formatter);
+
 			Arms arms = sut.getArmsById("arms1");
 
-			Arms extend = Arms.create(ArmsId.of("arms1"), "テストライフル1", "テスト1");
+			Arms extend = Arms.create(
+					ArmsId.of("arms1"),
+					"テストライフル1",
+					"テスト1",
+					localDateTime,
+					localDateTime,
+					Integer.valueOf(1));
 			assertThat(arms)
 			.isEqualTo(extend);
 		}
@@ -73,7 +86,17 @@ class ArmsRepositoryImplTest {
 
 		@Test
 		void 対象の武器ドメインモデルが未登録の場合は新規登録されること() {
-			Arms arms = Arms.create(ArmsId.of("arms4"), "テストライフル4", "テスト4");
+			String strDateTime = "2023/04/02 10:00:00";
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+			LocalDateTime localDateTime = LocalDateTime.parse(strDateTime, formatter);
+
+			Arms arms = Arms.create(
+					ArmsId.of("arms4"),
+					"テストライフル4",
+					"テスト4",
+					localDateTime,
+					localDateTime,
+					Integer.valueOf(1));
 			sut.save(arms);
 
 			ArmsRowMapper rowMapper = new ArmsRowMapper();
@@ -85,7 +108,17 @@ class ArmsRepositoryImplTest {
 
 		@Test
 		void 対象の武器ドメインモデルが登録済みの場合は更新されること() {
-			Arms arms = Arms.create(ArmsId.of("arms2"), "テストライフル2-update", "テスト2-update");
+			String strDateTime = "2023/04/02 10:00:00";
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+			LocalDateTime localDateTime = LocalDateTime.parse(strDateTime, formatter);
+
+			Arms arms = Arms.create(
+					ArmsId.of("arms2"),
+					"テストライフル2-update",
+					"テスト2-update",
+					localDateTime,
+					localDateTime,
+					Integer.valueOf(2));
 			sut.save(arms);
 
 			ArmsRowMapper rowMapper = new ArmsRowMapper();
