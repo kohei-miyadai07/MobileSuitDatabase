@@ -1,5 +1,7 @@
 package jp.co.sunarch.mobilesuitDatabase.application.usecase.mobilesuit.equipment;
 
+import java.time.LocalDateTime;
+
 import org.springframework.stereotype.Service;
 
 import jp.co.sunarch.mobilesuitDatabase.application.command.mobilesuit.Equipment.RegistEquipmentCommand;
@@ -18,7 +20,10 @@ public class RegistEquipmentUseCase {
 				command.getMsId(),
 				command.getArmsId(),
 				command.getNumberEquipment(), 
-				command.getDetail());
+				command.getDetail(),
+				LocalDateTime.now(),
+				LocalDateTime.now(),
+				1);
 
 		equipmentRecodeService.registEquipment(equipment);
 	}

@@ -125,6 +125,9 @@ public class MobileSuitQueryImpl implements MobileSuitQuery {
 				.armsName(equipmentArmsEntity.getArmsName())
 				.numberEquipment(CommonItemSettings.convertIntegerToString(equipmentArmsEntity.getNumberEquipment()))
 				.detail(equipmentArmsEntity.getDetail())
+				.insertDate(sdf.format(equipmentArmsEntity.getInsertDate()))
+				.updateDate(sdf.format(equipmentArmsEntity.getUpdateDate()))
+				.version(String.valueOf(equipmentArmsEntity.getVersion()))
 				.build();
 
 		return equipmentArmsModel;

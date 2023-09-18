@@ -1,5 +1,7 @@
 package jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.equipment.entity;
 
+import java.sql.Timestamp;
+
 import org.seasar.doma.Column;
 import org.seasar.doma.Entity;
 
@@ -22,5 +24,14 @@ public class EquipmentArmsEntity {
 
 	@Column(name = "detail")
 	private String detail;
+
+	@Column(name = "insert_date")
+	private Timestamp insertDate;
+
+	@Column(name = "update_date")
+	private Timestamp updateDate;
+
+	@Column(name = "version")
+	private Integer version;
 
 }
