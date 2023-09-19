@@ -41,7 +41,6 @@
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th class="text-nowrap" scope="col">武器ID</th>
                   <th class="text-nowrap" scope="col">武器名</th>
                   <th class="text-nowrap" scope="col">詳細</th>
                   <th class="text-nowrap" scope="col">登録日時</th>
@@ -51,12 +50,7 @@
               </thead>
               <tbody>
                 <tr th:each="arms : ${armsList}">
-                  <th
-                    class="text-nowrap"
-                    th:text="${arms.armsId}"
-                    scope="row"
-                  ></th>
-                  <td class="text-nowrap" th:text="${arms.armsName}"></td>
+                  <th class="text-nowrap" th:text="${arms.armsName}" scope="row"></th>
                   <td th:text="${arms.detail}"></td>
                   <td
                     class="text-nowrap"
