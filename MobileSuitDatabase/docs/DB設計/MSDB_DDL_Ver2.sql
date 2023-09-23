@@ -1,200 +1,260 @@
--- Project Name : MSDB_ER}_Ver2
--- Date/Time    : 2023/07/30 1:11:48
--- Author       : mk26s
+-- Project Name : MSDB_ERå›³_Ver2
+-- Date/Time    : 2023/09/17 10:58:18
+-- Author       : km57r
 -- RDBMS Type   : PostgreSQL
 -- Application  : A5:SQL Mk-2
 
 /*
-  << ’ˆÓII >>
-  BackupToTempTable, RestoreFromTempTable‹^—–½—ß‚ª•t‰Á‚³‚ê‚Ä‚¢‚Ü‚·B
-  ‚±‚ê‚É‚æ‚èAdrop table, create table Œã‚àƒf[ƒ^‚ªc‚è‚Ü‚·B
-  ‚±‚Ì‹@”\‚Íˆê“I‚É $$TableName ‚Ì‚æ‚¤‚Èˆêƒe[ƒuƒ‹‚ğì¬‚µ‚Ü‚·B
-  ‚±‚Ì‹@”\‚Í A5:SQL Mk-2‚Å‚Ì‚İ—LŒø‚Å‚ ‚é‚±‚Æ‚É’ˆÓ‚µ‚Ä‚­‚¾‚³‚¢B
+  << æ³¨æ„ï¼ï¼ >>
+  BackupToTempTable, RestoreFromTempTableç–‘ä¼¼å‘½ä»¤ãŒä»˜åŠ ã•ã‚Œã¦ã„ã¾ã™ã€‚
+  ã“ã‚Œã«ã‚ˆã‚Šã€drop table, create table å¾Œã‚‚ãƒ‡ãƒ¼ã‚¿ãŒæ®‹ã‚Šã¾ã™ã€‚
+  ã“ã®æ©Ÿèƒ½ã¯ä¸€æ™‚çš„ã« $$TableName ã®ã‚ˆã†ãªä¸€æ™‚ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ä½œæˆã—ã¾ã™ã€‚
+  ã“ã®æ©Ÿèƒ½ã¯ A5:SQL Mk-2ã§ã®ã¿æœ‰åŠ¹ã§ã‚ã‚‹ã“ã¨ã«æ³¨æ„ã—ã¦ãã ã•ã„ã€‚
 */
 
--- ”\—Í
---* RestoreFromTempTable
+-- èƒ½åŠ›
+-- * RestoreFromTempTable
 create table Ability (
   ms_id VARCHAR(90) not null
   , feature_id VARCHAR(90) not null
   , detail TEXT
+  , insert_date TIMESTAMP not null
+  , update_date TIMESTAMP not null
+  , version integer not null
   , constraint Ability_PKC primary key (ms_id,feature_id)
 ) ;
 
--- ‹@”\
---* RestoreFromTempTable
+-- æ©Ÿèƒ½
+-- * RestoreFromTempTable
 create table Feature (
   feature_id VARCHAR(90) not null
   , feature_name VARCHAR(300) not null
   , detail TEXT
+  , insert_date TIMESTAMP not null
+  , update_date TIMESTAMP not null
+  , version integer not null
   , constraint Feature_PKC primary key (feature_id)
 ) ;
 
--- “oêì•i
---* RestoreFromTempTable
+-- ç™»å ´ä½œå“
+-- * RestoreFromTempTable
 create table Works (
   ms_id VARCHAR(90) not null
   , opus_id VARCHAR(90) not null
   , detail TEXT
+  , insert_date TIMESTAMP not null
+  , update_date TIMESTAMP not null
+  , version integer not null
   , constraint Works_PKC primary key (ms_id,opus_id)
 ) ;
 
--- ì•i
---* RestoreFromTempTable
+-- ä½œå“
+-- * RestoreFromTempTable
 create table Opus (
   opus_id VARCHAR(90) not null
   , opus_name VARCHAR(300) not null
   , detail TEXT
+  , insert_date TIMESTAMP not null
+  , update_date TIMESTAMP not null
+  , version integer not null
   , constraint Opus_PKC primary key (opus_id)
 ) ;
 
--- ‰^—p•êŠÍ
---* RestoreFromTempTable
+-- é‹ç”¨æ¯è‰¦
+-- * RestoreFromTempTable
 create table Operation_Carrier (
   ms_id VARCHAR(90) not null
   , ship_id VARCHAR(90) not null
   , detail TEXT
+  , insert_date TIMESTAMP not null
+  , update_date TIMESTAMP not null
+  , version integer not null
   , constraint Operation_Carrier_PKC primary key (ms_id,ship_id)
 ) ;
 
--- ŠÍ‘D
---* RestoreFromTempTable
+-- è‰¦èˆ¹
+-- * RestoreFromTempTable
 create table Ship (
   ship_id VARCHAR(90) not null
   , shop_name VARCHAR(300) not null
   , detail TEXT
+  , insert_date TIMESTAMP not null
+  , update_date TIMESTAMP not null
+  , version integer not null
   , constraint Ship_PKC primary key (ship_id)
 ) ;
 
--- “‹æÒ
---* RestoreFromTempTable
+-- æ­ä¹—è€…
+-- * RestoreFromTempTable
 create table Passenger (
   ms_id VARCHAR(90) not null
   , pilot_id VARCHAR(90) not null
   , detail TEXT
+  , insert_date TIMESTAMP not null
+  , update_date TIMESTAMP not null
+  , version integer not null
   , constraint Passenger_PKC primary key (ms_id,pilot_id)
 ) ;
 
--- ƒpƒCƒƒbƒg
---* RestoreFromTempTable
+-- ãƒ‘ã‚¤ãƒ­ãƒƒãƒˆ
+-- * RestoreFromTempTable
 create table Pilot (
   pilot_id VARCHAR(90) not null
   , pilot_name VARCHAR(300) not null
   , detail TEXT
+  , insert_date TIMESTAMP not null
+  , update_date TIMESTAMP not null
+  , version integer not null
   , constraint Pilot_PKC primary key (pilot_id)
 ) ;
 
--- Š‘®
---* RestoreFromTempTable
+-- æ‰€å±
+-- * RestoreFromTempTable
 create table Belonging (
   ms_id VARCHAR(90) not null
   , team_id VARCHAR(90) not null
   , detail TEXT
+  , insert_date TIMESTAMP not null
+  , update_date TIMESTAMP not null
+  , version integer not null
   , constraint Belonging_PKC primary key (ms_id,team_id)
 ) ;
 
--- ƒ`[ƒ€
---* RestoreFromTempTable
+-- ãƒãƒ¼ãƒ 
+-- * RestoreFromTempTable
 create table Team (
   team_id VARCHAR(90) not null
   , team_name VARCHAR(300) not null
   , detail TEXT
+  , insert_date TIMESTAMP not null
+  , update_date TIMESTAMP not null
+  , version integer not null
   , constraint Team_PKC primary key (team_id)
 ) ;
 
--- ŠJ”­Ò
---* RestoreFromTempTable
+-- é–‹ç™ºè€…
+-- * RestoreFromTempTable
 create table Developer (
   ms_id VARCHAR(90) not null
   , person_id VARCHAR(90) not null
   , detail TEXT
+  , insert_date TIMESTAMP not null
+  , update_date TIMESTAMP not null
+  , version integer not null
   , constraint Developer_PKC primary key (ms_id,person_id)
 ) ;
 
--- l•¨
---* RestoreFromTempTable
+-- äººç‰©
+-- * RestoreFromTempTable
 create table Person (
   person_id VARCHAR(90) not null
   , person_name VARCHAR(300) not null
   , detail TEXT
+  , insert_date TIMESTAMP not null
+  , update_date TIMESTAMP not null
+  , version integer not null
   , constraint Person_PKC primary key (person_id)
 ) ;
 
--- ŠJ”­‹’“_
---* RestoreFromTempTable
+-- é–‹ç™ºæ‹ ç‚¹
+-- * RestoreFromTempTable
 create table Development_Base (
   ms_id VARCHAR(90) not null
   , base_id VARCHAR(90) not null
   , detail TEXT
+  , insert_date TIMESTAMP not null
+  , update_date TIMESTAMP not null
+  , version integer not null
   , constraint Development_Base_PKC primary key (ms_id,base_id)
 ) ;
 
--- ‹’“_
---* RestoreFromTempTable
+-- æ‹ ç‚¹
+-- * RestoreFromTempTable
 create table Base (
   base_id VARCHAR(90) not null
   , base_name VARCHAR(300) not null
   , detail TEXT
+  , insert_date TIMESTAMP not null
+  , update_date TIMESTAMP not null
+  , version integer not null
   , constraint Base_PKC primary key (base_id)
 ) ;
 
--- ŠJ”­‘gD
---* RestoreFromTempTable
+-- é–‹ç™ºçµ„ç¹”
+-- * RestoreFromTempTable
 create table Development_Org (
   ms_id VARCHAR(90) not null
   , org_id VARCHAR(90) not null
   , detail TEXT
+  , insert_date TIMESTAMP not null
+  , update_date TIMESTAMP not null
+  , version integer not null
   , constraint Development_Org_PKC primary key (ms_id,org_id)
 ) ;
 
--- ‘gD
---* RestoreFromTempTable
+-- çµ„ç¹”
+-- * RestoreFromTempTable
 create table Organization (
   org_id VARCHAR(90) not null
   , org_name VARCHAR(300) not null
   , detail TEXT
+  , insert_date TIMESTAMP not null
+  , update_date TIMESTAMP not null
+  , version integer not null
   , constraint Organization_PKC primary key (org_id)
 ) ;
 
--- ƒJƒeƒSƒ‰ƒCƒY
---* RestoreFromTempTable
+-- ã‚«ãƒ†ã‚´ãƒ©ã‚¤ã‚º
+-- * RestoreFromTempTable
 create table Categorize (
   ms_id VARCHAR(90) not null
   , class_id VARCHAR(90) not null
   , detail TEXT
+  , insert_date TIMESTAMP not null
+  , update_date TIMESTAMP not null
+  , version integer not null
   , constraint Categorize_PKC primary key (ms_id,class_id)
 ) ;
 
--- •ª—Ş
---* RestoreFromTempTable
-create table CLASS (
+-- åˆ†é¡
+-- * RestoreFromTempTable
+create table Class (
   class_id VARCHAR(90) not null
   , class_name VARCHAR(300) not null
   , detail TEXT
-  , constraint CLASS_PKC primary key (class_id)
+  , insert_date TIMESTAMP not null
+  , update_date TIMESTAMP not null
+  , version integer not null
+  , constraint Class_PKC primary key (class_id)
 ) ;
 
--- ‘•”õ
---* RestoreFromTempTable
+-- è£…å‚™
+-- * RestoreFromTempTable
 create table Equipment (
   ms_id VARCHAR(90) not null
   , arms_id VARCHAR(90) not null
   , number_equipment INTEGER
   , detail TEXT
+  , insert_date TIMESTAMP not null
+  , update_date TIMESTAMP not null
+  , version integer not null
   , constraint Equipment_PKC primary key (ms_id,arms_id)
 ) ;
 
--- •Ší
---* RestoreFromTempTable
+-- æ­¦å™¨
+-- * RestoreFromTempTable
 create table Arms (
   arms_id VARCHAR(90) not null
   , arms_name VARCHAR(300) not null
   , detail TEXT
+  , insert_date TIMESTAMP not null
+  , update_date TIMESTAMP not null
+  , version integer not null
   , constraint Arms_PKC primary key (arms_id)
 ) ;
 
--- ƒ‚ƒrƒ‹ƒX[ƒc
---* RestoreFromTempTable
+-- ãƒ¢ãƒ“ãƒ«ã‚¹ãƒ¼ãƒ„
+-- * RestoreFromTempTable
 create table MobileSuit (
   ms_id VARCHAR(90) not null
   , model_number VARCHAR(300) not null
@@ -282,7 +342,7 @@ alter table Development_Org
   on delete cascade;
 
 alter table Categorize
-  add constraint Categorize_FK1 foreign key (class_id) references CLASS(class_id)
+  add constraint Categorize_FK1 foreign key (class_id) references Class(class_id)
   on delete cascade;
 
 alter table Categorize
@@ -297,124 +357,184 @@ alter table Equipment
   add constraint Equipment_FK2 foreign key (ms_id) references MobileSuit(ms_id)
   on delete cascade;
 
-comment on table Ability is '”\—Í';
-comment on column Ability.ms_id is '‹@‘ÌID';
-comment on column Ability.feature_id is '‹@”\ID';
-comment on column Ability.detail is 'Ú×';
+comment on table Ability is 'èƒ½åŠ›';
+comment on column Ability.ms_id is 'æ©Ÿä½“ID';
+comment on column Ability.feature_id is 'æ©Ÿèƒ½ID';
+comment on column Ability.detail is 'è©³ç´°';
+comment on column Ability.insert_date is 'ç™»éŒ²æ—¥æ™‚';
+comment on column Ability.update_date is 'æ›´æ–°æ—¥æ™‚';
+comment on column Ability.version is 'ãƒãƒ¼ã‚¸ãƒ§ãƒ³';
 
-comment on table Feature is '‹@”\';
-comment on column Feature.feature_id is '‹@”\ID';
-comment on column Feature.feature_name is '‹@”\–¼';
-comment on column Feature.detail is 'Ú×';
+comment on table Feature is 'æ©Ÿèƒ½';
+comment on column Feature.feature_id is 'æ©Ÿèƒ½ID';
+comment on column Feature.feature_name is 'æ©Ÿèƒ½å';
+comment on column Feature.detail is 'è©³ç´°';
+comment on column Feature.insert_date is 'ç™»éŒ²æ—¥æ™‚';
+comment on column Feature.update_date is 'æ›´æ–°æ—¥æ™‚';
+comment on column Feature.version is 'ãƒãƒ¼ã‚¸ãƒ§ãƒ³';
 
-comment on table Works is '“oêì•i';
-comment on column Works.ms_id is '‹@‘ÌID';
-comment on column Works.opus_id is 'ì•iID';
-comment on column Works.detail is 'Ú×';
+comment on table Works is 'ç™»å ´ä½œå“';
+comment on column Works.ms_id is 'æ©Ÿä½“ID';
+comment on column Works.opus_id is 'ä½œå“ID';
+comment on column Works.detail is 'è©³ç´°';
+comment on column Works.insert_date is 'ç™»éŒ²æ—¥æ™‚';
+comment on column Works.update_date is 'æ›´æ–°æ—¥æ™‚';
+comment on column Works.version is 'ãƒãƒ¼ã‚¸ãƒ§ãƒ³';
 
-comment on table Opus is 'ì•i';
-comment on column Opus.opus_id is 'ì•iID';
-comment on column Opus.opus_name is 'ì•i–¼';
-comment on column Opus.detail is 'Ú×';
+comment on table Opus is 'ä½œå“';
+comment on column Opus.opus_id is 'ä½œå“ID';
+comment on column Opus.opus_name is 'ä½œå“å';
+comment on column Opus.detail is 'è©³ç´°';
+comment on column Opus.insert_date is 'ç™»éŒ²æ—¥æ™‚';
+comment on column Opus.update_date is 'æ›´æ–°æ—¥æ™‚';
+comment on column Opus.version is 'ãƒãƒ¼ã‚¸ãƒ§ãƒ³';
 
-comment on table Operation_Carrier is '‰^—p•êŠÍ';
-comment on column Operation_Carrier.ms_id is '‹@‘ÌID';
-comment on column Operation_Carrier.ship_id is 'ŠÍ‘DID';
-comment on column Operation_Carrier.detail is 'Ú×';
+comment on table Operation_Carrier is 'é‹ç”¨æ¯è‰¦';
+comment on column Operation_Carrier.ms_id is 'æ©Ÿä½“ID';
+comment on column Operation_Carrier.ship_id is 'è‰¦èˆ¹ID';
+comment on column Operation_Carrier.detail is 'è©³ç´°';
+comment on column Operation_Carrier.insert_date is 'ç™»éŒ²æ—¥æ™‚';
+comment on column Operation_Carrier.update_date is 'æ›´æ–°æ—¥æ™‚';
+comment on column Operation_Carrier.version is 'ãƒãƒ¼ã‚¸ãƒ§ãƒ³';
 
-comment on table Ship is 'ŠÍ‘D';
-comment on column Ship.ship_id is 'ŠÍ‘DID';
-comment on column Ship.shop_name is 'ŠÍ‘D–¼';
-comment on column Ship.detail is 'Ú×';
+comment on table Ship is 'è‰¦èˆ¹';
+comment on column Ship.ship_id is 'è‰¦èˆ¹ID';
+comment on column Ship.shop_name is 'è‰¦èˆ¹å';
+comment on column Ship.detail is 'è©³ç´°';
+comment on column Ship.insert_date is 'ç™»éŒ²æ—¥æ™‚';
+comment on column Ship.update_date is 'æ›´æ–°æ—¥æ™‚';
+comment on column Ship.version is 'ãƒãƒ¼ã‚¸ãƒ§ãƒ³';
 
-comment on table Passenger is '“‹æÒ';
-comment on column Passenger.ms_id is '‹@‘ÌID';
-comment on column Passenger.pilot_id is 'ƒpƒCƒƒbƒgID';
-comment on column Passenger.detail is 'Ú×';
+comment on table Passenger is 'æ­ä¹—è€…';
+comment on column Passenger.ms_id is 'æ©Ÿä½“ID';
+comment on column Passenger.pilot_id is 'ãƒ‘ã‚¤ãƒ­ãƒƒãƒˆID';
+comment on column Passenger.detail is 'è©³ç´°';
+comment on column Passenger.insert_date is 'ç™»éŒ²æ—¥æ™‚';
+comment on column Passenger.update_date is 'æ›´æ–°æ—¥æ™‚';
+comment on column Passenger.version is 'ãƒãƒ¼ã‚¸ãƒ§ãƒ³';
 
-comment on table Pilot is 'ƒpƒCƒƒbƒg';
-comment on column Pilot.pilot_id is 'ƒpƒCƒƒbƒgID';
-comment on column Pilot.pilot_name is 'ƒpƒCƒƒbƒg–¼';
-comment on column Pilot.detail is 'Ú×';
+comment on table Pilot is 'ãƒ‘ã‚¤ãƒ­ãƒƒãƒˆ';
+comment on column Pilot.pilot_id is 'ãƒ‘ã‚¤ãƒ­ãƒƒãƒˆID';
+comment on column Pilot.pilot_name is 'ãƒ‘ã‚¤ãƒ­ãƒƒãƒˆå';
+comment on column Pilot.detail is 'è©³ç´°';
+comment on column Pilot.insert_date is 'ç™»éŒ²æ—¥æ™‚';
+comment on column Pilot.update_date is 'æ›´æ–°æ—¥æ™‚';
+comment on column Pilot.version is 'ãƒãƒ¼ã‚¸ãƒ§ãƒ³';
 
-comment on table Belonging is 'Š‘®';
-comment on column Belonging.ms_id is '‹@‘ÌID';
-comment on column Belonging.team_id is 'ƒ`[ƒ€ID';
-comment on column Belonging.detail is 'Ú×';
+comment on table Belonging is 'æ‰€å±';
+comment on column Belonging.ms_id is 'æ©Ÿä½“ID';
+comment on column Belonging.team_id is 'ãƒãƒ¼ãƒ ID';
+comment on column Belonging.detail is 'è©³ç´°';
+comment on column Belonging.insert_date is 'ç™»éŒ²æ—¥æ™‚';
+comment on column Belonging.update_date is 'æ›´æ–°æ—¥æ™‚';
+comment on column Belonging.version is 'ãƒãƒ¼ã‚¸ãƒ§ãƒ³';
 
-comment on table Team is 'ƒ`[ƒ€';
-comment on column Team.team_id is 'ƒ`[ƒ€ID';
-comment on column Team.team_name is 'ƒ`[ƒ€–¼';
-comment on column Team.detail is 'Ú×';
+comment on table Team is 'ãƒãƒ¼ãƒ ';
+comment on column Team.team_id is 'ãƒãƒ¼ãƒ ID';
+comment on column Team.team_name is 'ãƒãƒ¼ãƒ å';
+comment on column Team.detail is 'è©³ç´°';
+comment on column Team.insert_date is 'ç™»éŒ²æ—¥æ™‚';
+comment on column Team.update_date is 'æ›´æ–°æ—¥æ™‚';
+comment on column Team.version is 'ãƒãƒ¼ã‚¸ãƒ§ãƒ³';
 
-comment on table Developer is 'ŠJ”­Ò';
-comment on column Developer.ms_id is '‹@‘ÌID';
-comment on column Developer.person_id is 'l•¨ID';
-comment on column Developer.detail is 'Ú×';
+comment on table Developer is 'é–‹ç™ºè€…';
+comment on column Developer.ms_id is 'æ©Ÿä½“ID';
+comment on column Developer.person_id is 'äººç‰©ID';
+comment on column Developer.detail is 'è©³ç´°';
+comment on column Developer.insert_date is 'ç™»éŒ²æ—¥æ™‚';
+comment on column Developer.update_date is 'æ›´æ–°æ—¥æ™‚';
+comment on column Developer.version is 'ãƒãƒ¼ã‚¸ãƒ§ãƒ³';
 
-comment on table Person is 'l•¨';
-comment on column Person.person_id is 'l•¨ID';
-comment on column Person.person_name is 'l•¨–¼';
-comment on column Person.detail is 'Ú×';
+comment on table Person is 'äººç‰©';
+comment on column Person.person_id is 'äººç‰©ID';
+comment on column Person.person_name is 'äººç‰©å';
+comment on column Person.detail is 'è©³ç´°';
+comment on column Person.insert_date is 'ç™»éŒ²æ—¥æ™‚';
+comment on column Person.update_date is 'æ›´æ–°æ—¥æ™‚';
+comment on column Person.version is 'ãƒãƒ¼ã‚¸ãƒ§ãƒ³';
 
-comment on table Development_Base is 'ŠJ”­‹’“_';
-comment on column Development_Base.ms_id is '‹@‘ÌID';
-comment on column Development_Base.base_id is '‹’“_ID';
-comment on column Development_Base.detail is 'Ú×';
+comment on table Development_Base is 'é–‹ç™ºæ‹ ç‚¹';
+comment on column Development_Base.ms_id is 'æ©Ÿä½“ID';
+comment on column Development_Base.base_id is 'æ‹ ç‚¹ID';
+comment on column Development_Base.detail is 'è©³ç´°';
+comment on column Development_Base.insert_date is 'ç™»éŒ²æ—¥æ™‚';
+comment on column Development_Base.update_date is 'æ›´æ–°æ—¥æ™‚';
+comment on column Development_Base.version is 'ãƒãƒ¼ã‚¸ãƒ§ãƒ³';
 
-comment on table Base is '‹’“_';
-comment on column Base.base_id is '‹’“_ID';
-comment on column Base.base_name is '‹’“_–¼';
-comment on column Base.detail is 'Ú×';
+comment on table Base is 'æ‹ ç‚¹';
+comment on column Base.base_id is 'æ‹ ç‚¹ID';
+comment on column Base.base_name is 'æ‹ ç‚¹å';
+comment on column Base.detail is 'è©³ç´°';
+comment on column Base.insert_date is 'ç™»éŒ²æ—¥æ™‚';
+comment on column Base.update_date is 'æ›´æ–°æ—¥æ™‚';
+comment on column Base.version is 'ãƒãƒ¼ã‚¸ãƒ§ãƒ³';
 
-comment on table Development_Org is 'ŠJ”­‘gD';
-comment on column Development_Org.ms_id is '‹@‘ÌID';
-comment on column Development_Org.org_id is '‘gDID';
-comment on column Development_Org.detail is 'Ú×';
+comment on table Development_Org is 'é–‹ç™ºçµ„ç¹”';
+comment on column Development_Org.ms_id is 'æ©Ÿä½“ID';
+comment on column Development_Org.org_id is 'çµ„ç¹”ID';
+comment on column Development_Org.detail is 'è©³ç´°';
+comment on column Development_Org.insert_date is 'ç™»éŒ²æ—¥æ™‚';
+comment on column Development_Org.update_date is 'æ›´æ–°æ—¥æ™‚';
+comment on column Development_Org.version is 'ãƒãƒ¼ã‚¸ãƒ§ãƒ³';
 
-comment on table Organization is '‘gD';
-comment on column Organization.org_id is '‘gDID';
-comment on column Organization.org_name is '‘gD–¼';
-comment on column Organization.detail is 'Ú×';
+comment on table Organization is 'çµ„ç¹”';
+comment on column Organization.org_id is 'çµ„ç¹”ID';
+comment on column Organization.org_name is 'çµ„ç¹”å';
+comment on column Organization.detail is 'è©³ç´°';
+comment on column Organization.insert_date is 'ç™»éŒ²æ—¥æ™‚';
+comment on column Organization.update_date is 'æ›´æ–°æ—¥æ™‚';
+comment on column Organization.version is 'ãƒãƒ¼ã‚¸ãƒ§ãƒ³';
 
-comment on table Categorize is 'ƒJƒeƒSƒ‰ƒCƒY';
-comment on column Categorize.ms_id is '‹@‘ÌID';
-comment on column Categorize.class_id is '•ª—ŞID';
-comment on column Categorize.detail is 'Ú×';
+comment on table Categorize is 'ã‚«ãƒ†ã‚´ãƒ©ã‚¤ã‚º';
+comment on column Categorize.ms_id is 'æ©Ÿä½“ID';
+comment on column Categorize.class_id is 'åˆ†é¡ID';
+comment on column Categorize.detail is 'è©³ç´°';
+comment on column Categorize.insert_date is 'ç™»éŒ²æ—¥æ™‚';
+comment on column Categorize.update_date is 'æ›´æ–°æ—¥æ™‚';
+comment on column Categorize.version is 'ãƒãƒ¼ã‚¸ãƒ§ãƒ³';
 
-comment on table CLASS is '•ª—Ş';
-comment on column CLASS.class_id is '•ª—ŞID';
-comment on column CLASS.class_name is '•ª—Ş–¼';
-comment on column CLASS.detail is 'Ú×';
+comment on table Class is 'åˆ†é¡';
+comment on column Class.class_id is 'åˆ†é¡ID';
+comment on column Class.class_name is 'åˆ†é¡å';
+comment on column Class.detail is 'è©³ç´°';
+comment on column Class.insert_date is 'ç™»éŒ²æ—¥æ™‚';
+comment on column Class.update_date is 'æ›´æ–°æ—¥æ™‚';
+comment on column Class.version is 'ãƒãƒ¼ã‚¸ãƒ§ãƒ³';
 
-comment on table Equipment is '‘•”õ';
-comment on column Equipment.ms_id is '‹@‘ÌID';
-comment on column Equipment.arms_id is '•ŠíID';
-comment on column Equipment.number_equipment is '‘•”õ”';
-comment on column Equipment.detail is 'Ú×';
+comment on table Equipment is 'è£…å‚™';
+comment on column Equipment.ms_id is 'æ©Ÿä½“ID';
+comment on column Equipment.arms_id is 'æ­¦å™¨ID';
+comment on column Equipment.number_equipment is 'è£…å‚™æ•°';
+comment on column Equipment.detail is 'è©³ç´°';
+comment on column Equipment.insert_date is 'ç™»éŒ²æ—¥æ™‚';
+comment on column Equipment.update_date is 'æ›´æ–°æ—¥æ™‚';
+comment on column Equipment.version is 'ãƒãƒ¼ã‚¸ãƒ§ãƒ³';
 
-comment on table Arms is '•Ší';
-comment on column Arms.arms_id is '•ŠíID';
-comment on column Arms.arms_name is '•Ší–¼';
-comment on column Arms.detail is 'Ú×';
+comment on table Arms is 'æ­¦å™¨';
+comment on column Arms.arms_id is 'æ­¦å™¨ID';
+comment on column Arms.arms_name is 'æ­¦å™¨å';
+comment on column Arms.detail is 'è©³ç´°';
+comment on column Arms.insert_date is 'ç™»éŒ²æ—¥æ™‚';
+comment on column Arms.update_date is 'æ›´æ–°æ—¥æ™‚';
+comment on column Arms.version is 'ãƒãƒ¼ã‚¸ãƒ§ãƒ³';
 
-comment on table MobileSuit is 'ƒ‚ƒrƒ‹ƒX[ƒc';
-comment on column MobileSuit.ms_id is '‹@‘ÌID';
-comment on column MobileSuit.model_number is 'Œ^®”Ô†';
-comment on column MobileSuit.ms_name is '‹@‘Ì–¼';
-comment on column MobileSuit.ms_url is '‹@‘ÌÊ^URL';
-comment on column MobileSuit.head_height is '“ª‚’¸';
-comment on column MobileSuit.overall_height is '‘S‚';
-comment on column MobileSuit.weight is '–{‘Ìd—Ê';
-comment on column MobileSuit.total_weight is '‘S”õd—Ê';
-comment on column MobileSuit.power_source is '“®—ÍŒ¹';
-comment on column MobileSuit.material is '‘•bŞ¿';
-comment on column MobileSuit.effective_sensor_radius is 'ƒZƒ“ƒT[—LŒø”¼Œa';
-comment on column MobileSuit.generator_output is 'ƒWƒFƒlƒŒ[ƒ^[o—Í';
-comment on column MobileSuit.total_thrusters_output is 'ƒXƒ‰ƒXƒ^[‘„—Í';
-comment on column MobileSuit.ms_overview is '‹@‘ÌŠT—v';
-comment on column MobileSuit.action is 'Šˆ–ô';
-comment on column MobileSuit.insert_date is '“o˜^“ú';
-comment on column MobileSuit.update_date is 'XV“ú';
-comment on column MobileSuit.version is 'ƒo[ƒWƒ‡ƒ“';
+comment on table MobileSuit is 'ãƒ¢ãƒ“ãƒ«ã‚¹ãƒ¼ãƒ„';
+comment on column MobileSuit.ms_id is 'æ©Ÿä½“ID';
+comment on column MobileSuit.model_number is 'å‹å¼ç•ªå·';
+comment on column MobileSuit.ms_name is 'æ©Ÿä½“å';
+comment on column MobileSuit.ms_url is 'æ©Ÿä½“å†™çœŸURL';
+comment on column MobileSuit.head_height is 'é ­é«˜é ‚';
+comment on column MobileSuit.overall_height is 'å…¨é«˜';
+comment on column MobileSuit.weight is 'æœ¬ä½“é‡é‡';
+comment on column MobileSuit.total_weight is 'å…¨å‚™é‡é‡';
+comment on column MobileSuit.power_source is 'å‹•åŠ›æº';
+comment on column MobileSuit.material is 'è£…ç”²æè³ª';
+comment on column MobileSuit.effective_sensor_radius is 'ã‚»ãƒ³ã‚µãƒ¼æœ‰åŠ¹åŠå¾„';
+comment on column MobileSuit.generator_output is 'ã‚¸ã‚§ãƒãƒ¬ãƒ¼ã‚¿ãƒ¼å‡ºåŠ›';
+comment on column MobileSuit.total_thrusters_output is 'ã‚¹ãƒ©ã‚¹ã‚¿ãƒ¼ç·æ¨åŠ›';
+comment on column MobileSuit.ms_overview is 'æ©Ÿä½“æ¦‚è¦';
+comment on column MobileSuit.action is 'æ´»èº';
+comment on column MobileSuit.insert_date is 'ç™»éŒ²æ—¥æ™‚';
+comment on column MobileSuit.update_date is 'æ›´æ–°æ—¥æ™‚';
+comment on column MobileSuit.version is 'ãƒãƒ¼ã‚¸ãƒ§ãƒ³';
 

@@ -1,10 +1,12 @@
 select
-    arms_id
-    , arms_name
-    , detail 
+    arms_id,
+    arms_name,
+    detail,
+    insert_date,
+    update_date,
+    version
 from
-    Arms 
+    Arms
 order by
-    arms_name
-    , arms_id
-
+    arms_name,
+    arms_id

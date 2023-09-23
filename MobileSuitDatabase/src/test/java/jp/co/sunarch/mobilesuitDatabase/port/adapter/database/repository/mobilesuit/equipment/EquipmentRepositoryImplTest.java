@@ -5,6 +5,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
@@ -160,13 +162,20 @@ class EquipmentRepositoryImplTest {
 
 		@Test
 		void モビルスーツIDと武器IDを指定すると紐づいた装備ドメインモデルを取得できること() {
+			String strDateTime = "2023/04/02 10:00:00";
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+			LocalDateTime localDateTime = LocalDateTime.parse(strDateTime, formatter);
+
 			Equipment equipment = sut.getEquipmentByMsIdAndArmsId("ms1", "arms1");
 
 			Equipment extend = Equipment.create(
 					MobileSuitId.of("ms1"),
 					ArmsId.of("arms1"),
 					Integer.valueOf(1),
-					"テスト装備1");
+					"テスト装備1",
+					localDateTime,
+					localDateTime,
+					Integer.valueOf(1));
 
 			assertThat(equipment)
 			.isEqualTo(extend);
@@ -251,10 +260,18 @@ class EquipmentRepositoryImplTest {
 
 		@Test
 		void 対象の装備ドメインモデルが未登録の場合は新規登録されること() {
+			String strDateTime = "2023/04/02 10:00:00";
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+			LocalDateTime localDateTime = LocalDateTime.parse(strDateTime, formatter);
+
 			Equipment equipment = Equipment.create(
 					MobileSuitId.of("ms1"),
 					ArmsId.of("arms2"),
-					Integer.valueOf(10), "テスト装備1-2");
+					Integer.valueOf(10),
+					"テスト装備1-2",
+					localDateTime,
+					localDateTime,
+					Integer.valueOf(1));
 			sut.save(equipment);
 
 			EquipmentRowMapper rowMapper = new EquipmentRowMapper();
@@ -267,10 +284,18 @@ class EquipmentRepositoryImplTest {
 
 		@Test
 		void 装備ドメインモデルが登録済みの場合は更新されること() {
+			String strDateTime = "2023/04/02 10:00:00";
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+			LocalDateTime localDateTime = LocalDateTime.parse(strDateTime, formatter);
+
 			Equipment equipment = Equipment.create(
 					MobileSuitId.of("ms1"),
 					ArmsId.of("arms1"),
-					Integer.valueOf(100), "テスト装備1_update");
+					Integer.valueOf(100),
+					"テスト装備1_update",
+					localDateTime,
+					localDateTime,
+					Integer.valueOf(2));
 			sut.save(equipment);
 
 			EquipmentRowMapper rowMapper = new EquipmentRowMapper();

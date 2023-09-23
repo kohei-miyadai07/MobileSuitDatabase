@@ -12,5 +12,8 @@ public class EquipmentModel {
 	private String armsName;
 	private String numberEquipment;
 	private String detail;
+	private String insertDate;
+	private String updateDate;
+	private String version;
 
 }

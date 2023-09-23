@@ -43,7 +43,6 @@
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th class="text-nowrap" scope="col">モビルスーツID</th>
                   <th class="text-nowrap" scope="col">型式番号</th>
                   <th class="text-nowrap" scope="col">機体名</th>
                   <th class="text-nowrap" scope="col">登録日時</th>
@@ -55,13 +54,9 @@
                 <tr th:each="mobilesuit : ${mobilesuits}">
                   <th
                     class="text-nowrap"
-                    th:text="${mobilesuit.msId}"
+                    th:text="${mobilesuit.modelNumber}"
                     scope="row"
                   ></th>
-                  <td
-                    class="text-nowrap"
-                    th:text="${mobilesuit.modelNumber}"
-                  ></td>
                   <td>
                     <a th:href="@{'/MSDB/MobileSuits/' + ${mobilesuit.msId}}"
                       ><span

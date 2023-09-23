@@ -9,5 +9,8 @@ public class ArmsModel {
 	private String armsId;
 	private String armsName;
 	private String detail;
+	private String insertDate;
+	private String updateDate;
+	private String version;
 
 }

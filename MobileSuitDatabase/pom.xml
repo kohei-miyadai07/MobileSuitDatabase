@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.9</version>
+		<version>3.1.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>jp.co.sunarch</groupId>
@@ -14,6 +14,7 @@
 	<name>MobileSuitDatabase</name>
 	<description>MobileSuitDatabase</description>
 	<properties>
+		<jakarta-servlet.version>5.0.0</jakarta-servlet.version>
 	    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>17</java.version>
 	</properties>

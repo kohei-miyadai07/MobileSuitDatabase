@@ -1,5 +1,6 @@
 package jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.equipment;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,6 +17,8 @@ import lombok.RequiredArgsConstructor;
 public class EquipmentQueryImpl implements EquipmentQuery {
 
 	private final JdbcEquipmentDao jdbcEquipmentDao;
+
+	private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
 	@Override
 	public List<EquipmentModel> getEquipmentList() {
@@ -37,6 +40,9 @@ public class EquipmentQueryImpl implements EquipmentQuery {
 				.armsName("")
 				.numberEquipment("0")
 				.detail("")
+				.insertDate("")
+				.updateDate("")
+				.version("")
 				.build();
 
 		if (equipmentEntityOpt.isPresent()) {
@@ -64,6 +70,9 @@ public class EquipmentQueryImpl implements EquipmentQuery {
 				.armsName(entity.getArmsName())
 				.numberEquipment(CommonItemSettings.convertIntegerToString(entity.getNumberEquipment()))
 				.detail(entity.getDetail())
+				.insertDate(sdf.format(entity.getInsertDate()))
+				.updateDate(sdf.format(entity.getUpdateDate()))
+				.version(String.valueOf(entity.getVersion()))
 				.build();
 
 	}

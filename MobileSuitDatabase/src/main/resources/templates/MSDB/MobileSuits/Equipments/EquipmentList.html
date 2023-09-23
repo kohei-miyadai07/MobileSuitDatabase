@@ -47,6 +47,8 @@
                   <th class="text-nowrap" scope="col">武器名</th>
                   <th class="text-nowrap" scope="col">装備数</th>
                   <th class="text-nowrap" scope="col">詳細</th>
+                  <th class="text-nowrap" scope="col">登録日時</th>
+                  <th class="text-nowrap" scope="col">更新日時</th>
                   <th class="text-nowrap" scope="col">#</th>
                 </tr>
               </thead>
@@ -59,6 +61,14 @@
                     th:text="${equipment.numberEquipment}"
                   ></td>
                   <td th:text="${equipment.detail}"></td>
+                  <td
+                    class="text-nowrap"
+                    th:text="${equipment.insertDate}"
+                  ></td>
+                  <td
+                    class="text-nowrap"
+                    th:text="${equipment.updateDate}"
+                  ></td>
                   <td>
                     <a
                       class="btn btn-primary btn-sm text-nowrap"
