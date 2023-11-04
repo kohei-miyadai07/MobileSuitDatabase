@@ -40,6 +40,8 @@ public class RegistArmsController {
 		List<ArmsModel> armsModelList = armsQuery.getArmsList();
 		model.addAttribute("armsList", armsModelList);
 
+		model.addAttribute("message", "武器を登録しました。");
+
 		return "/MSDB/Arms/ArmsList";
 	}
 }
