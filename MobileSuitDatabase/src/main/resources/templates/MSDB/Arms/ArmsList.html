@@ -38,7 +38,10 @@
             </div>
           </div>
           <th:block th:if="${message}">
-            <div th:text="${message}"></div>
+            <div class="alert alert-primary alert-dismissible fade show" role="alert">
+              <div th:text="${message}"></div>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
           </th:block>
           <div class="table-responsive">
             <table class="table table-striped">
