@@ -37,12 +37,7 @@
               >
             </div>
           </div>
-          <th:block th:if="${message}">
-            <div class="alert alert-primary alert-dismissible fade show" role="alert">
-              <div th:text="${message}"></div>
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-          </th:block>
+          <div id="resultMessageView"></div>
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>
@@ -56,16 +51,14 @@
               </thead>
               <tbody>
                 <tr th:each="arms : ${armsList}">
-                  <th class="text-nowrap" th:text="${arms.armsName}" scope="row"></th>
+                  <th
+                    class="text-nowrap"
+                    th:text="${arms.armsName}"
+                    scope="row"
+                  ></th>
                   <td th:text="${arms.detail}"></td>
-                  <td
-                    class="text-nowrap"
-                    th:text="${arms.insertDate}"
-                  ></td>
-                  <td
-                    class="text-nowrap"
-                    th:text="${arms.updateDate}"
-                  ></td>
+                  <td class="text-nowrap" th:text="${arms.insertDate}"></td>
+                  <td class="text-nowrap" th:text="${arms.updateDate}"></td>
                   <td>
                     <a
                       class="btn btn-primary btn-sm text-nowrap"
@@ -91,4 +84,8 @@
       </div>
     </div>
   </body>
+  <script th:src="@{/js/MSDB/Arms/ArmsList.js}"></script>
+  <script th:inline="javascript">
+    const messageText = /*[[${message}]]*/"message"
+  </script>
 </html>
