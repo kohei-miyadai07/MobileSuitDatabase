@@ -39,6 +39,7 @@
               >
             </div>
           </div>
+          <div id="resultMessageView"></div>
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>
@@ -97,4 +98,8 @@
       </div>
     </div>
   </body>
+  <script th:src="@{/js/MSDB/MobileSuits/MobileSuitList.js}"></script>
+  <script th:inline="javascript">
+    const messageText = /*[[${message}]]*/"message"
+  </script>
 </html>
