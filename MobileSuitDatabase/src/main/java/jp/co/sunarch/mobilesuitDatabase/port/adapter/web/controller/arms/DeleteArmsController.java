@@ -31,6 +31,8 @@ public class DeleteArmsController {
 		List<ArmsModel> armsModelList = armsQuery.getArmsList();
 		model.addAttribute("armsList", armsModelList);
 
+		model.addAttribute("message", "武器を削除しました。");
+
 		return "/MSDB/Arms/ArmsList";
 	}
 

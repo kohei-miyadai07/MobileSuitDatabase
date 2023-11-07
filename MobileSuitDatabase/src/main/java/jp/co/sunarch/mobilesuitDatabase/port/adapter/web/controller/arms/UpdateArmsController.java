@@ -48,6 +48,7 @@ public class UpdateArmsController {
 		model.addAttribute("armsList", armsModelList);
 
 		model.addAttribute("message", "武器を編集しました。");
+
 		return "/MSDB/Arms/ArmsList";
 	}
 }
