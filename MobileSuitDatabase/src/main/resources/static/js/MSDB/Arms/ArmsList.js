@@ -1,4 +1,4 @@
-window.addEventListener("load", () => {
+window.addEventListener("load", async () => {
     const resultMessage = document.getElementById("resultMessageView");
     const id = Math.random();
 
