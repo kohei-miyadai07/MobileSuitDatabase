@@ -49,6 +49,8 @@ public class UpdateEquipmentController {
 		List<EquipmentModel> equipmentModelList = equipmentQuery.getEquipmentList();
 		model.addAttribute("equipments", equipmentModelList);
 
+		model.addAttribute("message", "装備を編集しました。");
+
 		return "/MSDB/MobileSuits/Equipments/EquipmentList";
 	}
 

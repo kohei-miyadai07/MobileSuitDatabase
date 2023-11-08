@@ -55,6 +55,8 @@ public class RegistEquipmentController {
 		List<EquipmentModel> equipmentModelList = equipmentQuery.getEquipmentList();
 		model.addAttribute("equipments", equipmentModelList);
 
+		model.addAttribute("message", "装備を登録しました。");
+
 		return "/MSDB/MobileSuits/Equipments/EquipmentList";	
 	}
 

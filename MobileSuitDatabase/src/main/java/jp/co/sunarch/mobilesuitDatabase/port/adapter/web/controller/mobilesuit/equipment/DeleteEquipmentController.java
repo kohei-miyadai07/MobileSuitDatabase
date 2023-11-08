@@ -33,6 +33,8 @@ public class DeleteEquipmentController {
 		List<EquipmentModel> equipmentModelList = equipmentQuery.getEquipmentList();
 		model.addAttribute("equipments", equipmentModelList);
 
+		model.addAttribute("message", "装備を削除しました。");
+
 		return "/MSDB/MobileSuits/Equipments/EquipmentList";
 	}
 
