@@ -52,6 +52,8 @@ public class RegistMobileSuitController {
 		List<MobileSuitModel> msModelList = mobileSuitQuery.getMobileSuitList();
 		model.addAttribute("mobilesuits", msModelList);
 
+		model.addAttribute("message", "モビルスーツ情報を登録しました。");
+
 		return "/MSDB/MobileSuits/MobileSuitList";
 	}
 

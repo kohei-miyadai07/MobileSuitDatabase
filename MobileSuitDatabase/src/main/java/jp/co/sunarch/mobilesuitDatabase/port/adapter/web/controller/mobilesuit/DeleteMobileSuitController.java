@@ -31,6 +31,8 @@ public class DeleteMobileSuitController {
 		List<MobileSuitModel> msModelList = mobileSuitQuery.getMobileSuitList();
 		model.addAttribute("mobilesuits", msModelList);
 
+		model.addAttribute("message", "モビルスーツ情報を削除しました。");
+
 		return "/MSDB/MobileSuits/MobileSuitList";
 	}
 }

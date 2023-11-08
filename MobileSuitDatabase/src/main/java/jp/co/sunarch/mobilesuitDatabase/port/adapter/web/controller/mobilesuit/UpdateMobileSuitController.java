@@ -59,6 +59,8 @@ public class UpdateMobileSuitController {
 		List<MobileSuitModel> msModelList = mobileSuitQuery.getMobileSuitList();
 		model.addAttribute("mobilesuits", msModelList);
 
+		model.addAttribute("message", "モビルスーツ情報を編集しました。");
+
 		return "/MSDB/MobileSuits/MobileSuitList";
 	}
 
