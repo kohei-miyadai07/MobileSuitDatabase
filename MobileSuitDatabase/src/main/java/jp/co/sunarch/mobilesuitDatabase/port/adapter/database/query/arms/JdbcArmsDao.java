@@ -17,9 +17,11 @@ public interface JdbcArmsDao {
 	public List<ArmsEntity> selectAll();
 
 	@Select
+	public Long selectAllCount();
+
+	@Select
 	public Optional<ArmsEntity> selectById(String armsId);
 
 	@Select
 	public List<ArmsEntity> selectByCriteria(Criteria criteria);
-
 }

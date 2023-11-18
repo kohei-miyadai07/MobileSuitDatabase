@@ -1,9 +1,23 @@
 package jp.co.sunarch.mobilesuitDatabase.port.adapter.api.controller.internal;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.query.arms.ArmsQuery;
+import lombok.RequiredArgsConstructor;
+
 @RestController
+@RequiredArgsConstructor
 public class ArmsCountController {
 
-	// 武器登録件数取得処理を呼び出す
+	private final ArmsQuery armsQuery;
+
+	@GetMapping("/api/internal/arms/count")
+	public ResponseEntity<ArmsCountModel> getArmsCount() {
+		ArmsCountModel model = armsQuery.getArmsCount();
+
+		return ResponseEntity.status(HttpStatus.OK).body(model);
+	}
 }
