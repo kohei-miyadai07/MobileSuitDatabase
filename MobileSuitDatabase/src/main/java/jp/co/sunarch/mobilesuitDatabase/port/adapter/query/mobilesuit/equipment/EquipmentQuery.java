@@ -1,4 +1,4 @@
-package jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.mobilesuit.equipment;
+package jp.co.sunarch.mobilesuitDatabase.port.adapter.query.mobilesuit.equipment;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.arms;
+package jp.co.sunarch.mobilesuitDatabase.port.adapter.query.arms;
 
 import java.util.List;
 

@@ -11,6 +11,7 @@ import jp.co.sunarch.mobilesuitDatabase.application.command.mobilesuit.Equipment
 import jp.co.sunarch.mobilesuitDatabase.application.usecase.mobilesuit.equipment.DeleteEquipmentUseCase;
 import jp.co.sunarch.mobilesuitDatabase.domain.model.arms.ArmsId;
 import jp.co.sunarch.mobilesuitDatabase.domain.model.mobilesuit.MobileSuitId;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.query.mobilesuit.equipment.EquipmentQuery;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.equipment.EquipmentModel;
 import lombok.RequiredArgsConstructor;
 

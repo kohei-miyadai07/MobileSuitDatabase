@@ -19,6 +19,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import jp.co.sunarch.mobilesuitDatabase.application.command.arms.UpdateArmsCommand;
 import jp.co.sunarch.mobilesuitDatabase.application.usecase.arms.UpdateArmsUseCase;
 import jp.co.sunarch.mobilesuitDatabase.domain.model.arms.ArmsId;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.query.arms.ArmsQuery;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.form.arms.UpdateArmsForm;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.arms.ArmsModel;
 

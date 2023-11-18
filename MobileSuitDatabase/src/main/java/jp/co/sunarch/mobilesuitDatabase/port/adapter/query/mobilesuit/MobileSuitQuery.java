@@ -1,4 +1,4 @@
-package jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.mobilesuit;
+package jp.co.sunarch.mobilesuitDatabase.port.adapter.query.mobilesuit;
 
 import java.math.BigDecimal;
 import java.util.List;
