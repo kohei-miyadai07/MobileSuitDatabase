@@ -1,4 +1,4 @@
-package jp.co.sunarch.mobilesuitDatabase.port.adapter.api.controller.internal;
+package jp.co.sunarch.mobilesuitDatabase.port.adapter.api.controller.internal.arms;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
