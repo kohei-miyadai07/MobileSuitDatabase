@@ -75,6 +75,8 @@
           }
         };
 
+        setInterval(async () => await fetchArmsCount(), 60000);
+
         onMounted(async () => {
           await fetchArmsCount();
         });
