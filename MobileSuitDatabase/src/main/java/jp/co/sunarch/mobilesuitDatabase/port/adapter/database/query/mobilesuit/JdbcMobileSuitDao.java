@@ -17,6 +17,9 @@ public interface JdbcMobileSuitDao {
 	public List<MobileSuitEntity> selectAll();
 
 	@Select
+	public Long selectAllCount();
+
+	@Select
 	public Optional<MobileSuitEntity> selectById(String msId);
 
 	@Select(ensureResult = true)
