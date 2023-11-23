@@ -14,7 +14,7 @@ public class ArmsCountController {
 
 	private final ArmsQuery armsQuery;
 
-	@GetMapping("/api/internal/arms/count")
+	@GetMapping("/api/internal/Arms/count")
 	public ResponseEntity<ArmsCountModel> getArmsCount() {
 		ArmsCountModel model = armsQuery.getArmsCount();
 

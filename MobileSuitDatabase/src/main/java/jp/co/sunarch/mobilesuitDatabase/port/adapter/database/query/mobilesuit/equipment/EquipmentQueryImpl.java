@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Repository;
 
 import jp.co.sunarch.mobilesuitDatabase.common.utils.CommonItemSettings;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.api.controller.internal.mobilesuit.equipment.EquipmentCountModel;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.equipment.entity.EquipmentEntity;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.query.mobilesuit.equipment.EquipmentQuery;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.equipment.EquipmentModel;
@@ -62,6 +63,11 @@ public class EquipmentQueryImpl implements EquipmentQuery {
 
 	}
 
+	@Override
+	public EquipmentCountModel getEquipmentCount() {
+		return new EquipmentCountModel(jdbcEquipmentDao.selectAllCount());
+	}
+
 	private EquipmentModel toModel(EquipmentEntity entity) {
 		return EquipmentModel.builder()
 				.msId(entity.getMsId())
@@ -76,5 +82,4 @@ public class EquipmentQueryImpl implements EquipmentQuery {
 				.build();
 
 	}
-
 }

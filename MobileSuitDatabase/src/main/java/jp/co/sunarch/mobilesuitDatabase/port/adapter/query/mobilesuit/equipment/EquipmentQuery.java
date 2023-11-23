@@ -2,6 +2,7 @@ package jp.co.sunarch.mobilesuitDatabase.port.adapter.query.mobilesuit.equipment
 
 import java.util.List;
 
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.api.controller.internal.mobilesuit.equipment.EquipmentCountModel;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.equipment.EquipmentModel;
 import lombok.Builder;
 import lombok.Value;
@@ -20,4 +21,6 @@ public interface EquipmentQuery {
 	List<EquipmentModel> searchEquipment(Criteria criteria);
 
 	EquipmentModel getEquipmentByMsIdAndArmsId(String msId, String armsId);
+
+	EquipmentCountModel getEquipmentCount();
 }

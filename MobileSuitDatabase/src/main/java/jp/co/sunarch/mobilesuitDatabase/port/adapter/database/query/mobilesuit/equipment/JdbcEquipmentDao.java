@@ -18,6 +18,9 @@ public interface JdbcEquipmentDao {
 	public List<EquipmentEntity> selectAll();
 
 	@Select
+	public Long selectAllCount();
+
+	@Select
 	public Optional<EquipmentEntity> selectByMsIdAndArmsId(String msId, String armsId);
 
 	@Select
