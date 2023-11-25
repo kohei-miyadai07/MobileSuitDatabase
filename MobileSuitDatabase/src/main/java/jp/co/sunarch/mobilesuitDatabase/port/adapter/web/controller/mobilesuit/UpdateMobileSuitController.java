@@ -13,6 +13,7 @@ import jp.co.sunarch.mobilesuitDatabase.application.command.mobilesuit.UpdateMob
 import jp.co.sunarch.mobilesuitDatabase.application.usecase.mobilesuit.UpdateMobileSuitUseCase;
 import jp.co.sunarch.mobilesuitDatabase.common.utils.CommonItemSettings;
 import jp.co.sunarch.mobilesuitDatabase.domain.model.mobilesuit.MobileSuitId;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.query.mobilesuit.MobileSuitQuery;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.form.mobilesuit.UpdateMobileSuitForm;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.MobileSuitModel;
 import lombok.RequiredArgsConstructor;
@@ -58,6 +59,8 @@ public class UpdateMobileSuitController {
 
 		List<MobileSuitModel> msModelList = mobileSuitQuery.getMobileSuitList();
 		model.addAttribute("mobilesuits", msModelList);
+
+		model.addAttribute("message", "モビルスーツ情報を編集しました。");
 
 		return "/MSDB/MobileSuits/MobileSuitList";
 	}

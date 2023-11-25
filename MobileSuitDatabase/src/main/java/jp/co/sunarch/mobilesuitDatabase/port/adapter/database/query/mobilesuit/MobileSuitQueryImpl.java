@@ -8,10 +8,11 @@ import org.seasar.doma.jdbc.NoResultException;
 import org.springframework.stereotype.Repository;
 
 import jp.co.sunarch.mobilesuitDatabase.common.utils.CommonItemSettings;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.api.controller.internal.mobilesuit.MobileSuitCountModel;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.entity.MobileSuitEntity;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.equipment.JdbcEquipmentDao;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.equipment.entity.EquipmentArmsEntity;
-import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.mobilesuit.MobileSuitQuery;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.query.mobilesuit.MobileSuitQuery;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.MobileSuitDetailModel;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.MobileSuitModel;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.equipment.EquipmentArmsModel;
@@ -91,6 +92,11 @@ public class MobileSuitQueryImpl implements MobileSuitQuery {
 		return msModels;
 	}
 
+	@Override
+	public MobileSuitCountModel getMobileSuitCount() {
+		return new MobileSuitCountModel(jdbcMobileSuitDao.selectAllCount());
+	}
+
 	private MobileSuitModel toResult(MobileSuitEntity msEntity) {
 
 		MobileSuitModel msModel = MobileSuitModel.builder()
@@ -159,5 +165,4 @@ public class MobileSuitQueryImpl implements MobileSuitQuery {
 
 		return msDetailModel;
 	}
-
 }

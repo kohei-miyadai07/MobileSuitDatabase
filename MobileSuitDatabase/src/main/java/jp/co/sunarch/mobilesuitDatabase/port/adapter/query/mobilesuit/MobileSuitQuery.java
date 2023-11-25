@@ -1,8 +1,9 @@
-package jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.mobilesuit;
+package jp.co.sunarch.mobilesuitDatabase.port.adapter.query.mobilesuit;
 
 import java.math.BigDecimal;
 import java.util.List;
 
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.api.controller.internal.mobilesuit.MobileSuitCountModel;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.MobileSuitDetailModel;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.MobileSuitModel;
 import lombok.Builder;
@@ -41,4 +42,5 @@ public interface MobileSuitQuery {
 
 	List<MobileSuitModel> searchMobileSuit(Criteria criteria);
 
+	MobileSuitCountModel getMobileSuitCount();
 }

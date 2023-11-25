@@ -28,8 +28,97 @@
             <h1 class="ms-3 mb-0">MobileSuitDatabase</h1>
           </div>
           <p class="mt-2">MSDBにようこそ!!</p>
+          <div id="app" class="row">
+            <div class="col-sm-4">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">MobileSuit</h5>
+                  <p class="card-text">{{mobileSuitCount}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Arms</h5>
+                  <p class="card-text">{{armsCount}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Equipment</h5>
+                  <p class="card-text">{{equipmentCount}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </main>
       </div>
     </div>
   </body>
+  <script>
+    const { createApp, ref, onMounted } = Vue;
+
+    createApp({
+      setup() {
+        const mobileSuitCount = ref(0);
+        const armsCount = ref(0);
+        const equipmentCount = ref(0);
+
+        const fetchArmsCount = async () => {
+          try {
+            const response = await fetch("/api/internal/Arms/count");
+            const data = await response.json();
+            armsCount.value = data.count;
+          } catch (error) {
+            console.log("エラーが発生しました。");
+          }
+        };
+
+        const fetchMobileSuitCount = async () => {
+          try {
+            const response = await fetch("/api/internal/MobileSuit/count");
+            const data = await response.json();
+            mobileSuitCount.value = data.count;
+          } catch (error) {
+            console.log("エラーが発生しました。");
+          }
+        };
+
+        const fetchEquipmentCount = async () => {
+          try {
+            const response = await fetch("/api/internal/MobileSuit/Equipment/count");
+            const data = await response.json();
+            equipmentCount.value = data.count;
+          } catch (error) {
+            console.log("エラーが発生しました。");
+          }
+        };
+
+        setInterval(async () => {
+          await fetchMobileSuitCount();
+          await fetchArmsCount();
+          await fetchEquipmentCount();
+        }, 60000);
+
+
+        onMounted(async () => {
+          await fetchMobileSuitCount();
+          await fetchArmsCount();
+          await fetchEquipmentCount();
+        });
+
+        return {
+          mobileSuitCount,
+          armsCount,
+          equipmentCount,
+          fetchMobileSuitCount,
+          fetchArmsCount,
+          fetchEquipmentCount
+        };
+      },
+    }).mount("#app");
+  </script>
 </html>

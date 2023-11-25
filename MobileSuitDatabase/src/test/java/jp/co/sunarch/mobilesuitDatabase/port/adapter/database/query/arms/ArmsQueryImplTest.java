@@ -15,8 +15,8 @@ import org.springframework.context.annotation.Import;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ActiveProfiles;
 
-import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.arms.ArmsQuery;
-import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.arms.ArmsQuery.Criteria;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.query.arms.ArmsQuery;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.query.arms.ArmsQuery.Criteria;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.arms.ArmsModel;
 
 @JdbcTest

@@ -15,7 +15,8 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
-import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.arms.ArmsQuery.Criteria;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.query.arms.ArmsQuery;
+import jp.co.sunarch.mobilesuitDatabase.port.adapter.query.arms.ArmsQuery.Criteria;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.form.arms.ArmsSearchForm;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.arms.ArmsModel;
 
