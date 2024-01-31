@@ -45,5 +45,4 @@ public class ArmsController {
 
 		return "/MSDB/Arms/ArmsList";
 	}
-	
 }

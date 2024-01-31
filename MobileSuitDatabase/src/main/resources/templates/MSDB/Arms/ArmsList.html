@@ -57,8 +57,8 @@
                     scope="row"
                   ></th>
                   <td th:text="${arms.detail}"></td>
-                  <td class="text-nowrap" th:text="${arms.insertDate}"></td>
-                  <td class="text-nowrap" th:text="${arms.updateDate}"></td>
+                  <td class="text-nowrap" th:text="${#temporals.format(arms.insertDate, 'yyyy/MM/dd HH:mm:ss')}"></td>
+                  <td class="text-nowrap" th:text="${#temporals.format(arms.updateDate, 'yyyy/MM/dd HH:mm:ss')}"></td>
                   <td>
                     <a
                       class="btn btn-primary btn-sm text-nowrap"

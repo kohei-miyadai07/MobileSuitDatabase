@@ -13,7 +13,6 @@ public interface ArmsQuery {
 	@Builder
 	class Criteria {
 		private String armsName;
-
 	}
 
 	List<ArmsModel> getArmsList();

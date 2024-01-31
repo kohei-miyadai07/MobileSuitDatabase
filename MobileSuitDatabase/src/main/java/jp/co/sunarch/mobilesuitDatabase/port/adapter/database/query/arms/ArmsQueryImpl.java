@@ -1,6 +1,5 @@
 package jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.arms;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,8 +16,6 @@ import lombok.RequiredArgsConstructor;
 public class ArmsQueryImpl implements ArmsQuery {
 
 	private final JdbcArmsDao jdbcArmsDao;
-
-	private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
 	@Override
 	public List<ArmsModel> getArmsList() {
@@ -54,14 +51,13 @@ public class ArmsQueryImpl implements ArmsQuery {
 		return armsModels;
 	}
 
-
 	private ArmsModel toModel(ArmsEntity entity) {
 		ArmsModel model = ArmsModel.builder()
 				.armsId(entity.getArmsId())
 				.armsName(entity.getArmsName())
 				.detail(entity.getDetail())
-				.insertDate(sdf.format(entity.getInsertDate()))
-				.updateDate(sdf.format(entity.getUpdateDate()))
+				.insertDate(entity.getInsertDate().toInstant())
+				.updateDate(entity.getUpdateDate().toInstant())
 				.version(String.valueOf(entity.getVersion()))
 				.build();
 
