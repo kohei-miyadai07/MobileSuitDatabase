@@ -18,9 +18,8 @@ public class EquipmentRowMapper implements RowMapper<Equipment> {
 				ArmsId.of(rs.getString("arms_id")),
 				Integer.valueOf(rs.getInt("number_equipment")),
 				rs.getString("detail"),
-				rs.getTimestamp("insert_date").toLocalDateTime(),
-				rs.getTimestamp("update_date").toLocalDateTime(),
+				rs.getTimestamp("insert_date").toInstant(),
+				rs.getTimestamp("update_date").toInstant(),
 				rs.getInt("version"));
 	}
-
 }

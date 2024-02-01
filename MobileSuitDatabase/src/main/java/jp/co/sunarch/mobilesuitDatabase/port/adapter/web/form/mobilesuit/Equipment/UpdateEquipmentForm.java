@@ -23,5 +23,4 @@ public class UpdateEquipmentForm {
 
 		return form;
 	}
-
 }

@@ -10,5 +10,4 @@ import lombok.Value;
 public class DeleteEquipmentCommand {
 	private MobileSuitId msId;
 	private ArmsId armsId;
-
 }

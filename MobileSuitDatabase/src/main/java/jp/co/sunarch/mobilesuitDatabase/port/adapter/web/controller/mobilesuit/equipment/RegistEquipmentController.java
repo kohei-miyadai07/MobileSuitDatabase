@@ -60,5 +60,4 @@ public class RegistEquipmentController {
 
 		return "/MSDB/MobileSuits/Equipments/EquipmentList";	
 	}
-
 }

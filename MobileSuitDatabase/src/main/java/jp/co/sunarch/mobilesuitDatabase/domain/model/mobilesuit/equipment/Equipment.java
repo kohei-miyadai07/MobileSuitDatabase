@@ -1,6 +1,6 @@
 package jp.co.sunarch.mobilesuitDatabase.domain.model.mobilesuit.equipment;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.Optional;
 
 import jp.co.sunarch.mobilesuitDatabase.domain.model.arms.ArmsId;
@@ -13,12 +13,12 @@ public class Equipment {
 	private ArmsId armsId;
 	private Integer numberEquipment;
 	private String detail;
-	private LocalDateTime insertDate;
-	private LocalDateTime updateDate;
+	private Instant insertDate;
+	private Instant updateDate;
 	private Integer version;
 
 	public static Equipment create(MobileSuitId msId, ArmsId armsId, Integer numberEquipment, String detail,
-			LocalDateTime insertDate, LocalDateTime updateDate, Integer version) {
+			Instant insertDate, Instant updateDate, Integer version) {
 		Equipment equipment = new Equipment();
 		equipment.setMsId(msId);
 		equipment.setArmsId(armsId);
@@ -38,5 +38,4 @@ public class Equipment {
 	public Optional<String> getDetail() {
 		return Optional.ofNullable(detail);
 	}
-
 }

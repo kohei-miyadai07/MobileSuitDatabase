@@ -17,5 +17,4 @@ public class EquipmentModel {
 	private Instant insertDate;
 	private Instant updateDate;
 	private String version;
-
 }

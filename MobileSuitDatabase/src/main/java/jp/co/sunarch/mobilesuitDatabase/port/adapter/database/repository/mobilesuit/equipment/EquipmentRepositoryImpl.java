@@ -47,5 +47,4 @@ public class EquipmentRepositoryImpl implements EquipmentRepository {
 	public void deleteEquipmentByMsIdAndArmsId(String msId, String armsId) {
 		equipmentDao.deleteByMsIdAndArmsId(msId, armsId);
 	}
-
 }

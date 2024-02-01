@@ -12,5 +12,4 @@ public class RegistEquipmentCommand {
 	private ArmsId armsId;
 	private Integer numberEquipment;
 	private String detail;
-
 }
