@@ -1,6 +1,6 @@
 package jp.co.sunarch.mobilesuitDatabase.application.usecase.arms;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.stereotype.Service;
@@ -23,8 +23,8 @@ public class RegistArmsUseCase {
 				armsId
 				,command.getArmsName()
 				,command.getDetail()
-				,LocalDateTime.now()
-				,LocalDateTime.now()
+				,Instant.now()
+				,Instant.now()
 				,1);
 
 		armsRecodeService.registArms(arms);

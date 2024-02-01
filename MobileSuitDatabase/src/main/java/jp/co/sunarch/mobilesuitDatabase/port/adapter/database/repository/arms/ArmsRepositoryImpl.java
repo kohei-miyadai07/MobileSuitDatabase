@@ -27,7 +27,6 @@ public class ArmsRepositoryImpl implements ArmsRepository {
 		}
 
 		return arms;
-
 	}
 
 	@Override
@@ -45,7 +44,5 @@ public class ArmsRepositoryImpl implements ArmsRepository {
 	@Override
 	public void deleteArmsById(String armsId) {
 		armsDao.deleteById(armsId);
-
 	}
-
 }

@@ -1,6 +1,6 @@
 package jp.co.sunarch.mobilesuitDatabase.application.usecase.arms;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 import org.springframework.stereotype.Service;
 
@@ -24,7 +24,7 @@ public class UpdateArmsUseCase {
 		// 更新対象のArmsに更新項目をセット
 		arms.setArmsName(command.getArmsName());
 		arms.setDetail(command.getDetail());
-		arms.setUpdateDate(LocalDateTime.now());
+		arms.setUpdateDate(Instant.now());
 		arms.setVersion(arms.getVersion() + 1);
 
 		armsRecodeService.updateArms(arms);

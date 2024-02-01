@@ -8,5 +8,4 @@ import lombok.Value;
 @Builder
 public class DeleteArmsCommand {
 	private ArmsId armsId;
-
 }

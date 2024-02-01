@@ -1,12 +1,9 @@
 package jp.co.sunarch.mobilesuitDatabase.application.service.arms;
 
-import static org.mockito.Mockito.doNothing;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
-import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
+
+import java.time.Instant;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -34,8 +31,8 @@ class ArmsRecodeServiceTest {
 				ArmsId.of("arms-test"),
 				"arms-test-name",
 				"arms-test-detail",
-				localDateTimeOf("2023/04/02 10:00:00"),
-				localDateTimeOf("2023/04/02 10:00:00"),
+				Instant.ofEpochSecond(0),
+				Instant.ofEpochSecond(0),
 				Integer.valueOf(1)));
 
 		verify(armsRepository, times(1)).save(
@@ -43,8 +40,8 @@ class ArmsRecodeServiceTest {
 						ArmsId.of("arms-test"),
 						"arms-test-name",
 						"arms-test-detail",
-						localDateTimeOf("2023/04/02 10:00:00"),
-						localDateTimeOf("2023/04/02 10:00:00"),
+						Instant.ofEpochSecond(0),
+						Instant.ofEpochSecond(0),
 						Integer.valueOf(1)));;
 	}
 
@@ -56,8 +53,8 @@ class ArmsRecodeServiceTest {
 				ArmsId.of("arms-test"),
 				"arms-test-name",
 				"arms-test-detail",
-				localDateTimeOf("2023/04/02 10:00:00"),
-				localDateTimeOf("2023/04/02 10:00:00"),
+				Instant.ofEpochSecond(0),
+				Instant.ofEpochSecond(0),
 				Integer.valueOf(2)
 				));
 
@@ -66,8 +63,8 @@ class ArmsRecodeServiceTest {
 						ArmsId.of("arms-test"),
 						"arms-test-name",
 						"arms-test-detail",
-						localDateTimeOf("2023/04/02 10:00:00"),
-						localDateTimeOf("2023/04/02 10:00:00"),
+						Instant.ofEpochSecond(0),
+						Instant.ofEpochSecond(0),
 						Integer.valueOf(2)));
 	}
 
@@ -79,19 +76,12 @@ class ArmsRecodeServiceTest {
 				ArmsId.of("arms-test"),
 				"arms-test-name",
 				"arms-test-detail",
-				localDateTimeOf("2023/04/02 10:00:00"),
-				localDateTimeOf("2023/04/02 10:00:00"),
+				Instant.ofEpochSecond(0),
+				Instant.ofEpochSecond(0),
 				Integer.valueOf(1)
 				);
 		sut.deleteArms(arms);
 
 		verify(armsRepository, times(1)).deleteArmsById(arms.getArmsId().getValue());
 	}
-
-	private LocalDateTime localDateTimeOf(String strDateTime) {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-
-		return LocalDateTime.parse(strDateTime, formatter);
-	}
-
 }

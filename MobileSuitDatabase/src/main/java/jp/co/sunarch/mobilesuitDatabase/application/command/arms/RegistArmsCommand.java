@@ -8,5 +8,4 @@ import lombok.Value;
 public class RegistArmsCommand {
 	private String armsName;
 	private String detail;
-
 }
