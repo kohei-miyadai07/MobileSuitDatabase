@@ -1,6 +1,5 @@
 package jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.equipment;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,15 +18,12 @@ public class EquipmentQueryImpl implements EquipmentQuery {
 
 	private final JdbcEquipmentDao jdbcEquipmentDao;
 
-	private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-
 	@Override
 	public List<EquipmentModel> getEquipmentList() {
 		List<EquipmentEntity> equipmentEntities = jdbcEquipmentDao.selectAll();
 		List<EquipmentModel> equipmentModels = equipmentEntities.stream().map(e -> toModel(e)).toList();
 
 		return equipmentModels;
-
 	}
 
 	@Override
@@ -41,8 +37,8 @@ public class EquipmentQueryImpl implements EquipmentQuery {
 				.armsName("")
 				.numberEquipment("0")
 				.detail("")
-				.insertDate("")
-				.updateDate("")
+				.insertDate(null)
+				.updateDate(null)
 				.version("")
 				.build();
 
@@ -51,7 +47,6 @@ public class EquipmentQueryImpl implements EquipmentQuery {
 		}
 
 		return equipmentModel;
-
 	}
 
 	@Override
@@ -60,7 +55,6 @@ public class EquipmentQueryImpl implements EquipmentQuery {
 		List<EquipmentModel> equipmentModels = equipmentEntities.stream().map(e -> toModel(e)).toList();
 
 		return equipmentModels;
-
 	}
 
 	@Override
@@ -76,10 +70,9 @@ public class EquipmentQueryImpl implements EquipmentQuery {
 				.armsName(entity.getArmsName())
 				.numberEquipment(CommonItemSettings.convertIntegerToString(entity.getNumberEquipment()))
 				.detail(entity.getDetail())
-				.insertDate(sdf.format(entity.getInsertDate()))
-				.updateDate(sdf.format(entity.getUpdateDate()))
+				.insertDate(entity.getInsertDate().toInstant())
+				.updateDate(entity.getUpdateDate().toInstant())
 				.version(String.valueOf(entity.getVersion()))
 				.build();
-
 	}
 }
