@@ -1,6 +1,6 @@
 package jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit;
 
-import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,8 +25,6 @@ public class MobileSuitQueryImpl implements MobileSuitQuery {
 	private final JdbcMobileSuitDao jdbcMobileSuitDao;
 
 	private final JdbcEquipmentDao jdbcEquipmentDao;
-
-	private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
 	@Override
 	public List<MobileSuitModel> getMobileSuitList() {
@@ -72,8 +70,8 @@ public class MobileSuitQueryImpl implements MobileSuitQuery {
 				.totalThrustersOutput("")
 				.msOverview("")
 				.action("")
-				.insertDate("")
-				.updateDate("")
+				.insertDate(Instant.ofEpochSecond(0))
+				.updateDate(Instant.ofEpochSecond(0))
 				.version("")
 				.build();
 
@@ -115,8 +113,8 @@ public class MobileSuitQueryImpl implements MobileSuitQuery {
 				.totalThrustersOutput(CommonItemSettings.convertLongToString(msEntity.getTotalThrustersOutput()))
 				.msOverview(msEntity.getMsOverview())
 				.action(msEntity.getAction())
-				.insertDate(sdf.format(msEntity.getInsertDate()))
-				.updateDate(sdf.format(msEntity.getUpdateDate()))
+				.insertDate(msEntity.getInsertDate().toInstant())
+				.updateDate(msEntity.getUpdateDate().toInstant())
 				.version(String.valueOf(msEntity.getVersion()))
 				.build();
 
@@ -131,8 +129,8 @@ public class MobileSuitQueryImpl implements MobileSuitQuery {
 				.armsName(equipmentArmsEntity.getArmsName())
 				.numberEquipment(CommonItemSettings.convertIntegerToString(equipmentArmsEntity.getNumberEquipment()))
 				.detail(equipmentArmsEntity.getDetail())
-				.insertDate(sdf.format(equipmentArmsEntity.getInsertDate()))
-				.updateDate(sdf.format(equipmentArmsEntity.getUpdateDate()))
+				.insertDate(equipmentArmsEntity.getInsertDate().toInstant())
+				.updateDate(equipmentArmsEntity.getUpdateDate().toInstant())
 				.version(String.valueOf(equipmentArmsEntity.getVersion()))
 				.build();
 
@@ -157,8 +155,8 @@ public class MobileSuitQueryImpl implements MobileSuitQuery {
 				.totalThrustersOutput(CommonItemSettings.convertLongToString(msEntity.getTotalThrustersOutput()))
 				.msOverview(msEntity.getMsOverview())
 				.action(msEntity.getAction())
-				.insertDate(sdf.format(msEntity.getInsertDate()))
-				.updateDate(sdf.format(msEntity.getUpdateDate()))
+				.insertDate(msEntity.getInsertDate().toInstant())
+				.updateDate(msEntity.getUpdateDate().toInstant())
 				.version(String.valueOf(msEntity.getVersion()))
 				.equipmentArmsResultList(equipmentArmsEntities.stream().map(l -> toEquipmentResult(l)).toList())
 				.build();

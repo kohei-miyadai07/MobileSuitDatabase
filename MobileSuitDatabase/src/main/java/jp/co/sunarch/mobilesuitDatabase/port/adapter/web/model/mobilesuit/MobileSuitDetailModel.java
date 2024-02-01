@@ -1,5 +1,6 @@
 package jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit;
 
+import java.time.Instant;
 import java.util.List;
 
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.equipment.EquipmentArmsModel;
@@ -24,10 +25,9 @@ public class MobileSuitDetailModel {
 	private String totalThrustersOutput;
 	private String msOverview;
 	private String action;
-	private String insertDate;
-	private String updateDate;
+	private Instant insertDate;
+	private Instant updateDate;
 	private String version;
 	
 	private List<EquipmentArmsModel> equipmentArmsResultList;
-
 }

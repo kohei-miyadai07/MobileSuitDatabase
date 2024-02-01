@@ -1,5 +1,7 @@
 package jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit;
 
+import java.time.Instant;
+
 import lombok.Builder;
 import lombok.Value;
 
@@ -21,8 +23,7 @@ public class MobileSuitModel {
 	private String totalThrustersOutput;
 	private String msOverview;
 	private String action;
-	private String insertDate;
-	private String updateDate;
+	private Instant insertDate;
+	private Instant updateDate;
 	private String version;
-
 }

@@ -1,10 +1,11 @@
 package jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -253,8 +254,8 @@ class MobileSuitQueryImplTest {
 				.totalThrustersOutput(String.valueOf(300L))
 				.msOverview("テスト説明" + seq)
 				.action("テスト活躍" + seq)
-				.insertDate("2023/04/02 10:00:00")
-				.updateDate("2023/04/02 10:00:00")
+				.insertDate(Instant.ofEpochSecond(0))
+				.updateDate(Instant.ofEpochSecond(0))
 				.version(String.valueOf(1))
 				.build();
 	}
@@ -294,5 +295,4 @@ class MobileSuitQueryImplTest {
 				.detail(detail)
 				.build();
 	}
-
 }

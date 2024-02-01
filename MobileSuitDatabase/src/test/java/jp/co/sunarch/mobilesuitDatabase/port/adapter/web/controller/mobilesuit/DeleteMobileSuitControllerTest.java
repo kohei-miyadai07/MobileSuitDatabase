@@ -1,11 +1,11 @@
 package jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.mobilesuit;
 
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import java.time.Instant;
 import java.util.Arrays;
 import java.util.List;
 
@@ -56,8 +56,8 @@ class DeleteMobileSuitControllerTest {
 				.totalThrustersOutput("300")
 				.msOverview("テスト概要")
 				.action("テストアクション")
-				.insertDate("2023/04/18 10:20:30")
-				.updateDate("2023/04/18 10:20:30")
+				.insertDate(Instant.ofEpochSecond(0))
+				.updateDate(Instant.ofEpochSecond(0))
 				.version("2")
 				.build()
 				);
