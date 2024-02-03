@@ -58,7 +58,7 @@ public class ArmsQueryImpl implements ArmsQuery {
 				.detail(entity.getDetail())
 				.insertDate(entity.getInsertDate().toInstant())
 				.updateDate(entity.getUpdateDate().toInstant())
-				.version(String.valueOf(entity.getVersion()))
+				.version(entity.getVersion())
 				.build();
 
 		return model;

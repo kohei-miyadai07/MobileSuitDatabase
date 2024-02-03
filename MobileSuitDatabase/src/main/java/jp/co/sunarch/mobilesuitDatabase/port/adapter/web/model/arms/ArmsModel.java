@@ -13,6 +13,5 @@ public class ArmsModel {
 	private String detail;
 	private Instant insertDate;
 	private Instant updateDate;
-	private String version;
-
+	private Integer version;
 }
