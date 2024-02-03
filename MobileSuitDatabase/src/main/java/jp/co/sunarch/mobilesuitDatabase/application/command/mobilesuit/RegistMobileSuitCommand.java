@@ -24,5 +24,4 @@ public class RegistMobileSuitCommand {
 	private String msOverview;
 	private String action;
 	private MultipartFile msMultipartFile;
-
 }

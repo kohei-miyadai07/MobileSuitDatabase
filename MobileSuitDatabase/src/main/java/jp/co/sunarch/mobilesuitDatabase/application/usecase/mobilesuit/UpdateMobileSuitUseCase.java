@@ -1,6 +1,6 @@
 package jp.co.sunarch.mobilesuitDatabase.application.usecase.mobilesuit;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 import org.springframework.stereotype.Service;
 
@@ -35,7 +35,7 @@ public class UpdateMobileSuitUseCase {
 		mobileSuit.setTotalThrustersOutput(command.getTotalThrustersOutput());
 		mobileSuit.setMsOverview(command.getMsOverview());
 		mobileSuit.setAction(command.getAction());
-		mobileSuit.setUpdateDate(LocalDateTime.now());
+		mobileSuit.setUpdateDate(Instant.now());
 		mobileSuit.setVersion(mobileSuit.getVersion() + 1);
 
 		if (!command.getMsMultipartFile().isEmpty()) {
@@ -48,5 +48,4 @@ public class UpdateMobileSuitUseCase {
 
 		mobileSuitRecodeService.updateMobileSuit(mobileSuit);
 	}
-
 }

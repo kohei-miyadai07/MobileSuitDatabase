@@ -20,5 +20,4 @@ public class RegistMobileSuitForm {
 	private String msOverview;
 	private String action;
 	private MultipartFile msMultipartFile;
-
 }

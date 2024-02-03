@@ -26,5 +26,4 @@ public class UpdateMobileSuitCommand {
 	private String msOverview;
 	private String action;
 	private MultipartFile msMultipartFile;
-
 }

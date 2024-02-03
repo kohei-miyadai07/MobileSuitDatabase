@@ -64,5 +64,4 @@ public class UpdateMobileSuitController {
 
 		return "/MSDB/MobileSuits/MobileSuitList";
 	}
-
 }

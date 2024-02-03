@@ -45,5 +45,4 @@ public class MobileSuitRepositoryImpl implements MobileSuitRepository {
 	public void deleteMobileSuitById(String msId) {
 		mobileSuitDao.deleteById(msId);
 	}
-
 }

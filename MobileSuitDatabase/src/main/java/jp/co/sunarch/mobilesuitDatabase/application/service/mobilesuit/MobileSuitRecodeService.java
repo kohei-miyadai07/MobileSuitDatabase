@@ -59,7 +59,5 @@ public class MobileSuitRecodeService {
 		} catch (RuntimeException e) {
 			e.getMessage();
 		}
-		
 	}
-
 }
