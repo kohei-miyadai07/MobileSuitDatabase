@@ -24,5 +24,4 @@ public class EquipmentRecodeService {
 		equipmentRepository.deleteEquipmentByMsIdAndArmsId(
 				equipment.getMsId().getValue(), equipment.getArmsId().getValue());
 	}
-	
 }
