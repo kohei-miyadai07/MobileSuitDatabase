@@ -207,9 +207,8 @@ class EquipmentQueryImplTest {
 				.msName(msName)
 				.armsId(armsId)
 				.armsName(armsName)
-				.numberEquipment(String.valueOf(numberEquipment))
+				.numberEquipment(numberEquipment)
 				.detail(detail)
 				.build();
 	}
-
 }

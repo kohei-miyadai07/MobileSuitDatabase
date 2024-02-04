@@ -12,9 +12,9 @@ public class EquipmentModel {
 	private String msName;
 	private String armsId;
 	private String armsName;
-	private String numberEquipment;
+	private Integer numberEquipment;
 	private String detail;
 	private Instant insertDate;
 	private Instant updateDate;
-	private String version;
+	private Integer version;
 }

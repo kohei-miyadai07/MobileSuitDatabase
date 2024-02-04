@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 
-import jp.co.sunarch.mobilesuitDatabase.common.utils.CommonItemSettings;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.api.controller.internal.mobilesuit.equipment.EquipmentCountModel;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.equipment.entity.EquipmentEntity;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.query.mobilesuit.equipment.EquipmentQuery;
@@ -35,11 +34,11 @@ public class EquipmentQueryImpl implements EquipmentQuery {
 				.msName("")
 				.armsId("")
 				.armsName("")
-				.numberEquipment("0")
+				.numberEquipment(0)
 				.detail("")
 				.insertDate(null)
 				.updateDate(null)
-				.version("")
+				.version(1)
 				.build();
 
 		if (equipmentEntityOpt.isPresent()) {
@@ -68,11 +67,11 @@ public class EquipmentQueryImpl implements EquipmentQuery {
 				.msName(entity.getMsName())
 				.armsId(entity.getArmsId())
 				.armsName(entity.getArmsName())
-				.numberEquipment(CommonItemSettings.convertIntegerToString(entity.getNumberEquipment()))
+				.numberEquipment(entity.getNumberEquipment())
 				.detail(entity.getDetail())
 				.insertDate(entity.getInsertDate().toInstant())
 				.updateDate(entity.getUpdateDate().toInstant())
-				.version(String.valueOf(entity.getVersion()))
+				.version(entity.getVersion())
 				.build();
 	}
 }

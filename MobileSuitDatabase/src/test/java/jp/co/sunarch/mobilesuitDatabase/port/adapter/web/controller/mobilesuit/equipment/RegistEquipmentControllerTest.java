@@ -99,7 +99,7 @@ class RegistEquipmentControllerTest {
 				.msName("テストモビルスーツ1")
 				.armsId("arms1")
 				.armsName("テストビールライフル1")
-				.numberEquipment("1")
+				.numberEquipment(1)
 				.detail("テスト詳細1")
 				.build(),
 				EquipmentModel.builder()
@@ -107,7 +107,7 @@ class RegistEquipmentControllerTest {
 				.msName("テストモビルスーツ2")
 				.armsId("arms2")
 				.armsName("テストビームライフル2")
-				.numberEquipment("2")
+				.numberEquipment(2)
 				.detail("テスト詳細2")
 				.build());
 

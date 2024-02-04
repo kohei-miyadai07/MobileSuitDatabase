@@ -9,7 +9,7 @@ public class UpdateEquipmentForm {
 	private String msName;
 	private String armsId;
 	private String armsName;
-	private String numberEquipment;
+	private Integer numberEquipment;
 	private String detail;
 
 	public static UpdateEquipmentForm ModelToForm(EquipmentModel model) {
