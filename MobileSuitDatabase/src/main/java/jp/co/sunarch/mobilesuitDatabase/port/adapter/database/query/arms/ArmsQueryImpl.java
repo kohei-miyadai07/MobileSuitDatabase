@@ -26,21 +26,15 @@ public class ArmsQueryImpl implements ArmsQuery {
 	}
 
 	@Override
-	public ArmsModel getArmsById(String armsId) {
+	public Optional<ArmsModel> getArmsById(String armsId) {
+		Optional<ArmsModel> armsModelOpt = Optional.empty();
+
 		Optional<ArmsEntity> armsEntityOpt = jdbcArmsDao.selectById(armsId);
-
-		ArmsModel armsModel = ArmsModel.builder()
-				.armsId("")
-				.armsName("")
-				.detail("")
-				.build();
-
-		
 		if (armsEntityOpt.isPresent()) {
-			armsModel = toModel(armsEntityOpt.get());
+			armsModelOpt = Optional.of(toModel(armsEntityOpt.get()));
 		}
 
-		return armsModel;
+		return armsModelOpt;
 	}
 
 	@Override

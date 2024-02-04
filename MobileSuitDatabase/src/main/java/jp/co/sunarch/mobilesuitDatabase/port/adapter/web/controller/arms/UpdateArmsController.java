@@ -1,6 +1,7 @@
 package jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.arms;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,8 +28,13 @@ public class UpdateArmsController {
 
 	@GetMapping("/MSDB/Arms/{armsId}/edit")
 	public String updateArms(@PathVariable String armsId, Model model) {
-		ArmsModel armsModel = armsQuery.getArmsById(armsId);
-		UpdateArmsForm updateArmsForm = UpdateArmsForm.ModelToForm(armsModel);
+		Optional<ArmsModel> armsModelOpt = armsQuery.getArmsById(armsId);
+
+		UpdateArmsForm updateArmsForm = new UpdateArmsForm();
+		if (armsModelOpt.isPresent()) {
+			updateArmsForm = UpdateArmsForm.ModelToForm(armsModelOpt.get());
+		}
+
 		model.addAttribute("armsEditForm", updateArmsForm);
 
 		return "/MSDB/Arms/armsId/edit/ArmsEdit";

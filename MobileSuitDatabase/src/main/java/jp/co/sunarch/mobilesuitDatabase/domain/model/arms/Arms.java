@@ -30,5 +30,4 @@ public class Arms {
 	public Optional<String> getDetail() {
 		return Optional.ofNullable(detail);
 	}
-
 }

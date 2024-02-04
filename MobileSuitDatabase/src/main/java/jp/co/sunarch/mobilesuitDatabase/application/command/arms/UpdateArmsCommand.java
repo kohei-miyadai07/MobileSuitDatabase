@@ -10,5 +10,4 @@ public class UpdateArmsCommand {
 	private ArmsId armsId;
 	private String armsName;
 	private String detail;
-
 }

@@ -1,14 +1,13 @@
 package jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.arms;
 
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +44,7 @@ class UpdateArmsControllerTest {
 
 		UpdateArmsForm form = UpdateArmsForm.ModelToForm(armsModel);
 
-		when(armsQuery.getArmsById(any())).thenReturn(armsModel);
+		when(armsQuery.getArmsById(any())).thenReturn(Optional.of(armsModel));
 
 		mvc.perform(get("/MSDB/Arms/test_arms/edit"))
 		.andExpect(status().isOk())

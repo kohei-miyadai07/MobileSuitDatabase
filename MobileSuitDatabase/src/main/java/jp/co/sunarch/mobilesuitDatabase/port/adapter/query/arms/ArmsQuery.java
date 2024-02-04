@@ -1,6 +1,7 @@
 package jp.co.sunarch.mobilesuitDatabase.port.adapter.query.arms;
 
 import java.util.List;
+import java.util.Optional;
 
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.api.controller.internal.arms.ArmsCountModel;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.arms.ArmsModel;
@@ -17,7 +18,7 @@ public interface ArmsQuery {
 
 	List<ArmsModel> getArmsList();
 
-	ArmsModel getArmsById(String armsId);
+	Optional<ArmsModel> getArmsById(String armsId);
 
 	List<ArmsModel> searchArms(Criteria criteria);
 
