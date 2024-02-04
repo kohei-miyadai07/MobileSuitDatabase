@@ -34,15 +34,15 @@ public class RegistMobileSuitController {
 		RegistMobileSuitCommand command = RegistMobileSuitCommand.builder()
 				.modelNumber(registMobileSuitForm.getModelNumber())
 				.msName(registMobileSuitForm.getMsName())
-				.headHeight(CommonItemSettings.convertToBigDecimal(registMobileSuitForm.getHeadHeight()))
-				.overallHeight(CommonItemSettings.convertToBigDecimal(registMobileSuitForm.getOverallHeight()))
-				.weight(CommonItemSettings.convertToBigDecimal(registMobileSuitForm.getWeight()))
-				.totalWeight(CommonItemSettings.convertToBigDecimal(registMobileSuitForm.getTotalWeight()))
-				.powerSource(CommonItemSettings.convertToString(registMobileSuitForm.getPowerSource()))
-				.material(CommonItemSettings.convertToString(registMobileSuitForm.getMaterial()))
-				.effectiveSensorRadius(CommonItemSettings.convertToLong(registMobileSuitForm.getEffectiveSensorRadius()))
-				.generatorOutput(CommonItemSettings.convertToLong(registMobileSuitForm.getGeneratorOutput()))
-				.totalThrustersOutput(CommonItemSettings.convertToLong(registMobileSuitForm.getTotalThrustersOutput()))
+				.headHeight(registMobileSuitForm.getHeadHeight())
+				.overallHeight(registMobileSuitForm.getOverallHeight())
+				.weight(registMobileSuitForm.getWeight())
+				.totalWeight(registMobileSuitForm.getTotalWeight())
+				.powerSource(registMobileSuitForm.getPowerSource())
+				.material(registMobileSuitForm.getMaterial())
+				.effectiveSensorRadius(registMobileSuitForm.getEffectiveSensorRadius())
+				.generatorOutput(registMobileSuitForm.getGeneratorOutput())
+				.totalThrustersOutput(registMobileSuitForm.getTotalThrustersOutput())
 				.msOverview(CommonItemSettings.convertToString(registMobileSuitForm.getMsOverview()))
 				.action(CommonItemSettings.convertToString(registMobileSuitForm.getAction()))
 				.msMultipartFile(registMobileSuitForm.getMsMultipartFile())
@@ -52,10 +52,8 @@ public class RegistMobileSuitController {
 
 		List<MobileSuitModel> msModelList = mobileSuitQuery.getMobileSuitList();
 		model.addAttribute("mobilesuits", msModelList);
-
 		model.addAttribute("message", "モビルスーツ情報を登録しました。");
 
 		return "/MSDB/MobileSuits/MobileSuitList";
 	}
-
 }

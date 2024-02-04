@@ -1,5 +1,6 @@
 package jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
@@ -7,7 +8,6 @@ import java.util.Optional;
 import org.seasar.doma.jdbc.NoResultException;
 import org.springframework.stereotype.Repository;
 
-import jp.co.sunarch.mobilesuitDatabase.common.utils.CommonItemSettings;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.api.controller.internal.mobilesuit.MobileSuitCountModel;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.entity.MobileSuitEntity;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.equipment.JdbcEquipmentDao;
@@ -32,7 +32,6 @@ public class MobileSuitQueryImpl implements MobileSuitQuery {
 		List<MobileSuitModel> msModels = msEntities.stream().map(l -> toResult(l)).toList();
 
 		return msModels;
-
 	}
 
 	@Override
@@ -59,20 +58,20 @@ public class MobileSuitQueryImpl implements MobileSuitQuery {
 				.modelNumber("")
 				.msName("")
 				.msUrl("")
-				.headHeight("")
-				.overallHeight("")
-				.weight("")
-				.totalWeight("")
+				.headHeight(new BigDecimal(0))
+				.overallHeight(new BigDecimal(0))
+				.weight(new BigDecimal(0))
+				.totalWeight(new BigDecimal(0))
 				.powerSource("")
 				.material("")
-				.effectiveSensorRadius("")
-				.generatorOutput("")
-				.totalThrustersOutput("")
+				.effectiveSensorRadius(0L)
+				.generatorOutput(0L)
+				.totalThrustersOutput(0L)
 				.msOverview("")
 				.action("")
 				.insertDate(Instant.ofEpochSecond(0))
 				.updateDate(Instant.ofEpochSecond(0))
-				.version("")
+				.version(1)
 				.build();
 
 		if (msEntityOpt.isPresent()) {
@@ -102,20 +101,20 @@ public class MobileSuitQueryImpl implements MobileSuitQuery {
 				.modelNumber(msEntity.getModelNumber())
 				.msName(msEntity.getMsName())
 				.msUrl(msEntity.getMsUrl())
-				.headHeight(CommonItemSettings.convertBigDecimalToString(msEntity.getHeadHeight()))
-				.overallHeight(CommonItemSettings.convertBigDecimalToString(msEntity.getOverallHeight()))
-				.weight(CommonItemSettings.convertBigDecimalToString(msEntity.getWeight()))
-				.totalWeight(CommonItemSettings.convertBigDecimalToString(msEntity.getTotalWeight()))
+				.headHeight(msEntity.getHeadHeight())
+				.overallHeight(msEntity.getOverallHeight())
+				.weight(msEntity.getWeight())
+				.totalWeight(msEntity.getTotalWeight())
 				.powerSource(msEntity.getPowerSource())
 				.material(msEntity.getMaterial())
-				.effectiveSensorRadius(CommonItemSettings.convertLongToString(msEntity.getEffectiveSensorRadius()))
-				.generatorOutput(CommonItemSettings.convertLongToString(msEntity.getGeneratorOutput()))
-				.totalThrustersOutput(CommonItemSettings.convertLongToString(msEntity.getTotalThrustersOutput()))
+				.effectiveSensorRadius(msEntity.getEffectiveSensorRadius())
+				.generatorOutput(msEntity.getGeneratorOutput())
+				.totalThrustersOutput(msEntity.getTotalThrustersOutput())
 				.msOverview(msEntity.getMsOverview())
 				.action(msEntity.getAction())
 				.insertDate(msEntity.getInsertDate().toInstant())
 				.updateDate(msEntity.getUpdateDate().toInstant())
-				.version(String.valueOf(msEntity.getVersion()))
+				.version(msEntity.getVersion())
 				.build();
 
 		return msModel;
@@ -127,11 +126,11 @@ public class MobileSuitQueryImpl implements MobileSuitQuery {
 				.msId(equipmentArmsEntity.getMsId())
 				.armsId(equipmentArmsEntity.getArmsId())
 				.armsName(equipmentArmsEntity.getArmsName())
-				.numberEquipment(CommonItemSettings.convertIntegerToString(equipmentArmsEntity.getNumberEquipment()))
+				.numberEquipment(equipmentArmsEntity.getNumberEquipment())
 				.detail(equipmentArmsEntity.getDetail())
 				.insertDate(equipmentArmsEntity.getInsertDate().toInstant())
 				.updateDate(equipmentArmsEntity.getUpdateDate().toInstant())
-				.version(String.valueOf(equipmentArmsEntity.getVersion()))
+				.version(equipmentArmsEntity.getVersion())
 				.build();
 
 		return equipmentArmsModel;
@@ -144,20 +143,20 @@ public class MobileSuitQueryImpl implements MobileSuitQuery {
 				.modelNumber(msEntity.getModelNumber())
 				.msName(msEntity.getMsName())
 				.msUrl(msEntity.getMsUrl())
-				.headHeight(CommonItemSettings.convertBigDecimalToString(msEntity.getHeadHeight()))
-				.overallHeight(CommonItemSettings.convertBigDecimalToString(msEntity.getOverallHeight()))
-				.weight(CommonItemSettings.convertBigDecimalToString(msEntity.getWeight()))
-				.totalWeight(CommonItemSettings.convertBigDecimalToString(msEntity.getTotalWeight()))
+				.headHeight(msEntity.getHeadHeight())
+				.overallHeight(msEntity.getOverallHeight())
+				.weight(msEntity.getWeight())
+				.totalWeight(msEntity.getTotalWeight())
 				.powerSource(msEntity.getPowerSource())
 				.material(msEntity.getMaterial())
-				.effectiveSensorRadius(CommonItemSettings.convertLongToString(msEntity.getEffectiveSensorRadius()))
-				.generatorOutput(CommonItemSettings.convertLongToString(msEntity.getGeneratorOutput()))
-				.totalThrustersOutput(CommonItemSettings.convertLongToString(msEntity.getTotalThrustersOutput()))
+				.effectiveSensorRadius(msEntity.getEffectiveSensorRadius())
+				.generatorOutput(msEntity.getGeneratorOutput())
+				.totalThrustersOutput(msEntity.getTotalThrustersOutput())
 				.msOverview(msEntity.getMsOverview())
 				.action(msEntity.getAction())
 				.insertDate(msEntity.getInsertDate().toInstant())
 				.updateDate(msEntity.getUpdateDate().toInstant())
-				.version(String.valueOf(msEntity.getVersion()))
+				.version(msEntity.getVersion())
 				.equipmentArmsResultList(equipmentArmsEntities.stream().map(l -> toEquipmentResult(l)).toList())
 				.build();
 

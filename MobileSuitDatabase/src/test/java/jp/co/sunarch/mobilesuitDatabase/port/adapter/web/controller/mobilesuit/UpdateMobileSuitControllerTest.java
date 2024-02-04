@@ -5,6 +5,8 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.util.Arrays;
@@ -53,20 +55,20 @@ class UpdateMobileSuitControllerTest {
 				.modelNumber("ms-01")
 				.msName("テストモビルスーツ1")
 				.msUrl("/ms/test")
-				.headHeight("18.00")
-				.overallHeight("18.50")
-				.weight("90.25")
-				.totalWeight("95.85")
+				.headHeight(new BigDecimal(18.00).setScale(2, RoundingMode.DOWN))
+				.overallHeight(new BigDecimal(18.50).setScale(2, RoundingMode.DOWN))
+				.weight(new BigDecimal(90.25).setScale(2, RoundingMode.DOWN))
+				.totalWeight(new BigDecimal(97.55).setScale(2, RoundingMode.DOWN))
 				.powerSource("テストリアクター")
 				.material("テストマテリアル")
-				.effectiveSensorRadius("1000")
-				.generatorOutput("2000")
-				.totalThrustersOutput("3000")
+				.effectiveSensorRadius(1000L)
+				.generatorOutput(2000L)
+				.totalThrustersOutput(3000L)
 				.msOverview("テスト概要")
 				.action("テストアクション")
 				.insertDate(Instant.ofEpochSecond(0))
 				.updateDate(Instant.ofEpochSecond(0))
-				.version("1")
+				.version(1)
 				.build();
 
 		UpdateMobileSuitForm form = UpdateMobileSuitForm.ModelToForm(model);
@@ -92,20 +94,20 @@ class UpdateMobileSuitControllerTest {
 				.modelNumber("ms-01")
 				.msName("テストモビルスーツ1")
 				.msUrl("/ms/test")
-				.headHeight("18.00")
-				.overallHeight("19.00")
-				.weight("85.55")
-				.totalWeight("87.55")
+				.headHeight(new BigDecimal(18.00).setScale(2, RoundingMode.DOWN))
+				.overallHeight(new BigDecimal(19.00).setScale(2, RoundingMode.DOWN))
+				.weight(new BigDecimal(85.55).setScale(2, RoundingMode.DOWN))
+				.totalWeight(new BigDecimal(87.55).setScale(2, RoundingMode.DOWN))
 				.powerSource("テストリアクター")
 				.material("テストマテリアル")
-				.effectiveSensorRadius("100")
-				.generatorOutput("200")
-				.totalThrustersOutput("300")
+				.effectiveSensorRadius(100L)
+				.generatorOutput(200L)
+				.totalThrustersOutput(300L)
 				.msOverview("テスト概要")
 				.action("テストアクション")
 				.insertDate(Instant.ofEpochSecond(0))
 				.updateDate(Instant.ofEpochSecond(0))
-				.version("2")
+				.version(2)
 				.build()
 				);
 
