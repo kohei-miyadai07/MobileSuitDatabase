@@ -64,11 +64,11 @@
                   <td th:text="${equipment.detail}"></td>
                   <td
                     class="text-nowrap"
-                    th:text="${equipment.insertDate}"
+                    th:text="${#temporals.format(equipment.insertDate, 'yyyy/MM/dd HH:mm:ss')}"
                   ></td>
                   <td
                     class="text-nowrap"
-                    th:text="${equipment.updateDate}"
+                    th:text="${#temporals.format(equipment.updateDate, 'yyyy/MM/dd HH:mm:ss')}"
                   ></td>
                   <td>
                     <a
@@ -97,6 +97,6 @@
   </body>
   <script th:src="@{/js/MSDB/MobileSuits/Equipments/equipmentList.js}"></script>
   <script th:inline="javascript">
-    const messageText = /*[[${message}]]*/"message"
+    const messageText = /*[[${message}]]*/ "message";
   </script>
 </html>

@@ -1,6 +1,6 @@
 package jp.co.sunarch.mobilesuitDatabase.application.usecase.mobilesuit.equipment;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 import org.springframework.stereotype.Service;
 
@@ -24,7 +24,7 @@ public class UpdateEquipmentUseCase {
 		// 更新対象のEquipmentに更新項目をセット
 		equipment.setNumberEquipment(command.getNumberEquipment());
 		equipment.setDetail(command.getDetail());
-		equipment.setUpdateDate(LocalDateTime.now());
+		equipment.setUpdateDate(Instant.now());
 		equipment.setVersion(equipment.getVersion() + 1);
 
 		equipmentRecodeService.updateEquipment(equipment);

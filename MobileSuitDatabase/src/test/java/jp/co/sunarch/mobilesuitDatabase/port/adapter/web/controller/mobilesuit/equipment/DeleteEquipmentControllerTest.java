@@ -1,10 +1,9 @@
 package jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.mobilesuit.equipment;
 
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -47,7 +46,7 @@ class DeleteEquipmentControllerTest {
 				.msName("テストモビルスーツ1")
 				.armsId("arms1")
 				.armsName("テストビールライフル1")
-				.numberEquipment("1")
+				.numberEquipment(1)
 				.detail("テスト詳細1")
 				.build());
 

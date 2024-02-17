@@ -28,11 +28,8 @@ public class MobileSuitRowMapper implements RowMapper<MobileSuit> {
 				rs.getLong("total_thrusters_output"),
 				rs.getString("ms_overview"),
 				rs.getString("action"),
-				rs.getTimestamp("insert_date").toLocalDateTime(),
-				rs.getTimestamp("update_date").toLocalDateTime(),
+				rs.getTimestamp("insert_date").toInstant(),
+				rs.getTimestamp("update_date").toInstant(),
 				rs.getInt("version"));
 	}
-
-	
-
 }

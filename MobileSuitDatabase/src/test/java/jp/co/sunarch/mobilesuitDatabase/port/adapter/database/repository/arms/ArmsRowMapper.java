@@ -16,9 +16,8 @@ public class ArmsRowMapper implements RowMapper<Arms> {
 				ArmsId.of(rs.getString("arms_id")),
 				rs.getString("arms_name"), 
 				rs.getString("detail"),
-				rs.getTimestamp("insert_date").toLocalDateTime(),
-				rs.getTimestamp("update_date").toLocalDateTime(),
+				rs.getTimestamp("insert_date").toInstant(),
+				rs.getTimestamp("update_date").toInstant(),
 				rs.getInt("version"));
 	}
-
 }

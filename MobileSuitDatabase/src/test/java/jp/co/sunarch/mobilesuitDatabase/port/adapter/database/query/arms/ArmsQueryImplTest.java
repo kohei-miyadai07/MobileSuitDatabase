@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
@@ -60,10 +61,10 @@ class ArmsQueryImplTest {
 	class GetArmsById {
 		@Test
 		void 武器IDを指定すると紐づいた武器データが取得できること() throws Exception {
-			ArmsModel arms = sut.getArmsById("arms1");
+			Optional<ArmsModel> armsOpt = sut.getArmsById("arms1");
 
-			ArmsModel extend = createArmsModel(1);
-			assertThat(arms)
+			Optional<ArmsModel> extend = Optional.ofNullable(createArmsModel(1));
+			assertThat(armsOpt)
 			.isEqualTo(extend);
 		}
 	}

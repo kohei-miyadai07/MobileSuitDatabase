@@ -29,8 +29,8 @@ public class MobileSuitConverter {
 		entity.setTotalThrustersOutput(domain.getTotalThrustersOutput().orElse(null));
 		entity.setMsOverview(domain.getMsOverview().orElse(null));
 		entity.setAction(domain.getAction().orElse(null));
-		entity.setInsertDate(Timestamp.valueOf(domain.getInsertDate()));
-		entity.setUpdateDate(Timestamp.valueOf(domain.getUpdateDate()));
+		entity.setInsertDate(Timestamp.from(domain.getInsertDate()));
+		entity.setUpdateDate(Timestamp.from(domain.getUpdateDate()));
 		entity.setVersion(domain.getVersion());
 
 		return entity;
@@ -54,11 +54,10 @@ public class MobileSuitConverter {
 				,entity.getTotalThrustersOutput()
 				,entity.getMsOverview()
 				,entity.getAction()
-				,entity.getInsertDate().toLocalDateTime()
-				,entity.getUpdateDate().toLocalDateTime()
+				,entity.getInsertDate().toInstant()
+				,entity.getUpdateDate().toInstant()
 				,entity.getVersion());
 
 		return domain;
 	}
-
 }

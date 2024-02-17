@@ -52,5 +52,4 @@ public class MobileSuitEntity {
 
 	@Version
 	private Integer version;
-
 }

@@ -41,15 +41,15 @@ public class UpdateMobileSuitController {
 				.msId(MobileSuitId.of(updateMobileSuitForm.getMsId()))
 				.modelNumber(updateMobileSuitForm.getModelNumber())
 				.msName(updateMobileSuitForm.getMsName())
-				.headHeight(CommonItemSettings.convertToBigDecimal(updateMobileSuitForm.getHeadHeight()))
-				.overallHeight(CommonItemSettings.convertToBigDecimal(updateMobileSuitForm.getOverallHeight()))
-				.weight(CommonItemSettings.convertToBigDecimal(updateMobileSuitForm.getWeight()))
-				.totalWeight(CommonItemSettings.convertToBigDecimal(updateMobileSuitForm.getTotalWeight()))
-				.powerSource(CommonItemSettings.convertToString(updateMobileSuitForm.getPowerSource()))
-				.material(CommonItemSettings.convertToString(updateMobileSuitForm.getMaterial()))
-				.effectiveSensorRadius(CommonItemSettings.convertToLong(updateMobileSuitForm.getEffectiveSensorRadius()))
-				.generatorOutput(CommonItemSettings.convertToLong(updateMobileSuitForm.getGeneratorOutput()))
-				.totalThrustersOutput(CommonItemSettings.convertToLong(updateMobileSuitForm.getTotalThrustersOutput()))
+				.headHeight(updateMobileSuitForm.getHeadHeight())
+				.overallHeight(updateMobileSuitForm.getOverallHeight())
+				.weight(updateMobileSuitForm.getWeight())
+				.totalWeight(updateMobileSuitForm.getTotalWeight())
+				.powerSource(updateMobileSuitForm.getPowerSource())
+				.material(updateMobileSuitForm.getMaterial())
+				.effectiveSensorRadius(updateMobileSuitForm.getEffectiveSensorRadius())
+				.generatorOutput(updateMobileSuitForm.getGeneratorOutput())
+				.totalThrustersOutput(updateMobileSuitForm.getTotalThrustersOutput())
 				.msOverview(CommonItemSettings.convertToString(updateMobileSuitForm.getMsOverview()))
 				.action(CommonItemSettings.convertToString(updateMobileSuitForm.getAction()))
 				.msMultipartFile(updateMobileSuitForm.getMsMultipartFile())
@@ -64,5 +64,4 @@ public class UpdateMobileSuitController {
 
 		return "/MSDB/MobileSuits/MobileSuitList";
 	}
-
 }

@@ -5,8 +5,7 @@ import static org.assertj.core.api.Assertions.*;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.time.Instant;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
@@ -176,10 +175,6 @@ class MobileSuitRepositoryImplTest {
 		void モビルスーツIDを指定すると紐づいたモビルスーツドメインモデルが取得できること() {
 			MobileSuit mobileSuit = sut.getMobileSuitById("ms1");
 
-			String strDateTime = "2023/04/02 10:00:00";
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-			LocalDateTime localDateTime = LocalDateTime.parse(strDateTime, formatter);
-
 			MobileSuit extend = MobileSuit.create(
 					MobileSuitId.of("ms1"),
 					"msNum1",
@@ -196,8 +191,8 @@ class MobileSuitRepositoryImplTest {
 					300L,
 					"テスト説明1",
 					"テスト活躍1",
-					localDateTime,
-					localDateTime,
+					Instant.ofEpochSecond(0),
+					Instant.ofEpochSecond(0),
 					Integer.valueOf(1));
 
 			assertThat(mobileSuit)
@@ -283,10 +278,6 @@ class MobileSuitRepositoryImplTest {
 
 		@Test
 		void 対象のモビルスーツドメインモデルが未登録の場合は新規登録されること() {
-			String strDateTime = "2023/04/02 10:00:00";
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-			LocalDateTime localDateTime = LocalDateTime.parse(strDateTime, formatter);
-
 			MobileSuit mobileSuit = MobileSuit.create(
 					MobileSuitId.of("ms4"),
 					"msNum4",
@@ -303,8 +294,8 @@ class MobileSuitRepositoryImplTest {
 					300L,
 					"テスト説明4",
 					"テスト活躍4",
-					localDateTime,
-					localDateTime,
+					Instant.ofEpochSecond(0),
+					Instant.ofEpochSecond(0),
 					Integer.valueOf(1));
 			sut.save(mobileSuit);
 
@@ -317,10 +308,6 @@ class MobileSuitRepositoryImplTest {
 
 		@Test
 		void 対象のモビルスーツドメインモデルが登録済みの場合は更新されること() {
-			String strDateTime = "2023/04/02 10:00:00";
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-			LocalDateTime localDateTime = LocalDateTime.parse(strDateTime, formatter);
-
 			MobileSuit mobileSuit = MobileSuit.create(
 					MobileSuitId.of("ms2"),
 					"msNum5",
@@ -337,8 +324,8 @@ class MobileSuitRepositoryImplTest {
 					300L,
 					"テスト説明5",
 					"テスト活躍5",
-					localDateTime,
-					localDateTime,
+					Instant.ofEpochSecond(0),
+					Instant.ofEpochSecond(0),
 					Integer.valueOf(2));
 			sut.save(mobileSuit);
 

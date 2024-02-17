@@ -1,7 +1,7 @@
 package jp.co.sunarch.mobilesuitDatabase.domain.model.mobilesuit;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.Optional;
 
 import lombok.Data;
@@ -23,14 +23,14 @@ public class MobileSuit {
 	private Long totalThrustersOutput;
 	private String msOverview;
 	private String action;
-	private LocalDateTime insertDate;
-	private LocalDateTime updateDate;
+	private Instant insertDate;
+	private Instant updateDate;
 	private Integer version;
 
 	public static MobileSuit create(MobileSuitId msId, String modelNumber, String msName, String msUrl,
 			BigDecimal headHeight, BigDecimal overallHeight, BigDecimal weight, BigDecimal totalWeight,
 			String powerSource, String material, Long effectiveSensorRadius, Long generatorOutput, Long totalThrustersOutput,
-			String msOverview, String action, LocalDateTime insertDate, LocalDateTime updateDate, Integer version) {
+			String msOverview, String action, Instant insertDate, Instant updateDate, Integer version) {
 		
 		MobileSuit mobileSuit = new MobileSuit();
 		mobileSuit.setMsId(msId);
@@ -53,7 +53,6 @@ public class MobileSuit {
 		mobileSuit.setVersion(version);
 
 		return mobileSuit;
-	
 	}
 
 	public Optional<BigDecimal> getHeadHeight() {
@@ -99,5 +98,4 @@ public class MobileSuit {
 	public Optional<String> getAction() {
 		return Optional.ofNullable(action);
 	}
-
 }

@@ -20,6 +20,5 @@ public class DeleteMobileSuitUseCase {
 
 		mobileSuitRecodeService.deleteImageFile(mobileSuit.getMsUrl());
 		mobileSuitRecodeService.deleteMobileSuit(mobileSuit);
-
 	}
 }

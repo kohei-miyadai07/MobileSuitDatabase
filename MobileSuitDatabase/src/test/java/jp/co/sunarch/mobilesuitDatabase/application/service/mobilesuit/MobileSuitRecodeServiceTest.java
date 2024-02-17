@@ -4,8 +4,7 @@ import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.time.Instant;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -52,8 +51,8 @@ class MobileSuitRecodeServiceTest {
 				300L,
 				"テスト説明1",
 				"テスト活躍1",
-				localDateTimeOf("2023/04/02 10:00:00"),
-				localDateTimeOf("2023/04/02 10:00:00"),
+				Instant.ofEpochSecond(0),
+				Instant.ofEpochSecond(0),
 				Integer.valueOf(1));
 		sut.registMobileSuit(mobileSuit);
 
@@ -80,8 +79,8 @@ class MobileSuitRecodeServiceTest {
 				300L,
 				"テスト説明1",
 				"テスト活躍1",
-				localDateTimeOf("2023/04/02 10:00:00"),
-				localDateTimeOf("2023/04/03 10:00:00"),
+				Instant.ofEpochSecond(0),
+				Instant.ofEpochSecond(0),
 				Integer.valueOf(2));
 		sut.updateMobileSuit(mobileSuit);
 
@@ -108,8 +107,8 @@ class MobileSuitRecodeServiceTest {
 				300L,
 				"テスト説明1",
 				"テスト活躍1",
-				localDateTimeOf("2023/04/02 10:00:00"),
-				localDateTimeOf("2023/04/02 10:00:00"),
+				Instant.ofEpochSecond(0),
+				Instant.ofEpochSecond(0),
 				Integer.valueOf(1));
 		sut.deleteMobileSuit(mobileSuit);
 
@@ -132,11 +131,4 @@ class MobileSuitRecodeServiceTest {
 			verify(fileOperations, times(1)).uploadImageFile(mockMultipartFile, "test/test");
 		}
 	}
-
-	private LocalDateTime localDateTimeOf(String strDateTime) {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-
-		return LocalDateTime.parse(strDateTime, formatter);
-	}
-
 }

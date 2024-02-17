@@ -21,5 +21,4 @@ public class DeleteEquipmentUseCase {
 
 		equipmentRecodeService.deleteEquipment(equipment);
 	}
-
 }

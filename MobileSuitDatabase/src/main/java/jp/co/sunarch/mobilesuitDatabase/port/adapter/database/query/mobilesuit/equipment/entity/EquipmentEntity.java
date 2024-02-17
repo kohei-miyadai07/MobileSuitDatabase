@@ -34,5 +34,4 @@ public class EquipmentEntity {
 
 	@Version
 	private Integer version;
-
 }

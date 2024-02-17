@@ -27,5 +27,4 @@ public class ArmsEntity {
 
 	@Version
 	private Integer version;
-
 }

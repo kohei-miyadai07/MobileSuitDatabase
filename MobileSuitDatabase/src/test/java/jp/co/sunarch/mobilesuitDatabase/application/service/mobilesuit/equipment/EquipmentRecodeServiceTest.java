@@ -3,8 +3,7 @@ package jp.co.sunarch.mobilesuitDatabase.application.service.mobilesuit.equipmen
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.time.Instant;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -34,8 +33,8 @@ class EquipmentRecodeServiceTest {
 				ArmsId.of("arms_test"),
 				Integer.valueOf(1),
 				"テスト001",
-				localDateTimeOf("2023/04/02 10:00:00"),
-				localDateTimeOf("2023/04/02 10:00:00"),
+				Instant.ofEpochSecond(0),
+				Instant.ofEpochSecond(0),
 				Integer.valueOf(1));
 		sut.registEquipment(equipment);
 
@@ -51,8 +50,8 @@ class EquipmentRecodeServiceTest {
 				ArmsId.of("arms_test"),
 				Integer.valueOf(1),
 				"テスト001",
-				localDateTimeOf("2023/04/02 10:00:00"),
-				localDateTimeOf("2023/04/02 10:00:00"),
+				Instant.ofEpochSecond(0),
+				Instant.ofEpochSecond(0),
 				Integer.valueOf(2));
 		sut.updateEquipment(equipment);
 
@@ -68,19 +67,12 @@ class EquipmentRecodeServiceTest {
 				ArmsId.of("arms_test"),
 				Integer.valueOf(1),
 				"テスト001",
-				localDateTimeOf("2023/04/02 10:00:00"),
-				localDateTimeOf("2023/04/02 10:00:00"),
+				Instant.ofEpochSecond(0),
+				Instant.ofEpochSecond(0),
 				Integer.valueOf(1));
 		sut.deleteEquipment(equipment);
 
 		verify(equipmentRepository, times(1))
 		.deleteEquipmentByMsIdAndArmsId("ms_test", "arms_test");
 	}
-
-	private LocalDateTime localDateTimeOf(String strDateTime) {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-
-		return LocalDateTime.parse(strDateTime, formatter);
-	}
-
 }

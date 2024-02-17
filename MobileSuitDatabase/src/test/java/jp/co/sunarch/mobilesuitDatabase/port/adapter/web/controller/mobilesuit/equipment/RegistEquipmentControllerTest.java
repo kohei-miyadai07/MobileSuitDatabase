@@ -1,12 +1,13 @@
 package jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.mobilesuit.equipment;
 
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.time.Instant;
 import java.util.Arrays;
 import java.util.List;
 
@@ -51,20 +52,20 @@ class RegistEquipmentControllerTest {
 				.modelNumber("ms-01")
 				.msName("テストモビルスーツ1")
 				.msUrl("/ms/test")
-				.headHeight("18.00")
-				.overallHeight("19.00")
-				.weight("85.55")
-				.totalWeight("87.55")
+				.headHeight(new BigDecimal(18.00).setScale(2, RoundingMode.DOWN))
+				.overallHeight(new BigDecimal(19.00).setScale(2, RoundingMode.DOWN))
+				.weight(new BigDecimal(85.55).setScale(2, RoundingMode.DOWN))
+				.totalWeight(new BigDecimal(87.55).setScale(2, RoundingMode.DOWN))
 				.powerSource("テストリアクター")
 				.material("テストマテリアル")
-				.effectiveSensorRadius("100")
-				.generatorOutput("200")
-				.totalThrustersOutput("300")
+				.effectiveSensorRadius(100L)
+				.generatorOutput(200L)
+				.totalThrustersOutput(300L)
 				.msOverview("テスト概要")
 				.action("テストアクション")
-				.insertDate("2023/04/18 10:20:30")
-				.updateDate("2023/04/18 10:20:30")
-				.version("1")
+				.insertDate(Instant.ofEpochSecond(0))
+				.updateDate(Instant.ofEpochSecond(0))
+				.version(1)
 				.build()
 				);
 
@@ -100,7 +101,7 @@ class RegistEquipmentControllerTest {
 				.msName("テストモビルスーツ1")
 				.armsId("arms1")
 				.armsName("テストビールライフル1")
-				.numberEquipment("1")
+				.numberEquipment(1)
 				.detail("テスト詳細1")
 				.build(),
 				EquipmentModel.builder()
@@ -108,7 +109,7 @@ class RegistEquipmentControllerTest {
 				.msName("テストモビルスーツ2")
 				.armsId("arms2")
 				.armsName("テストビームライフル2")
-				.numberEquipment("2")
+				.numberEquipment(2)
 				.detail("テスト詳細2")
 				.build());
 
@@ -124,5 +125,4 @@ class RegistEquipmentControllerTest {
 		.andExpect(view().name("/MSDB/MobileSuits/Equipments/EquipmentList"))
 		.andExpect(model().attribute("equipments", list));
 	}
-
 }

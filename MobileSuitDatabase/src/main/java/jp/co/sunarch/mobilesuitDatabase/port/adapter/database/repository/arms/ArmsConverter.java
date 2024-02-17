@@ -16,8 +16,8 @@ public class ArmsConverter {
 		entity.setArmsId(domain.getArmsId().getValue());
 		entity.setArmsName(domain.getArmsName());
 		entity.setDetail(domain.getDetail().orElse(null));
-		entity.setInsertDate(Timestamp.valueOf(domain.getInsertDate()));
-		entity.setUpdateDate(Timestamp.valueOf(domain.getUpdateDate()));
+		entity.setInsertDate(Timestamp.from(domain.getInsertDate()));
+		entity.setUpdateDate(Timestamp.from(domain.getUpdateDate()));
 		entity.setVersion(domain.getVersion());
 
 		return entity;
@@ -28,8 +28,8 @@ public class ArmsConverter {
 				ArmsId.of(entity.getArmsId())
 				,entity.getArmsName()
 				,entity.getDetail()
-				,entity.getInsertDate().toLocalDateTime()
-				,entity.getUpdateDate().toLocalDateTime()
+				,entity.getInsertDate().toInstant()
+				,entity.getUpdateDate().toInstant()
 				,entity.getVersion());
 
 		return domain;

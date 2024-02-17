@@ -82,5 +82,4 @@ public class MobileSuitController {
 
 		return "/MSDB/MobileSuits/MobileSuitList";
 	}
-
 }

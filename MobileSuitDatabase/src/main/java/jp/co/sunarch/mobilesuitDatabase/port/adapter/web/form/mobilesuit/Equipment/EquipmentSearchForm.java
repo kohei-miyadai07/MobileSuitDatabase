@@ -6,5 +6,4 @@ import lombok.Data;
 public class EquipmentSearchForm {
 	public String msName;
 	public String armsName;
-
 }

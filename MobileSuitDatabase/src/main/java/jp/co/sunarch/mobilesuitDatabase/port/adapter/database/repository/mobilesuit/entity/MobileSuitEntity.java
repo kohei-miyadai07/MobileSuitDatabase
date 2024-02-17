@@ -50,5 +50,4 @@ public class MobileSuitEntity {
 	private Timestamp updateDate;
 
 	private Integer version;
-
 }

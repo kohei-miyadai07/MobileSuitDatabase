@@ -1,10 +1,12 @@
 package jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -242,20 +244,20 @@ class MobileSuitQueryImplTest {
 				.modelNumber("msNum" + seq)
 				.msName("テストモビルスーツ" + seq)
 				.msUrl("/ms/url" + seq)
-				.headHeight("1.00")
-				.overallHeight("10.00")
-				.weight("1.00")
-				.totalWeight("10.00")
+				.headHeight(new BigDecimal(1).setScale(2, RoundingMode.DOWN))
+				.overallHeight(new BigDecimal(10).setScale(2, RoundingMode.DOWN))
+				.weight(new BigDecimal(1).setScale(2, RoundingMode.DOWN))
+				.totalWeight(new BigDecimal(10).setScale(2, RoundingMode.DOWN))
 				.powerSource("テストパワーソース" + seq)
 				.material("テストマテリアル" + seq)
-				.effectiveSensorRadius(String.valueOf(100L))
-				.generatorOutput(String.valueOf(200L))
-				.totalThrustersOutput(String.valueOf(300L))
+				.effectiveSensorRadius(100L)
+				.generatorOutput(200L)
+				.totalThrustersOutput(300L)
 				.msOverview("テスト説明" + seq)
 				.action("テスト活躍" + seq)
-				.insertDate("2023/04/02 10:00:00")
-				.updateDate("2023/04/02 10:00:00")
-				.version(String.valueOf(1))
+				.insertDate(Instant.ofEpochSecond(0))
+				.updateDate(Instant.ofEpochSecond(0))
+				.version(1)
 				.build();
 	}
 
@@ -266,15 +268,15 @@ class MobileSuitQueryImplTest {
 				.modelNumber(mobileSuit.getModelNumber())
 				.msName(mobileSuit.getMsName())
 				.msUrl(mobileSuit.getMsUrl())
-				.headHeight(mobileSuit.getHeadHeight() + "m")
-				.overallHeight(mobileSuit.getOverallHeight() + "m")
-				.weight(mobileSuit.getWeight() + "t")
-				.totalWeight(mobileSuit.getTotalWeight() + "t")
+				.headHeight(mobileSuit.getHeadHeight())
+				.overallHeight(mobileSuit.getOverallHeight())
+				.weight(mobileSuit.getWeight())
+				.totalWeight(mobileSuit.getTotalWeight())
 				.powerSource(mobileSuit.getPowerSource())
 				.material(mobileSuit.getMaterial())
-				.effectiveSensorRadius(mobileSuit.getEffectiveSensorRadius() + "m")
-				.generatorOutput(mobileSuit.getGeneratorOutput() + "kW")
-				.totalThrustersOutput(mobileSuit.getTotalThrustersOutput() + "kg")
+				.effectiveSensorRadius(mobileSuit.getEffectiveSensorRadius())
+				.generatorOutput(mobileSuit.getGeneratorOutput())
+				.totalThrustersOutput(mobileSuit.getTotalThrustersOutput())
 				.msOverview(mobileSuit.getMsOverview())
 				.action(mobileSuit.getAction())
 				.insertDate(mobileSuit.getInsertDate())
@@ -290,9 +292,8 @@ class MobileSuitQueryImplTest {
 				.msId(msId)
 				.armsId(armsId)
 				.armsName(armsName)
-				.numberEquipment(String.valueOf(numberEquipment))
+				.numberEquipment(numberEquipment)
 				.detail(detail)
 				.build();
 	}
-
 }

@@ -1,6 +1,5 @@
 package jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.arms;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,8 +17,6 @@ public class ArmsQueryImpl implements ArmsQuery {
 
 	private final JdbcArmsDao jdbcArmsDao;
 
-	private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-
 	@Override
 	public List<ArmsModel> getArmsList() {
 		List<ArmsEntity> armsEntities = jdbcArmsDao.selectAll();
@@ -29,21 +26,15 @@ public class ArmsQueryImpl implements ArmsQuery {
 	}
 
 	@Override
-	public ArmsModel getArmsById(String armsId) {
+	public Optional<ArmsModel> getArmsById(String armsId) {
+		Optional<ArmsModel> armsModelOpt = Optional.empty();
+
 		Optional<ArmsEntity> armsEntityOpt = jdbcArmsDao.selectById(armsId);
-
-		ArmsModel armsModel = ArmsModel.builder()
-				.armsId("")
-				.armsName("")
-				.detail("")
-				.build();
-
-		
 		if (armsEntityOpt.isPresent()) {
-			armsModel = toModel(armsEntityOpt.get());
+			armsModelOpt = Optional.of(toModel(armsEntityOpt.get()));
 		}
 
-		return armsModel;
+		return armsModelOpt;
 	}
 
 	@Override
@@ -54,15 +45,14 @@ public class ArmsQueryImpl implements ArmsQuery {
 		return armsModels;
 	}
 
-
 	private ArmsModel toModel(ArmsEntity entity) {
 		ArmsModel model = ArmsModel.builder()
 				.armsId(entity.getArmsId())
 				.armsName(entity.getArmsName())
 				.detail(entity.getDetail())
-				.insertDate(sdf.format(entity.getInsertDate()))
-				.updateDate(sdf.format(entity.getUpdateDate()))
-				.version(String.valueOf(entity.getVersion()))
+				.insertDate(entity.getInsertDate().toInstant())
+				.updateDate(entity.getUpdateDate().toInstant())
+				.version(entity.getVersion())
 				.build();
 
 		return model;

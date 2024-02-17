@@ -1,12 +1,10 @@
 package jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.equipment;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 
-import jp.co.sunarch.mobilesuitDatabase.common.utils.CommonItemSettings;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.api.controller.internal.mobilesuit.equipment.EquipmentCountModel;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit.equipment.entity.EquipmentEntity;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.query.mobilesuit.equipment.EquipmentQuery;
@@ -19,15 +17,12 @@ public class EquipmentQueryImpl implements EquipmentQuery {
 
 	private final JdbcEquipmentDao jdbcEquipmentDao;
 
-	private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-
 	@Override
 	public List<EquipmentModel> getEquipmentList() {
 		List<EquipmentEntity> equipmentEntities = jdbcEquipmentDao.selectAll();
 		List<EquipmentModel> equipmentModels = equipmentEntities.stream().map(e -> toModel(e)).toList();
 
 		return equipmentModels;
-
 	}
 
 	@Override
@@ -39,11 +34,11 @@ public class EquipmentQueryImpl implements EquipmentQuery {
 				.msName("")
 				.armsId("")
 				.armsName("")
-				.numberEquipment("0")
+				.numberEquipment(0)
 				.detail("")
-				.insertDate("")
-				.updateDate("")
-				.version("")
+				.insertDate(null)
+				.updateDate(null)
+				.version(1)
 				.build();
 
 		if (equipmentEntityOpt.isPresent()) {
@@ -51,7 +46,6 @@ public class EquipmentQueryImpl implements EquipmentQuery {
 		}
 
 		return equipmentModel;
-
 	}
 
 	@Override
@@ -60,7 +54,6 @@ public class EquipmentQueryImpl implements EquipmentQuery {
 		List<EquipmentModel> equipmentModels = equipmentEntities.stream().map(e -> toModel(e)).toList();
 
 		return equipmentModels;
-
 	}
 
 	@Override
@@ -74,12 +67,11 @@ public class EquipmentQueryImpl implements EquipmentQuery {
 				.msName(entity.getMsName())
 				.armsId(entity.getArmsId())
 				.armsName(entity.getArmsName())
-				.numberEquipment(CommonItemSettings.convertIntegerToString(entity.getNumberEquipment()))
+				.numberEquipment(entity.getNumberEquipment())
 				.detail(entity.getDetail())
-				.insertDate(sdf.format(entity.getInsertDate()))
-				.updateDate(sdf.format(entity.getUpdateDate()))
-				.version(String.valueOf(entity.getVersion()))
+				.insertDate(entity.getInsertDate().toInstant())
+				.updateDate(entity.getUpdateDate().toInstant())
+				.version(entity.getVersion())
 				.build();
-
 	}
 }

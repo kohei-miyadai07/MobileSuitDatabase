@@ -68,11 +68,11 @@
                   </td>
                   <td
                     class="text-nowrap"
-                    th:text="${mobilesuit.insertDate}"
+                    th:text="${#temporals.format(mobilesuit.insertDate, 'yyyy/MM/dd HH:mm:ss')}"
                   ></td>
                   <td
                     class="text-nowrap"
-                    th:text="${mobilesuit.updateDate}"
+                    th:text="${#temporals.format(mobilesuit.updateDate, 'yyyy/MM/dd HH:mm:ss')}"
                   ></td>
                   <td>
                     <a

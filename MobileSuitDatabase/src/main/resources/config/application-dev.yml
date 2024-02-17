@@ -13,3 +13,7 @@ spring:
     init:
       mode: always
       data-locations: classpath:data/data.sql
+management:
+  endpoint:
+    health:
+      show-details: always

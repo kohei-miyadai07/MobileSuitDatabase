@@ -28,5 +28,4 @@ public class EquipmentEntity {
 	private Timestamp updateDate;
 
 	private Integer version;
-
 }

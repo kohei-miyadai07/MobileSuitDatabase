@@ -18,8 +18,8 @@ public class EquipmentConverter {
 				,ArmsId.of(entity.getArmsId())
 				,entity.getNumberEquipment()
 				,entity.getDetail()
-				,entity.getInsertDate().toLocalDateTime()
-				,entity.getUpdateDate().toLocalDateTime()
+				,entity.getInsertDate().toInstant()
+				,entity.getUpdateDate().toInstant()
 				,entity.getVersion());
 
 		return domain;
@@ -31,8 +31,8 @@ public class EquipmentConverter {
 		entity.setArmsId(domain.getArmsId().getValue());
 		entity.setNumberEquipment(domain.getNumberEquipment().orElse(null));
 		entity.setDetail(domain.getDetail().orElse(null));
-		entity.setInsertDate(Timestamp.valueOf(domain.getInsertDate()));
-		entity.setUpdateDate(Timestamp.valueOf(domain.getUpdateDate()));
+		entity.setInsertDate(Timestamp.from(domain.getInsertDate()));
+		entity.setUpdateDate(Timestamp.from(domain.getUpdateDate()));
 		entity.setVersion(domain.getVersion());
 
 		return entity;

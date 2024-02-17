@@ -1,15 +1,12 @@
 package jp.co.sunarch.mobilesuitDatabase.port.adapter.web.controller.mobilesuit.equipment;
 
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import java.util.Arrays;
 import java.util.List;
-
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +38,7 @@ class UpdateEquipmentControllerTest {
 				.msName("テストモビルスーツ1")
 				.armsId("arms1")
 				.armsName("テスト－ライフル1")
-				.numberEquipment("3")
+				.numberEquipment(3)
 				.detail("テスト更新")
 				.build();
 
@@ -65,7 +62,7 @@ class UpdateEquipmentControllerTest {
 				.msName("テストモビルスーツ1")
 				.armsId("arms1")
 				.armsName("テストビールライフル1")
-				.numberEquipment("1")
+				.numberEquipment(1)
 				.detail("テスト詳細1")
 				.build(),
 				EquipmentModel.builder()
@@ -73,7 +70,7 @@ class UpdateEquipmentControllerTest {
 				.msName("テストモビルスーツ2")
 				.armsId("arms2")
 				.armsName("テストビームライフル2")
-				.numberEquipment("2")
+				.numberEquipment(2)
 				.detail("テスト詳細2")
 				.build()
 				);

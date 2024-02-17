@@ -25,5 +25,4 @@ public class ArmsEntity {
 	private Timestamp updateDate;
 
 	private Integer version;
-
 }

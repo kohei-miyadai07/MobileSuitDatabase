@@ -41,7 +41,7 @@ public class UpdateEquipmentController {
 		UpdateEquipmentCommand command = UpdateEquipmentCommand.builder()
 				.msId(MobileSuitId.of(msId))
 				.armsId(ArmsId.of(armsId))
-				.numberEquipment(CommonItemSettings.convertToInteger(updateEquipmentForm.getNumberEquipment()))
+				.numberEquipment(updateEquipmentForm.getNumberEquipment())
 				.detail(CommonItemSettings.convertToString(updateEquipmentForm.getDetail()))
 				.build();
 

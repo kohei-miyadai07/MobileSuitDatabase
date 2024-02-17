@@ -1,5 +1,7 @@
 package jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.equipment;
 
+import java.time.Instant;
+
 import lombok.Builder;
 import lombok.Value;
 
@@ -9,10 +11,9 @@ public class EquipmentArmsModel {
 	private String msId;
 	private String armsId;
 	private String armsName;
-	private String numberEquipment;
+	private Integer numberEquipment;
 	private String detail;
-	private String insertDate;
-	private String updateDate;
-	private String version;
-
+	private Instant insertDate;
+	private Instant updateDate;
+	private Integer version;
 }

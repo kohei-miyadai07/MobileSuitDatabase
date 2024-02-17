@@ -33,5 +33,4 @@ public class EquipmentArmsEntity {
 
 	@Column(name = "version")
 	private Integer version;
-
 }

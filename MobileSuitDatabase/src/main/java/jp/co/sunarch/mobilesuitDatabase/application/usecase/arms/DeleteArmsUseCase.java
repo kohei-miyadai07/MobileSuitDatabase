@@ -19,6 +19,5 @@ public class DeleteArmsUseCase {
 		Arms arms = armsQueryService.getArmsById(command.getArmsId());
 
 		armsRecodeService.deleteArms(arms);
-
 	}
 }

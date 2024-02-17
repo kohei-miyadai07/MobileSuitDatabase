@@ -10,7 +10,7 @@ import lombok.Data;
 public class RegistEquipmentForm {
 	private String msId;
 	private String armsId;
-	private String numberEquipment;
+	private Integer numberEquipment;
 	private String detail;
 	
 	private final List<MobileSuitModel> msList;

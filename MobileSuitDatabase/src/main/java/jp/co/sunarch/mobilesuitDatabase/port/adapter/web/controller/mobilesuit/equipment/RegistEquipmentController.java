@@ -47,7 +47,7 @@ public class RegistEquipmentController {
 		RegistEquipmentCommand command = RegistEquipmentCommand.builder()
 				.msId(MobileSuitId.of(registEquipmentForm.getMsId()))
 				.armsId(ArmsId.of(registEquipmentForm.getArmsId()))
-				.numberEquipment(CommonItemSettings.convertToInteger(registEquipmentForm.getNumberEquipment()))
+				.numberEquipment(registEquipmentForm.getNumberEquipment())
 				.detail(CommonItemSettings.convertToString(registEquipmentForm.getDetail()))
 				.build();
 
@@ -60,5 +60,4 @@ public class RegistEquipmentController {
 
 		return "/MSDB/MobileSuits/Equipments/EquipmentList";	
 	}
-
 }

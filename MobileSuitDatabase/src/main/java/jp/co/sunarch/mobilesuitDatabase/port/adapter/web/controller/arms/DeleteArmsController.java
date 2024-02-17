@@ -36,5 +36,4 @@ public class DeleteArmsController {
 
 		return "/MSDB/Arms/ArmsList";
 	}
-
 }
