@@ -11,16 +11,16 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.seasar.doma.boot.autoconfigure.DomaAutoConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ActiveProfiles;
 
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.arms.ArmsModel;
 
-@JdbcTest
+@SpringBootTest
 @ActiveProfiles("test")
-@Import(DomaAutoConfiguration.class)
+@Import({DomaAutoConfiguration.class, ArmsQueryImpl.class, JdbcArmsDao.class})
 class ArmsQueryImplTest {
 
 	private final String INSERT_ARMS = """
@@ -36,7 +36,7 @@ class ArmsQueryImplTest {
 	private ArmsQueryImpl sut;
 
 	@BeforeEach
-	void seUp() {
+	void setUp() {
 		jdbcTemplate.update(INSERT_ARMS, "arms1", "テストライフル1", "テスト1", Timestamp.valueOf("2019-05-01 01:02:03"), Timestamp.valueOf("2019-05-01 01:02:03"), 1);
 		jdbcTemplate.update(INSERT_ARMS, "arms2", "テストライフル2", "テスト2", Timestamp.valueOf("2019-05-01 01:02:03"), Timestamp.valueOf("2019-05-01 01:02:03"), 1);
 		jdbcTemplate.update(INSERT_ARMS, "arms3", "テストライフル3", "テスト3", Timestamp.valueOf("2019-05-01 01:02:03"), Timestamp.valueOf("2019-05-01 01:02:03"), 1);
