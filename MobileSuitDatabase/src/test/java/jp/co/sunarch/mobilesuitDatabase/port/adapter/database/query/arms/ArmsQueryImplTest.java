@@ -9,10 +9,8 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import org.seasar.doma.boot.autoconfigure.DomaAutoConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Import;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ActiveProfiles;
 
@@ -20,7 +18,6 @@ import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.arms.ArmsModel;
 
 @SpringBootTest
 @ActiveProfiles("test")
-@Import({DomaAutoConfiguration.class, ArmsQueryImpl.class, JdbcArmsDao.class})
 class ArmsQueryImplTest {
 
 	private final String INSERT_ARMS = """
