@@ -15,10 +15,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
-import org.springframework.context.annotation.Import;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.transaction.annotation.Transactional;
 
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.query.mobilesuit.MobileSuitQuery;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.query.mobilesuit.MobileSuitQuery.Criteria;
@@ -26,15 +26,15 @@ import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.Mobile
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.MobileSuitModel;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.equipment.EquipmentArmsModel;
 
-@JdbcTest
+@SpringBootTest
 @ActiveProfiles("test")
-@Import({MobileSuitQueryImpl.class, JdbcMobileSuitDao.class})
+@Transactional
 class MobileSuitQueryImplTest {
 
 	private final String INSERT_MOBILESUIT = """
-			insert 
-			into MobileSuit 
-			values ( 
+			insert
+			into MobileSuit
+			values (
 			?
 			,?
 			,?
@@ -57,15 +57,15 @@ class MobileSuitQueryImplTest {
 			""";
 
 	private final String INSERT_ARMS = """
-			insert 
-			into Arms 
-			values (?, ?, ?);
+			insert
+			into Arms
+			values (?, ?, ?, ?, ?, ?);
 			""";
 
 	private final String INSERT_EQUIPMENT = """
-			insert 
-			into Equipment 
-			values (?, ?, ?, ?)
+			insert
+			into Equipment
+			values (?, ?, ?, ?, ?, ?, ?)
 			""";
 
 	@Autowired
@@ -77,75 +77,81 @@ class MobileSuitQueryImplTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		jdbcTemplate.update(
-						INSERT_MOBILESUIT,
-						"ms1",
-						"msNum1",
-						"テストモビルスーツ1",
-						"/ms/url1",
-						1.00,
-						10.00,
-						1.00,
-						10.00,
-						"テストパワーソース1",
-						"テストマテリアル1",
-						100L,
-						200L,
-						300L,
-						"テスト説明1",
-						"テスト活躍1",
-						timestampOf("2023/04/02 10:00:00"),
-						timestampOf("2023/04/02 10:00:00"),
-						1);
+				INSERT_MOBILESUIT,
+				"ms1",
+				"msNum1",
+				"テストモビルスーツ1",
+				"/ms/url1",
+				1.00,
+				10.00,
+				1.00,
+				10.00,
+				"テストパワーソース1",
+				"テストマテリアル1",
+				100L,
+				200L,
+				300L,
+				"テスト説明1",
+				"テスト活躍1",
+				timestampOf("2023/04/02 10:00:00"),
+				timestampOf("2023/04/02 10:00:00"),
+				1);
 
 		jdbcTemplate.update(
-						INSERT_MOBILESUIT,
-						"ms2",
-						"msNum2",
-						"テストモビルスーツ2",
-						"/ms/url2",
-						1.00,
-						10.00,
-						1.00,
-						10.00,
-						"テストパワーソース2",
-						"テストマテリアル2",
-						100L,
-						200L,
-						300L,
-						"テスト説明2",
-						"テスト活躍2",
-						timestampOf("2023/04/02 10:00:00"),
-						timestampOf("2023/04/02 10:00:00"),
-						1);
+				INSERT_MOBILESUIT,
+				"ms2",
+				"msNum2",
+				"テストモビルスーツ2",
+				"/ms/url2",
+				1.00,
+				10.00,
+				1.00,
+				10.00,
+				"テストパワーソース2",
+				"テストマテリアル2",
+				100L,
+				200L,
+				300L,
+				"テスト説明2",
+				"テスト活躍2",
+				timestampOf("2023/04/02 10:00:00"),
+				timestampOf("2023/04/02 10:00:00"),
+				1);
 
 		jdbcTemplate.update(
-						INSERT_MOBILESUIT,
-						"ms3",
-						"msNum3",
-						"テストモビルスーツ3",
-						"/ms/url3",
-						1.00,
-						10.00,
-						1.00,
-						10.00,
-						"テストパワーソース3",
-						"テストマテリアル3",
-						100L,
-						200L,
-						300L,
-						"テスト説明3",
-						"テスト活躍3",
-						timestampOf("2023/04/02 10:00:00"),
-						timestampOf("2023/04/02 10:00:00"),
-						1);
+				INSERT_MOBILESUIT,
+				"ms3",
+				"msNum3",
+				"テストモビルスーツ3",
+				"/ms/url3",
+				1.00,
+				10.00,
+				1.00,
+				10.00,
+				"テストパワーソース3",
+				"テストマテリアル3",
+				100L,
+				200L,
+				300L,
+				"テスト説明3",
+				"テスト活躍3",
+				timestampOf("2023/04/02 10:00:00"),
+				timestampOf("2023/04/02 10:00:00"),
+				1);
 
-		jdbcTemplate.update(INSERT_ARMS, "arms1", "テストライフル1", "テスト1");
-		jdbcTemplate.update(INSERT_ARMS, "arms2", "テストライフル2", "テスト2");
-		jdbcTemplate.update(INSERT_ARMS, "arms3", "テストライフル3", "テスト3");
+		jdbcTemplate.update(INSERT_ARMS, "arms1", "テストライフル1", "テスト1", timestampOf("2023/04/02 10:00:00"),
+				timestampOf("2023/04/02 10:00:00"), 1);
+		jdbcTemplate.update(INSERT_ARMS, "arms2", "テストライフル2", "テスト2", timestampOf("2023/04/02 10:00:00"),
+				timestampOf("2023/04/02 10:00:00"), 1);
+		jdbcTemplate.update(INSERT_ARMS, "arms3", "テストライフル3", "テスト3", timestampOf("2023/04/02 10:00:00"),
+				timestampOf("2023/04/02 10:00:00"), 1);
 
-		jdbcTemplate.update(INSERT_EQUIPMENT, "ms1", "arms1", 1, "テスト装備1");
-		jdbcTemplate.update(INSERT_EQUIPMENT, "ms2", "arms2", 2, "テスト装備2");
-		jdbcTemplate.update(INSERT_EQUIPMENT, "ms3", "arms3", 3, "テスト装備3");
+		jdbcTemplate.update(INSERT_EQUIPMENT, "ms1", "arms1", 1, "テスト装備1", timestampOf("2023/04/02 10:00:00"),
+				timestampOf("2023/04/02 10:00:00"), 1);
+		jdbcTemplate.update(INSERT_EQUIPMENT, "ms2", "arms2", 2, "テスト装備2", timestampOf("2023/04/02 10:00:00"),
+				timestampOf("2023/04/02 10:00:00"), 1);
+		jdbcTemplate.update(INSERT_EQUIPMENT, "ms3", "arms3", 3, "テスト装備3", timestampOf("2023/04/02 10:00:00"),
+				timestampOf("2023/04/02 10:00:00"), 1);
 
 	}
 
@@ -157,7 +163,7 @@ class MobileSuitQueryImplTest {
 
 			List<MobileSuitModel> extendList = createMobileSuitModelList();
 			assertThat(msList)
-			.isEqualTo(extendList);
+					.isEqualTo(extendList);
 		}
 	}
 
@@ -175,10 +181,10 @@ class MobileSuitQueryImplTest {
 									"ms1",
 									"arms1",
 									"テストライフル1",
-									1, 
+									1,
 									"テスト装備1")));
 			assertThat(msDetail)
-			.isEqualTo(extend);
+					.isEqualTo(extend);
 		}
 	}
 
@@ -190,7 +196,7 @@ class MobileSuitQueryImplTest {
 
 			MobileSuitModel extend = createMoblieSuitModel(1);
 			assertThat(mobileSuit)
-			.isEqualTo(extend);
+					.isEqualTo(extend);
 		}
 	}
 
@@ -219,7 +225,7 @@ class MobileSuitQueryImplTest {
 
 			List<MobileSuitModel> extendList = Collections.singletonList(createMoblieSuitModel(1));
 			assertThat(msList)
-			.isEqualTo(extendList);
+					.isEqualTo(extendList);
 		}
 	}
 
@@ -261,7 +267,7 @@ class MobileSuitQueryImplTest {
 				.build();
 	}
 
-	private MobileSuitDetailModel createMobileSuitDetailModel(MobileSuitModel mobileSuit, 
+	private MobileSuitDetailModel createMobileSuitDetailModel(MobileSuitModel mobileSuit,
 			List<EquipmentArmsModel> equipmentList) {
 		return MobileSuitDetailModel.builder()
 				.msId(mobileSuit.getMsId())
