@@ -1,6 +1,7 @@
 package jp.co.sunarch.mobilesuitDatabase.port.adapter.database.query.mobilesuit;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -8,7 +9,6 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -161,9 +161,10 @@ class MobileSuitQueryImplTest {
 		void モビルスーツのデータを全件取得できること() {
 			List<MobileSuitModel> msList = sut.getMobileSuitList();
 
-			List<MobileSuitModel> extendList = createMobileSuitModelList();
-			assertThat(msList)
-					.isEqualTo(extendList);
+			assertThat(msList).containsExactly(
+					createMoblieSuitModel(1),
+					createMoblieSuitModel(2),
+					createMoblieSuitModel(3));
 		}
 	}
 
@@ -173,18 +174,24 @@ class MobileSuitQueryImplTest {
 		void モビルスーツのIDを指定すると紐づいたモビルスーツの詳細情報を取得できること() {
 			MobileSuitDetailModel msDetail = sut.getMobileSuitDetail("ms1");
 
-			MobileSuitModel mobileSuit = createMoblieSuitModel(1);
-			MobileSuitDetailModel extend = createMobileSuitDetailModel(
-					mobileSuit,
-					Collections.singletonList(
-							createEquipmentArmsModel(
-									"ms1",
-									"arms1",
-									"テストライフル1",
-									1,
-									"テスト装備1")));
-			assertThat(msDetail)
-					.isEqualTo(extend);
+			assertThat(msDetail.getMsId()).isEqualTo("ms1");
+			assertThat(msDetail.getModelNumber()).isEqualTo("msNum1");
+			assertThat(msDetail.getMsName()).isEqualTo("テストモビルスーツ1");
+			assertThat(msDetail.getMsUrl()).isEqualTo("/ms/url1");
+			assertEquals(0, msDetail.getHeadHeight().compareTo(new BigDecimal(1).setScale(2, RoundingMode.DOWN)));
+			assertEquals(0, msDetail.getOverallHeight().compareTo(new BigDecimal(10).setScale(2, RoundingMode.DOWN)));
+			assertEquals(0, msDetail.getWeight().compareTo(new BigDecimal(1).setScale(2, RoundingMode.DOWN)));
+			assertEquals(0, msDetail.getTotalWeight().compareTo(new BigDecimal(10).setScale(2, RoundingMode.DOWN)));
+			assertThat(msDetail.getPowerSource()).isEqualTo("テストパワーソース1");
+			assertThat(msDetail.getMaterial()).isEqualTo("テストマテリアル1");
+			assertThat(msDetail.getEffectiveSensorRadius()).isEqualTo(100L);
+			assertThat(msDetail.getGeneratorOutput()).isEqualTo(200L);
+			assertThat(msDetail.getTotalThrustersOutput()).isEqualTo(300L);
+			assertThat(msDetail.getMsOverview()).isEqualTo("テスト説明1");
+			assertThat(msDetail.getAction()).isEqualTo("テスト活躍1");
+			assertEquals(0, msDetail.getInsertDate().compareTo(Instant.parse("2023-04-02T01:00:00Z")));
+			assertEquals(0, msDetail.getUpdateDate().compareTo(Instant.parse("2023-04-02T01:00:00Z")));
+			assertThat(msDetail.getVersion()).isEqualTo(1);
 		}
 	}
 
@@ -194,9 +201,23 @@ class MobileSuitQueryImplTest {
 		void モビルスーツIDを指定すると紐づいたモビルスーツのデータを取得できること() {
 			MobileSuitModel mobileSuit = sut.getMobileSuitById("ms1");
 
-			MobileSuitModel extend = createMoblieSuitModel(1);
-			assertThat(mobileSuit)
-					.isEqualTo(extend);
+			assertThat(mobileSuit.getMsId()).isEqualTo("ms1");
+			assertThat(mobileSuit.getModelNumber()).isEqualTo("msNum1");
+			assertThat(mobileSuit.getMsName()).isEqualTo("テストモビルスーツ1");
+			assertThat(mobileSuit.getMsUrl()).isEqualTo("/ms/url1");
+			assertEquals(0, mobileSuit.getHeadHeight().compareTo(new BigDecimal(1).setScale(2, RoundingMode.DOWN)));
+			assertEquals(0, mobileSuit.getOverallHeight().compareTo(new BigDecimal(10).setScale(2, RoundingMode.DOWN)));
+			assertEquals(0, mobileSuit.getWeight().compareTo(new BigDecimal(1).setScale(2, RoundingMode.DOWN)));
+			assertEquals(0, mobileSuit.getTotalWeight().compareTo(new BigDecimal(10).setScale(2, RoundingMode.DOWN)));
+			assertThat(mobileSuit.getPowerSource()).isEqualTo("テストパワーソース1");
+			assertThat(mobileSuit.getMaterial()).isEqualTo("テストマテリアル1");
+			assertThat(mobileSuit.getEffectiveSensorRadius()).isEqualTo(100L);
+			assertThat(mobileSuit.getGeneratorOutput()).isEqualTo(200L);
+			assertThat(mobileSuit.getTotalThrustersOutput()).isEqualTo(300L);
+			assertThat(mobileSuit.getMsOverview()).isEqualTo("テスト説明1");
+			assertThat(mobileSuit.getAction()).isEqualTo("テスト活躍1");
+			assertEquals(0, mobileSuit.getInsertDate().compareTo(Instant.parse("2023-04-02T01:00:00Z")));
+			assertEquals(0, mobileSuit.getUpdateDate().compareTo(Instant.parse("2023-04-02T01:00:00Z")));
 		}
 	}
 
@@ -223,9 +244,7 @@ class MobileSuitQueryImplTest {
 					.build();
 			List<MobileSuitModel> msList = sut.searchMobileSuit(criteria);
 
-			List<MobileSuitModel> extendList = Collections.singletonList(createMoblieSuitModel(1));
-			assertThat(msList)
-					.isEqualTo(extendList);
+			assertThat(msList).containsExactly(createMoblieSuitModel(1));
 		}
 	}
 
@@ -261,8 +280,8 @@ class MobileSuitQueryImplTest {
 				.totalThrustersOutput(300L)
 				.msOverview("テスト説明" + seq)
 				.action("テスト活躍" + seq)
-				.insertDate(Instant.ofEpochSecond(0))
-				.updateDate(Instant.ofEpochSecond(0))
+				.insertDate(Instant.parse("2023-04-02T01:00:00Z"))
+				.updateDate(Instant.parse("2023-04-02T01:00:00Z"))
 				.version(1)
 				.build();
 	}
