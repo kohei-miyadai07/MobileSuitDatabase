@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import jp.co.sunarch.mobilesuitDatabase.common.utils.CommonItemSettings;
 import jp.co.sunarch.mobilesuitDatabase.common.utils.FileOperations;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.query.mobilesuit.MobileSuitQuery;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.query.mobilesuit.MobileSuitQuery.Criteria;
@@ -55,26 +54,26 @@ public class MobileSuitController {
 	}
 
 	@PostMapping("/MSDB/MobileSuits/-/search")
-	public String searchMobileSuit(@ModelAttribute MobileSuitSearchForm msSearchModel, Model model) {
+	public String searchMobileSuit(@ModelAttribute MobileSuitSearchForm msSearchForm, Model model) {
 		Criteria criteria = MobileSuitQuery.Criteria.builder()
-				.modelNumber(CommonItemSettings.convertToString(msSearchModel.getModelNumber()))
-				.msName(CommonItemSettings.convertToString(msSearchModel.getMsName()))
-				.headHeightFrom(CommonItemSettings.convertToBigDecimal(msSearchModel.getHeadHeightFrom()))
-				.headHeightTo(CommonItemSettings.convertToBigDecimal(msSearchModel.getHeadHeightTo()))
-				.overallHeightFrom(CommonItemSettings.convertToBigDecimal(msSearchModel.getOverallHeightFrom()))
-				.overallHeightTo(CommonItemSettings.convertToBigDecimal(msSearchModel.getOverallHeightTo()))
-				.weightFrom(CommonItemSettings.convertToBigDecimal(msSearchModel.getWeightFrom()))
-				.weightTo(CommonItemSettings.convertToBigDecimal(msSearchModel.getWeightTo()))
-				.totalWeightFrom(CommonItemSettings.convertToBigDecimal(msSearchModel.getTotalWeightFrom()))
-				.totalWeightTo(CommonItemSettings.convertToBigDecimal(msSearchModel.getTotalWeightTo()))
-				.powerSource(CommonItemSettings.convertToString(msSearchModel.getPowerSource()))
-				.material(CommonItemSettings.convertToString(msSearchModel.getMaterial()))
-				.effectiveSensorRadiusFrom(CommonItemSettings.convertToLong(msSearchModel.getEffectiveSensorRadiusFrom()))
-				.effectiveSensorRadiusTo(CommonItemSettings.convertToLong(msSearchModel.getEffectiveSensorRadiusTo()))
-				.generatorOutputFrom(CommonItemSettings.convertToLong(msSearchModel.getGeneratorOutputFrom()))
-				.generatorOutputTo(CommonItemSettings.convertToLong(msSearchModel.getGeneratorOutputTo()))
-				.totalThrustersOutputFrom(CommonItemSettings.convertToLong(msSearchModel.getTotalThrustersOutputFrom()))
-				.totalThrustersOutputTo(CommonItemSettings.convertToLong(msSearchModel.getTotalThrustersOutputTo()))
+				.modelNumber(msSearchForm.getModelNumber())
+				.msName(msSearchForm.getMsName())
+				.headHeightFrom(msSearchForm.getHeadHeightFrom())
+				.headHeightTo(msSearchForm.getHeadHeightTo())
+				.overallHeightFrom(msSearchForm.getOverallHeightFrom())
+				.overallHeightTo(msSearchForm.getOverallHeightTo())
+				.weightFrom(msSearchForm.getWeightFrom())
+				.weightTo(msSearchForm.getWeightTo())
+				.totalWeightFrom(msSearchForm.getTotalWeightFrom())
+				.totalWeightTo(msSearchForm.getTotalWeightTo())
+				.powerSource(msSearchForm.getPowerSource())
+				.material(msSearchForm.getMaterial())
+				.effectiveSensorRadiusFrom(msSearchForm.getEffectiveSensorRadiusFrom())
+				.effectiveSensorRadiusTo(msSearchForm.getEffectiveSensorRadiusTo())
+				.generatorOutputFrom(msSearchForm.getGeneratorOutputFrom())
+				.generatorOutputTo(msSearchForm.getGeneratorOutputTo())
+				.totalThrustersOutputFrom(msSearchForm.getTotalThrustersOutputFrom())
+				.totalThrustersOutputTo(msSearchForm.getTotalThrustersOutputTo())
 				.build();
 
 		List<MobileSuitModel> msModelList = mobileSuitQuery.searchMobileSuit(criteria);

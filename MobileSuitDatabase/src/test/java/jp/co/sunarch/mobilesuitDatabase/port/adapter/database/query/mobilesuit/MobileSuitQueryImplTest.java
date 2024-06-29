@@ -8,7 +8,6 @@ import java.math.RoundingMode;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -24,7 +23,6 @@ import jp.co.sunarch.mobilesuitDatabase.port.adapter.query.mobilesuit.MobileSuit
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.query.mobilesuit.MobileSuitQuery.Criteria;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.MobileSuitDetailModel;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.MobileSuitModel;
-import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.equipment.EquipmentArmsModel;
 
 @SpringBootTest
 @ActiveProfiles("test")
@@ -227,20 +225,20 @@ class MobileSuitQueryImplTest {
 		void 条件を指定すると紐づいたモビルスーツのデータを取得できること() {
 			Criteria criteria = MobileSuitQuery.Criteria.builder()
 					.modelNumber("msNum1")
-					.headHeightFrom(new BigDecimal(0))
-					.headHeightTo(new BigDecimal(0))
-					.overallHeightFrom(new BigDecimal(0))
-					.overallHeightTo(new BigDecimal(0))
-					.weightFrom(new BigDecimal(0))
-					.weightTo(new BigDecimal(0))
-					.totalWeightFrom(new BigDecimal(0))
-					.totalWeightTo(new BigDecimal(0))
-					.effectiveSensorRadiusFrom(0L)
-					.effectiveSensorRadiusTo(0L)
-					.generatorOutputFrom(0L)
-					.generatorOutputTo(0L)
-					.totalThrustersOutputFrom(0L)
-					.totalThrustersOutputTo(0L)
+					.headHeightFrom(new BigDecimal(0).setScale(2, RoundingMode.DOWN))
+					.headHeightTo(new BigDecimal(1).setScale(2, RoundingMode.DOWN))
+					.overallHeightFrom(new BigDecimal(9).setScale(2, RoundingMode.DOWN))
+					.overallHeightTo(new BigDecimal(11).setScale(2, RoundingMode.DOWN))
+					.weightFrom(new BigDecimal(0).setScale(2, RoundingMode.DOWN))
+					.weightTo(new BigDecimal(2).setScale(2, RoundingMode.DOWN))
+					.totalWeightFrom(new BigDecimal(9).setScale(2, RoundingMode.DOWN))
+					.totalWeightTo(new BigDecimal(11).setScale(2, RoundingMode.DOWN))
+					.effectiveSensorRadiusFrom(99L)
+					.effectiveSensorRadiusTo(101L)
+					.generatorOutputFrom(119L)
+					.generatorOutputTo(201L)
+					.totalThrustersOutputFrom(299L)
+					.totalThrustersOutputTo(301L)
 					.build();
 			List<MobileSuitModel> msList = sut.searchMobileSuit(criteria);
 
@@ -251,16 +249,6 @@ class MobileSuitQueryImplTest {
 	private Timestamp timestampOf(String strTime) throws Exception {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		return new Timestamp(simpleDateFormat.parse(strTime).getTime());
-	}
-
-	private List<MobileSuitModel> createMobileSuitModelList() {
-		List<MobileSuitModel> list = new ArrayList<>();
-
-		list.add(createMoblieSuitModel(1));
-		list.add(createMoblieSuitModel(2));
-		list.add(createMoblieSuitModel(3));
-
-		return list;
 	}
 
 	private MobileSuitModel createMoblieSuitModel(int seq) {
@@ -283,42 +271,6 @@ class MobileSuitQueryImplTest {
 				.insertDate(Instant.parse("2023-04-02T01:00:00Z"))
 				.updateDate(Instant.parse("2023-04-02T01:00:00Z"))
 				.version(1)
-				.build();
-	}
-
-	private MobileSuitDetailModel createMobileSuitDetailModel(MobileSuitModel mobileSuit,
-			List<EquipmentArmsModel> equipmentList) {
-		return MobileSuitDetailModel.builder()
-				.msId(mobileSuit.getMsId())
-				.modelNumber(mobileSuit.getModelNumber())
-				.msName(mobileSuit.getMsName())
-				.msUrl(mobileSuit.getMsUrl())
-				.headHeight(mobileSuit.getHeadHeight())
-				.overallHeight(mobileSuit.getOverallHeight())
-				.weight(mobileSuit.getWeight())
-				.totalWeight(mobileSuit.getTotalWeight())
-				.powerSource(mobileSuit.getPowerSource())
-				.material(mobileSuit.getMaterial())
-				.effectiveSensorRadius(mobileSuit.getEffectiveSensorRadius())
-				.generatorOutput(mobileSuit.getGeneratorOutput())
-				.totalThrustersOutput(mobileSuit.getTotalThrustersOutput())
-				.msOverview(mobileSuit.getMsOverview())
-				.action(mobileSuit.getAction())
-				.insertDate(mobileSuit.getInsertDate())
-				.updateDate(mobileSuit.getUpdateDate())
-				.version(mobileSuit.getVersion())
-				.equipmentArmsResultList(equipmentList)
-				.build();
-	}
-
-	private EquipmentArmsModel createEquipmentArmsModel(String msId, String armsId, String armsName,
-			int numberEquipment, String detail) {
-		return EquipmentArmsModel.builder()
-				.msId(msId)
-				.armsId(armsId)
-				.armsName(armsName)
-				.numberEquipment(numberEquipment)
-				.detail(detail)
 				.build();
 	}
 }
