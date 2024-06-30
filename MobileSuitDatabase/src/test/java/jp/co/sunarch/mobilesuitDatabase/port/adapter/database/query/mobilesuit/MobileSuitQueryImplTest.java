@@ -11,6 +11,7 @@ import java.time.Instant;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -154,6 +155,7 @@ class MobileSuitQueryImplTest {
 	}
 
 	@Nested
+	@DisplayName("モビルスーツデータ取得")
 	class GetMobileSuitList {
 		@Test
 		void モビルスーツのデータを全件取得できること() {
@@ -167,6 +169,7 @@ class MobileSuitQueryImplTest {
 	}
 
 	@Nested
+	@DisplayName("モビルスーツ詳細データ取得")
 	class GetMobileSuitDetail {
 		@Test
 		void モビルスーツのIDを指定すると紐づいたモビルスーツの詳細情報を取得できること() {
@@ -194,6 +197,7 @@ class MobileSuitQueryImplTest {
 	}
 
 	@Nested
+	@DisplayName("IDを元にモビルスーツデータ取得")
 	class GetMobileSuitById {
 		@Test
 		void モビルスーツIDを指定すると紐づいたモビルスーツのデータを取得できること() {
@@ -220,6 +224,7 @@ class MobileSuitQueryImplTest {
 	}
 
 	@Nested
+	@DisplayName("モビルスーツデータ検索")
 	class searchMobileSuit {
 		@Test
 		void 条件を指定すると紐づいたモビルスーツのデータを取得できること() {
