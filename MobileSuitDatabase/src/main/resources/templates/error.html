@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="common/common :: meta_head">
+    <title>MobileSuitDatabase</title>
+  </head>
+  <body>
+    <h1 th:text="${status} + ' ' + ${error}"></h1>
+    <p th:text="${message}"></p>
+  </body>
+</html>
