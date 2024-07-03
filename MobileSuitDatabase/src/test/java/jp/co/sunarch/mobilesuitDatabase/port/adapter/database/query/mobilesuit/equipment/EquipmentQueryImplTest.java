@@ -4,26 +4,26 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.time.Instant;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
-import org.springframework.context.annotation.Import;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.transaction.annotation.Transactional;
 
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.query.mobilesuit.equipment.EquipmentQuery;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.query.mobilesuit.equipment.EquipmentQuery.Criteria;
 import jp.co.sunarch.mobilesuitDatabase.port.adapter.web.model.mobilesuit.equipment.EquipmentModel;
 
-@JdbcTest
+@SpringBootTest
 @ActiveProfiles("test")
-@Import({EquipmentQueryImpl.class, JdbcEquipmentDao.class})
+@Transactional
 class EquipmentQueryImplTest {
 
 	private final String INSERT_MOBILESUIT = """
@@ -52,15 +52,15 @@ class EquipmentQueryImplTest {
 			""";
 
 	private final String INSERT_ARMS = """
-			insert 
-			into Arms 
-			values (?, ?, ?);
+			insert
+			into Arms
+			values (?, ?, ?, ?, ?, ?);
 			""";
 
 	private final String INSERT_EQUIPMENT = """
-			insert 
-			into Equipment 
-			values (?, ?, ?, ?)
+			insert
+			into Equipment
+			values (?, ?, ?, ?, ?, ?, ?)
 			""";
 
 	@Autowired
@@ -134,42 +134,57 @@ class EquipmentQueryImplTest {
 				timestampOf("2023/04/02 10:00:00"),
 				1);
 
-		jdbcTemplate.update(INSERT_ARMS, "arms1", "テストライフル1", "テスト1");
-		jdbcTemplate.update(INSERT_ARMS, "arms2", "テストライフル2", "テスト2");
-		jdbcTemplate.update(INSERT_ARMS, "arms3", "テストライフル3", "テスト3");
+		jdbcTemplate.update(INSERT_ARMS, "arms1", "テストライフル1", "テスト1", timestampOf("2023/04/02 10:00:00"),
+				timestampOf("2023/04/02 10:00:00"), 1);
+		jdbcTemplate.update(INSERT_ARMS, "arms2", "テストライフル2", "テスト2", timestampOf("2023/04/02 10:00:00"),
+				timestampOf("2023/04/02 10:00:00"), 1);
+		jdbcTemplate.update(INSERT_ARMS, "arms3", "テストライフル3", "テスト3", timestampOf("2023/04/02 10:00:00"),
+				timestampOf("2023/04/02 10:00:00"), 1);
 
-		jdbcTemplate.update(INSERT_EQUIPMENT, "ms1", "arms1", 1, "テスト装備1");
-		jdbcTemplate.update(INSERT_EQUIPMENT, "ms2", "arms2", 2, "テスト装備2");
-		jdbcTemplate.update(INSERT_EQUIPMENT, "ms3", "arms3", 3, "テスト装備3");
+		jdbcTemplate.update(INSERT_EQUIPMENT, "ms1", "arms1", 1, "テスト装備1", timestampOf("2023/04/02 10:00:00"),
+				timestampOf("2023/04/02 10:00:00"), 1);
+		jdbcTemplate.update(INSERT_EQUIPMENT, "ms2", "arms2", 2, "テスト装備2", timestampOf("2023/04/02 10:00:00"),
+				timestampOf("2023/04/02 10:00:00"), 1);
+		jdbcTemplate.update(INSERT_EQUIPMENT, "ms3", "arms3", 3, "テスト装備3", timestampOf("2023/04/02 10:00:00"),
+				timestampOf("2023/04/02 10:00:00"), 1);
 
 	}
 
 	@Nested
+	@DisplayName("装備一覧取得")
 	class GetEquipmentList {
 		@Test
 		void 装備データの全件を取得できること() {
 			List<EquipmentModel> equipmentList = sut.getEquipmentList();
 
-			List<EquipmentModel> extendList = createEquipmentModelList();
-			assertThat(equipmentList)
-			.isEqualTo(extendList);
+			assertThat(equipmentList).containsExactly(
+					createEquipmentModel("ms1", "テストモビルスーツ1", "arms1", "テストライフル1", 1, "テスト装備1"),
+					createEquipmentModel("ms2", "テストモビルスーツ2", "arms2", "テストライフル2", 2, "テスト装備2"),
+					createEquipmentModel("ms3", "テストモビルスーツ3", "arms3", "テストライフル3", 3, "テスト装備3"));
 		}
 	}
 
 	@Nested
+	@DisplayName("モビルスーツIDと武器IDを元に装備データ取得")
 	class GetEquipmentByMsIdAndArmsId {
 		@Test
 		void モビルスーツIDと武器IDを指定すると紐づいた装備データを取得できること() {
 			EquipmentModel equipment = sut.getEquipmentByMsIdAndArmsId("ms1", "arms1");
 
-			EquipmentModel extend = createEquipmentModel(
-					"ms1", "テストモビルスーツ1", "arms1", "テストライフル1", 1, "テスト装備1");
-			assertThat(equipment)
-			.isEqualTo(extend);
+			assertThat(equipment.getMsId()).isEqualTo("ms1");
+			assertThat(equipment.getMsName()).isEqualTo("テストモビルスーツ1");
+			assertThat(equipment.getArmsId()).isEqualTo("arms1");
+			assertThat(equipment.getArmsName()).isEqualTo("テストライフル1");
+			assertThat(equipment.getNumberEquipment()).isEqualTo(1);
+			assertThat(equipment.getDetail()).isEqualTo("テスト装備1");
+			assertThat(equipment.getInsertDate().compareTo(Instant.parse("2023-04-02T01:00:00Z")));
+			assertThat(equipment.getUpdateDate().compareTo(Instant.parse("2023-04-02T01:00:00Z")));
+			assertThat(equipment.getVersion()).isEqualTo(1);
 		}
 	}
 
 	@Nested
+	@DisplayName("装備データ検索")
 	class SearchEquipment {
 		@Test
 		void 条件を指定すると紐づいた装備データを取得できること() {
@@ -179,10 +194,8 @@ class EquipmentQueryImplTest {
 					.build();
 			List<EquipmentModel> equipmentList = sut.searchEquipment(criteria);
 
-			List<EquipmentModel> extendList = Collections.singletonList(
+			assertThat(equipmentList).containsExactly(
 					createEquipmentModel("ms1", "テストモビルスーツ1", "arms1", "テストライフル1", 1, "テスト装備1"));
-			assertThat(equipmentList)
-			.isEqualTo(extendList);
 		}
 	}
 
@@ -191,15 +204,6 @@ class EquipmentQueryImplTest {
 		return new Timestamp(simpleDateFormat.parse(strTime).getTime());
 	}
 
-	private List<EquipmentModel> createEquipmentModelList() {
-		List<EquipmentModel> list = new ArrayList<>();
-
-		list.add(createEquipmentModel("ms1", "テストモビルスーツ1", "arms1", "テストライフル1", 1, "テスト装備1"));
-		list.add(createEquipmentModel("ms2", "テストモビルスーツ2", "arms2", "テストライフル2", 2, "テスト装備2"));
-		list.add(createEquipmentModel("ms3", "テストモビルスーツ3", "arms3", "テストライフル3", 3, "テスト装備3"));
-
-		return list;
-	}
 	private EquipmentModel createEquipmentModel(String msId, String msName, String armsId,
 			String armsName, int numberEquipment, String detail) {
 		return EquipmentModel.builder()
@@ -209,6 +213,9 @@ class EquipmentQueryImplTest {
 				.armsName(armsName)
 				.numberEquipment(numberEquipment)
 				.detail(detail)
+				.insertDate(Instant.parse("2023-04-02T01:00:00Z"))
+				.updateDate(Instant.parse("2023-04-02T01:00:00Z"))
+				.version(1)
 				.build();
 	}
 }

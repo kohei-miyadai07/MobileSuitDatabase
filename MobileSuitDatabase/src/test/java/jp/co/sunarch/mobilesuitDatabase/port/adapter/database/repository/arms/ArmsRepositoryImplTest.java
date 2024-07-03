@@ -2,39 +2,44 @@ package jp.co.sunarch.mobilesuitDatabase.port.adapter.database.repository.arms;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.sql.Timestamp;
 import java.time.Instant;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
-import org.springframework.context.annotation.Import;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.transaction.annotation.Transactional;
 
 import jp.co.sunarch.mobilesuitDatabase.domain.model.arms.Arms;
 import jp.co.sunarch.mobilesuitDatabase.domain.model.arms.ArmsId;
 
-@JdbcTest
+@SpringBootTest
 @ActiveProfiles("test")
-@Import({ArmsRepositoryImpl.class, ArmsConverter.class, ArmsDao.class})
+@Transactional
 class ArmsRepositoryImplTest {
 
 	private final String INSERT_ARMS = """
-			insert 
-			into Arms 
-			values (?, ?, ?);
+			insert
+			into Arms
+			values (?, ?, ?, ?, ?, ?);
 			""";
 
 	private final String SELECT_ARMS_QUERY_BY_ID = """
 			select
 			arms_id
 			, arms_name
-			, detail 
+			, detail
+			, insert_date
+			, update_date
+			, version
 			from
-			Arms 
+			Arms
 			where
 			arms_id = ?
 			""";
@@ -46,12 +51,16 @@ class ArmsRepositoryImplTest {
 	private ArmsRepositoryImpl sut;
 
 	@Nested
+	@DisplayName("武器データ取得")
 	class getArmsById {
 		@BeforeEach
 		void setUp() {
-			jdbcTemplate.update(INSERT_ARMS, "arms1", "テストライフル1", "テスト1");
-			jdbcTemplate.update(INSERT_ARMS, "arms2", "テストライフル2", "テスト2");
-			jdbcTemplate.update(INSERT_ARMS, "arms3", "テストライフル3", "テスト3");
+			jdbcTemplate.update(INSERT_ARMS, "arms1", "テストライフル1", "テスト1", Timestamp.valueOf("2019-05-01 01:02:03"),
+					Timestamp.valueOf("2019-05-01 01:02:03"), 1);
+			jdbcTemplate.update(INSERT_ARMS, "arms2", "テストライフル2", "テスト2", Timestamp.valueOf("2019-05-01 01:02:03"),
+					Timestamp.valueOf("2019-05-01 01:02:03"), 1);
+			jdbcTemplate.update(INSERT_ARMS, "arms3", "テストライフル3", "テスト3", Timestamp.valueOf("2019-05-01 01:02:03"),
+					Timestamp.valueOf("2019-05-01 01:02:03"), 1);
 		}
 
 		@Test
@@ -62,21 +71,25 @@ class ArmsRepositoryImplTest {
 					ArmsId.of("arms1"),
 					"テストライフル1",
 					"テスト1",
-					Instant.ofEpochSecond(0),
-					Instant.ofEpochSecond(0),
+					Timestamp.valueOf("2019-05-01 01:02:03").toInstant(),
+					Timestamp.valueOf("2019-05-01 01:02:03").toInstant(),
 					Integer.valueOf(1));
 			assertThat(arms)
-			.isEqualTo(extend);
+					.isEqualTo(extend);
 		}
 	}
 
 	@Nested
+	@DisplayName("武器データ登録・更新")
 	class save {
 		@BeforeEach
 		void setUp() {
-			jdbcTemplate.update(INSERT_ARMS, "arms1", "テストライフル1", "テスト1");
-			jdbcTemplate.update(INSERT_ARMS, "arms2", "テストライフル2", "テスト2");
-			jdbcTemplate.update(INSERT_ARMS, "arms3", "テストライフル3", "テスト3");
+			jdbcTemplate.update(INSERT_ARMS, "arms1", "テストライフル1", "テスト1", Timestamp.valueOf("2019-05-01 01:02:03"),
+					Timestamp.valueOf("2019-05-01 01:02:03"), 1);
+			jdbcTemplate.update(INSERT_ARMS, "arms2", "テストライフル2", "テスト2", Timestamp.valueOf("2019-05-01 01:02:03"),
+					Timestamp.valueOf("2019-05-01 01:02:03"), 1);
+			jdbcTemplate.update(INSERT_ARMS, "arms3", "テストライフル3", "テスト3", Timestamp.valueOf("2019-05-01 01:02:03"),
+					Timestamp.valueOf("2019-05-01 01:02:03"), 1);
 		}
 
 		@Test
@@ -94,7 +107,7 @@ class ArmsRepositoryImplTest {
 			Arms extend = jdbcTemplate.queryForObject(SELECT_ARMS_QUERY_BY_ID, rowMapper, "arms4");
 
 			assertThat(arms)
-			.isEqualTo(extend);
+					.isEqualTo(extend);
 		}
 
 		@Test
@@ -110,19 +123,23 @@ class ArmsRepositoryImplTest {
 
 			ArmsRowMapper rowMapper = new ArmsRowMapper();
 			Arms extend = jdbcTemplate.queryForObject(SELECT_ARMS_QUERY_BY_ID, rowMapper, "arms2");
-	
+
 			assertThat(arms)
-			.isEqualTo(extend);
+					.isEqualTo(extend);
 		}
 	}
 
 	@Nested
+	@DisplayName("武器データ削除")
 	class DeleteArmsById {
 		@BeforeEach
 		void setUp() {
-			jdbcTemplate.update(INSERT_ARMS, "arms1", "テストライフル1", "テスト1");
-			jdbcTemplate.update(INSERT_ARMS, "arms2", "テストライフル2", "テスト2");
-			jdbcTemplate.update(INSERT_ARMS, "arms3", "テストライフル3", "テスト3");
+			jdbcTemplate.update(INSERT_ARMS, "arms1", "テストライフル1", "テスト1", Timestamp.valueOf("2019-05-01 01:02:03"),
+					Timestamp.valueOf("2019-05-01 01:02:03"), 1);
+			jdbcTemplate.update(INSERT_ARMS, "arms2", "テストライフル2", "テスト2", Timestamp.valueOf("2019-05-01 01:02:03"),
+					Timestamp.valueOf("2019-05-01 01:02:03"), 1);
+			jdbcTemplate.update(INSERT_ARMS, "arms3", "テストライフル3", "テスト3", Timestamp.valueOf("2019-05-01 01:02:03"),
+					Timestamp.valueOf("2019-05-01 01:02:03"), 1);
 		}
 
 		@Test
@@ -139,8 +156,7 @@ class ArmsRepositoryImplTest {
 			}
 
 			assertThat(extend)
-			.isNull();
+					.isNull();
 		}
 	}
-
 }

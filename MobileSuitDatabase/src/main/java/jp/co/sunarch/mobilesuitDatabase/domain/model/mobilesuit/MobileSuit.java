@@ -45,7 +45,7 @@ public class MobileSuit {
 		mobileSuit.setMaterial(material);
 		mobileSuit.setEffectiveSensorRadius(effectiveSensorRadius);
 		mobileSuit.setGeneratorOutput(generatorOutput);
-		mobileSuit.setTotalThrustersOutput(generatorOutput);
+		mobileSuit.setTotalThrustersOutput(totalThrustersOutput);
 		mobileSuit.setMsOverview(msOverview);
 		mobileSuit.setAction(action);
 		mobileSuit.setInsertDate(insertDate);

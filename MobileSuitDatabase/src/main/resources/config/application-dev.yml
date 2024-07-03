@@ -6,9 +6,9 @@ spring:
   datasource:
     connectionProperties: useUnicode=true;characterEncoding=utf-8
     driver-class-name: org.postgresql.Driver
-    password: root
-    url: jdbc:postgresql://localhost:5432/localdb
-    username: root
+    password: msdbmk0729
+    url: jdbc:postgresql://localhost:5432/msdbdatabase?currentSchema=msdb_miyadai
+    username: km0729
   sql:
     init:
       mode: always
