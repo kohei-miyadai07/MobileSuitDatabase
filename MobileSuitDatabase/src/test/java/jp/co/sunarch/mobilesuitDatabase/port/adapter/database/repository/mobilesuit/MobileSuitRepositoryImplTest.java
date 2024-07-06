@@ -291,25 +291,26 @@ class MobileSuitRepositoryImplTest {
 
 		@Test
 		void 対象のモビルスーツドメインモデルが未登録の場合は新規登録されること() {
-			MobileSuit mobileSuit = MobileSuit.create(
-					MobileSuitId.of("ms4"),
-					"msNum4",
-					"テストモビルスーツ4",
-					"/ms/url4",
-					new BigDecimal("19.55").setScale(2, RoundingMode.DOWN),
-					new BigDecimal("19.55").setScale(2, RoundingMode.DOWN),
-					new BigDecimal("19.55").setScale(2, RoundingMode.DOWN),
-					new BigDecimal("19.55").setScale(2, RoundingMode.DOWN),
-					"テストパワーソース4",
-					"テストマテリアル4",
-					100L,
-					200L,
-					300L,
-					"テスト説明4",
-					"テスト活躍4",
-					Instant.parse("2023-04-02T01:00:00Z"),
-					Instant.parse("2023-04-02T01:00:00Z"),
-					Integer.valueOf(1));
+			MobileSuit mobileSuit = new MobileSuit();
+			mobileSuit.setMsId(MobileSuitId.of("ms4"));
+			mobileSuit.setModelNumber("msNum4");
+			mobileSuit.setMsName("テストモビルスーツ4");
+			mobileSuit.setMsUrl("/ms/url4");
+			mobileSuit.setHeadHeight(new BigDecimal("19.55").setScale(2, RoundingMode.DOWN));
+			mobileSuit.setOverallHeight(new BigDecimal("19.55").setScale(2, RoundingMode.DOWN));
+			mobileSuit.setWeight(new BigDecimal("19.55").setScale(2, RoundingMode.DOWN));
+			mobileSuit.setTotalWeight(new BigDecimal("19.55").setScale(2, RoundingMode.DOWN));
+			mobileSuit.setPowerSource("テストパワーソース4");
+			mobileSuit.setMaterial("テストマテリアル4");
+			mobileSuit.setEffectiveSensorRadius(100L);
+			mobileSuit.setGeneratorOutput(200L);
+			mobileSuit.setTotalThrustersOutput(300L);
+			mobileSuit.setMsOverview("テスト説明4");
+			mobileSuit.setAction("テスト活躍4");
+			mobileSuit.setInsertDate(Instant.parse("2023-04-02T01:00:00Z"));
+			mobileSuit.setUpdateDate(Instant.parse("2023-04-02T01:00:00Z"));
+			mobileSuit.setVersion(1);
+
 			sut.save(mobileSuit);
 
 			MobileSuitRowMapper rowMapper = new MobileSuitRowMapper();
@@ -337,25 +338,26 @@ class MobileSuitRepositoryImplTest {
 
 		@Test
 		void 対象のモビルスーツドメインモデルが登録済みの場合は更新されること() {
-			MobileSuit mobileSuit = MobileSuit.create(
-					MobileSuitId.of("ms2"),
-					"msNum5",
-					"テストモビルスーツ5",
-					"/ms/url5",
-					new BigDecimal("20.55").setScale(2, RoundingMode.DOWN),
-					new BigDecimal("20.55").setScale(2, RoundingMode.DOWN),
-					new BigDecimal("20.55").setScale(2, RoundingMode.DOWN),
-					new BigDecimal("20.55").setScale(2, RoundingMode.DOWN),
-					"テストパワーソース5",
-					"テストマテリアル5",
-					100L,
-					200L,
-					300L,
-					"テスト説明5",
-					"テスト活躍5",
-					Instant.parse("2023-04-02T01:00:00Z"),
-					Instant.parse("2023-04-02T01:00:00Z"),
-					Integer.valueOf(2));
+			MobileSuit mobileSuit = new MobileSuit();
+			mobileSuit.setMsId(MobileSuitId.of("ms2"));
+			mobileSuit.setModelNumber("msNum5");
+			mobileSuit.setMsName("テストモビルスーツ5");
+			mobileSuit.setMsUrl("/ms/url5");
+			mobileSuit.setHeadHeight(new BigDecimal("20.55").setScale(2, RoundingMode.DOWN));
+			mobileSuit.setOverallHeight(new BigDecimal("20.55").setScale(2, RoundingMode.DOWN));
+			mobileSuit.setWeight(new BigDecimal("20.55").setScale(2, RoundingMode.DOWN));
+			mobileSuit.setTotalWeight(new BigDecimal("20.55").setScale(2, RoundingMode.DOWN));
+			mobileSuit.setPowerSource("テストパワーソース5");
+			mobileSuit.setMaterial("テストマテリアル5");
+			mobileSuit.setEffectiveSensorRadius(100L);
+			mobileSuit.setGeneratorOutput(200L);
+			mobileSuit.setTotalThrustersOutput(300L);
+			mobileSuit.setMsOverview("テスト説明5");
+			mobileSuit.setAction("テスト活躍5");
+			mobileSuit.setInsertDate(Instant.parse("2023-04-02T01:00:00Z"));
+			mobileSuit.setUpdateDate(Instant.parse("2023-04-02T01:00:00Z"));
+			mobileSuit.setVersion(2);
+
 			sut.save(mobileSuit);
 
 			MobileSuitRowMapper rowMapper = new MobileSuitRowMapper();

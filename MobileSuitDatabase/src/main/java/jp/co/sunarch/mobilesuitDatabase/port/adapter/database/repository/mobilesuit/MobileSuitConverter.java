@@ -38,25 +38,25 @@ public class MobileSuitConverter {
 
 	public MobileSuit entityToDomain(MobileSuitEntity entity) {
 
-		MobileSuit domain = MobileSuit.create(
-				MobileSuitId.of(entity.getMsId())
-				,entity.getModelNumber()
-				,entity.getMsName()
-				,entity.getMsUrl()
-				,entity.getHeadHeight()
-				,entity.getOverallHeight()
-				,entity.getWeight()
-				,entity.getTotalWeight()
-				,entity.getPowerSource()
-				,entity.getMaterial()
-				,entity.getEffectiveSensorRadius()
-				,entity.getGeneratorOutput()
-				,entity.getTotalThrustersOutput()
-				,entity.getMsOverview()
-				,entity.getAction()
-				,entity.getInsertDate().toInstant()
-				,entity.getUpdateDate().toInstant()
-				,entity.getVersion());
+		MobileSuit domain = new MobileSuit();
+		domain.setMsId(MobileSuitId.of(entity.getMsId()));
+		domain.setModelNumber(entity.getModelNumber());
+		domain.setMsName(entity.getMsName());
+		domain.setMsUrl(entity.getMsUrl());
+		domain.setHeadHeight(entity.getHeadHeight());
+		domain.setOverallHeight(entity.getOverallHeight());
+		domain.setWeight(entity.getWeight());
+		domain.setTotalWeight(entity.getTotalWeight());
+		domain.setPowerSource(entity.getPowerSource());
+		domain.setMaterial(entity.getMaterial());
+		domain.setEffectiveSensorRadius(entity.getEffectiveSensorRadius());
+		domain.setGeneratorOutput(entity.getGeneratorOutput());
+		domain.setTotalThrustersOutput(entity.getTotalThrustersOutput());
+		domain.setMsOverview(entity.getMsOverview());
+		domain.setAction(entity.getAction());
+		domain.setInsertDate(entity.getInsertDate().toInstant());
+		domain.setUpdateDate(entity.getUpdateDate().toInstant());
+		domain.setVersion(entity.getVersion());
 
 		return domain;
 	}

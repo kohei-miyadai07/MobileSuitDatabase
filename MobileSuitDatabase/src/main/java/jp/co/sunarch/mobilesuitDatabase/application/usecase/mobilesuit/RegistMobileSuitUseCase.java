@@ -39,8 +39,7 @@ public class RegistMobileSuitUseCase {
 				,command.getMsOverview()
 				,command.getAction()
 				,Instant.now()
-				,Instant.now()
-				,1);
+				,Instant.now());
 
 		mobileSuitRecodeService.uploadImageFile(command.getMsMultipartFile());
 		mobileSuitRecodeService.registMobileSuit(mobileSuit);
