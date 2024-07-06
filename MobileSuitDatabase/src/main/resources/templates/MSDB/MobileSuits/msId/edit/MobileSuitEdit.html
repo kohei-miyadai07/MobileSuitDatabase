@@ -48,6 +48,9 @@
               th:object="${msEditForm}"
               method="post"
             >
+              <div>
+                <input id="version" type="hidden" th:field="*{version}"/>
+              </div>
               <div class="row">
                 <div class="col-md-3">
                   <h2 class="h5">機体名</h2>

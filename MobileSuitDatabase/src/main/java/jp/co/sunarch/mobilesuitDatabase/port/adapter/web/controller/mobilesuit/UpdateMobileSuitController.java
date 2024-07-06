@@ -53,6 +53,7 @@ public class UpdateMobileSuitController {
 				.msOverview(CommonItemSettings.convertToString(updateMobileSuitForm.getMsOverview()))
 				.action(CommonItemSettings.convertToString(updateMobileSuitForm.getAction()))
 				.msMultipartFile(updateMobileSuitForm.getMsMultipartFile())
+				.version(updateMobileSuitForm.getVersion())
 				.build();
 
 		updateMobileSuitUseCase.execute(command);
