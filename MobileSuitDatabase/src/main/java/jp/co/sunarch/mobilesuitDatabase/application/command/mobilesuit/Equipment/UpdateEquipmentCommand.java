@@ -12,4 +12,5 @@ public class UpdateEquipmentCommand {
 	private ArmsId armsId;
 	private Integer numberEquipment;
 	private String detail;
+	private Integer version;
 }

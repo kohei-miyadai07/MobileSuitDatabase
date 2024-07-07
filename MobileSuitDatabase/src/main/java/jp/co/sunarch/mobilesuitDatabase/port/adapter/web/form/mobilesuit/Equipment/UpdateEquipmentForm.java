@@ -11,6 +11,7 @@ public class UpdateEquipmentForm {
 	private String armsName;
 	private Integer numberEquipment;
 	private String detail;
+	private Integer version;
 
 	public static UpdateEquipmentForm ModelToForm(EquipmentModel model) {
 		UpdateEquipmentForm form = new UpdateEquipmentForm();
@@ -20,6 +21,7 @@ public class UpdateEquipmentForm {
 		form.setArmsName(model.getArmsName());
 		form.setNumberEquipment(model.getNumberEquipment());
 		form.setDetail(model.getDetail());
+		form.setVersion(model.getVersion());
 
 		return form;
 	}

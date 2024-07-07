@@ -43,6 +43,7 @@ public class UpdateEquipmentController {
 				.armsId(ArmsId.of(armsId))
 				.numberEquipment(updateEquipmentForm.getNumberEquipment())
 				.detail(CommonItemSettings.convertToString(updateEquipmentForm.getDetail()))
+				.version(updateEquipmentForm.getVersion())
 				.build();
 
 		updateEquipmentUseCase.execute(command);
