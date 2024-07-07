@@ -24,13 +24,13 @@ public class ArmsConverter {
 	}
 
 	public Arms entityToDomain(ArmsEntity entity) {
-		Arms domain = Arms.create(
-				ArmsId.of(entity.getArmsId())
-				,entity.getArmsName()
-				,entity.getDetail()
-				,entity.getInsertDate().toInstant()
-				,entity.getUpdateDate().toInstant()
-				,entity.getVersion());
+		Arms domain = new Arms();
+		domain.setArmsId(ArmsId.of(entity.getArmsId()));
+		domain.setArmsName(entity.getArmsName());
+		domain.setDetail(entity.getDetail());
+		domain.setInsertDate(entity.getInsertDate().toInstant());
+		domain.setUpdateDate(entity.getUpdateDate().toInstant());
+		domain.setVersion(entity.getVersion());
 
 		return domain;
 	}

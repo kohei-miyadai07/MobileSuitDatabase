@@ -15,14 +15,14 @@ public class Arms {
 	private Integer version;
 
 	public static Arms create(ArmsId armsId, String armsName, String detail,
-			Instant insertDate, Instant updateDate, Integer version) {
+			Instant insertDate, Instant updateDate) {
 		Arms arms = new Arms();
 		arms.setArmsId(armsId);
 		arms.setArmsName(armsName);
 		arms.setDetail(detail);
 		arms.setInsertDate(insertDate);
 		arms.setUpdateDate(updateDate);
-		arms.setVersion(version);
+		arms.setVersion(null);
 
 		return arms;
 	}

@@ -3,7 +3,6 @@ package jp.co.sunarch.mobilesuitDatabase.port.adapter.database.repository.arms;
 import static org.assertj.core.api.Assertions.*;
 
 import java.sql.Timestamp;
-import java.time.Instant;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -67,13 +66,14 @@ class ArmsRepositoryImplTest {
 		void 武器IDを指定すると紐づいた武器ドメインモデルを取得できること() {
 			Arms arms = sut.getArmsById("arms1");
 
-			Arms extend = Arms.create(
-					ArmsId.of("arms1"),
-					"テストライフル1",
-					"テスト1",
-					Timestamp.valueOf("2019-05-01 01:02:03").toInstant(),
-					Timestamp.valueOf("2019-05-01 01:02:03").toInstant(),
-					Integer.valueOf(1));
+			Arms extend = new Arms();
+			extend.setArmsId(ArmsId.of("arms1"));
+			extend.setArmsName("テストライフル1");
+			extend.setDetail("テスト1");
+			extend.setInsertDate(Timestamp.valueOf("2019-05-01 01:02:03").toInstant());
+			extend.setUpdateDate(Timestamp.valueOf("2019-05-01 01:02:03").toInstant());
+			extend.setVersion(1);
+
 			assertThat(arms)
 					.isEqualTo(extend);
 		}
@@ -94,13 +94,14 @@ class ArmsRepositoryImplTest {
 
 		@Test
 		void 対象の武器ドメインモデルが未登録の場合は新規登録されること() {
-			Arms arms = Arms.create(
-					ArmsId.of("arms4"),
-					"テストライフル4",
-					"テスト4",
-					Instant.ofEpochSecond(0),
-					Instant.ofEpochSecond(0),
-					Integer.valueOf(1));
+			Arms arms = new Arms();
+			arms.setArmsId(ArmsId.of("arms4"));
+			arms.setArmsName("テストライフル4");
+			arms.setDetail("テスト4");
+			arms.setInsertDate(Timestamp.valueOf("2019-05-01 01:02:03").toInstant());
+			arms.setUpdateDate(Timestamp.valueOf("2019-05-01 01:02:03").toInstant());
+			arms.setVersion(1);
+
 			sut.save(arms);
 
 			ArmsRowMapper rowMapper = new ArmsRowMapper();
@@ -112,13 +113,13 @@ class ArmsRepositoryImplTest {
 
 		@Test
 		void 対象の武器ドメインモデルが登録済みの場合は更新されること() {
-			Arms arms = Arms.create(
-					ArmsId.of("arms2"),
-					"テストライフル2-update",
-					"テスト2-update",
-					Instant.ofEpochSecond(0),
-					Instant.ofEpochSecond(0),
-					Integer.valueOf(2));
+			Arms arms = new Arms();
+			arms.setArmsId(ArmsId.of("arms2"));
+			arms.setArmsName("テストライフル2-update");
+			arms.setDetail("テスト2-update");
+			arms.setInsertDate(Timestamp.valueOf("2019-05-01 01:02:03").toInstant());
+			arms.setUpdateDate(Timestamp.valueOf("2019-05-01 01:02:03").toInstant());
+			arms.setVersion(2);
 			sut.save(arms);
 
 			ArmsRowMapper rowMapper = new ArmsRowMapper();
