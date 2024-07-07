@@ -13,13 +13,15 @@ public class EquipmentRowMapper implements RowMapper<Equipment> {
 
 	@Override
 	public Equipment mapRow(ResultSet rs, int rowNum) throws SQLException {
-		return Equipment.create(
-				MobileSuitId.of(rs.getString("ms_id")),
-				ArmsId.of(rs.getString("arms_id")),
-				Integer.valueOf(rs.getInt("number_equipment")),
-				rs.getString("detail"),
-				rs.getTimestamp("insert_date").toInstant(),
-				rs.getTimestamp("update_date").toInstant(),
-				rs.getInt("version"));
+		Equipment equipment = new Equipment();
+		equipment.setMsId(MobileSuitId.of(rs.getString("ms_id")));
+		equipment.setArmsId(ArmsId.of(rs.getString("arms_id")));
+		equipment.setNumberEquipment(Integer.valueOf(rs.getInt("number_equipment")));
+		equipment.setDetail(rs.getString("detail"));
+		equipment.setInsertDate(rs.getTimestamp("insert_date").toInstant());
+		equipment.setUpdateDate(rs.getTimestamp("update_date").toInstant());
+		equipment.setVersion(rs.getInt("version"));
+
+		return equipment;
 	}
 }

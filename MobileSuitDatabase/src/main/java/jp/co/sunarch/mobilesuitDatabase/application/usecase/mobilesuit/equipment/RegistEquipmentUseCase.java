@@ -22,8 +22,7 @@ public class RegistEquipmentUseCase {
 				command.getNumberEquipment(), 
 				command.getDetail(),
 				Instant.now(),
-				Instant.now(),
-				1);
+				Instant.now());
 
 		equipmentRecodeService.registEquipment(equipment);
 	}

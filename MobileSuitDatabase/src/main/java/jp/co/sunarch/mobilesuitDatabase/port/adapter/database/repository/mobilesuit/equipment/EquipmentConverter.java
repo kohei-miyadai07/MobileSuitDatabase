@@ -13,14 +13,14 @@ import jp.co.sunarch.mobilesuitDatabase.port.adapter.database.repository.mobiles
 public class EquipmentConverter {
 
 	public Equipment entityToDomain(EquipmentEntity entity) {
-		Equipment domain = Equipment.create(
-				MobileSuitId.of(entity.getMsId())
-				,ArmsId.of(entity.getArmsId())
-				,entity.getNumberEquipment()
-				,entity.getDetail()
-				,entity.getInsertDate().toInstant()
-				,entity.getUpdateDate().toInstant()
-				,entity.getVersion());
+		Equipment domain = new Equipment();
+		domain.setMsId(MobileSuitId.of(entity.getMsId()));
+		domain.setArmsId(ArmsId.of(entity.getArmsId()));
+		domain.setNumberEquipment(entity.getNumberEquipment());
+		domain.setDetail(entity.getDetail());
+		domain.setInsertDate(entity.getInsertDate().toInstant());
+		domain.setUpdateDate(entity.getUpdateDate().toInstant());
+		domain.setVersion(entity.getVersion());
 
 		return domain;
 	}

@@ -27,14 +27,14 @@ class EquipmentQueryServiceTest {
 
 	@Test
 	void モビルスーツIDと武器IDに紐づく装備ドメインモデルを取得できること() {
-		Equipment extend = Equipment.create(
-				MobileSuitId.of("ms_test1"),
-				ArmsId.of("arms_test1"),
-				Integer.valueOf(1),
-				"テスト001",
-				Instant.ofEpochSecond(0),
-				Instant.ofEpochSecond(0),
-				Integer.valueOf(1));
+		Equipment extend = new Equipment();
+		extend.setMsId(MobileSuitId.of("ms_test1"));
+		extend.setArmsId(ArmsId.of("arms_test1"));
+		extend.setNumberEquipment(Integer.valueOf(1));
+		extend.setDetail("テスト001");
+		extend.setInsertDate(Instant.ofEpochSecond(0));
+		extend.setUpdateDate(Instant.ofEpochSecond(0));
+		extend.setVersion(Integer.valueOf(1));
 
 		when(equipmentRepository.getEquipmentByMsIdAndArmsId(any(), any()))
 		.thenReturn(extend);
