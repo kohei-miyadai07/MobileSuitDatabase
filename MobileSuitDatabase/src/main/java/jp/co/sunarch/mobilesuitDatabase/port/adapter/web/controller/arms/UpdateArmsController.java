@@ -47,6 +47,7 @@ public class UpdateArmsController {
 				.armsId(ArmsId.of(updateArmsForm.getArmsId()))
 				.armsName(updateArmsForm.getArmsName())
 				.detail(CommonItemSettings.convertToString(updateArmsForm.getDetail()))
+				.version(updateArmsForm.getVersion())
 				.build();
 
 		updateArmsUseCase.execute(command);
