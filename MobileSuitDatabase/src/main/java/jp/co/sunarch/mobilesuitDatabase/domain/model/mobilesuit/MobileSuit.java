@@ -50,6 +50,7 @@ public class MobileSuit {
 		mobileSuit.setAction(action);
 		mobileSuit.setInsertDate(insertDate);
 		mobileSuit.setUpdateDate(updateDate);
+		mobileSuit.setVersion(null);
 
 		return mobileSuit;
 	}
