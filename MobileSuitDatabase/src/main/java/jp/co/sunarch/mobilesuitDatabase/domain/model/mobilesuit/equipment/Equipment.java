@@ -18,7 +18,7 @@ public class Equipment {
 	private Integer version;
 
 	public static Equipment create(MobileSuitId msId, ArmsId armsId, Integer numberEquipment, String detail,
-			Instant insertDate, Instant updateDate, Integer version) {
+			Instant insertDate, Instant updateDate) {
 		Equipment equipment = new Equipment();
 		equipment.setMsId(msId);
 		equipment.setArmsId(armsId);
@@ -26,7 +26,7 @@ public class Equipment {
 		equipment.setDetail(detail);
 		equipment.setInsertDate(insertDate);
 		equipment.setUpdateDate(updateDate);
-		equipment.setVersion(version);
+		equipment.setVersion(null);
 
 		return equipment;
 	}

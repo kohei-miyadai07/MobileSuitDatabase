@@ -4,6 +4,7 @@ import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.Instant;
 
 import org.junit.jupiter.api.Nested;
@@ -35,25 +36,26 @@ class MobileSuitRecodeServiceTest {
 	void モビルスーツ登録処理が呼び出されること() {
 		doNothing().when(mobileSuitRepository).save(any());
 
-		MobileSuit mobileSuit = MobileSuit.create(
-				MobileSuitId.of("ms1"),
-				"msNum1",
-				"テストモビルスーツ1",
-				"/ms/url1",
-				new BigDecimal("18.55"),
-				new BigDecimal("18.55"),
-				new BigDecimal("18.55"),
-				new BigDecimal("18.55"),
-				"テストパワーソース1",
-				"テストマテリアル1",
-				100L,
-				200L,
-				300L,
-				"テスト説明1",
-				"テスト活躍1",
-				Instant.ofEpochSecond(0),
-				Instant.ofEpochSecond(0),
-				Integer.valueOf(1));
+		MobileSuit mobileSuit = new MobileSuit();
+		mobileSuit.setMsId(MobileSuitId.of("ms1"));
+		mobileSuit.setModelNumber("msNum1");
+		mobileSuit.setMsName("テストモビルスーツ1");
+		mobileSuit.setMsUrl("/ms/url1");
+		mobileSuit.setHeadHeight(new BigDecimal("18.55").setScale(2, RoundingMode.DOWN));
+		mobileSuit.setOverallHeight(new BigDecimal("18.55").setScale(2, RoundingMode.DOWN));
+		mobileSuit.setWeight(new BigDecimal("18.55").setScale(2, RoundingMode.DOWN));
+		mobileSuit.setTotalWeight(new BigDecimal("18.55").setScale(2, RoundingMode.DOWN));
+		mobileSuit.setPowerSource("テストパワーソース1");
+		mobileSuit.setMaterial("テストマテリアル1");
+		mobileSuit.setEffectiveSensorRadius(100L);
+		mobileSuit.setGeneratorOutput(200L);
+		mobileSuit.setTotalThrustersOutput(300L);
+		mobileSuit.setMsOverview("テスト説明1");
+		mobileSuit.setAction("テスト活躍1");
+		mobileSuit.setInsertDate(Instant.parse("2023-04-02T01:00:00Z"));
+		mobileSuit.setUpdateDate(Instant.parse("2023-04-02T01:00:00Z"));
+		mobileSuit.setVersion(1);
+
 		sut.registMobileSuit(mobileSuit);
 
 		verify(mobileSuitRepository, times(1)).save(mobileSuit);
@@ -63,25 +65,26 @@ class MobileSuitRecodeServiceTest {
 	void モビルスーツ更新処理が呼び出されること() {
 		doNothing().when(mobileSuitRepository).save(any());
 
-		MobileSuit mobileSuit = MobileSuit.create(
-				MobileSuitId.of("ms1"),
-				"msNum1",
-				"テストモビルスーツ1",
-				"/ms/url1",
-				new BigDecimal("18.55"),
-				new BigDecimal("18.55"),
-				new BigDecimal("18.55"),
-				new BigDecimal("18.55"),
-				"テストパワーソース1",
-				"テストマテリアル1",
-				100L,
-				200L,
-				300L,
-				"テスト説明1",
-				"テスト活躍1",
-				Instant.ofEpochSecond(0),
-				Instant.ofEpochSecond(0),
-				Integer.valueOf(2));
+		MobileSuit mobileSuit = new MobileSuit();
+		mobileSuit.setMsId(MobileSuitId.of("ms1"));
+		mobileSuit.setModelNumber("msNum1");
+		mobileSuit.setMsName("テストモビルスーツ1");
+		mobileSuit.setMsUrl("/ms/url1");
+		mobileSuit.setHeadHeight(new BigDecimal("18.55").setScale(2, RoundingMode.DOWN));
+		mobileSuit.setOverallHeight(new BigDecimal("18.55").setScale(2, RoundingMode.DOWN));
+		mobileSuit.setWeight(new BigDecimal("18.55").setScale(2, RoundingMode.DOWN));
+		mobileSuit.setTotalWeight(new BigDecimal("18.55").setScale(2, RoundingMode.DOWN));
+		mobileSuit.setPowerSource("テストパワーソース1");
+		mobileSuit.setMaterial("テストマテリアル1");
+		mobileSuit.setEffectiveSensorRadius(100L);
+		mobileSuit.setGeneratorOutput(200L);
+		mobileSuit.setTotalThrustersOutput(300L);
+		mobileSuit.setMsOverview("テスト説明1");
+		mobileSuit.setAction("テスト活躍1");
+		mobileSuit.setInsertDate(Instant.parse("2023-04-02T01:00:00Z"));
+		mobileSuit.setUpdateDate(Instant.parse("2023-04-02T01:00:00Z"));
+		mobileSuit.setVersion(2);
+
 		sut.updateMobileSuit(mobileSuit);
 
 		verify(mobileSuitRepository, times(1)).save(mobileSuit);
@@ -91,25 +94,26 @@ class MobileSuitRecodeServiceTest {
 	void モビルスーツ削除処理が呼び出されること() {
 		doNothing().when(mobileSuitRepository).deleteMobileSuitById(any());
 
-		MobileSuit mobileSuit = MobileSuit.create(
-				MobileSuitId.of("ms1"),
-				"msNum1",
-				"テストモビルスーツ1",
-				"/ms/url1",
-				new BigDecimal("18.55"),
-				new BigDecimal("18.55"),
-				new BigDecimal("18.55"),
-				new BigDecimal("18.55"),
-				"テストパワーソース1",
-				"テストマテリアル1",
-				100L,
-				200L,
-				300L,
-				"テスト説明1",
-				"テスト活躍1",
-				Instant.ofEpochSecond(0),
-				Instant.ofEpochSecond(0),
-				Integer.valueOf(1));
+		MobileSuit mobileSuit = new MobileSuit();
+		mobileSuit.setMsId(MobileSuitId.of("ms1"));
+		mobileSuit.setModelNumber("msNum1");
+		mobileSuit.setMsName("テストモビルスーツ1");
+		mobileSuit.setMsUrl("/ms/url1");
+		mobileSuit.setHeadHeight(new BigDecimal("18.55").setScale(2, RoundingMode.DOWN));
+		mobileSuit.setOverallHeight(new BigDecimal("18.55").setScale(2, RoundingMode.DOWN));
+		mobileSuit.setWeight(new BigDecimal("18.55").setScale(2, RoundingMode.DOWN));
+		mobileSuit.setTotalWeight(new BigDecimal("18.55").setScale(2, RoundingMode.DOWN));
+		mobileSuit.setPowerSource("テストパワーソース1");
+		mobileSuit.setMaterial("テストマテリアル1");
+		mobileSuit.setEffectiveSensorRadius(100L);
+		mobileSuit.setGeneratorOutput(200L);
+		mobileSuit.setTotalThrustersOutput(300L);
+		mobileSuit.setMsOverview("テスト説明1");
+		mobileSuit.setAction("テスト活躍1");
+		mobileSuit.setInsertDate(Instant.parse("2023-04-02T01:00:00Z"));
+		mobileSuit.setUpdateDate(Instant.parse("2023-04-02T01:00:00Z"));
+		mobileSuit.setVersion(1);
+
 		sut.deleteMobileSuit(mobileSuit);
 
 		verify(mobileSuitRepository, times(1)).deleteMobileSuitById("ms1");

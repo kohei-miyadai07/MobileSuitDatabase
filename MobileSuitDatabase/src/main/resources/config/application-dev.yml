@@ -13,6 +13,11 @@ spring:
     init:
       mode: always
       data-locations: classpath:data/data.sql
+
+doma:
+  dialect: POSTGRES
+  naming: SNAKE_LOWER_CASE
+
 management:
   endpoint:
     health:

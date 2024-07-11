@@ -6,11 +6,11 @@ import java.sql.Timestamp;
 import org.seasar.doma.Entity;
 import org.seasar.doma.Id;
 import org.seasar.doma.Table;
-import org.seasar.doma.jdbc.entity.NamingType;
+import org.seasar.doma.Version;
 
 import lombok.Data;
 
-@Entity(naming = NamingType.LENIENT_SNAKE_LOWER_CASE)
+@Entity
 @Table(name = "MobileSuit")
 @Data
 public class MobileSuitEntity {
@@ -49,5 +49,6 @@ public class MobileSuitEntity {
 
 	private Timestamp updateDate;
 
+	@Version
 	private Integer version;
 }

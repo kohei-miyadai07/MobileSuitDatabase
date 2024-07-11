@@ -12,24 +12,26 @@ public class MobileSuitRowMapper implements RowMapper<MobileSuit> {
 
 	@Override
 	public MobileSuit mapRow(ResultSet rs, int rowNum) throws SQLException {
-		return MobileSuit.create(
-				MobileSuitId.of(rs.getString("ms_id")),
-				rs.getString("model_number"),
-				rs.getString("ms_name"),
-				rs.getString("ms_url"),
-				rs.getBigDecimal("head_height"),
-				rs.getBigDecimal("overall_height"),
-				rs.getBigDecimal("weight"),
-				rs.getBigDecimal("total_weight"),
-				rs.getString("power_source"),
-				rs.getString("material"),
-				rs.getLong("effective_sensor_radius"),
-				rs.getLong("generator_output"),
-				rs.getLong("total_thrusters_output"),
-				rs.getString("ms_overview"),
-				rs.getString("action"),
-				rs.getTimestamp("insert_date").toInstant(),
-				rs.getTimestamp("update_date").toInstant(),
-				rs.getInt("version"));
+		MobileSuit mobileSuit = new MobileSuit();
+		mobileSuit.setMsId(MobileSuitId.of(rs.getString("ms_id")));
+		mobileSuit.setModelNumber(rs.getString("model_number"));
+		mobileSuit.setMsName(rs.getString("ms_name"));
+		mobileSuit.setMsUrl(rs.getString("ms_url"));
+		mobileSuit.setHeadHeight(rs.getBigDecimal("head_height"));
+		mobileSuit.setOverallHeight(rs.getBigDecimal("overall_height"));
+		mobileSuit.setWeight(rs.getBigDecimal("weight"));
+		mobileSuit.setTotalWeight(rs.getBigDecimal("total_weight"));
+		mobileSuit.setPowerSource(rs.getString("power_source"));
+		mobileSuit.setMaterial(rs.getString("material"));
+		mobileSuit.setEffectiveSensorRadius(rs.getLong("effective_sensor_radius"));
+		mobileSuit.setGeneratorOutput(rs.getLong("generator_output"));
+		mobileSuit.setTotalThrustersOutput(rs.getLong("total_thrusters_output"));
+		mobileSuit.setMsOverview(rs.getString("ms_overview"));
+		mobileSuit.setAction(rs.getString("action"));
+		mobileSuit.setInsertDate(rs.getTimestamp("insert_date").toInstant());
+		mobileSuit.setUpdateDate(rs.getTimestamp("update_date").toInstant());
+		mobileSuit.setVersion(rs.getInt("version"));
+
+		return mobileSuit;
 	}
 }

@@ -28,14 +28,15 @@ class EquipmentRecodeServiceTest {
 	void 装備登録処理が呼び出されること() {
 		doNothing().when(equipmentRepository).save(any());
 
-		Equipment equipment = Equipment.create(
-				MobileSuitId.of("ms_test"),
-				ArmsId.of("arms_test"),
-				Integer.valueOf(1),
-				"テスト001",
-				Instant.ofEpochSecond(0),
-				Instant.ofEpochSecond(0),
-				Integer.valueOf(1));
+		Equipment equipment = new Equipment();
+		equipment.setMsId(MobileSuitId.of("ms_test"));
+		equipment.setArmsId(ArmsId.of("arms_test"));
+		equipment.setNumberEquipment(Integer.valueOf(1));
+		equipment.setDetail("テスト001");
+		equipment.setInsertDate(Instant.ofEpochSecond(0));
+		equipment.setUpdateDate(Instant.ofEpochSecond(0));
+		equipment.setVersion(Integer.valueOf(1));
+
 		sut.registEquipment(equipment);
 
 		verify(equipmentRepository, times(1)).save(equipment);
@@ -45,14 +46,15 @@ class EquipmentRecodeServiceTest {
 	void 装備更新処理が呼び出されること() {
 		doNothing().when(equipmentRepository).save(any());
 
-		Equipment equipment = Equipment.create(
-				MobileSuitId.of("ms_test"),
-				ArmsId.of("arms_test"),
-				Integer.valueOf(1),
-				"テスト001",
-				Instant.ofEpochSecond(0),
-				Instant.ofEpochSecond(0),
-				Integer.valueOf(2));
+		Equipment equipment = new Equipment();
+		equipment.setMsId(MobileSuitId.of("ms_test"));
+		equipment.setArmsId(ArmsId.of("arms_test"));
+		equipment.setNumberEquipment(Integer.valueOf(1));
+		equipment.setDetail("テスト001");
+		equipment.setInsertDate(Instant.ofEpochSecond(0));
+		equipment.setUpdateDate(Instant.ofEpochSecond(0));
+		equipment.setVersion(Integer.valueOf(2));
+
 		sut.updateEquipment(equipment);
 
 		verify(equipmentRepository, times(1)).save(equipment);
@@ -62,14 +64,14 @@ class EquipmentRecodeServiceTest {
 	void 装備削除処理が呼び出されること() {
 		doNothing().when(equipmentRepository).deleteEquipmentByMsIdAndArmsId(any(), any());
 
-		Equipment equipment = Equipment.create(
-				MobileSuitId.of("ms_test"),
-				ArmsId.of("arms_test"),
-				Integer.valueOf(1),
-				"テスト001",
-				Instant.ofEpochSecond(0),
-				Instant.ofEpochSecond(0),
-				Integer.valueOf(1));
+		Equipment equipment = new Equipment();
+		equipment.setMsId(MobileSuitId.of("ms_test"));
+		equipment.setArmsId(ArmsId.of("arms_test"));
+		equipment.setNumberEquipment(Integer.valueOf(1));
+		equipment.setDetail("テスト001");
+		equipment.setInsertDate(Instant.ofEpochSecond(0));
+		equipment.setUpdateDate(Instant.ofEpochSecond(0));
+		equipment.setVersion(Integer.valueOf(1));
 		sut.deleteEquipment(equipment);
 
 		verify(equipmentRepository, times(1))

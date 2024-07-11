@@ -27,59 +27,48 @@ class ArmsRecodeServiceTest {
 	void 武器データ登録処理が呼び出されること() {
 		doNothing().when(armsRepository).save(any());
 
-		sut.registArms(Arms.create(
-				ArmsId.of("arms-test"),
-				"arms-test-name",
-				"arms-test-detail",
-				Instant.ofEpochSecond(0),
-				Instant.ofEpochSecond(0),
-				Integer.valueOf(1)));
+		Arms arms = new Arms();
+		arms.setArmsId(ArmsId.of("arms-test"));
+		arms.setArmsName("arms-test-name");
+		arms.setDetail("arms-test-detail");
+		arms.setInsertDate(Instant.ofEpochSecond(0));
+		arms.setUpdateDate(Instant.ofEpochSecond(0));
+		arms.setVersion(1);
 
-		verify(armsRepository, times(1)).save(
-				Arms.create(
-						ArmsId.of("arms-test"),
-						"arms-test-name",
-						"arms-test-detail",
-						Instant.ofEpochSecond(0),
-						Instant.ofEpochSecond(0),
-						Integer.valueOf(1)));;
+		sut.registArms(arms);
+
+		verify(armsRepository, times(1)).save(arms);
 	}
 
 	@Test
 	void 武器データ更新処理が呼び出されること() {
 		doNothing().when(armsRepository).save(any());
 
-		sut.updateArms(Arms.create(
-				ArmsId.of("arms-test"),
-				"arms-test-name",
-				"arms-test-detail",
-				Instant.ofEpochSecond(0),
-				Instant.ofEpochSecond(0),
-				Integer.valueOf(2)
-				));
+		Arms arms = new Arms();
+		arms.setArmsId(ArmsId.of("arms-test"));
+		arms.setArmsName("arms-test-name");
+		arms.setDetail("arms-test-detail");
+		arms.setInsertDate(Instant.ofEpochSecond(0));
+		arms.setUpdateDate(Instant.ofEpochSecond(0));
+		arms.setVersion(2);
 
-		verify(armsRepository, times(1)).save(
-				Arms.create(
-						ArmsId.of("arms-test"),
-						"arms-test-name",
-						"arms-test-detail",
-						Instant.ofEpochSecond(0),
-						Instant.ofEpochSecond(0),
-						Integer.valueOf(2)));
+		sut.updateArms(arms);
+
+		verify(armsRepository, times(1)).save(arms);
 	}
 
 	@Test
 	void 武器データ削除処理が呼び出されること() {
 		doNothing().when(armsRepository).deleteArmsById(any());
 
-		Arms arms = Arms.create(
-				ArmsId.of("arms-test"),
-				"arms-test-name",
-				"arms-test-detail",
-				Instant.ofEpochSecond(0),
-				Instant.ofEpochSecond(0),
-				Integer.valueOf(1)
-				);
+		Arms arms = new Arms();
+		arms.setArmsId(ArmsId.of("arms-test"));
+		arms.setArmsName("arms-test-name");
+		arms.setDetail("arms-test-detail");
+		arms.setInsertDate(Instant.ofEpochSecond(0));
+		arms.setUpdateDate(Instant.ofEpochSecond(0));
+		arms.setVersion(1);
+
 		sut.deleteArms(arms);
 
 		verify(armsRepository, times(1)).deleteArmsById(arms.getArmsId().getValue());

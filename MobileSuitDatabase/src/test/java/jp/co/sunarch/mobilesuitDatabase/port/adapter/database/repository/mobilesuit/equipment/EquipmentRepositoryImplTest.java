@@ -271,14 +271,15 @@ class EquipmentRepositoryImplTest {
 
 		@Test
 		void 対象の装備ドメインモデルが未登録の場合は新規登録されること() {
-			Equipment equipment = Equipment.create(
-					MobileSuitId.of("ms1"),
-					ArmsId.of("arms2"),
-					Integer.valueOf(10),
-					"テスト装備1-2",
-					Instant.parse("2023-04-02T01:00:00Z"),
-					Instant.parse("2023-04-02T01:00:00Z"),
-					Integer.valueOf(1));
+			Equipment equipment = new Equipment();
+			equipment.setMsId(MobileSuitId.of("ms1"));
+			equipment.setArmsId(ArmsId.of("arms2"));
+			equipment.setNumberEquipment(Integer.valueOf(10));
+			equipment.setDetail("テスト装備1-2");
+			equipment.setInsertDate(Instant.parse("2023-04-02T01:00:00Z"));
+			equipment.setUpdateDate(Instant.parse("2023-04-02T01:00:00Z"));
+			equipment.setVersion(Integer.valueOf(1));
+
 			sut.save(equipment);
 
 			EquipmentRowMapper rowMapper = new EquipmentRowMapper();
@@ -296,14 +297,14 @@ class EquipmentRepositoryImplTest {
 
 		@Test
 		void 装備ドメインモデルが登録済みの場合は更新されること() {
-			Equipment equipment = Equipment.create(
-					MobileSuitId.of("ms1"),
-					ArmsId.of("arms1"),
-					Integer.valueOf(100),
-					"テスト装備1_update",
-					Instant.parse("2023-04-02T01:00:00Z"),
-					Instant.parse("2023-04-02T01:00:00Z"),
-					Integer.valueOf(2));
+			Equipment equipment = new Equipment();
+			equipment.setMsId(MobileSuitId.of("ms1"));
+			equipment.setArmsId(ArmsId.of("arms1"));
+			equipment.setNumberEquipment(Integer.valueOf(100));
+			equipment.setDetail("テスト装備1_update");
+			equipment.setInsertDate(Instant.parse("2023-04-02T01:00:00Z"));
+			equipment.setUpdateDate(Instant.parse("2023-04-02T01:00:00Z"));
+			equipment.setVersion(Integer.valueOf(2));
 			sut.save(equipment);
 
 			EquipmentRowMapper rowMapper = new EquipmentRowMapper();

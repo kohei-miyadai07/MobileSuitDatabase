@@ -30,7 +30,7 @@ public class MobileSuit {
 	public static MobileSuit create(MobileSuitId msId, String modelNumber, String msName, String msUrl,
 			BigDecimal headHeight, BigDecimal overallHeight, BigDecimal weight, BigDecimal totalWeight,
 			String powerSource, String material, Long effectiveSensorRadius, Long generatorOutput, Long totalThrustersOutput,
-			String msOverview, String action, Instant insertDate, Instant updateDate, Integer version) {
+			String msOverview, String action, Instant insertDate, Instant updateDate) {
 		
 		MobileSuit mobileSuit = new MobileSuit();
 		mobileSuit.setMsId(msId);
@@ -50,7 +50,7 @@ public class MobileSuit {
 		mobileSuit.setAction(action);
 		mobileSuit.setInsertDate(insertDate);
 		mobileSuit.setUpdateDate(updateDate);
-		mobileSuit.setVersion(version);
+		mobileSuit.setVersion(null);
 
 		return mobileSuit;
 	}

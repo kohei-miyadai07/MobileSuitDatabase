@@ -24,8 +24,7 @@ public class RegistArmsUseCase {
 				,command.getArmsName()
 				,command.getDetail()
 				,Instant.now()
-				,Instant.now()
-				,1);
+				,Instant.now());
 
 		armsRecodeService.registArms(arms);
 	}

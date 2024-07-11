@@ -24,6 +24,7 @@ public class UpdateMobileSuitForm {
 	private String msOverview;
 	private String action;
 	private MultipartFile msMultipartFile;
+	private Integer version;
 
 	public static UpdateMobileSuitForm ModelToForm(MobileSuitModel model) {
 		UpdateMobileSuitForm form = new UpdateMobileSuitForm();
@@ -42,6 +43,7 @@ public class UpdateMobileSuitForm {
 		form.setMsOverview(model.getMsOverview());
 		form.setAction(model.getAction());
 		form.setMsMultipartFile(null);
+		form.setVersion(model.getVersion());
 
 		return form;
 	}

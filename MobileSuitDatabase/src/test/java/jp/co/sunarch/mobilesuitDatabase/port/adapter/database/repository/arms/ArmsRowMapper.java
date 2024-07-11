@@ -12,12 +12,14 @@ public class ArmsRowMapper implements RowMapper<Arms> {
 
 	@Override
 	public Arms mapRow(ResultSet rs, int rowNum) throws SQLException {
-		return Arms.create(
-				ArmsId.of(rs.getString("arms_id")),
-				rs.getString("arms_name"), 
-				rs.getString("detail"),
-				rs.getTimestamp("insert_date").toInstant(),
-				rs.getTimestamp("update_date").toInstant(),
-				rs.getInt("version"));
+		Arms arms = new Arms();
+		arms.setArmsId(ArmsId.of(rs.getString("arms_id")));
+		arms.setArmsName(rs.getString("arms_name"));
+		arms.setDetail(rs.getString("detail"));
+		arms.setInsertDate(rs.getTimestamp("insert_date").toInstant());
+		arms.setUpdateDate(rs.getTimestamp("update_date").toInstant());
+		arms.setVersion(rs.getInt("version"));
+
+		return arms;
 	}
 }
